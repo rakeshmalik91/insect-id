@@ -1,0 +1,3377 @@
+{
+    "abisara-attenuata": {
+        "name": "Attenuated Judy"
+    },
+    "abisara-bifasciata": {
+        "name": "Double-banded Judy"
+    },
+    "abisara-burnii": {
+        "name": "White-spotted Judy"
+    },
+    "abisara-chela": {
+        "name": "Spot Judy"
+    },
+    "abisara-echerius": {
+        "name": "Plum Judy"
+    },
+    "abisara-fylla": {
+        "name": "Dark Judy"
+    },
+    "abisara-neophron": {
+        "name": "Tailed Judy"
+    },
+    "abrota-ganga": {
+        "name": "Sergeant-major"
+    },
+    "acraea-issoria": {
+        "name": "Yellow Coster"
+    },
+    "acraea-terpsicore": {
+        "name": "Tawny Coster"
+    },
+    "actinor-radians": {
+        "name": "Veined Dart"
+    },
+    "acupicta-delicatum": {
+        "name": "Dark Tinsel"
+    },
+    "acytolepis-lilacea": {
+        "name": "Lilac Hedge Blue"
+    },
+    "acytolepis-puspa": {
+        "name": "Common Hedge Blue"
+    },
+    "aemona-amathusia": {
+        "name": "Yellow Dryad"
+    },
+    "aeromachus-dubius": {
+        "name": "Dingy Scrub Hopper"
+    },
+    "aeromachus-jhora": {
+        "name": "Grey Scrub Hopper"
+    },
+    "aeromachus-kali": {
+        "name": "Blue-spotted Scrub Hopper"
+    },
+    "aeromachus-pygmaeus": {
+        "name": "Pygmy Scrub Hopper"
+    },
+    "aeromachus-stigmata": {
+        "name": "Veined Scrub Hopper"
+    },
+    "aglais-caschmirensis": {
+        "name": "Indian Tortoiseshell"
+    },
+    "aglais-ladakensis": {
+        "name": "Ladakh Tortoiseshell"
+    },
+    "aglais-rizana": {
+        "name": "Mountain Tortoiseshell"
+    },
+    "agriades-jaloka": {
+        "name": "Jaloka Mountain Blue"
+    },
+    "albulina-arcaseia": {
+        "name": "Eastern Mountain Blue"
+    },
+    "albulina-asiatica": {
+        "name": "Azure Mountain Blue"
+    },
+    "albulina-chrysopis": {
+        "name": "Bright Green-underwing"
+    },
+    "albulina-galathea": {
+        "name": "Large Green-underwing"
+    },
+    "albulina-lehanus": {
+        "name": "Leh Mountain Blue"
+    },
+    "albulina-metallica": {
+        "name": "Metallic Green-underwing"
+    },
+    "albulina-omphisa": {
+        "name": "Dusky Green-underwing"
+    },
+    "albulina-orbitulus": {
+        "name": "Alpine Mountain Blue"
+    },
+    "albulina-spp": {
+        "name": "Green-underwings"
+    },
+    "algia-fasciata": {
+        "name": "Branded Yeoman"
+    },
+    "allotinus-drumila": {
+        "name": "Crenulate Mottle"
+    },
+    "allotinus-unicolor": {
+        "name": "Plain Mottle"
+    },
+    "amathusia-andamanensis": {
+        "name": "Andaman Palmking"
+    },
+    "amathusia-travancorica": {
+        "name": "Travancore Palmking"
+    },
+    "amathuxidia-amythaon": {
+        "name": "Koh-i-Noor"
+    },
+    "amblypodia-anita": {
+        "name": "Purple Leaf Blue"
+    },
+    "ampittia-dioscorides": {
+        "name": "Bush Hopper"
+    },
+    "ampittia-subvittatus": {
+        "name": "Tiger Hopper"
+    },
+    "ancema-blanka": {
+        "name": "Silver Royal"
+    },
+    "ancema-ctesia": {
+        "name": "Bi-spot Royal"
+    },
+    "ancema-sudica": {
+        "name": "Sahyadri Silver Royal"
+    },
+    "ancistroides-nigrita": {
+        "name": "Chocolate Demon"
+    },
+    "anthene-emolus": {
+        "name": "Common Ciliate Blue"
+    },
+    "anthene-lycaenina": {
+        "name": "Pointed Ciliate Blue"
+    },
+    "aporia-agathon": {
+        "name": "Great Blackvein"
+    },
+    "aporia-harrietae": {
+        "name": "Dark Blackvein"
+    },
+    "aporia-leucodice": {
+        "name": "Arrowhead Blackvein"
+    },
+    "aporia-nabellica": {
+        "name": "Dusky Blackvein"
+    },
+    "apostictopterus-fuliginosus": {
+        "name": "Giant Hopper"
+    },
+    "appias-albina": {
+        "name": "Common Albatross"
+    },
+    "appias-galathea": {
+        "name": "Beautiful Albatross"
+    },
+    "appias-galba": {
+        "name": "Indian Orange Albatross"
+    },
+    "appias-indra": {
+        "name": "Plain Puffin"
+    },
+    "appias-lalage": {
+        "name": "Spot Puffin"
+    },
+    "appias-libythea": {
+        "name": "Western Striped Albatross"
+    },
+    "appias-lyncida": {
+        "name": "Chocolate Albatross"
+    },
+    "appias-olferna": {
+        "name": "Eastern Striped Albatross"
+    },
+    "appias-wardii": {
+        "name": "Sahyadri Albatross"
+    },
+    "apporasa-atkinsoni": {
+        "name": "Crenulate Oakblue"
+    },
+    "araotes-lapithis": {
+        "name": "Witch"
+    },
+    "araschnia-dohertyi": {
+        "name": "Manipur Map"
+    },
+    "argynnis-castetsi": {
+        "name": "Palni Fritillary"
+    },
+    "argynnis-childreni": {
+        "name": "Large Silverstripe"
+    },
+    "argynnis-hybrida": {
+        "name": "Nilgiri Fritillary"
+    },
+    "argynnis-hyperbius": {
+        "name": "Tropical Fritillary"
+    },
+    "argynnis-jainadeva": {
+        "name": "Highbrown Silverspot"
+    },
+    "argynnis-kamala": {
+        "name": "Common Silverstripe"
+    },
+    "argynnis-westphali": {
+        "name": "Emerald-and-Silver Fritillary"
+    },
+    "arhopala-abseus": {
+        "name": "Aberrant Oakblue"
+    },
+    "arhopala-alea": {
+        "name": "Sahyadri Rosy Oakblue"
+    },
+    "arhopala-amantes": {
+        "name": "Large Oakblue"
+    },
+    "arhopala-ammonides": {
+        "name": "Little Cerulean Oakblue"
+    },
+    "arhopala-anthelus": {
+        "name": "Multi-spotted Oakblue"
+    },
+    "arhopala-asinarus": {
+        "name": "Broad-banded Oakblue"
+    },
+    "arhopala-asopia": {
+        "name": "Plain Tailless Oakblue"
+    },
+    "arhopala-athada": {
+        "name": "Vinous Oakblue"
+    },
+    "arhopala-atrax": {
+        "name": "Indian Oakblue"
+    },
+    "arhopala-bazaloides": {
+        "name": "Dusted Oakblue"
+    },
+    "arhopala-bazalus": {
+        "name": "Powdered Oakblue"
+    },
+    "arhopala-belphoebe": {
+        "name": "White-ringed Oakblue"
+    },
+    "arhopala-birmana": {
+        "name": "Myanmarese Bushblue"
+    },
+    "arhopala-camdeo": {
+        "name": "Lilac Oakblue"
+    },
+    "arhopala-centaurus": {
+        "name": "Centaur Oakblue"
+    },
+    "arhopala-comica": {
+        "name": "Comic Oakblue"
+    },
+    "arhopala-curiosa": {
+        "name": "Curious Oakblue"
+    },
+    "arhopala-dispar": {
+        "name": "Frosted Oakblue"
+    },
+    "arhopala-dodonaea": {
+        "name": "Pale Himalayan Oakblue"
+    },
+    "arhopala-eumolphus": {
+        "name": "Green Oakblue"
+    },
+    "arhopala-fulla": {
+        "name": "Spotless Oakblue"
+    },
+    "arhopala-ganesa": {
+        "name": "Tailless Bushblue"
+    },
+    "arhopala-hellenore": {
+        "name": "Pointed Green Oakblue"
+    },
+    "arhopala-khamti": {
+        "name": "Luster Oakblue"
+    },
+    "arhopala-nicevillei": {
+        "name": "Large-spotted Oakblue"
+    },
+    "arhopala-oenea": {
+        "name": "Lackluster Oakblue"
+    },
+    "arhopala-paraganesa": {
+        "name": "Dusky Bushblue"
+    },
+    "arhopala-paramuta": {
+        "name": "Hooked Oakblue"
+    },
+    "arhopala-perimuta": {
+        "name": "Yellowdisc Tailless Oakblue"
+    },
+    "arhopala-rama": {
+        "name": "Dark Oakblue"
+    },
+    "arhopala-silhetensis": {
+        "name": "Sylhet Oakblue"
+    },
+    "arhopala-singla": {
+        "name": "Pointed Oakblue"
+    },
+    "arhopala-spp": {
+        "name": "Oakblues"
+    },
+    "ariadne-ariadne": {
+        "name": "Angled Castor"
+    },
+    "ariadne-merione": {
+        "name": "Common Castor"
+    },
+    "aricia-agestis": {
+        "name": "Brown Argus"
+    },
+    "arnetta-atkinsoni": {
+        "name": "Black-tufted Bob"
+    },
+    "arnetta-mercara": {
+        "name": "Kodagu Forest Hopper"
+    },
+    "arnetta-vindhiana": {
+        "name": "Vindhyan Bob"
+    },
+    "artipe-eryx": {
+        "name": "Green Flash"
+    },
+    "astictopterus-jama": {
+        "name": "Forest Hopper"
+    },
+    "athyma-asura": {
+        "name": "Studded Sergeant"
+    },
+    "athyma-cama": {
+        "name": "Orange Staff Sergeant"
+    },
+    "athyma-inara": {
+        "name": "Colour Sergeant"
+    },
+    "athyma-jina": {
+        "name": "Bhutan Sergeant"
+    },
+    "athyma-kanwa": {
+        "name": "Dot-dash Sergeant"
+    },
+    "athyma-opalina": {
+        "name": "Hill Sergeant"
+    },
+    "athyma-orientalis": {
+        "name": "Elongated Sergeant"
+    },
+    "athyma-perius": {
+        "name": "Common Sergeant"
+    },
+    "athyma-pravara": {
+        "name": "Unbroken Sergeant"
+    },
+    "athyma-punctata": {
+        "name": "White-patch Sergeant"
+    },
+    "athyma-ranga": {
+        "name": "Blackvein Sergeant"
+    },
+    "athyma-rufula": {
+        "name": "Andaman Sergeant"
+    },
+    "athyma-selenophora": {
+        "name": "Staff Sergeant"
+    },
+    "athyma-whitei": {
+        "name": "Blue-bordered Sergeant"
+    },
+    "athyma-zeroca": {
+        "name": "Small Staff Sergeant"
+    },
+    "atrophaneura-aidoneus": {
+        "name": "Lesser Batwing"
+    },
+    "atrophaneura-varuna": {
+        "name": "Common Batwing"
+    },
+    "aulocera-aulocera-spp": {
+        "name": "Satyr spp."
+    },
+    "aulocera-brahminus": {
+        "name": "Narrow-banded Satyr"
+    },
+    "aulocera-loha": {
+        "name": "Eyeless Satyr"
+    },
+    "aulocera-padma": {
+        "name": "Great Satyr"
+    },
+    "aulocera-saraswati": {
+        "name": "Striated Satyr"
+    },
+    "aulocera-swaha": {
+        "name": "Common Satyr"
+    },
+    "auzakia-danava": {
+        "name": "Commodore"
+    },
+    "azanus-jesous": {
+        "name": "African Babul Blue"
+    },
+    "azanus-ubaldus": {
+        "name": "Bright Babul Blue"
+    },
+    "azanus-uranus": {
+        "name": "Dull Babul Blue"
+    },
+    "badamia-exclamationis": {
+        "name": "Brown Awl"
+    },
+    "baltia-butleri": {
+        "name": "Two-spotted Dwarf"
+    },
+    "baorini-baorini-spp": {
+        "name": "Baorini Swift spp."
+    },
+    "baoris-chapmani": {
+        "name": "Small Paint-brush Swift"
+    },
+    "baoris-farri": {
+        "name": "Complete Paint-brush Swift"
+    },
+    "baoris-pagana": {
+        "name": "Figure-of-8 Swift"
+    },
+    "baoris-unicolor": {
+        "name": "Black Paint-brush Swift"
+    },
+    "baracus-hampsoni": {
+        "name": "Spotted Hedge Hopper"
+    },
+    "baracus-septentrionum": {
+        "name": "Himalayan Hedge Hopper"
+    },
+    "baracus-subditus": {
+        "name": "Striped Hedge Hopper"
+    },
+    "bassarona-durga": {
+        "name": "Blue Duke"
+    },
+    "bassarona-recta": {
+        "name": "Redtail Marquis"
+    },
+    "bassarona-teuta": {
+        "name": "Banded Marquis"
+    },
+    "belenois-aurota": {
+        "name": "Pioneer"
+    },
+    "bhagadatta-austenia": {
+        "name": "Grey Commodore"
+    },
+    "bhutanitis-lidderdalii": {
+        "name": "Bhutan Glory"
+    },
+    "bhutanitis-ludlowi": {
+        "name": "Mystical Bhutan Glory"
+    },
+    "bibasis-mahintha": {
+        "name": "Slate Awlet"
+    },
+    "bibasis-sena": {
+        "name": "Orange-tailed Awl"
+    },
+    "bindahara-moorei": {
+        "name": "Blue-bordered Plane"
+    },
+    "bindahara-phocides": {
+        "name": "Plane"
+    },
+    "boloria-jerdoni": {
+        "name": "Variegated Silverspot"
+    },
+    "borbo-bevani": {
+        "name": "Lesser Rice Swift"
+    },
+    "borbo-cinnara": {
+        "name": "Rice Swift"
+    },
+    "bothrinia-chennelli": {
+        "name": "Hedge Cupid"
+    },
+    "bullis-buto": {
+        "name": "Baby Royal"
+    },
+    "burara-amara": {
+        "name": "Small Green Awlet"
+    },
+    "burara-anadi": {
+        "name": "Plain Orange Awlet"
+    },
+    "burara-gomata": {
+        "name": "Pale Green Awlet"
+    },
+    "burara-harisa": {
+        "name": "Harisa Orange Awlet"
+    },
+    "burara-jaina": {
+        "name": "Common Orange Awlet"
+    },
+    "burara-oedipodea": {
+        "name": "Branded Orange Awlet"
+    },
+    "burara-spp2": {
+        "name": "Awlet spp."
+    },
+    "burara-vasutana": {
+        "name": "Green Awlet"
+    },
+    "byasa-crassipes": {
+        "name": "Black Windmill"
+    },
+    "byasa-dasarada": {
+        "name": "Great Windmill"
+    },
+    "byasa-latreillei": {
+        "name": "Rose Windmill"
+    },
+    "byasa-plutonius": {
+        "name": "Pink-spotted Windmill"
+    },
+    "byasa-polla": {
+        "name": "Crimson-bordered Windmill"
+    },
+    "byasa-polyeuctes": {
+        "name": "Common Windmill"
+    },
+    "byblia-ilithyia": {
+        "name": "Joker"
+    },
+    "caleta-decidia": {
+        "name": "Angled Pierrot"
+    },
+    "caleta-elna": {
+        "name": "Elbowed Pierrot"
+    },
+    "caleta-roxus": {
+        "name": "Straight Pierrot"
+    },
+    "calinaga-aborica": {
+        "name": "Dark Freak"
+    },
+    "calinaga-brahma": {
+        "name": "Orange-backed Freak"
+    },
+    "calinaga-buddha": {
+        "name": "Orange-breasted Freak"
+    },
+    "calinaga-gautama": {
+        "name": "Elongated Freak"
+    },
+    "callenya-melaena": {
+        "name": "Metallic Hedge Blue"
+    },
+    "callerebia-annada": {
+        "name": "Ringed Argus"
+    },
+    "callerebia-baileyi": {
+        "name": "White-bordered Argus"
+    },
+    "callerebia-dibangensis": {
+        "name": "Bright-eyed Argus"
+    },
+    "callerebia-hyagriva": {
+        "name": "Brown Argus"
+    },
+    "callerebia-hybrida": {
+        "name": "Hybrid Argus"
+    },
+    "callerebia-narasingha": {
+        "name": "Mottled Argus"
+    },
+    "callerebia-nirmala": {
+        "name": "Common Argus"
+    },
+    "callerebia-orixa": {
+        "name": "Orixa Argus"
+    },
+    "callerebia-scanda": {
+        "name": "Pallid Argus"
+    },
+    "callerebia-suroia": {
+        "name": "Basal Argus"
+    },
+    "callerebia-watsoni": {
+        "name": "Bent Argus"
+    },
+    "caltoris-aurociliata": {
+        "name": "Yellow-fringed Swift"
+    },
+    "caltoris-caltoris-spp": {
+        "name": "Caltoris Swifts"
+    },
+    "caltoris-canaraica": {
+        "name": "Karwar Swift"
+    },
+    "caltoris-kumara": {
+        "name": "Blank Swift"
+    },
+    "caltoris-philippina": {
+        "name": "Philippine Swift"
+    },
+    "caltoris-tulsi": {
+        "name": "Purple Swift"
+    },
+    "capila-jayadeva": {
+        "name": "Striped Dawnfly"
+    },
+    "capila-lidderdali": {
+        "name": "Ringed Dawnfly"
+    },
+    "capila-phanaeus": {
+        "name": "Fulvous Dawnfly"
+    },
+    "capila-pieridoides": {
+        "name": "White Dawnfly"
+    },
+    "capila-zennara": {
+        "name": "Pale Striped Dawnfly"
+    },
+    "caprona-agama": {
+        "name": "Spotted Angle"
+    },
+    "caprona-alida": {
+        "name": "Alida Angle"
+    },
+    "caprona-ransonnettii": {
+        "name": "Golden Angle"
+    },
+    "carcharodus-alceae": {
+        "name": "Plain Marbled Skipper"
+    },
+    "carterocephalus-avanti": {
+        "name": "Orange-spotted Mountain-Hopper"
+    },
+    "castalius-rosimon": {
+        "name": "Common Pierrot"
+    },
+    "catapaecilma-major": {
+        "name": "Common Tinsel"
+    },
+    "catapaecilma-subochrea": {
+        "name": "Yellow Tinsel"
+    },
+    "catochrysops-panormus": {
+        "name": "Silver Forget-me-not"
+    },
+    "catochrysops-strabo": {
+        "name": "Forget-me-not"
+    },
+    "catopsilia-pomona": {
+        "name": "Lemon Emigrant"
+    },
+    "catopsilia-pyranthe": {
+        "name": "Mottled Emigrant"
+    },
+    "catopsilia-scylla": {
+        "name": "Orange Emigrant"
+    },
+    "celaenorrhinus-ambareesa": {
+        "name": "Dakhan Spotted Flat"
+    },
+    "celaenorrhinus-asmara": {
+        "name": "White-banded Flat"
+    },
+    "celaenorrhinus-aurivittata": {
+        "name": "Dark Yellow-banded Flat"
+    },
+    "celaenorrhinus-badia": {
+        "name": "Scarce Banded Flat"
+    },
+    "celaenorrhinus-celaenorrhinus-spp": {
+        "name": "Flat spp."
+    },
+    "celaenorrhinus-dhanada": {
+        "name": "Yellow-banded Flat"
+    },
+    "celaenorrhinus-fusca": {
+        "name": "Dusky Spotted Flat"
+    },
+    "celaenorrhinus-leucocera": {
+        "name": "Common Spotted Flat"
+    },
+    "celaenorrhinus-maculicornis": {
+        "name": "Separated Spotted Flat"
+    },
+    "celaenorrhinus-morena": {
+        "name": "Confined Spotted Flat"
+    },
+    "celaenorrhinus-munda": {
+        "name": "Himalayan Spotted Flat"
+    },
+    "celaenorrhinus-nigricans": {
+        "name": "Small-banded Flat"
+    },
+    "celaenorrhinus-patula": {
+        "name": "Large Spotted Flat"
+    },
+    "celaenorrhinus-pero": {
+        "name": "Yellow-bordered Spotted Flat"
+    },
+    "celaenorrhinus-plagifera": {
+        "name": "Large-spotted Flat"
+    },
+    "celaenorrhinus-pulomaya": {
+        "name": "Multi-spotted Flat"
+    },
+    "celaenorrhinus-putra": {
+        "name": "Restricted Spotted Flat"
+    },
+    "celaenorrhinus-pyrrha": {
+        "name": "Double-spotted Flat"
+    },
+    "celaenorrhinus-ratna": {
+        "name": "Ratna Flat"
+    },
+    "celaenorrhinus-tibetana": {
+        "name": "Tibetan Flat"
+    },
+    "celaenorrhinus-zea": {
+        "name": "Toothed Spotted Flat"
+    },
+    "celastrina-argiolus": {
+        "name": "Hill Hedge Blue"
+    },
+    "celastrina-gigas": {
+        "name": "Silvery Hedge Blue"
+    },
+    "celastrina-lavendularis": {
+        "name": "Plain Hedge Blue"
+    },
+    "celastrina-spp": {
+        "name": "Hedge Blue spp."
+    },
+    "celatoxia-albidisca": {
+        "name": "White-disc Hedge Blue"
+    },
+    "celatoxia-marginata": {
+        "name": "Margined Hedge Blue"
+    },
+    "cephrenes-acalle": {
+        "name": "Plain Palm-Dart"
+    },
+    "cepora-nadina": {
+        "name": "Lesser Gull"
+    },
+    "cepora-nerissa": {
+        "name": "Common Gull"
+    },
+    "cethosia-biblis": {
+        "name": "Red Lacewing"
+    },
+    "cethosia-cyane": {
+        "name": "Leopard Lacewing"
+    },
+    "cethosia-mahratta": {
+        "name": "Sahyadri Lacewing"
+    },
+    "chaetoprocta-odata": {
+        "name": "Walnut Blue"
+    },
+    "chamunda-chamunda": {
+        "name": "Olive Flat"
+    },
+    "charana-mandarinus": {
+        "name": "Mandarin Blue"
+    },
+    "charaxes-agrarius": {
+        "name": "Anomalous Nawab"
+    },
+    "charaxes-andamanicus": {
+        "name": "Andaman Nawab"
+    },
+    "charaxes-aristogiton": {
+        "name": "Scarce Tawny Rajah"
+    },
+    "charaxes-arja": {
+        "name": "Pallid Nawab"
+    },
+    "charaxes-bernardus": {
+        "name": "Tawny Rajah"
+    },
+    "charaxes-bharata": {
+        "name": "Indian Nawab"
+    },
+    "charaxes-delphis": {
+        "name": "Jewelled Nawab"
+    },
+    "charaxes-dolon": {
+        "name": "Stately Nawab"
+    },
+    "charaxes-eudamippus": {
+        "name": "Great Nawab"
+    },
+    "charaxes-kahruba": {
+        "name": "Variegated Rajah"
+    },
+    "charaxes-marmax": {
+        "name": "Yellow Rajah"
+    },
+    "charaxes-moori": {
+        "name": "Malayan Nawab"
+    },
+    "charaxes-narcaeus": {
+        "name": "Chinese Nawab"
+    },
+    "charaxes-psaphon": {
+        "name": "Plain Tawny Rajah"
+    },
+    "charaxes-schreiber": {
+        "name": "Blue Nawab"
+    },
+    "charaxes-solon": {
+        "name": "Black Rajah"
+    },
+    "cheritra-freja": {
+        "name": "Common Imperial"
+    },
+    "cheritrella-truncipennis": {
+        "name": "Truncate Imperial"
+    },
+    "chersonesia-intermedia": {
+        "name": "Wavy Maplet"
+    },
+    "chersonesia-risa": {
+        "name": "Common Maplet"
+    },
+    "chilades-lajus": {
+        "name": "Lime Blue"
+    },
+    "chilades-pandava": {
+        "name": "Plains Cupid"
+    },
+    "chilades-parrhasius": {
+        "name": "Small Cupid"
+    },
+    "chitoria-naga": {
+        "name": "Naga Emperor"
+    },
+    "chitoria-sordida": {
+        "name": "Sordid Emperor"
+    },
+    "chitoria-ulupi": {
+        "name": "Tawny Emperor"
+    },
+    "choaspes-benjaminii": {
+        "name": "Common Awlking"
+    },
+    "choaspes-choaspes-spp": {
+        "name": "Awlking spp."
+    },
+    "choaspes-furcata": {
+        "name": "Hooked Awlking"
+    },
+    "choaspes-stigmata": {
+        "name": "Branded Awlking"
+    },
+    "choaspes-xanthopogon": {
+        "name": "Spiny Awlking"
+    },
+    "chonala-masoni": {
+        "name": "Chumbi Wall"
+    },
+    "chrysozephyrus-birupa": {
+        "name": "Fawn Hairstreak"
+    },
+    "chrysozephyrus-disparatus": {
+        "name": "Disparate Hairstreak"
+    },
+    "chrysozephyrus-duma": {
+        "name": "Large Green Hairstreak"
+    },
+    "chrysozephyrus-dumoides": {
+        "name": "Small Green Hairstreak"
+    },
+    "chrysozephyrus-spp": {
+        "name": "Hairstreaks"
+    },
+    "chrysozephyrus-syla": {
+        "name": "Silver Hairstreak"
+    },
+    "chrysozephyrus-tytleri": {
+        "name": "Broad Hairstreak"
+    },
+    "cigaritis-abnormis": {
+        "name": "Abnormal Silverline"
+    },
+    "cigaritis-conjuncta": {
+        "name": "Conjoined Silverline"
+    },
+    "cigaritis-elima": {
+        "name": "Scarce Shot Silverline"
+    },
+    "cigaritis-elwesi": {
+        "name": "Orange-spot Silverline"
+    },
+    "cigaritis-evansii": {
+        "name": "Rufous Silverline"
+    },
+    "cigaritis-ictis": {
+        "name": "Common Shot Silverline"
+    },
+    "cigaritis-lilacinus": {
+        "name": "Lilac Silverline"
+    },
+    "cigaritis-lohita": {
+        "name": "Long-banded Silverline"
+    },
+    "cigaritis-nipalicus": {
+        "name": "Silver-grey Silverline"
+    },
+    "cigaritis-rukma": {
+        "name": "Cinnamon Silverline"
+    },
+    "cigaritis-rukmini": {
+        "name": "Khaki Silverline"
+    },
+    "cigaritis-schistacea": {
+        "name": "Plumbeous Silverline"
+    },
+    "cigaritis-syama": {
+        "name": "Club Silverline"
+    },
+    "cigaritis-vulcanus": {
+        "name": "Common Silverline"
+    },
+    "cigaritis-zhengweilie": {
+        "name": "Contiguous Silverline"
+    },
+    "cirrochroa-aoris": {
+        "name": "Large Yeoman"
+    },
+    "cirrochroa-nicobarica": {
+        "name": "Nicobar Yeoman"
+    },
+    "cirrochroa-thais": {
+        "name": "Tamil Yeoman"
+    },
+    "cirrochroa-tyche": {
+        "name": "Common Yeoman"
+    },
+    "coelites-nothis": {
+        "name": "Scarce Catseye"
+    },
+    "coladenia-agni": {
+        "name": "Brown Pied Flat"
+    },
+    "coladenia-agnioides": {
+        "name": "Brown-tipped Pied Flat"
+    },
+    "coladenia-hoenei": {
+        "name": "Large Spot Pied Flat"
+    },
+    "coladenia-indrani": {
+        "name": "Tricolour Pied Flat"
+    },
+    "colias-eogene": {
+        "name": "Fiery Clouded Yellow"
+    },
+    "colias-erate": {
+        "name": "Eastern Pale Clouded Yellow"
+    },
+    "colias-fieldii": {
+        "name": "Dark Clouded Yellow"
+    },
+    "colias-ladakensis": {
+        "name": "Ladakh Clouded Yellow"
+    },
+    "colias-nilagiriensis": {
+        "name": "Nilgiri Clouded Yellow"
+    },
+    "colotis-amata": {
+        "name": "Small Salmon Arab"
+    },
+    "colotis-aurora": {
+        "name": "Plain Orange-tip"
+    },
+    "colotis-danae": {
+        "name": "Crimson-tip"
+    },
+    "colotis-etrida": {
+        "name": "Little Orange-tip"
+    },
+    "colotis-fausta": {
+        "name": "Large Salmon Arab"
+    },
+    "colotis-protractus": {
+        "name": "Blue-spotted Arab"
+    },
+    "colotis-vestalis": {
+        "name": "White Arab"
+    },
+    "creon-cleobis": {
+        "name": "Broad-tail Royal"
+    },
+    "creteus-cyrina": {
+        "name": "Nonsuch Palmer"
+    },
+    "ctenoptilum-vasava": {
+        "name": "Tawny Angle"
+    },
+    "cupha-erymanthis": {
+        "name": "Rustic"
+    },
+    "cupitha-purreea": {
+        "name": "Wax Dart"
+    },
+    "curetis-acuta": {
+        "name": "Acute Sunbeam"
+    },
+    "curetis-bulis": {
+        "name": "Bright Sunbeam"
+    },
+    "curetis-curetis-spp": {
+        "name": "Sunbeam spp."
+    },
+    "curetis-saronis": {
+        "name": "Saronis Sunbeam"
+    },
+    "curetis-siva": {
+        "name": "Shiva Sunbeam"
+    },
+    "curetis-thetis": {
+        "name": "Indian Sunbeam"
+    },
+    "cyllogenes-janetae": {
+        "name": "Scarce Evening Brown"
+    },
+    "cyllogenes-suradeva": {
+        "name": "Branded Evening Brown"
+    },
+    "cyrestis-cocles": {
+        "name": "Marbled Map Butterfly"
+    },
+    "cyrestis-tabula": {
+        "name": "Ochreous Map Butterfly"
+    },
+    "cyrestis-thyodamas": {
+        "name": "Map Butterfly"
+    },
+    "dacalana-cotys": {
+        "name": "White-banded Royal"
+    },
+    "dacalana-penicilligera": {
+        "name": "Double-tufted Royal"
+    },
+    "danaus-chrysippus": {
+        "name": "Plain Tiger"
+    },
+    "danaus-genutia": {
+        "name": "Striped Tiger"
+    },
+    "danaus-melanippus": {
+        "name": "White Tiger"
+    },
+    "darpa-hanria": {
+        "name": "Hairy Angle"
+    },
+    "darpa-pteria": {
+        "name": "Snowy Angle"
+    },
+    "delias-acalis": {
+        "name": "Redbreast Jezebel"
+    },
+    "delias-agostina": {
+        "name": "Yellow Jezebel"
+    },
+    "delias-belladonna": {
+        "name": "Hill Jezebel"
+    },
+    "delias-berinda": {
+        "name": "Dark Jezebel"
+    },
+    "delias-descombesi": {
+        "name": "Red-spot Jezebel"
+    },
+    "delias-eucharis": {
+        "name": "Indian Jezebel"
+    },
+    "delias-hyparete": {
+        "name": "Painted Jezebel"
+    },
+    "delias-lativitta": {
+        "name": "White-streaked Jezebel"
+    },
+    "delias-pasithoe": {
+        "name": "Red-base Jezebel"
+    },
+    "delias-sanaca": {
+        "name": "Pale Jezebel"
+    },
+    "dercas-lycorias": {
+        "name": "Plain Sulphur"
+    },
+    "dercas-verhuelli": {
+        "name": "Tailed Sulphur"
+    },
+    "deudorix-epijarbas": {
+        "name": "Cornelian"
+    },
+    "dichorragia-nesimachus": {
+        "name": "Constable"
+    },
+    "dilipa-morgiana": {
+        "name": "Golden Emperor"
+    },
+    "discolampa-ethion": {
+        "name": "Banded Blue Pierrot"
+    },
+    "discophora-deo": {
+        "name": "Yellow-banded Duffer"
+    },
+    "discophora-lepida": {
+        "name": "Southern Duffer"
+    },
+    "discophora-sondaica": {
+        "name": "Common Duffer"
+    },
+    "discophora-timora": {
+        "name": "Great Duffer"
+    },
+    "dodona-adonira": {
+        "name": "Striped Punch"
+    },
+    "dodona-deodata": {
+        "name": "Broad-banded Punch"
+    },
+    "dodona-dipoea": {
+        "name": "Lesser Punch"
+    },
+    "dodona-durga": {
+        "name": "Common Punch"
+    },
+    "dodona-egeon": {
+        "name": "Orange Punch"
+    },
+    "dodona-eugenes": {
+        "name": "Tailed Punch"
+    },
+    "dodona-longicaudata": {
+        "name": "Long-tailed Punch"
+    },
+    "dodona-ouida": {
+        "name": "Mixed Punch"
+    },
+    "doleschallia-bisaltide": {
+        "name": "Autumn Leaf"
+    },
+    "dophla-evelina": {
+        "name": "Redspot Duke"
+    },
+    "drupadia-scaeva": {
+        "name": "Blue Posy"
+    },
+    "elymnias-caudata": {
+        "name": "Tailed Palmfly"
+    },
+    "elymnias-hypermnestra": {
+        "name": "Common Palmfly"
+    },
+    "elymnias-malelas": {
+        "name": "Spotted Palmfly"
+    },
+    "elymnias-nesaea": {
+        "name": "Tiger Palmfly"
+    },
+    "elymnias-obnubila": {
+        "name": "Chestnut Palmfly"
+    },
+    "elymnias-panthera": {
+        "name": "Studded Palmfly"
+    },
+    "elymnias-patna": {
+        "name": "Blue-striped Palmfly"
+    },
+    "elymnias-peali": {
+        "name": "Brahmaputra Palmfly"
+    },
+    "elymnias-penanga": {
+        "name": "Pointed Palmfly"
+    },
+    "elymnias-vasudeva": {
+        "name": "Jezebel Palmfly"
+    },
+    "enispe-cycnus": {
+        "name": "Blue Caliph"
+    },
+    "enispe-euthymius": {
+        "name": "Red Caliph"
+    },
+    "erionota-acroleuca": {
+        "name": "Small Palm-redeye"
+    },
+    "erionota-apex": {
+        "name": "White-tipped Palm-redeye"
+    },
+    "erionota-thrax": {
+        "name": "Palm Redeye"
+    },
+    "erionota-torus": {
+        "name": "Rounded Palm-redeye"
+    },
+    "erynnis-pelias": {
+        "name": "Frosted Duskywing"
+    },
+    "esakiozephyrus-icana": {
+        "name": "Dull-green Hairstreak"
+    },
+    "ethope-himachala": {
+        "name": "Dusky Diadem"
+    },
+    "euaspa-mikamii": {
+        "name": "Yellow-disc Hairstreak"
+    },
+    "euaspa-milionia": {
+        "name": "Water Hairstreak"
+    },
+    "euchrysops-cnejus": {
+        "name": "Gram Blue"
+    },
+    "euploea-algea": {
+        "name": "Long-branded Blue Crow"
+    },
+    "euploea-andamanensis": {
+        "name": "Andaman Crow"
+    },
+    "euploea-core": {
+        "name": "Common Crow"
+    },
+    "euploea-doubledayi": {
+        "name": "Striped Black Crow"
+    },
+    "euploea-godartii": {
+        "name": "Violet-tipped Crow"
+    },
+    "euploea-klugii": {
+        "name": "King Crow"
+    },
+    "euploea-midamus": {
+        "name": "Blue-spotted Crow"
+    },
+    "euploea-mulciber": {
+        "name": "Striped Blue Crow"
+    },
+    "euploea-radamanthus": {
+        "name": "Magpie Crow"
+    },
+    "euploea-scherzeri": {
+        "name": "Cinnamon Crow"
+    },
+    "euploea-spp": {
+        "name": "Crow spp."
+    },
+    "euploea-sylvester": {
+        "name": "Double-branded Crow"
+    },
+    "eurema-andersonii": {
+        "name": "One-spot Grass Yellow"
+    },
+    "eurema-blanda": {
+        "name": "Three-spot Grass Yellow"
+    },
+    "eurema-brigitta": {
+        "name": "Small Grass Yellow"
+    },
+    "eurema-eurema-spp": {
+        "name": "Grass Yellow spp."
+    },
+    "eurema-hecabe": {
+        "name": "Common Grass Yellow"
+    },
+    "eurema-laeta": {
+        "name": "Spotless Grass Yellow"
+    },
+    "eurema-nilgiriensis": {
+        "name": "Nilgiri Grass Yellow"
+    },
+    "eurema-simulatrix": {
+        "name": "Changeable Grass Yellow"
+    },
+    "euripus-consimilis": {
+        "name": "Painted Courtesan"
+    },
+    "euripus-nyctelius": {
+        "name": "Courtesan"
+    },
+    "euthalia-aconthea": {
+        "name": "Common Baron"
+    },
+    "euthalia-acontius": {
+        "name": "Andaman Baron"
+    },
+    "euthalia-alpheda": {
+        "name": "Streaked Baron"
+    },
+    "euthalia-anosia": {
+        "name": "Grey Baron"
+    },
+    "euthalia-duda": {
+        "name": "Blue Duchess"
+    },
+    "euthalia-eriphylae": {
+        "name": "Grey-tipped Baron"
+    },
+    "euthalia-franciae": {
+        "name": "French Duke"
+    },
+    "euthalia-iva": {
+        "name": "Grand Duke"
+    },
+    "euthalia-lubentina": {
+        "name": "Gaudy Baron"
+    },
+    "euthalia-monina": {
+        "name": "Powdered Baron"
+    },
+    "euthalia-nara": {
+        "name": "Bronze Duke"
+    },
+    "euthalia-patala": {
+        "name": "Grand Duchess"
+    },
+    "euthalia-phemius": {
+        "name": "White-edged Blue Baron"
+    },
+    "euthalia-sahadeva": {
+        "name": "Green Duke"
+    },
+    "euthalia-saitaphernes": {
+        "name": "Spotless Baron"
+    },
+    "euthalia-telchinia": {
+        "name": "Blue Baron"
+    },
+    "everes-argiades": {
+        "name": "Tailed Cupid"
+    },
+    "everes-hugelii": {
+        "name": "Dusky Blue Cupid"
+    },
+    "everes-lacturnus": {
+        "name": "Orange-crowned Cupid"
+    },
+    "faunis-canens": {
+        "name": "Common Faun"
+    },
+    "faunis-eumeus": {
+        "name": "Large Faun"
+    },
+    "flos-adriana": {
+        "name": "Variegated Plushblue"
+    },
+    "flos-apidanus": {
+        "name": "Plain Plushblue"
+    },
+    "flos-areste": {
+        "name": "Tailless Plushblue"
+    },
+    "flos-asoka": {
+        "name": "Spangled Plushblue"
+    },
+    "flos-chinensis": {
+        "name": "Chinese Plushblue"
+    },
+    "flos-diardi": {
+        "name": "Bifid Plushblue"
+    },
+    "flos-fulgida": {
+        "name": "Shining Plushblue"
+    },
+    "freyeria-putli": {
+        "name": "Black-spotted Grass Jewel"
+    },
+    "freyeria-trochylus": {
+        "name": "Orange-spotted Grass Jewel"
+    },
+    "fujiokaozephyrus-camurius": {
+        "name": "Dull-blue Hairstreak"
+    },
+    "gandaca-harina": {
+        "name": "Tree Yellow"
+    },
+    "gangara-lebadea": {
+        "name": "Banded Redeye"
+    },
+    "gangara-thyrsis": {
+        "name": "Giant Redeye"
+    },
+    "gegenes-nostrodamus": {
+        "name": "Dingy Swift"
+    },
+    "gegenes-pumilio": {
+        "name": "Pygmy Swift"
+    },
+    "gerosis-bhagava": {
+        "name": "Common Yellow-breasted Flat"
+    },
+    "gerosis-phisara": {
+        "name": "Dusky Yellow-breast Flat"
+    },
+    "gerosis-sinica": {
+        "name": "White Yellow-breasted Flat"
+    },
+    "gomalia-elma": {
+        "name": "African Marbled Skipper"
+    },
+    "gonepteryx-amintha": {
+        "name": "Orange Brimstone"
+    },
+    "gonepteryx-mahaguru": {
+        "name": "Lesser Brimstone"
+    },
+    "gonepteryx-rhamni": {
+        "name": "Common Brimstone"
+    },
+    "graphium-agamemnon": {
+        "name": "Tailed Jay"
+    },
+    "graphium-agetes": {
+        "name": "Four-bar Swordtail"
+    },
+    "graphium-antiphates": {
+        "name": "Five-bar Swordtail"
+    },
+    "graphium-aristeus": {
+        "name": "Chain Swordtail"
+    },
+    "graphium-chironides": {
+        "name": "Veined Jay"
+    },
+    "graphium-cloanthus": {
+        "name": "Glassy Bluebottle"
+    },
+    "graphium-doson": {
+        "name": "Common Jay"
+    },
+    "graphium-epaminondas": {
+        "name": "Andaman Swordtails"
+    },
+    "graphium-eurous": {
+        "name": "Six-bar Swordtail"
+    },
+    "graphium-eurypylus": {
+        "name": "Great Jay"
+    },
+    "graphium-garhwalica": {
+        "name": "Garhwal Swordtail"
+    },
+    "graphium-macareus": {
+        "name": "Lesser Zebra"
+    },
+    "graphium-megarus": {
+        "name": "Spotted Zebra"
+    },
+    "graphium-nomius": {
+        "name": "Spot Swordtail"
+    },
+    "graphium-paphus": {
+        "name": "(Spectacle) Swordtail"
+    },
+    "graphium-sarpedon": {
+        "name": "Common Bluebottle"
+    },
+    "graphium-teredon": {
+        "name": "Narrow-banded Bluebottle"
+    },
+    "graphium-xenocles": {
+        "name": "Great Zebra"
+    },
+    "halpe-aucma": {
+        "name": "Gold-spotted Ace"
+    },
+    "halpe-filda": {
+        "name": "Absent Ace"
+    },
+    "halpe-hindu": {
+        "name": "Sahyadri Banded Ace"
+    },
+    "halpe-porus": {
+        "name": "Bispot Banded Ace"
+    },
+    "halpe-sikkima": {
+        "name": "Sikkim Ace"
+    },
+    "halpe-spp": {
+        "name": "Ace spp."
+    },
+    "halpe-zema": {
+        "name": "Zema Banded Ace"
+    },
+    "halpemorpha-hyrtacus": {
+        "name": "White-branded Ace"
+    },
+    "hasora-anura": {
+        "name": "Slate Awl"
+    },
+    "hasora-badra": {
+        "name": "Common Awl"
+    },
+    "hasora-chromus": {
+        "name": "Common Banded Awl"
+    },
+    "hasora-hasora-spp": {
+        "name": "Awl spp."
+    },
+    "hasora-khoda": {
+        "name": "Large Banded Awl"
+    },
+    "hasora-leucospila": {
+        "name": "Violet Awl"
+    },
+    "hasora-schoenherr": {
+        "name": "Yellow-banded Awl"
+    },
+    "hasora-taminatus": {
+        "name": "White-banded Awl"
+    },
+    "hasora-vitta": {
+        "name": "Plain Banded Awl"
+    },
+    "hebomoia-glaucippe": {
+        "name": "Great Orange-tip"
+    },
+    "hebomoia-roepstorfii": {
+        "name": "Sulphur Great Orange-tip"
+    },
+    "helcyra-hemina": {
+        "name": "White Emperor"
+    },
+    "heliophorus-androcles": {
+        "name": "Green Sapphire"
+    },
+    "heliophorus-bakeri": {
+        "name": "Western Blue Sapphire"
+    },
+    "heliophorus-brahma": {
+        "name": "Golden Sapphire"
+    },
+    "heliophorus-epicles": {
+        "name": "Purple Sapphire"
+    },
+    "heliophorus-heliophorus-spp": {
+        "name": "Sapphire spp."
+    },
+    "heliophorus-hybrida": {
+        "name": "Hybrid Sapphire"
+    },
+    "heliophorus-indicus": {
+        "name": "Dark Sapphire"
+    },
+    "heliophorus-kohimensis": {
+        "name": "Naga Sapphire"
+    },
+    "heliophorus-moorei": {
+        "name": "Azure Sapphire"
+    },
+    "heliophorus-oda": {
+        "name": "Eastern Blue Sapphire"
+    },
+    "heliophorus-pseudonexus": {
+        "name": "Modest Sapphire"
+    },
+    "heliophorus-sena": {
+        "name": "Sorrel Sapphire"
+    },
+    "heliophorus-tamu": {
+        "name": "Powdery Green Sapphire"
+    },
+    "herona-marathus": {
+        "name": "Pasha"
+    },
+    "hesperia-comma": {
+        "name": "Chequered Darter"
+    },
+    "hestina-nicevillei": {
+        "name": "Scarce Siren"
+    },
+    "hestina-persimilis": {
+        "name": "Siren"
+    },
+    "hestinalis-nama": {
+        "name": "Circe"
+    },
+    "hidari-bhawani": {
+        "name": "Veined Palmer"
+    },
+    "hipparchia-parisatis": {
+        "name": "White-edged Rockbrown"
+    },
+    "horaga-onyx": {
+        "name": "Common Onyx"
+    },
+    "horaga-viola": {
+        "name": "Brown Onyx"
+    },
+    "hyarotis-adrastus": {
+        "name": "Tree Flitter"
+    },
+    "hyarotis-coorga": {
+        "name": "Kodagu Brush Flitter"
+    },
+    "hyarotis-microstictum": {
+        "name": "Small Brush Flitter"
+    },
+    "hypolimnas-anomala": {
+        "name": "Anomalous Eggfly"
+    },
+    "hypolimnas-bolina": {
+        "name": "Great Eggfly"
+    },
+    "hypolimnas-misippus": {
+        "name": "Danaid Eggfly"
+    },
+    "hypolycaena-erylus": {
+        "name": "Common Tit"
+    },
+    "hypolycaena-kina": {
+        "name": "Blue Tit"
+    },
+    "hypolycaena-narada": {
+        "name": "Banded Tit"
+    },
+    "hypolycaena-nilgirica": {
+        "name": "Nilgiri Tit"
+    },
+    "hypolycaena-othona": {
+        "name": "Orchid Tit"
+    },
+    "hyponephele-brevistigma": {
+        "name": "Short-branded Meadowbrown"
+    },
+    "hyponephele-cheena": {
+        "name": "Cheena Meadowbrown"
+    },
+    "hyponephele-coenonympha": {
+        "name": "Spotted Meadowbrown"
+    },
+    "hyponephele-davendra": {
+        "name": "White-ringed Meadowbrown"
+    },
+    "hyponephele-hyponephele-spp": {
+        "name": "Meadowbrowns"
+    },
+    "hyponephele-pulchella": {
+        "name": "Tawny Meadowbrown"
+    },
+    "hyponephele-pulchra": {
+        "name": "Beautiful Meadowbrown"
+    },
+    "iambrix-salsala": {
+        "name": "Chestnut Bob"
+    },
+    "idea-agamarschana": {
+        "name": "Myanmar Tree-Nymph"
+    },
+    "idea-malabarica": {
+        "name": "Malabar Tree-Nymph"
+    },
+    "ideopsis-juventa": {
+        "name": "Grey Glassy Tiger"
+    },
+    "ideopsis-similis": {
+        "name": "Blue Glassy Tiger"
+    },
+    "inomataozephyrus-assamica": {
+        "name": "Patkai Green Hairstreak"
+    },
+    "ionolyce-helicon": {
+        "name": "Pointed Lineblue"
+    },
+    "iraota-rochana": {
+        "name": "Scarce Silverstreak Blue"
+    },
+    "iraota-timoleon": {
+        "name": "Silverstreak Blue"
+    },
+    "isma-bonota": {
+        "name": "Multi-spotted Flitter"
+    },
+    "issoria-gemmata": {
+        "name": "Gem Silverspot"
+    },
+    "issoria-issaea": {
+        "name": "Himalayan Queen Fritillary"
+    },
+    "iton-semamora": {
+        "name": "Common Wight"
+    },
+    "ixias-marianne": {
+        "name": "White Orange-tip"
+    },
+    "ixias-pyrene": {
+        "name": "Yellow Orange-tip"
+    },
+    "jamides-alecto": {
+        "name": "Metallic Cerulean"
+    },
+    "jamides-bochus": {
+        "name": "Dark Cerulean"
+    },
+    "jamides-caerulea": {
+        "name": "Royal Cerulean"
+    },
+    "jamides-celeno": {
+        "name": "Common Cerulean"
+    },
+    "jamides-elpis": {
+        "name": "Glistening Cerulean"
+    },
+    "jamides-pura": {
+        "name": "White Cerulean"
+    },
+    "jamides-spp": {
+        "name": "Cerulean spp."
+    },
+    "junonia-almana": {
+        "name": "Peacock Pansy"
+    },
+    "junonia-atlites": {
+        "name": "Grey Pansy"
+    },
+    "junonia-hierta": {
+        "name": "Yellow Pansy"
+    },
+    "junonia-iphita": {
+        "name": "Chocolate Pansy"
+    },
+    "junonia-lemonias": {
+        "name": "Lemon Pansy"
+    },
+    "junonia-orithya": {
+        "name": "Blue Pansy"
+    },
+    "kallima-albofasciata": {
+        "name": "White Oakleaf"
+    },
+    "kallima-horsfieldii": {
+        "name": "Sahyadri Blue Oakleaf"
+    },
+    "kallima-inachus": {
+        "name": "Orange Oakleaf"
+    },
+    "kallima-knyvettii": {
+        "name": "Scarce Blue Oakleaf"
+    },
+    "kaniska-canace": {
+        "name": "Blue Admiral"
+    },
+    "karanasa-huebneri": {
+        "name": "Tawny Satyr"
+    },
+    "kirinia-eversmanni": {
+        "name": "Yellow Wall"
+    },
+    "koruthaialos-butleri": {
+        "name": "Dark Velvet Bob"
+    },
+    "koruthaialos-rubecula": {
+        "name": "Changeable Velvet Bob"
+    },
+    "koruthaialos-sindu": {
+        "name": "Shiny Velvet Bob"
+    },
+    "lampides-boeticus": {
+        "name": "Pea Blue"
+    },
+    "lamproptera-curius": {
+        "name": "White Dragontail"
+    },
+    "lamproptera-meges": {
+        "name": "Green Dragontail"
+    },
+    "laringa-horsfieldii": {
+        "name": "Banded Dandy"
+    },
+    "lasiommata-maerula": {
+        "name": "Scarce Wall"
+    },
+    "lasiommata-menava": {
+        "name": "Dark Wall"
+    },
+    "lasiommata-schakra": {
+        "name": "Common Wall"
+    },
+    "lasippa-viraja": {
+        "name": "Yellowjack Sailer"
+    },
+    "lebadea-martha": {
+        "name": "Knight"
+    },
+    "leptosia-nina": {
+        "name": "Psyche"
+    },
+    "leptotes-plinius": {
+        "name": "Zebra Blue"
+    },
+    "lestranicus-transpectus": {
+        "name": "White-banded Hedge Blue"
+    },
+    "lethe-atkinsonia": {
+        "name": "Small Goldenfork"
+    },
+    "lethe-baladeva": {
+        "name": "Treble Silverstripe"
+    },
+    "lethe-bhairava": {
+        "name": "Rusty Forester"
+    },
+    "lethe-brisanda": {
+        "name": "Dark Forester"
+    },
+    "lethe-chandica": {
+        "name": "Angled Red Forester"
+    },
+    "lethe-confusa": {
+        "name": "Banded Treebrown"
+    },
+    "lethe-dakwania": {
+        "name": "White-wedged Woodbrown"
+    },
+    "lethe-distans": {
+        "name": "Scarce Red Forester"
+    },
+    "lethe-drypetis": {
+        "name": "Two-eyed Treebrown"
+    },
+    "lethe-dura": {
+        "name": "Scarce Lilacfork"
+    },
+    "lethe-europa": {
+        "name": "Bamboo Treebrown"
+    },
+    "lethe-gemina": {
+        "name": "Silverline Treebrown"
+    },
+    "lethe-goalpara": {
+        "name": "Large Goldenfork"
+    },
+    "lethe-gulnihal": {
+        "name": "Dull Forester"
+    },
+    "lethe-isana": {
+        "name": "Common Forester"
+    },
+    "lethe-jalaurida": {
+        "name": "Small Silverfork"
+    },
+    "lethe-kabrua": {
+        "name": "Manipur Goldenfork"
+    },
+    "lethe-kanjupkula": {
+        "name": "Broken Woodbrown"
+    },
+    "lethe-kansa": {
+        "name": "Bamboo Forester"
+    },
+    "lethe-latiaris": {
+        "name": "Pale Forester"
+    },
+    "lethe-maitrya": {
+        "name": "Barred Woodbrown"
+    },
+    "lethe-margaritae": {
+        "name": "Bhutan Treebrown"
+    },
+    "lethe-mekara": {
+        "name": "Common Red Forester"
+    },
+    "lethe-naga": {
+        "name": "Naga Treebrown"
+    },
+    "lethe-nicetas": {
+        "name": "Yellow Woodbrown"
+    },
+    "lethe-nicetella": {
+        "name": "Small Woodbrown"
+    },
+    "lethe-ramadeva": {
+        "name": "Single Silverstripe"
+    },
+    "lethe-rohria": {
+        "name": "Common Treebrown"
+    },
+    "lethe-satyavati": {
+        "name": "Pallid Forester"
+    },
+    "lethe-scanda": {
+        "name": "Blue Forester"
+    },
+    "lethe-serbonis": {
+        "name": "Brown Forester"
+    },
+    "lethe-siderea": {
+        "name": "Scarce Woodbrown"
+    },
+    "lethe-sidonis": {
+        "name": "Common Woodbrown"
+    },
+    "lethe-sinorix": {
+        "name": "Tailed Red Forester"
+    },
+    "lethe-spp": {
+        "name": "Treebrowns"
+    },
+    "lethe-sura": {
+        "name": "Lilacfork"
+    },
+    "lethe-tamuna": {
+        "name": "Clear-eyed Treebrown"
+    },
+    "lethe-tristigmata": {
+        "name": "Spotted Mystic"
+    },
+    "lethe-verma": {
+        "name": "Straight-banded Treebrown"
+    },
+    "lethe-vindhya": {
+        "name": "Black Forester"
+    },
+    "lethe-visrava": {
+        "name": "White-edged Woodbrown"
+    },
+    "lexias-cyanipardus": {
+        "name": "Great Archduke"
+    },
+    "lexias-dirtea": {
+        "name": "Dark Archduke"
+    },
+    "lexias-pardalis": {
+        "name": "Yellow-tipped Archduke"
+    },
+    "libythea-laius": {
+        "name": "Lobed Beak"
+    },
+    "libythea-lepita": {
+        "name": "Common Beak"
+    },
+    "libythea-myrrha": {
+        "name": "Club Beak"
+    },
+    "limenitis-ligyes": {
+        "name": "Brown-bordered Admiral"
+    },
+    "limenitis-rileyi": {
+        "name": "Tiger-mimic Admiral"
+    },
+    "limenitis-trivena": {
+        "name": "Indian White Admiral"
+    },
+    "liphyra-brassolis": {
+        "name": "Moth Butterfly"
+    },
+    "lobocla-liliana": {
+        "name": "Marbled Flat"
+    },
+    "logania-distanti": {
+        "name": "Dark Mottle"
+    },
+    "losaria-coon": {
+        "name": "Common Clubtail"
+    },
+    "losaria-rhodifer": {
+        "name": "Andaman Clubtail"
+    },
+    "lotongus-sarala": {
+        "name": "Yellow-banded Palmer"
+    },
+    "loxura-atymnus": {
+        "name": "Yamfly"
+    },
+    "lycaena-aditya": {
+        "name": "Bright Copper"
+    },
+    "lycaena-kasyapa": {
+        "name": "Green Copper"
+    },
+    "lycaena-panava": {
+        "name": "White-bordered Copper"
+    },
+    "lycaena-phlaeas": {
+        "name": "Common Copper"
+    },
+    "lycaenopsis-group-spp": {
+        "name": "Hedge Blues"
+    },
+    "mahathala-ameria": {
+        "name": "Falcate Oakblue"
+    },
+    "maneca-bhotea": {
+        "name": "Slate Royal"
+    },
+    "matapa-aria": {
+        "name": "Common Branded Redeye"
+    },
+    "matapa-cresta": {
+        "name": "Fringed Branded Redeye"
+    },
+    "matapa-druna": {
+        "name": "Grey-branded Redeye"
+    },
+    "matapa-purpurascens": {
+        "name": "Purple Branded Redeye"
+    },
+    "matapa-sasivarna": {
+        "name": "Black-veined Branded Redeye"
+    },
+    "meandrusa-lachinus": {
+        "name": "Brown Gorgon"
+    },
+    "meandrusa-payeni": {
+        "name": "Yellow Gorgon"
+    },
+    "megisba-malaya": {
+        "name": "Malayan"
+    },
+    "melanitis-leda": {
+        "name": "Common Evening Brown"
+    },
+    "melanitis-phedima": {
+        "name": "Dark Evening Brown"
+    },
+    "melanitis-spp": {
+        "name": "Evening Brown spp."
+    },
+    "melanitis-zitenius": {
+        "name": "Great Evening Brown"
+    },
+    "melanocyma-faunula": {
+        "name": "Pallid Faun"
+    },
+    "melitaea-arcesia": {
+        "name": "Blackvein Checkerspot"
+    },
+    "melitaea-robertsi": {
+        "name": "Baluchi Fritillary"
+    },
+    "miletus-chinensis": {
+        "name": "Common Mottle"
+    },
+    "mimathyma-ambica": {
+        "name": "Indian Purple Emperor"
+    },
+    "mimathyma-bhavana": {
+        "name": "Restricted Purple Emperor"
+    },
+    "mimathyma-chevana": {
+        "name": "Sergeant Emperor"
+    },
+    "mimathyma-chitralensis": {
+        "name": "Large Emperor"
+    },
+    "moduza-procris": {
+        "name": "Commander"
+    },
+    "monodontides-musina": {
+        "name": "Grey Hedge Blue"
+    },
+    "mooreana-trichoneura": {
+        "name": "Yellow Flat"
+    },
+    "mota-massyla": {
+        "name": "Saffron"
+    },
+    "mycalesis-adamsonii": {
+        "name": "Double-branded Bushbrown"
+    },
+    "mycalesis-anaxias": {
+        "name": "White-bar Bushbrown"
+    },
+    "mycalesis-francisca": {
+        "name": "Lilacine Bushbrown"
+    },
+    "mycalesis-gotama": {
+        "name": "Chinese Bushbrown"
+    },
+    "mycalesis-igilia": {
+        "name": "Sahyadri Long-branded Bushbrown"
+    },
+    "mycalesis-intermedia": {
+        "name": "Intermediate Bushbrown"
+    },
+    "mycalesis-junonia": {
+        "name": "Malabar Glad-eye Bushbrown"
+    },
+    "mycalesis-manii": {
+        "name": "Nicobarese Blind Bushbrown"
+    },
+    "mycalesis-mineus": {
+        "name": "Dark-branded Bushbrown"
+    },
+    "mycalesis-orcha": {
+        "name": "Pale-brand Bushbrown"
+    },
+    "mycalesis-perseus": {
+        "name": "Common Bushbrown"
+    },
+    "mycalesis-radza": {
+        "name": "Andamanese Eyed Bushbrown"
+    },
+    "mycalesis-spp2": {
+        "name": "Bushbrown spp."
+    },
+    "mycalesis-suaveolens": {
+        "name": "Vanilla Bushbrown"
+    },
+    "mycalesis-subdita": {
+        "name": "Tamil Bushbrown"
+    },
+    "mycalesis-visala": {
+        "name": "Long-branded Bushbrown"
+    },
+    "nacaduba-beroe": {
+        "name": "Opaque Six-Lineblue"
+    },
+    "nacaduba-calauria": {
+        "name": "Dark Six-Lineblue"
+    },
+    "nacaduba-hermus": {
+        "name": "Pale Four-Lineblue"
+    },
+    "nacaduba-kurava": {
+        "name": "Transparent Six-Lineblue"
+    },
+    "nacaduba-nacaduba-spp": {
+        "name": "Lineblue spp."
+    },
+    "nacaduba-pactolus": {
+        "name": "Large Four-Lineblue"
+    },
+    "nacaduba-pavana": {
+        "name": "Small Four-Lineblue"
+    },
+    "nacaduba-sinhala": {
+        "name": "Lineblue"
+    },
+    "neocheritra-fabronia": {
+        "name": "Pale Grand Imperial"
+    },
+    "neope-armandii": {
+        "name": "Yellow Labyrinth"
+    },
+    "neope-bhadra": {
+        "name": "Tailed Labyrinth"
+    },
+    "neope-pulaha": {
+        "name": "Veined Labyrinth"
+    },
+    "neope-pulahina": {
+        "name": "Scarce Labyrinth"
+    },
+    "neope-pulahoides": {
+        "name": "Large-spotted Labyrinth"
+    },
+    "neope-yama": {
+        "name": "Dusky Labyrinth"
+    },
+    "neopithecops-zalmora": {
+        "name": "Common Quaker"
+    },
+    "neorina-hilda": {
+        "name": "Yellow Owl"
+    },
+    "neorina-patria": {
+        "name": "White Owl"
+    },
+    "neptis-ananta": {
+        "name": "Yellow Sailer"
+    },
+    "neptis-cartica": {
+        "name": "Plain Sailer"
+    },
+    "neptis-clinia": {
+        "name": "Sullied Sailer"
+    },
+    "neptis-harita": {
+        "name": "Dingiest Sailer"
+    },
+    "neptis-hylas": {
+        "name": "Common Sailer"
+    },
+    "neptis-jumbah": {
+        "name": "Chestnut-streaked Sailer"
+    },
+    "neptis-magadha": {
+        "name": "Spotted Sailer"
+    },
+    "neptis-mahendra": {
+        "name": "Himalayan Sailer"
+    },
+    "neptis-manasa": {
+        "name": "Pale Hockeystick Sailer"
+    },
+    "neptis-melba": {
+        "name": "Versicoloured Sailer"
+    },
+    "neptis-miah": {
+        "name": "Small Yellow Sailer"
+    },
+    "neptis-namba": {
+        "name": "Namba Sailer"
+    },
+    "neptis-nana": {
+        "name": "Little Sailer"
+    },
+    "neptis-narayana": {
+        "name": "Broadstick Sailer"
+    },
+    "neptis-nashona": {
+        "name": "Less Rich Sailer"
+    },
+    "neptis-nata": {
+        "name": "Clear Sailer"
+    },
+    "neptis-neptis-spp": {
+        "name": "Sailer spp."
+    },
+    "neptis-nycteus": {
+        "name": "Hockeystick Sailer"
+    },
+    "neptis-palnica": {
+        "name": "Palni Sailer"
+    },
+    "neptis-pseudovikasi": {
+        "name": "False Dingy Sailer"
+    },
+    "neptis-radha": {
+        "name": "Great Yellow Sailer"
+    },
+    "neptis-sankara": {
+        "name": "Broad-banded Sailer"
+    },
+    "neptis-sappho": {
+        "name": "Rusty Sailer"
+    },
+    "neptis-soma": {
+        "name": "Creamy Sailer"
+    },
+    "neptis-zaida": {
+        "name": "Pale Green Sailer"
+    },
+    "neurosigma-siva": {
+        "name": "Panther"
+    },
+    "niphanda-cymbia": {
+        "name": "Pointed Pierrot"
+    },
+    "notocrypta-curvifascia": {
+        "name": "Restricted Demon"
+    },
+    "notocrypta-feisthamelii": {
+        "name": "Spotted Demon"
+    },
+    "notocrypta-paralysos": {
+        "name": "Common Banded Demon"
+    },
+    "nymphalis-antiopa": {
+        "name": "Mourning Cloak"
+    },
+    "nymphalis-xanthomelas": {
+        "name": "Large Tortoiseshell"
+    },
+    "ochlodes-brahma": {
+        "name": "Grey-branded Darter"
+    },
+    "ochlodes-siva": {
+        "name": "Black-branded Darter"
+    },
+    "odina-decoratus": {
+        "name": "Zigzag Flat"
+    },
+    "odontoptilum-angulata": {
+        "name": "Chestnut Angle"
+    },
+    "oreolyce-vardhana": {
+        "name": "Dusky Hedge Blue"
+    },
+    "oriens-concinna": {
+        "name": "Sahyadri Dartlet"
+    },
+    "oriens-gola": {
+        "name": "Common Dartlet"
+    },
+    "oriens-goloides": {
+        "name": "Smaller Dartlet"
+    },
+    "orinoma-damaris": {
+        "name": "Tigerbrown"
+    },
+    "orsotriaena-medus": {
+        "name": "Medus Brown"
+    },
+    "orthomiella-pontis": {
+        "name": "Straightwing Blue"
+    },
+    "pachliopta-aristolochiae": {
+        "name": "Common Rose"
+    },
+    "pachliopta-hector": {
+        "name": "Crimson Rose"
+    },
+    "pachliopta-pandiyana": {
+        "name": "Malabar Rose"
+    },
+    "pantoporia-assamica": {
+        "name": "Conjoined Lascar"
+    },
+    "pantoporia-cnacalis": {
+        "name": "White-banded Lascar"
+    },
+    "pantoporia-ferrari": {
+        "name": "Polished Lascar"
+    },
+    "pantoporia-hordonia": {
+        "name": "Common Lascar"
+    },
+    "pantoporia-pantoporia-spp": {
+        "name": "Lascars"
+    },
+    "pantoporia-paraka": {
+        "name": "Perak Lascar"
+    },
+    "pantoporia-sandaka": {
+        "name": "Extra Lascar"
+    },
+    "papilio-agenor": {
+        "name": "Great Mormon"
+    },
+    "papilio-agestor": {
+        "name": "Tawny Mime"
+    },
+    "papilio-alcmenor": {
+        "name": "Red-breasted Mormon"
+    },
+    "papilio-arcturus": {
+        "name": "Blue Peacock"
+    },
+    "papilio-bianor": {
+        "name": "Common Peacock"
+    },
+    "papilio-bootes": {
+        "name": "Tailed Redbreast"
+    },
+    "papilio-buddha": {
+        "name": "Malabar Banded Peacock"
+    },
+    "papilio-castor": {
+        "name": "Common Raven"
+    },
+    "papilio-chaon": {
+        "name": "Yellow Helen"
+    },
+    "papilio-clytia": {
+        "name": "Common Mime"
+    },
+    "papilio-crino": {
+        "name": "Common Banded Peacock"
+    },
+    "papilio-daksha": {
+        "name": "Large-spotted Helen"
+    },
+    "papilio-demoleus": {
+        "name": "Lime Swallowtail"
+    },
+    "papilio-dravidarum": {
+        "name": "Malabar Raven"
+    },
+    "papilio-elephenor": {
+        "name": "Yellow-crested Spangle"
+    },
+    "papilio-epycides": {
+        "name": "Lesser Mime"
+    },
+    "papilio-helenus": {
+        "name": "Red Helen"
+    },
+    "papilio-krishna": {
+        "name": "Krishna Peacock"
+    },
+    "papilio-liomedon": {
+        "name": "Malabar Banded Swallowtail"
+    },
+    "papilio-machaon": {
+        "name": "Common Yellow Swallowtail"
+    },
+    "papilio-mayo": {
+        "name": "Andaman Mormon"
+    },
+    "papilio-memnon": {
+        "name": "Island Mormon"
+    },
+    "papilio-noblei": {
+        "name": "Tooth Swallowtail"
+    },
+    "papilio-palinurus": {
+        "name": "Green-banded Peacock"
+    },
+    "papilio-paradoxa": {
+        "name": "Great Blue Mime"
+    },
+    "papilio-paris": {
+        "name": "Paris Peacock"
+    },
+    "papilio-polyctor": {
+        "name": "Woolly-branded Peacock"
+    },
+    "papilio-polymnestor": {
+        "name": "Peninsular Great Mormon (=Blue Mormon)"
+    },
+    "papilio-polytes": {
+        "name": "Common Mormon"
+    },
+    "papilio-prexaspes": {
+        "name": "Blue Helen"
+    },
+    "papilio-protenor": {
+        "name": "Spangle"
+    },
+    "papilio-slateri": {
+        "name": "Blue-striped Mime"
+    },
+    "papilio-xuthus": {
+        "name": "Asian Yellow Swallowtail"
+    },
+    "paralasa-kalinda": {
+        "name": "Scarce Mountain Argus"
+    },
+    "paralasa-mani": {
+        "name": "Yellow Argus"
+    },
+    "paralasa-shallada": {
+        "name": "Mountain Argus"
+    },
+    "parantica-aglea": {
+        "name": "Glassy Tiger"
+    },
+    "parantica-melaneus": {
+        "name": "Chocolate Tiger"
+    },
+    "parantica-nilgiriensis": {
+        "name": "Nilgiri Tiger"
+    },
+    "parantica-pedonga": {
+        "name": "Pedong Tiger"
+    },
+    "parantica-sita": {
+        "name": "Chestnut Tiger"
+    },
+    "parantirrhoea-marshalli": {
+        "name": "Travancore Evening Brown"
+    },
+    "parasarpa-dudu": {
+        "name": "White Commodore"
+    },
+    "parasarpa-zayla": {
+        "name": "Bicolor Commodore"
+    },
+    "pareronia-avatar": {
+        "name": "Pale Wanderer"
+    },
+    "pareronia-ceylanica": {
+        "name": "Dark Wanderer"
+    },
+    "pareronia-hippia": {
+        "name": "Indian Wanderer"
+    },
+    "parnara-guttatus": {
+        "name": "Straight Swift"
+    },
+    "parnara-parnara-spp": {
+        "name": "Parnara Swift spp."
+    },
+    "parnassius-charltonius": {
+        "name": "Regal Apollo"
+    },
+    "parnassius-epaphus": {
+        "name": "Common Red Apollo"
+    },
+    "parnassius-hardwickii": {
+        "name": "Common Blue Apollo"
+    },
+    "parnassius-jacquemontii": {
+        "name": "Keeled Apollo"
+    },
+    "parnassius-stoliczkanus": {
+        "name": "Many-eyed Apollo"
+    },
+    "paroeneis-pumilus": {
+        "name": "Ladakh Mountain Satyr"
+    },
+    "parthenos-sylvia": {
+        "name": "Clipper"
+    },
+    "pedesta-masuriensis": {
+        "name": "Large-spotted Bush Bob"
+    },
+    "pedesta-panda": {
+        "name": "Contiguous Bush Bob"
+    },
+    "pedesta-pandita": {
+        "name": "Brown Bush Bob"
+    },
+    "pelopidas-agna": {
+        "name": "Obscure Branded Swift"
+    },
+    "pelopidas-assamensis": {
+        "name": "Great Swift"
+    },
+    "pelopidas-conjuncta": {
+        "name": "Conjoined Swift"
+    },
+    "pelopidas-mathias": {
+        "name": "Small Branded Swift"
+    },
+    "pelopidas-pelopidas-spp": {
+        "name": "Pelopidas Swifts"
+    },
+    "pelopidas-sinensis": {
+        "name": "Chinese Branded Swift"
+    },
+    "pelopidas-subochracea": {
+        "name": "Large Branded Swift"
+    },
+    "penthema-lisarda": {
+        "name": "Yellow Kaiser"
+    },
+    "petrelaea-dana": {
+        "name": "Dingy Lineblue"
+    },
+    "phaedyma-aspasia": {
+        "name": "Great Hockeystick Sailer"
+    },
+    "phaedyma-columella": {
+        "name": "Short-banded Sailer"
+    },
+    "phalanta-alcippe": {
+        "name": "Small Leopard"
+    },
+    "phalanta-phalantha": {
+        "name": "Common Leopard"
+    },
+    "phengaris-atroguttata": {
+        "name": "Great Spotted Blue"
+    },
+    "pieris-brassicae": {
+        "name": "Large Cabbage White"
+    },
+    "pieris-canidia": {
+        "name": "Asian Cabbage White"
+    },
+    "pieris-deota": {
+        "name": "Dusky White"
+    },
+    "pieris-extensa": {
+        "name": "Extended White"
+    },
+    "pieris-melete": {
+        "name": "Asian Green-veined White"
+    },
+    "pieris-rapae": {
+        "name": "Small Cabbage White"
+    },
+    "pirdana-major": {
+        "name": "Himalayan Green-striped Palmer"
+    },
+    "pithauria-marsena": {
+        "name": "Branded Straw Ace"
+    },
+    "pithauria-murdava": {
+        "name": "Dark Straw Ace"
+    },
+    "pithauria-pithauria-spp": {
+        "name": "Straw Ace spp."
+    },
+    "pithauria-stramineipennis": {
+        "name": "Light Straw Ace"
+    },
+    "pithecops-corvus": {
+        "name": "Forest Quaker"
+    },
+    "pithecops-fulgens": {
+        "name": "Blue Quaker"
+    },
+    "plastingia-naga": {
+        "name": "Silver-spotted Lancer"
+    },
+    "plebejus-devanica": {
+        "name": "Dusky Meadow Blue"
+    },
+    "plebejus-samudra": {
+        "name": "Sea Jewel Blue"
+    },
+    "polygonia-c-album": {
+        "name": "Comma"
+    },
+    "polyommatus-ariana": {
+        "name": "Aryan Meadow Blue"
+    },
+    "polyommatus-dux": {
+        "name": "Kumaon Meadow Blue"
+    },
+    "polyommatus-group-spp": {
+        "name": "Blues"
+    },
+    "polyommatus-janetae": {
+        "name": "Meadow Blue"
+    },
+    "polyommatus-nepalensis": {
+        "name": "Nepal Meadow Blue"
+    },
+    "polyommatus-pseuderos": {
+        "name": "Red-spotted Meadow Blue"
+    },
+    "polyommatus-spp2": {
+        "name": "Meadow Blues"
+    },
+    "polyommatus-stoliczkana": {
+        "name": "Himalayan Meadow Blue"
+    },
+    "polytremis-discreta": {
+        "name": "White-fringed Swift"
+    },
+    "polytremis-eltola": {
+        "name": "Yellow-spot Swift"
+    },
+    "polytremis-lubricans": {
+        "name": "Contiguous Swift"
+    },
+    "pontia-callidice": {
+        "name": "Lofty Bath White"
+    },
+    "pontia-chloridice": {
+        "name": "Small Bath White"
+    },
+    "pontia-daplidice": {
+        "name": "Bath White"
+    },
+    "poritia-erycinoides": {
+        "name": "Blue Gem"
+    },
+    "poritia-hewitsoni": {
+        "name": "Common Gem"
+    },
+    "potanthus-lydia": {
+        "name": "Lydia Dart"
+    },
+    "potanthus-pava": {
+        "name": "Pava Dart"
+    },
+    "potanthus-potanthus-spp": {
+        "name": "Dart spp."
+    },
+    "potanthus-trachala": {
+        "name": "Broad Bident Dart"
+    },
+    "pratapa-deva": {
+        "name": "White Tufted Royal"
+    },
+    "pratapa-icetas": {
+        "name": "Dark Blue Royal"
+    },
+    "prioneris-philonome": {
+        "name": "Redspot Sawtooth"
+    },
+    "prioneris-sita": {
+        "name": "Painted Sawtooth"
+    },
+    "prioneris-thestylis": {
+        "name": "Spotted Sawtooth"
+    },
+    "prosotas-aluta": {
+        "name": "Banded Lineblue"
+    },
+    "prosotas-bhutea": {
+        "name": "Bhutia Lineblue"
+    },
+    "prosotas-dubiosa": {
+        "name": "Tailless Lineblue"
+    },
+    "prosotas-lutea": {
+        "name": "Brown Lineblue"
+    },
+    "prosotas-nora": {
+        "name": "Common Lineblue"
+    },
+    "prosotas-noreia": {
+        "name": "White-tipped Lineblue"
+    },
+    "prosotas-pia": {
+        "name": "Additional Lineblue"
+    },
+    "prosotas-spp": {
+        "name": "Prosotas Lineblue spp."
+    },
+    "prothoe-franck": {
+        "name": "Blue Begum"
+    },
+    "pseudergolis-wedah": {
+        "name": "Tabby"
+    },
+    "pseudochazara-baldiva": {
+        "name": "-"
+    },
+    "pseudochazara-lehana": {
+        "name": "Crescent Rockbrown"
+    },
+    "pseudocoladenia-dan": {
+        "name": "Fulvous Pied Flat"
+    },
+    "pseudocoladenia-fabia": {
+        "name": "Dented Pied Flat"
+    },
+    "pseudocoladenia-fatih": {
+        "name": "West Himalayan Pied Flat"
+    },
+    "pseudocoladenia-fatua": {
+        "name": "Ruddy Pied Flat"
+    },
+    "pseudocoladenia-festa": {
+        "name": "Dull Pied Flat"
+    },
+    "pseudocoladenia-spp": {
+        "name": "Pied Flats"
+    },
+    "pseudophilotes-vicrama": {
+        "name": "Chequered Blue"
+    },
+    "pseudozizeeria-maha": {
+        "name": "Pale Grass Blue"
+    },
+    "psolos-fuligo": {
+        "name": "Dusky Partwing"
+    },
+    "pudicitia-pholus": {
+        "name": "Spotted Redeye"
+    },
+    "pyrgus-cashmirensis": {
+        "name": "Plain Mountain Skipper"
+    },
+    "pyrgus-nepalensis": {
+        "name": "Nepal Mountain Skipper"
+    },
+    "pyroneura-margherita": {
+        "name": "Indian Yellow-veined Lancer"
+    },
+    "quedara-basiflava": {
+        "name": "Yellow-base Flitter"
+    },
+    "rachana-jalindra": {
+        "name": "Banded Royal"
+    },
+    "ragadia-crisilda": {
+        "name": "White-striped Ringlet"
+    },
+    "ragadia-crito": {
+        "name": "Dusky-striped Ringlet"
+    },
+    "rapala-damona": {
+        "name": "Malay Red Flash"
+    },
+    "rapala-dieneces": {
+        "name": "Scarlet Flash"
+    },
+    "rapala-iarbus": {
+        "name": "Common Red Flash"
+    },
+    "rapala-lankana": {
+        "name": "Malabar Flash"
+    },
+    "rapala-manea": {
+        "name": "Slate Flash"
+    },
+    "rapala-melida": {
+        "name": "Brilliant Flash"
+    },
+    "rapala-nissa": {
+        "name": "Common Flash"
+    },
+    "rapala-pheretima": {
+        "name": "Copper Flash"
+    },
+    "rapala-rectivitta": {
+        "name": "Scarce Shot Flash"
+    },
+    "rapala-refulgens": {
+        "name": "Refulgent Flash"
+    },
+    "rapala-rosacea": {
+        "name": "Rosy Flash"
+    },
+    "rapala-selira": {
+        "name": "Himalayan Red Flash"
+    },
+    "rapala-spp": {
+        "name": "Flashes"
+    },
+    "rapala-suffusa": {
+        "name": "Suffused Flash"
+    },
+    "rapala-tara": {
+        "name": "Branded Flash"
+    },
+    "rapala-varuna": {
+        "name": "Indigo Flash"
+    },
+    "rathinda-amor": {
+        "name": "Monkey Puzzle"
+    },
+    "remelana-jangala": {
+        "name": "Chocolate Royal"
+    },
+    "rhaphicera-moorei": {
+        "name": "Small Tawny Wall"
+    },
+    "rhaphicera-satricus": {
+        "name": "Large Tawny Wall"
+    },
+    "rhinopalpa-polynice": {
+        "name": "Wizard"
+    },
+    "rohana-parisatis": {
+        "name": "Black Prince"
+    },
+    "rohana-parvata": {
+        "name": "Brown Prince"
+    },
+    "rohana-tonkiniana": {
+        "name": "Elusive Prince"
+    },
+    "salanoemia-noemi": {
+        "name": "Spotted Yellow Lancer"
+    },
+    "salanoemia-sala": {
+        "name": "Maculate Lancer"
+    },
+    "salanoemia-tavoyana": {
+        "name": "Ringed Lancer"
+    },
+    "saletara-liberia": {
+        "name": "Pointed Albatross"
+    },
+    "sarangesa-dasahara": {
+        "name": "Common Small Flat"
+    },
+    "sarangesa-purendra": {
+        "name": "Spotted Small Flat"
+    },
+    "satarupa-gopala": {
+        "name": "Large White Flat"
+    },
+    "satarupa-splendens": {
+        "name": "Splendid White Flat"
+    },
+    "satarupa-zulla": {
+        "name": "Equal White Flat"
+    },
+    "satyrini-callerebia": {
+        "name": "Argus spp."
+    },
+    "scobura-cephala": {
+        "name": "Extra Forest Bob"
+    },
+    "scobura-cephaloides": {
+        "name": "Large Forest Bob"
+    },
+    "scobura-isota": {
+        "name": "Khasi Forest Bob"
+    },
+    "scobura-parawoolletti": {
+        "name": "Divided Forest Bob"
+    },
+    "scobura-phiditia": {
+        "name": "One-spotted Forest Bob"
+    },
+    "sebastonyma-dolopia": {
+        "name": "Tufted Ace"
+    },
+    "sephisa-chandra": {
+        "name": "Eastern Courtier"
+    },
+    "sephisa-dichroa": {
+        "name": "Western Courtier"
+    },
+    "seseria-dohertyi": {
+        "name": "Contiguous Seseria"
+    },
+    "seseria-sambara": {
+        "name": "Notched Seseria"
+    },
+    "shijimia-moorei": {
+        "name": "Bicolor Cupid"
+    },
+    "shirozuozephyrus-bhutanensis": {
+        "name": "Bhutanese Silver Hairstreak"
+    },
+    "shirozuozephyrus-kirbariensis": {
+        "name": "NA"
+    },
+    "shizuyaozephyrus-ziha": {
+        "name": "White-spotted Hairstreak"
+    },
+    "simiskina-phalena": {
+        "name": "Broad-branded Brilliant"
+    },
+    "sinopieris-chumbiensis": {
+        "name": "Grey-banded White"
+    },
+    "sinthusa-chandrana": {
+        "name": "Broad Spark"
+    },
+    "sinthusa-nasaka": {
+        "name": "Narrow Spark"
+    },
+    "sinthusa-virgo": {
+        "name": "Pale Spark"
+    },
+    "sovia-grahami": {
+        "name": "Pale Ace"
+    },
+    "sovia-separata": {
+        "name": "Chequered Ace"
+    },
+    "spalgis-epius": {
+        "name": "Apefly"
+    },
+    "spialia-doris": {
+        "name": "Desert Grizzled Skipper"
+    },
+    "spialia-galba": {
+        "name": "Asian Grizzled Skipper"
+    },
+    "stibochiona-nicea": {
+        "name": "Popinjay"
+    },
+    "stiboges-nymphidia": {
+        "name": "Columbine"
+    },
+    "stichophthalma-camadeva": {
+        "name": "Northern Junglequeen"
+    },
+    "stichophthalma-nurinissa": {
+        "name": "Nurinissa Junglequeen"
+    },
+    "stichophthalma-sparta": {
+        "name": "Amber Junglequeen"
+    },
+    "stimula-swinhoei": {
+        "name": "Pale Demon"
+    },
+    "suada-swerga": {
+        "name": "Grass Bob"
+    },
+    "suasa-lisides": {
+        "name": "Red Imperial"
+    },
+    "suastus-gremius": {
+        "name": "Oriental Palm Bob"
+    },
+    "suastus-minuta": {
+        "name": "Small Palm Bob"
+    },
+    "sumalia-daraxa": {
+        "name": "Green Commodore"
+    },
+    "sumalia-zulema": {
+        "name": "Scarce White Commodore"
+    },
+    "superflua-deria": {
+        "name": "Indian White-line Hairstreak"
+    },
+    "superflua-sassanides": {
+        "name": "White-line Hairstreak"
+    },
+    "surendra-quercetorum": {
+        "name": "Common Acacia Blue"
+    },
+    "symbrenthia-brabira": {
+        "name": "Yellow Jester"
+    },
+    "symbrenthia-hypselis": {
+        "name": "Spotted Jester"
+    },
+    "symbrenthia-lilaea": {
+        "name": "Northern Common Jester"
+    },
+    "symbrenthia-niphanda": {
+        "name": "Bluetail Jester"
+    },
+    "symbrenthia-silana": {
+        "name": "Scarce Jester"
+    },
+    "symphaedra-nais": {
+        "name": "Baronet"
+    },
+    "tagiades-cohaerens": {
+        "name": "White-striped Snow Flat"
+    },
+    "tagiades-gana": {
+        "name": "Suffused Snow Flat"
+    },
+    "tagiades-japetus": {
+        "name": "Common Snow Flat"
+    },
+    "tagiades-litigiosa": {
+        "name": "Water Snow Flat"
+    },
+    "tagiades-menaka": {
+        "name": "Spotted Snow Flat"
+    },
+    "tagiades-parra": {
+        "name": "Multi-spotted Snow Flat"
+    },
+    "tajuria-cippus": {
+        "name": "Peacock Royal"
+    },
+    "tajuria-diaeus": {
+        "name": "Straightline Royal"
+    },
+    "tajuria-illurgioides": {
+        "name": "Scarce White Royal"
+    },
+    "tajuria-illurgis": {
+        "name": "White Royal"
+    },
+    "tajuria-ister": {
+        "name": "Uncertain Royal"
+    },
+    "tajuria-jehana": {
+        "name": "Plains Blue Royal"
+    },
+    "tajuria-luculentus": {
+        "name": "Black-spot Royal"
+    },
+    "tajuria-maculatus": {
+        "name": "Spotted Royal"
+    },
+    "tajuria-melastigma": {
+        "name": "Branded Royal"
+    },
+    "tajuria-yajna": {
+        "name": "Chestnut-and-Black Royal"
+    },
+    "talbotia-naganum": {
+        "name": "Plain Cabbage White"
+    },
+    "talicada-nyseus": {
+        "name": "Red Pierrot"
+    },
+    "tanaecia-cibaritis": {
+        "name": "Andaman Viscount"
+    },
+    "tanaecia-cocytus": {
+        "name": "Lavender Count"
+    },
+    "tanaecia-jahnu": {
+        "name": "Plain Earl"
+    },
+    "tanaecia-julii": {
+        "name": "Common Earl"
+    },
+    "tanaecia-lepidea": {
+        "name": "Grey Count"
+    },
+    "tapena-thwaitesi": {
+        "name": "Black Angle"
+    },
+    "taractrocera-ceramas": {
+        "name": "Tawny-spotted Grass Dart"
+    },
+    "taractrocera-danna": {
+        "name": "White-spotted Grass Dart"
+    },
+    "taractrocera-maevius": {
+        "name": "Grey-veined Grass Dart"
+    },
+    "taraka-hamada": {
+        "name": "Forest Pierrot"
+    },
+    "tarucus-ananda": {
+        "name": "Dark Pierrot"
+    },
+    "tarucus-balkanica": {
+        "name": "Little Tiger Pierrot"
+    },
+    "tarucus-callinara": {
+        "name": "Spotted Pierrot"
+    },
+    "tarucus-hazara": {
+        "name": "Dark Violet Pierrot"
+    },
+    "tarucus-indica": {
+        "name": "Transparent Pierrot"
+    },
+    "tarucus-nara": {
+        "name": "Striped Pierrot"
+    },
+    "tarucus-spp": {
+        "name": "Pierrot spp."
+    },
+    "tarucus-venosus": {
+        "name": "Veined Pierrot"
+    },
+    "tarucus-waterstradti": {
+        "name": "Separate Pierrot"
+    },
+    "taxila-haquinus": {
+        "name": "Harlequin"
+    },
+    "teinopalpus-imperialis": {
+        "name": "Kaiser-i-Hind"
+    },
+    "telicota-bambusae": {
+        "name": "Dark Palm-Dart"
+    },
+    "telicota-colon": {
+        "name": "Pale Palm-Dart"
+    },
+    "telicota-telicota-spp": {
+        "name": "Palm-Dart spp."
+    },
+    "telinga-adolphei": {
+        "name": "Red-eye Bushbrown"
+    },
+    "telinga-davisoni": {
+        "name": "Palni Bushbrown"
+    },
+    "telinga-heri": {
+        "name": "Large-eyed Bushbrown"
+    },
+    "telinga-lepcha": {
+        "name": "Lepcha Bushbrown"
+    },
+    "telinga-malsara": {
+        "name": "White-line Bushbrown"
+    },
+    "telinga-malsarida": {
+        "name": "Plain Bushbrown"
+    },
+    "telinga-mestra": {
+        "name": "White-edged Bushbrown"
+    },
+    "telinga-misenus": {
+        "name": "Salmon-branded Bushbrown"
+    },
+    "telinga-nicotia": {
+        "name": "Bright-eye Bushbrown"
+    },
+    "telinga-oculus": {
+        "name": "Red-disc Bushbrown"
+    },
+    "telinga-spp": {
+        "name": "Bushbrowns"
+    },
+    "thaduka-multicaudata": {
+        "name": "Many-tailed Oakblue"
+    },
+    "thaumantis-diores": {
+        "name": "Jungleglory"
+    },
+    "thauria-aliris": {
+        "name": "Brandless Jungleking"
+    },
+    "thermozephyrus-ataxus": {
+        "name": "Wonderful Hairstreak"
+    },
+    "thoressa-aina": {
+        "name": "Yellow-spotted Ace"
+    },
+    "thoressa-astigmata": {
+        "name": "Unbranded Ace"
+    },
+    "thoressa-cerata": {
+        "name": "Northern Spotted Ace"
+    },
+    "thoressa-evershedi": {
+        "name": "Travancore Tawny Ace"
+    },
+    "thoressa-honorei": {
+        "name": "Sahyadri Orange Ace"
+    },
+    "thoressa-hyrie": {
+        "name": "Variable Ace"
+    },
+    "thoressa-sitala": {
+        "name": "Nilgiri Plain Ace"
+    },
+    "ticherra-acte": {
+        "name": "Blue Imperial"
+    },
+    "tirumala-gautama": {
+        "name": "Scarce Blue Tiger"
+    },
+    "tirumala-limniace": {
+        "name": "Blue Tiger"
+    },
+    "tirumala-septentrionis": {
+        "name": "Dark Blue Tiger"
+    },
+    "tongeia-kala": {
+        "name": "Black Cupid"
+    },
+    "tongeia-pseudozuthus": {
+        "name": "False Tibetan Cupid"
+    },
+    "troides-aeacus": {
+        "name": "Golden Birdwing"
+    },
+    "troides-helena": {
+        "name": "Common Birdwing"
+    },
+    "troides-minos": {
+        "name": "Sahyadri Birdwing"
+    },
+    "udara-akasa": {
+        "name": "White Hedge Blue"
+    },
+    "udara-albocaeruleus": {
+        "name": "Albocerulean"
+    },
+    "udara-dilectus": {
+        "name": "Pale Hedge Blue"
+    },
+    "udaspes-folus": {
+        "name": "Grass Demon"
+    },
+    "una-usta": {
+        "name": "Singleton"
+    },
+    "unkana-ambasa": {
+        "name": "Hoary Palmer"
+    },
+    "vagrans-egista": {
+        "name": "Vagrant"
+    },
+    "vanessa-cardui": {
+        "name": "Painted Lady"
+    },
+    "vanessa-indica": {
+        "name": "Indian Red Admiral"
+    },
+    "vindula-erota": {
+        "name": "Cruiser"
+    },
+    "virachola-isocrates": {
+        "name": "Common Guava Blue"
+    },
+    "virachola-perse": {
+        "name": "Large Guava Blue"
+    },
+    "yasoda-tripunctata": {
+        "name": "Branded Yamfly"
+    },
+    "ypthima-affectata": {
+        "name": "Affected Five-ring"
+    },
+    "ypthima-asterope": {
+        "name": "Common Three-ring"
+    },
+    "ypthima-avanta": {
+        "name": "Jewel Five-ring"
+    },
+    "ypthima-baldus": {
+        "name": "Common Five-ring"
+    },
+    "ypthima-burmana": {
+        "name": "Large-eyed Three-ring"
+    },
+    "ypthima-cantliei": {
+        "name": "Great Four-ring"
+    },
+    "ypthima-ceylonica": {
+        "name": "White Four-ring"
+    },
+    "ypthima-chenu": {
+        "name": "Nilgiri Four-ring"
+    },
+    "ypthima-fusca": {
+        "name": "Dusky Three-ring"
+    },
+    "ypthima-hannyngtoni": {
+        "name": "Large Branded Five-ring"
+    },
+    "ypthima-huebneri": {
+        "name": "Common Four-ring"
+    },
+    "ypthima-indecora": {
+        "name": "Indecorous Five-ring"
+    },
+    "ypthima-inica": {
+        "name": "Lesser Three-ring"
+    },
+    "ypthima-kasmira": {
+        "name": "Kashmir Four-ring"
+    },
+    "ypthima-methora": {
+        "name": "Variegated Five-ring"
+    },
+    "ypthima-nareda": {
+        "name": "Large Three-ring"
+    },
+    "ypthima-newara": {
+        "name": "Newar Three-ring"
+    },
+    "ypthima-nikaea": {
+        "name": "West Himalayan Five-ring"
+    },
+    "ypthima-parasakra": {
+        "name": "Dubious Five-ring"
+    },
+    "ypthima-sakra": {
+        "name": "Himalayan Five-ring"
+    },
+    "ypthima-singala": {
+        "name": "Sinhalese Five-ring"
+    },
+    "ypthima-striata": {
+        "name": "Striated Five-ring"
+    },
+    "ypthima-tabella": {
+        "name": "Sahyadri Baby Five-ring"
+    },
+    "ypthima-ypthima-spp": {
+        "name": "Ring spp."
+    },
+    "ypthima-ypthimoides": {
+        "name": "Palni Four-ring"
+    },
+    "zeltus-amasa": {
+        "name": "Fluffy Tit"
+    },
+    "zemeros-flegyas": {
+        "name": "Punchinello"
+    },
+    "zesius-chrysomallus": {
+        "name": "Redspot"
+    },
+    "zinaspa-todara": {
+        "name": "Silver-streaked Acacia Blue"
+    },
+    "zipaetis-saitis": {
+        "name": "Banded Catseye"
+    },
+    "zipaetis-scylax": {
+        "name": "Dark Catseye"
+    },
+    "zizeeria-karsandra": {
+        "name": "Dark Grass Blue"
+    },
+    "zizina-otis": {
+        "name": "Lesser Grass Blue"
+    },
+    "zizula-hylax": {
+        "name": "Tiny Grass Blue"
+    },
+    "zographetus-dzonguensis": {
+        "name": "Chocolate-bordered Flitter"
+    },
+    "zographetus-ogygia": {
+        "name": "Purple-spotted Flitter"
+    },
+    "zographetus-satwa": {
+        "name": "Purple and Gold Flitter"
+    }
+}

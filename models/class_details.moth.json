@@ -1,0 +1,962 @@
+{
+    "abraxas-spp": {
+        "name": "Magpie Moth"
+    },
+    "achaea-janata": {
+        "name": "Castor Semi-looper"
+    },
+    "acherontia-lachesis": {
+        "name": "Greater Death's Head Hawkmoth"
+    },
+    "acherontia-styx": {
+        "name": "Lesser Death's Head Hawkmoth"
+    },
+    "achyra-coelatalis": {
+        "name": "Graded Brown Pearl"
+    },
+    "acontia-lucida": {
+        "name": "Pale Shoulder"
+    },
+    "acosmerycoides-harterti": {
+        "name": "Hartert's Hawkmoth"
+    },
+    "acosmeryx-anceus": {
+        "name": "Rosy Forest Hawkmoth"
+    },
+    "acosmeryx-naga": {
+        "name": "Naga Hawkmoth"
+    },
+    "acosmeryx-omissa": {
+        "name": "Obscure Forest Hawkmoth"
+    },
+    "acosmeryx-pseudonaga": {
+        "name": "False Common Forest Hawkmoth"
+    },
+    "acosmeryx-sericeus": {
+        "name": "Silky Forest Hawkmoth"
+    },
+    "acosmeryx-shervillii": {
+        "name": "Dull Forest Hawkmoth"
+    },
+    "acosmeryx-sinjaevi": {
+        "name": "Southern Gliding Moth"
+    },
+    "actias-keralana": {
+        "name": "Kerala Moon Moth"
+    },
+    "actias-maenas": {
+        "name": "Malaysian Moon Moth"
+    },
+    "actias-parasinensis": {
+        "name": "Western Chinese Moon Moth"
+    },
+    "actias-rhodopneuma": {
+        "name": "Asian Moon Moth"
+    },
+    "actias-selene": {
+        "name": "Indian Moon Moth"
+    },
+    "adisura-atkinsoni": {
+        "name": "Field-bean Pod Borer"
+    },
+    "adisura-marginalis": {
+        "name": "New Pod Borer"
+    },
+    "agathodes-ostentalis": {
+        "name": "Coral Tree Moth"
+    },
+    "agnosia-microta": {
+        "name": "Lesser Agnosia"
+    },
+    "agnosia-orneus": {
+        "name": "Large Agnosia"
+    },
+    "agrius-convolvuli": {
+        "name": "Convolvulus Hawkmoth"
+    },
+    "agrotis-ipsilon": {
+        "name": "Ipsilon Dart"
+    },
+    "aloa-lactinea": {
+        "name": "Red Costate Tiger Moth"
+    },
+    "alucitidae-genera-spp": {
+        "name": "Many-plumed Moth"
+    },
+    "ambulyx-bhutana": {
+        "name": "Bhutan Gliding Hawkmoth"
+    },
+    "ambulyx-canescens": {
+        "name": "Grey Gliding Hawkmoth"
+    },
+    "ambulyx-liturata": {
+        "name": "Violet Gliding Hawkmoth"
+    },
+    "ambulyx-matti": {
+        "name": "Matt's Gliding Hawkmoth"
+    },
+    "ambulyx-moorei": {
+        "name": "Cinnamon Gliding Hawkmoth"
+    },
+    "ambulyx-ochracea": {
+        "name": "Ochreous Gliding Hawkmoth"
+    },
+    "ambulyx-sericeipennis": {
+        "name": "Common Gliding Hawkmoth"
+    },
+    "ambulyx-spp": {
+        "name": "Gliding Hawkmoth"
+    },
+    "amerila-astreus": {
+        "name": "Drury's Frother"
+    },
+    "ampelophaga-khasiana": {
+        "name": "Scarce Vine Hawkmoth"
+    },
+    "ampelophaga-rubiginosa": {
+        "name": "Common Vine Hawkmoth"
+    },
+    "amplypterus-mansoni": {
+        "name": "Manson's Mango Hawkmoth"
+    },
+    "amplypterus-panopus": {
+        "name": "Mango Hawkmoth"
+    },
+    "amyna-axis": {
+        "name": "The Eight-spot"
+    },
+    "anambulyx-elwesi": {
+        "name": "Elwes' Pink-and-green Hawkmoth"
+    },
+    "anania-verbascalis": {
+        "name": "Golden Pearl"
+    },
+    "angonyx-krishna": {
+        "name": "Southern Dark-green Hawkmoth"
+    },
+    "angonyx-testacea": {
+        "name": "Northern Dark-green Hawkmoth"
+    },
+    "anomis-flava": {
+        "name": "Cotton Looper"
+    },
+    "antheraea-assamensis": {
+        "name": "Moga Silk Moth"
+    },
+    "antheraea-frithi": {
+        "name": "Frith's Tasar Silk Moth"
+    },
+    "antheraea-helferi": {
+        "name": "Helfer's Tasar Silk Moth"
+    },
+    "antheraea-paphia": {
+        "name": "South Indian Small Tussore"
+    },
+    "antheraea-roylei": {
+        "name": "Himalayan Oak Tasar Silk Moth"
+    },
+    "apocalypsis-velox": {
+        "name": "Bald Hawkmoth"
+    },
+    "archaeoattacus-edwardsii": {
+        "name": "Edward's Atlas Moth"
+    },
+    "arcte-coerula": {
+        "name": "Ramie Moth"
+    },
+    "arctiini-genera-spp": {
+        "name": "Tiger moths"
+    },
+    "arctioblepsis-rubida": {
+        "name": "Scarlet Snout Moth"
+    },
+    "asota-caricae": {
+        "name": "Tropical Tiger Moth"
+    },
+    "attacus-atlas": {
+        "name": "Atlas Moth"
+    },
+    "attacus-taprobanis": {
+        "name": "Sri Lankan Atlas Moth"
+    },
+    "atteva-fabriciella": {
+        "name": "Ailanthus Webworm Moth"
+    },
+    "azygophleps-scalaris": {
+        "name": "Sesbania Stem Borer"
+    },
+    "biston-betularia": {
+        "name": "Peppered Moth"
+    },
+    "biston-suppressaria": {
+        "name": "Tea Looper"
+    },
+    "bocchoris-inspersalis": {
+        "name": "Dotted Sable"
+    },
+    "brahmaea-hearseyi": {
+        "name": "Pale Brahmid Moth"
+    },
+    "brahmaea-wallichii": {
+        "name": "Dark Brahmid Moth"
+    },
+    "brithys-crini": {
+        "name": "Lily Borer"
+    },
+    "calesia-haemorrhoa": {
+        "name": "Grey-winged Gibbon Moth"
+    },
+    "callambulyx-junonia": {
+        "name": "Eyed Pink-and-green Hawkmoth"
+    },
+    "callambulyx-poecilus": {
+        "name": "Lesser Pink-and-Green Hawkmoth"
+    },
+    "callambulyx-rubricosa": {
+        "name": "Large Pink-and-Green Hawkmoth"
+    },
+    "campylotes-histrionicus": {
+        "name": "Harlequin Moth"
+    },
+    "cechenena-aegrota": {
+        "name": "Mottled Green Hawkmoth"
+    },
+    "cechenena-helops": {
+        "name": "Spotted Green Hawkmoth"
+    },
+    "cechenena-mirabilis": {
+        "name": "Emerald Green Hawkmoth"
+    },
+    "cechetra-bryki": {
+        "name": "Dark Green Hawkmoth"
+    },
+    "cechetra-lineosa": {
+        "name": "Striped Green Hawkmoth"
+    },
+    "cechetra-minor": {
+        "name": "Lesser Green Hawkmoth"
+    },
+    "cechetra-scotti": {
+        "name": "Scott's Green Hawkmoth"
+    },
+    "cephonodes-hylas": {
+        "name": "Coffee Bee Hawkmoth; Pellucid Hawkmoth"
+    },
+    "cephonodes-picus": {
+        "name": "Green Bumble-bee Hawkmoth"
+    },
+    "chilo-partellus": {
+        "name": "Spotted Stem Borer"
+    },
+    "chilo-sacchariphagus": {
+        "name": "Sugar Cane Spotted Borer"
+    },
+    "cidariini-genera-spp": {
+        "name": "Carpet Moths"
+    },
+    "cifuna-locuples": {
+        "name": "Bean Tussock Moth"
+    },
+    "clanidopsis-exusta": {
+        "name": "White-streaked Hawkmoth"
+    },
+    "clanis-deucalion": {
+        "name": "Three-lined Velvet Hawkmoth"
+    },
+    "clanis-titan": {
+        "name": "Scarce Velvet Hawkmoth"
+    },
+    "clanis-undulosa": {
+        "name": "Wavy Velvet Moth"
+    },
+    "cnaphalocrocis-medinalis": {
+        "name": "Rice Leafroller"
+    },
+    "conogethes-punctiferalis": {
+        "name": "Yellow Peach Moth"
+    },
+    "craspedortha-porphyria": {
+        "name": "Purple Hawkmoth"
+    },
+    "cricula-andrei": {
+        "name": "Scarlet Windowed Moth"
+    },
+    "cricula-trifenestrata": {
+        "name": "Three-windowed Cricula"
+    },
+    "crocidolomia-pavonana": {
+        "name": "Cabbage Cluster Caterpillar"
+    },
+    "crypsiptya-coclesalis": {
+        "name": "Bamboo Leaf Roller"
+    },
+    "cryptophlebia-ombrodelta": {
+        "name": "Macadamia Nut Borer, Litchi Fruit Moth"
+    },
+    "ctenoplusia-albostriata": {
+        "name": "Eastern Streaked Plusia"
+    },
+    "culladia-spp": {
+        "name": "Grass-Veneers"
+    },
+    "cyclosia-papilionaris": {
+        "name": "Drury's Jewel Moth"
+    },
+    "cypa-enodis": {
+        "name": "Cinnamon Cypa"
+    },
+    "dahira-obliquifascia": {
+        "name": "Black-striped Dahira"
+    },
+    "dahira-rubiginosa": {
+        "name": "Rosy Dahira"
+    },
+    "daphnis-hypothous": {
+        "name": "Jade Hawkmoth"
+    },
+    "daphnis-nerii": {
+        "name": "Oleander Hawkmoth"
+    },
+    "deilephila-elpenor": {
+        "name": "Large Elephant Hawkmoth"
+    },
+    "deilephila-rivularis": {
+        "name": "Obscure Elephant Hawkmoth"
+    },
+    "delgamma-pangonia": {
+        "name": "Strawberry Cutworm"
+    },
+    "diacrotricha-fasciola": {
+        "name": "Starfruit Plume Moth"
+    },
+    "diaphania-indica": {
+        "name": "Cucumber Moth"
+    },
+    "dolbina-inexacta": {
+        "name": "Common Grizzled Hawkmoth"
+    },
+    "drepanidae-genera-spp": {
+        "name": "Hooktip Moths"
+    },
+    "dudua-aprobola": {
+        "name": "Mango Flower Webworm"
+    },
+    "dysallacta-negatalis": {
+        "name": "Karanj Leaf Borer"
+    },
+    "dysgonia-torrida": {
+        "name": "The Jigsaw"
+    },
+    "dysphania-militaris": {
+        "name": "False Tiger Moth"
+    },
+    "earias-cupreoviridis": {
+        "name": "Cupreous Bollworm"
+    },
+    "earias-insulana": {
+        "name": "Egyptian Bollworm"
+    },
+    "earias-vittella": {
+        "name": "Spotted Bollworm"
+    },
+    "ecpyrrhorrhoe-damastesalis": {
+        "name": "Teak Leaf Skeletonizer"
+    },
+    "ecpyrrhorrhoe-spp": {
+        "name": "Teak Leaf Skeletonizer"
+    },
+    "ectropis-bhurmitra": {
+        "name": "Tea Twig Caterpillar"
+    },
+    "elcysma-ziroensis": {
+        "name": "Apatani Glory"
+    },
+    "elibia-dolichus": {
+        "name": "Large Banded Hawkmoth"
+    },
+    "eligma-narcissus": {
+        "name": "Ailanthus Defoliator"
+    },
+    "enpinanga-assamensis": {
+        "name": "Assam Hawkmoth"
+    },
+    "epipleminae-genera-spp": {
+        "name": "Epiplemiine Moths"
+    },
+    "erebus-macrops": {
+        "name": "Common Owl Moth"
+    },
+    "ericeia-inangulata": {
+        "name": "Sober Tabby"
+    },
+    "etanna-breviuscula": {
+        "name": "Pigeonpea Podborer"
+    },
+    "etiella-zinckenella": {
+        "name": "Lima Bean Pod Borer"
+    },
+    "eublemma-olivacea": {
+        "name": "Brinjal Leaf Roller"
+    },
+    "euchromius-ocellea": {
+        "name": "Necklace Veneer"
+    },
+    "eudocima-materna": {
+        "name": "Dot Underwing"
+    },
+    "eudocima-phalonia": {
+        "name": "Common Fruit Piercing Moth"
+    },
+    "eudocima-spp": {
+        "name": "Fruit Piercing Moths"
+    },
+    "eumeta-variegata": {
+        "name": "Paulownia Bagworm"
+    },
+    "eupanacra-busiris": {
+        "name": "Green Rippled Hawkmoth"
+    },
+    "eupanacra-metallica": {
+        "name": "Metallic Rippled Hawkmoth"
+    },
+    "eupanacra-mydon": {
+        "name": "Common Rippled Hawkmoth"
+    },
+    "eupanacra-sinuata": {
+        "name": "Sinuous Rippled Moth"
+    },
+    "eupterote-spp": {
+        "name": "Monkey Moth"
+    },
+    "eupterotidae-genera-spp": {
+        "name": "Monkey Moths"
+    },
+    "euthrix-laeta": {
+        "name": "Orange Drinker"
+    },
+    "evergestis-forficalis": {
+        "name": "Garden Pebble Moth"
+    },
+    "galleria-mellonella": {
+        "name": "Greater Wax Moth, Honeycomb Moth"
+    },
+    "gelechiidae-genera-spp": {
+        "name": "Twirler Moths"
+    },
+    "glyphodes-caesalis": {
+        "name": "Jack Fruit Borer"
+    },
+    "helicoverpa-armigera": {
+        "name": "Cotton Bollworm"
+    },
+    "heliothis-peltigera": {
+        "name": "Bordered Straw"
+    },
+    "hellula-undalis": {
+        "name": "Cabbage Webworm"
+    },
+    "hemaris-saundersii": {
+        "name": "Saunders' Bee Hawkmoth"
+    },
+    "hendecasis-duplifascialis": {
+        "name": "Jasmine Budworm"
+    },
+    "herpetogramma-phaeopteralis": {
+        "name": "Tropical Sod Webworm"
+    },
+    "hippotion-boerhaviae": {
+        "name": "Pale Striated Hawkmoth"
+    },
+    "hippotion-celerio": {
+        "name": "Vine Hawkmoth; Silver-striped Hawkmoth"
+    },
+    "hippotion-rafflesii": {
+        "name": "Raffles' Striated Hawkmoth"
+    },
+    "hippotion-rosetta": {
+        "name": "Swinhoe's Striated Hawkmoth"
+    },
+    "hippotion-velox": {
+        "name": "Dark Striated Hawkmoth"
+    },
+    "hyblaea-puera-complex": {
+        "name": "Teak Defoliator"
+    },
+    "hydriris-ornatalis": {
+        "name": "Ornate Hydriris"
+    },
+    "hyles-gallii": {
+        "name": "Bedstraw Hawkmoth"
+    },
+    "hyles-hippophaes": {
+        "name": "Sea Buckthorn Hawkmoth"
+    },
+    "hyles-livornica": {
+        "name": "Striped Hawkmoth"
+    },
+    "hymenia-perspectalis": {
+        "name": "Spotted Beet Webworm Moth"
+    },
+    "hymenoptychis-sordida": {
+        "name": "Pneumatophore Moth"
+    },
+    "hypena-laceratalis": {
+        "name": "Lantana Defoliator Moth"
+    },
+    "hypocala-deflorata": {
+        "name": "Variable Yellow Underwing"
+    },
+    "hyposidra-talaca": {
+        "name": "Black Looper"
+    },
+    "isturgia-disputaria": {
+        "name": "Maltese Bloom"
+    },
+    "langia-zenzeroides": {
+        "name": "Apple Hawkmoth"
+    },
+    "lantanophaga-pusillidactylus": {
+        "name": "Lantana Plume Moth"
+    },
+    "laothoe-witti": {
+        "name": "Afghan Poplar Hawkmoth"
+    },
+    "lecithoceridae-genera-spp": {
+        "name": "Long-horned Moths"
+    },
+    "leucania-loreyi": {
+        "name": "False Army Worm; Cosmopolitan"
+    },
+    "leucinodes-orbonalis": {
+        "name": "Eggplant fruit and shoot borer , Brinjal fruit and shoot borer"
+    },
+    "leucophlebia-emittens": {
+        "name": "Small Candy-striped Hawkmoth"
+    },
+    "leucophlebia-lineata": {
+        "name": "Large Candy-striped Hawkmoth"
+    },
+    "lithosiini-genera-spp": {
+        "name": "Lichen Moths"
+    },
+    "loepa-diffunoccidentalis": {
+        "name": "Western Golden Emperor Moth"
+    },
+    "loepa-katinka": {
+        "name": "Plain Golden Emperor Moth"
+    },
+    "loepa-schintlmeisteri": {
+        "name": "Bright Golden Emperor Moth"
+    },
+    "loepa-spp": {
+        "name": "Golden Emperor Moth"
+    },
+    "lophophleps-triangularis": {
+        "name": "Triangular Wave"
+    },
+    "lymantria-detersa": {
+        "name": "Detersa Tussock Moth"
+    },
+    "lymantria-marginata": {
+        "name": "Dark Mango Tussock Moth"
+    },
+    "lymantria-mathura": {
+        "name": "Rosy Gypsy Moth"
+    },
+    "lyssa-zampa": {
+        "name": "Giant Uraniid Swallowtail"
+    },
+    "macroglossum-affictitia": {
+        "name": "Dark-bordered Hummingbird Hawkmoth"
+    },
+    "macroglossum-assimilis": {
+        "name": "Brown-spotted Hummingbird Hawkmoth"
+    },
+    "macroglossum-belis": {
+        "name": "Common Hummingbird Hawkmoth"
+    },
+    "macroglossum-bombylans": {
+        "name": "Humble Hummingbird Hawkmoth"
+    },
+    "macroglossum-divergens": {
+        "name": "Broad-bordered Hummingbird Hawkmoth"
+    },
+    "macroglossum-gyrans": {
+        "name": "Dark-bordered Hummingbird Hawkmoth"
+    },
+    "macroglossum-neotroglodytus": {
+        "name": "Purple Dwarf Hummingbird Hawkmoth"
+    },
+    "macroglossum-nycteris": {
+        "name": "Himalayan Hummingbird Hawkmoth"
+    },
+    "macroglossum-particolor": {
+        "name": "Cinereous Hummingbird Hawkmoth"
+    },
+    "macroglossum-pyrrhosticta": {
+        "name": "Burnt-spot Hummingbird Hawkmoth"
+    },
+    "macroglossum-saga": {
+        "name": "Grey-tipped Hummingbird Hawkmoth"
+    },
+    "macroglossum-sitiene": {
+        "name": "Crisp-banded Hummingbird Hawkmoth"
+    },
+    "mangina-argus": {
+        "name": "Crotalaria Podborer"
+    },
+    "marasmia-trapezalis": {
+        "name": "Trapeze Moth, Maize Webworm"
+    },
+    "maruca-vitrata": {
+        "name": "Maruca Pod Borer"
+    },
+    "marumba-cristata": {
+        "name": "Common Striped Hawkmoth"
+    },
+    "marumba-dyras": {
+        "name": "Dull Swirled Hawkmoth"
+    },
+    "marumba-nympha": {
+        "name": "Chestnut Swirled Hawkmoth"
+    },
+    "marumba-saishiuana": {
+        "name": "Okamoto's Swirled Hawkmoth"
+    },
+    "marumba-spectabilis": {
+        "name": "Rosy Swirled Hawkmoth"
+    },
+    "marumba-sperchius": {
+        "name": "Large Swirled Hawkmoth"
+    },
+    "megacorma-obliqua": {
+        "name": "Black-belted Hawkmoth"
+    },
+    "meganoton-nyctiphanes": {
+        "name": "Dull Double-bristled Hawkmoth"
+    },
+    "mocis-frugalis": {
+        "name": "Sugarcane Looper"
+    },
+    "mocis-undata": {
+        "name": "Brown-striped Semi-looper"
+    },
+    "morwennius-decoratus": {
+        "name": "Ornamented Hawkmoth"
+    },
+    "mythimna-separata": {
+        "name": "Northern Armyworm"
+    },
+    "neogurelca-himachala": {
+        "name": "Crisp-banded Hawkmoth"
+    },
+    "neogurelca-hyas": {
+        "name": "Even-banded Hawkmoth"
+    },
+    "neoris-huttoni": {
+        "name": "Hutton's Emperor Moth"
+    },
+    "nephele-hespera": {
+        "name": "Crepuscular Hawkmoth"
+    },
+    "nomophila-noctuella": {
+        "name": "Rush Veneer"
+    },
+    "nyctemera-adversata": {
+        "name": "Marbled White Moth"
+    },
+    "odonestis-pruni": {
+        "name": "Plum Lappet"
+    },
+    "olene-mendosa": {
+        "name": "Brown Tussock Moth"
+    },
+    "omiodes-diemenalis": {
+        "name": "Bean Leaf-roller"
+    },
+    "omphisa-anastomosalis": {
+        "name": "Sweet Potato Stem Borer"
+    },
+    "ophiusa-tirhaca": {
+        "name": "Green Drab"
+    },
+    "opisina-arenosella": {
+        "name": "Coconut Black-headed Caterpillar"
+    },
+    "orgyia-postica": {
+        "name": "Cocoa Tussock Moth"
+    },
+    "orthaga-exvinacea": {
+        "name": "Mango Leaf Webber"
+    },
+    "orthonama-obstipata": {
+        "name": "The Gem"
+    },
+    "oxyodes-scrobiculata": {
+        "name": "Longan Semi-looper"
+    },
+    "parapoynx-diminutalis": {
+        "name": "Hydrilla Leafcutter Moth"
+    },
+    "parasa-lepida": {
+        "name": "Green Coat Moth"
+    },
+    "parum-colligata": {
+        "name": "Paper Mulberry Hawkmoth"
+    },
+    "patania-ruralis": {
+        "name": "Mother of Pearl Moth"
+    },
+    "pectinophora-gossypiella": {
+        "name": "Pink Boll Worm Moth"
+    },
+    "penicillaria-jocosatrix": {
+        "name": "Mango Shoot Borer"
+    },
+    "pergesa-acteus": {
+        "name": "Green Pergesa Hawkmoth"
+    },
+    "pericyma-cruegeri": {
+        "name": "Poinciana Looper"
+    },
+    "perina-nuda": {
+        "name": "Banyan Tussock Moth, Clearwing Tussock Moth"
+    },
+    "phalera-grotei": {
+        "name": "Grote's Buff-tip"
+    },
+    "phazaca-theclata": {
+        "name": "Cotton Leaf Roller"
+    },
+    "pingasa-ruginaria": {
+        "name": "Bordered Duster"
+    },
+    "plagodis-inustaria": {
+        "name": "Indian Scorched Wing"
+    },
+    "plusiodonta-coelonota": {
+        "name": "Snake Vine Moth"
+    },
+    "plutella-xylostella": {
+        "name": "Diamondback Moth; Cabbage Moth"
+    },
+    "polyptychus-dentatus": {
+        "name": "Straight-lined Crenulate Hawkmoth"
+    },
+    "polyptychus-trilineatus": {
+        "name": "Common Crenulate Hawkmoth"
+    },
+    "polytela-gloriosae": {
+        "name": "Lily Moth"
+    },
+    "prophantis-adusta": {
+        "name": "Coffee Berry Moth"
+    },
+    "pseudodolbina-fo": {
+        "name": "Acanthus Hawkmoth"
+    },
+    "psilogramma-discistriga": {
+        "name": "Large Brown Hawkmoth"
+    },
+    "psilogramma-increta": {
+        "name": "Plain Grey Hawkmoth"
+    },
+    "pycnarmon-cribrata": {
+        "name": "Leaf Folder"
+    },
+    "pygospila-tyres": {
+        "name": "Spotted Grass Moth"
+    },
+    "pyralis-manihotalis": {
+        "name": "Tropical Tabby; Tropical Meal Moth"
+    },
+    "pyralis-pictalis": {
+        "name": "Painted Meal Moth; Poplar Pyralis"
+    },
+    "pyrausta-phoenicealis": {
+        "name": "Perilla Leaf Moth"
+    },
+    "pyrrhia-umbra": {
+        "name": "Bordered Sallow"
+    },
+    "rhagastis-albomarginatus": {
+        "name": "Pale-edged Mottled Hawkmoth"
+    },
+    "rhagastis-castanea": {
+        "name": "Chestnut Hunter Hawkmoth"
+    },
+    "rhagastis-castor": {
+        "name": "Common Mottled Hawkmoth"
+    },
+    "rhagastis-confusa": {
+        "name": "Indistinct Mottled Hawkmoth"
+    },
+    "rhagastis-gloriosa": {
+        "name": "Crimson Mottled Hawkmoth"
+    },
+    "rhagastis-olivacea": {
+        "name": "Olive Mottled Hawkmoth"
+    },
+    "rhagastis-velata": {
+        "name": "Veiled Mottled Hawkmoth"
+    },
+    "rhodinia-newara": {
+        "name": "Rusty Emperor Moth"
+    },
+    "rhodometra-sacraria": {
+        "name": "Vestal"
+    },
+    "rhodoprasina-floralis": {
+        "name": "Large Olive Hawkmoth"
+    },
+    "rinaca-anna": {
+        "name": "Yellow-spotted Emperor Moth"
+    },
+    "rinaca-cachara": {
+        "name": "Cachar Emperor Moth"
+    },
+    "rinaca-cidosa": {
+        "name": "Dark Emperor Moth"
+    },
+    "rinaca-lesoudieri": {
+        "name": "Round-eyed Emperor Moth"
+    },
+    "rinaca-lindia": {
+        "name": "Birch Emperor Moth"
+    },
+    "rinaca-simla": {
+        "name": "Lower Himalayan Emperor Moth"
+    },
+    "rinaca-thibeta": {
+        "name": "Higher-Himalayan Emperor Moth"
+    },
+    "samia-canningii": {
+        "name": "Wild Eri Silk Moth"
+    },
+    "samia-cynthia": {
+        "name": "Ailanthus Silkmoth"
+    },
+    "scirpophaga-incertulas": {
+        "name": "Yellow Stem Borer"
+    },
+    "serrodes-partita": {
+        "name": "Catapult Moth"
+    },
+    "sesiidae-genera-spp": {
+        "name": "Clearwing moths"
+    },
+    "smerinthus-kindermannii": {
+        "name": "Southern Eyed Hawkmoth"
+    },
+    "solus-drepanoides": {
+        "name": "Hooktip Solus"
+    },
+    "somena-scintillans": {
+        "name": "Yellow-tail Tussock Moth"
+    },
+    "sphenarches-anisodactyla": {
+        "name": "Geranium Plume Moth"
+    },
+    "sphingonaepiopsis-pumilio": {
+        "name": "Tiny hawkmoth"
+    },
+    "sphinx-oberthueri": {
+        "name": "Masson Pine Hawkmoth"
+    },
+    "spodoptera-exigua": {
+        "name": "Beet Army-worm Moth"
+    },
+    "spodoptera-frugiperda": {
+        "name": "Fall Armyworm Moth"
+    },
+    "spodoptera-litura": {
+        "name": "Cotton Leafworm, Tobacco Cutworm"
+    },
+    "spoladea-recurvalis": {
+        "name": "Beet Webworm Moth; Banded Sable"
+    },
+    "stauropus-alternus": {
+        "name": "Lobster Moth"
+    },
+    "syntomini-genera-spp": {
+        "name": "Syntomid Moths"
+    },
+    "tathorhynchus-exsiccata": {
+        "name": "Alfalfa Looper Moth"
+    },
+    "theretra-alecto": {
+        "name": "Levant Hawkmoth"
+    },
+    "theretra-boisduvalii": {
+        "name": "Boisduval's Hawkmoth"
+    },
+    "theretra-clotho": {
+        "name": "Common Hunter Hawkmoth"
+    },
+    "theretra-gnoma": {
+        "name": "Faintly-marked Hunter Hawkmoth"
+    },
+    "theretra-griseomarginata": {
+        "name": "Grey-edged Hunter Hawkmoth"
+    },
+    "theretra-lucasii": {
+        "name": "Lucas's Hawkmoth"
+    },
+    "theretra-lycetus": {
+        "name": "Grey-banded Hunter Moth"
+    },
+    "theretra-nessus": {
+        "name": "Greater Yam Hawkmoth"
+    },
+    "theretra-oldenlandiae": {
+        "name": "White-Banded Hunter Hawkmoth"
+    },
+    "theretra-pallicosta": {
+        "name": "White-edged Hunter Hawkmoth"
+    },
+    "theretra-shendurneensis": {
+        "name": "Shendurney Hunter Hawkmoth"
+    },
+    "theretra-silhetensis": {
+        "name": "Brown-banded Hunter Hawkmoth"
+    },
+    "theretra-suffusa": {
+        "name": "Suffused Hunter Moth"
+    },
+    "theretra-sumatrensis": {
+        "name": "Southern Spotted Hunter Hawkmoth"
+    },
+    "theretra-tibetiana": {
+        "name": "Tibetan Hunter Moth"
+    },
+    "thyas-coronata": {
+        "name": "Yellow Underwing"
+    },
+    "thyatira-batis": {
+        "name": "Peach blossom"
+    },
+    "thysanoplusia-orichalcea": {
+        "name": "Slender Burnished Brass"
+    },
+    "trabala-vishnou": {
+        "name": "Vishnu Lappet Moth"
+    },
+    "traminda-aventiaria": {
+        "name": "Cross-line Wave Moth"
+    },
+    "trichoplusia-ni": {
+        "name": "Cabbage Looper"
+    },
+    "udea-ferrugalis": {
+        "name": "Rusty Dot Pearl"
+    },
+    "uresiphita-gilvata": {
+        "name": "Wandering Sunset"
+    },
+    "utetheisa-pulchelloides": {
+        "name": "Heliotrope Moth"
+    },
+    "xestia-c-nigrum": {
+        "name": "Setaceous Hebrew Character/ Spotted Cutworm"
+    }
+}
