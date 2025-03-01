@@ -8,11 +8,15 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.pytorch.IValue;
 import org.pytorch.Module;
 import org.pytorch.Tensor;
 import org.pytorch.torchvision.TensorImageUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -21,21 +25,40 @@ import java.util.stream.Collectors;
 
 public class PredictionManager {
 
+    private final Context context;
     private final MetadataManager metadataManager;
+    private final ModelLoader modelLoader;
 
-    private final ModelLoader modelLoader = new ModelLoader();
-
-    public PredictionManager(MetadataManager metadataManager) {
+    public PredictionManager(Context context, MetadataManager metadataManager) {
+        this.context = context;
         this.metadataManager = metadataManager;
+        this.modelLoader = new ModelLoader(context);
     }
 
-    public String predict(Context context, ModelType modelType, Uri photoUri) {
+    private boolean canBePredicted(ModelType modelType, Tensor inputTensor) {
+        String rootClassifierModelPath = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optString(FIELD_ASSET_PATH, null);
+        String modelPath = modelLoader.loadFromAsset(context, rootClassifierModelPath);
+        Module model = Module.load(modelPath);
+        Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+        float[] logitScores = outputTensor.getDataAsFloatArray();
+        float[] softMaxScores = toSoftMax(logitScores.clone());
+        Integer predictedClassIdx = getTopKIndices(softMaxScores, 1)[0];
+        List<String> classLabels = toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
+        String predictedClass = classLabels.get(predictedClassIdx);
+        double minAcceptedSoftmax = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
+        List<String> acceptedClasses = toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES));
+        Log.d(LOG_TAG, String.format("Root classifier prediction: %s (%d) | classes: %s | scores: %s | softmax: %s | min accepted softmax: %f",
+                predictedClass, predictedClassIdx, classLabels, Arrays.toString(logitScores), Arrays.toString(softMaxScores), minAcceptedSoftmax));
+        return softMaxScores[predictedClassIdx] >= minAcceptedSoftmax && acceptedClasses.contains(predictedClass);
+    }
+
+    public String predict(ModelType modelType, Uri photoUri) {
         String modelName = String.format(Constants.MODEL_FILE_NAME_FMT, modelType.modelName);
         String classListName = String.format(Constants.CLASSES_FILE_NAME_FMT, modelType.modelName);
         String classDetailsName = String.format(Constants.CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
 
         try {
-            String modelPath = modelLoader.load(context, modelName);
+            String modelPath = modelLoader.loadFromCache(context, modelName);
             Module model = Module.load(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, String>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
@@ -46,6 +69,10 @@ public class PredictionManager {
             Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(resizedBitmap,
                     new float[]{0.485f, 0.456f, 0.406f},
                     new float[]{0.229f, 0.224f, 0.225f});
+
+            if(!canBePredicted(modelType, inputTensor)) {
+                return "Possibly not a " + modelType.displayName;
+            }
 
             Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
             float[] logitScores = outputTensor.getDataAsFloatArray();
@@ -132,6 +159,20 @@ public class PredictionManager {
         }
         Arrays.sort(indices, (i1, i2) -> Double.compare(array[i2], array[i1]));
         return Arrays.copyOfRange(indices, 0, k);
+    }
+
+    private List<String> toList(JSONArray jsonArr) {
+        List<String> list = new ArrayList<>();
+        if(jsonArr != null) {
+            for (int i = 0; i < jsonArr.length(); i++) {
+                try {
+                    list.add(jsonArr.getString(i));
+                } catch (JSONException ex) {
+                    Log.e(LOG_TAG, "Exception during JSONArray to List<String> conversion", ex);
+                }
+            }
+        }
+        return list;
     }
 
 }

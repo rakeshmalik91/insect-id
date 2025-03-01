@@ -1,5 +1,8 @@
 package com.rakeshmalik.insectid;
 
+import static com.rakeshmalik.insectid.Constants.PREF;
+import static com.rakeshmalik.insectid.Constants.PREF_ASSET_TEMP_PATH;
+
 import android.content.Context;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,12 +10,11 @@ import java.nio.charset.StandardCharsets;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -21,10 +23,42 @@ public class ModelLoader {
 
     private final Map<String, List<String>> classLabelsCache = new HashMap<>();
     private final Map<String, Map<String, Map<String, String>>> classDetailsCache = new HashMap<>();
+    private final Context context;
+    private final SharedPreferences prefs;
 
-    public String load(Context context, String fileName) {
+    public ModelLoader(Context context) {
+        this.context = context;
+        this.prefs = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
+    }
+
+    public String loadFromCache(Context context, String fileName) {
         File file = new File(context.getCacheDir(), fileName);
         return file.getAbsolutePath();
+    }
+
+    public String loadFromAsset(Context context, String assetName) {
+        String prefKey = PREF_ASSET_TEMP_PATH + "::" + assetName;
+        if(prefs.contains(prefKey)) {
+            File file = new File(prefs.getString(prefKey, ""));
+            if(file.exists()) {
+                return file.getAbsolutePath();
+            }
+        }
+        try(InputStream is = context.getAssets().open(assetName);) {
+            File tempFile = File.createTempFile(assetName, "tmp", context.getCacheDir());
+            tempFile.deleteOnExit();
+            try(FileOutputStream outputStream = new FileOutputStream(tempFile);) {
+                byte[] buffer = new byte[4 * 1024];
+                int bytesRead;
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+            prefs.edit().putString(prefKey, tempFile.getAbsolutePath()).apply();
+            return tempFile.getAbsolutePath();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<String> getClassLabels(Context context, String fileName) {

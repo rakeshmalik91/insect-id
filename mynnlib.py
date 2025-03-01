@@ -360,3 +360,17 @@ def image_count(data_dir):
                 if file.is_file():
                     img_cnt += 1
     return img_cnt
+
+def test_class(model_data, test_dir, expected_classes):
+    model_data['model'].eval()
+    total = 0
+    success = 0
+    for expected_class in expected_classes:
+        for file in Path(f"{test_dir}/{expected_class}").iterdir():
+            if file.is_file():
+                prediction = predict(file, model_data)
+                is_success = (expected_class==prediction)
+                total = total + 1
+                if is_success:
+                    success = success + 1
+        print(f"Class: {expected_class:15} ----> Success: {success}/{total} -> {success/total:.2}%")

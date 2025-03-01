@@ -1,6 +1,6 @@
 package com.rakeshmalik.insectid;
 
-import static com.rakeshmalik.insectid.Constants.LOG_TAG;
+import static com.rakeshmalik.insectid.Constants.*;
 
 import android.Manifest;
 import android.content.Intent;
@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
             this.executorService = Executors.newSingleThreadExecutor();
 
-            MetadataManager metadataManager = new MetadataManager(outputText);
+            MetadataManager metadataManager = new MetadataManager(this, outputText);
             this.modelDownloader = new ModelDownloader(this, outputText, metadataManager);
-            this.predictionManager = new PredictionManager(metadataManager);
+            this.predictionManager = new PredictionManager(this, metadataManager);
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 runOnUiThread(() -> outputText.setText(R.string.predicting));
                 final ModelType modelType = selectedModelType;
-                String predictions = predictionManager.predict(MainActivity.this, selectedModelType, photoUri);
+                String predictions = predictionManager.predict(selectedModelType, photoUri);
                 if (modelType == selectedModelType) {
                     runOnUiThread(() -> outputText.setText(Html.fromHtml(predictions, Html.FROM_HTML_MODE_LEGACY)));
                 }

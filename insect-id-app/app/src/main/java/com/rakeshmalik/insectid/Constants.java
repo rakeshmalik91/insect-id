@@ -20,8 +20,10 @@ public class Constants {
     public static final String LOG_TAG = "insect-id";
     public static final String PREF = "insect-id";
 
-    public static final String PREF_FILE_DOWNLOADED = "insect-id::file-downloaded";
-    public static final String PREF_MODEL_VERSION = "insect-id::version";
+    public static final String PREF_FILE_DOWNLOADED = PREF + "::file-downloaded";
+    public static final String PREF_MODEL_VERSION = PREF + "::version";
+    public static final String PREF_METADATA = PREF + "::metadata";
+    public static final String PREF_ASSET_TEMP_PATH = PREF + "::asset-temp-path";
 
     public static final String METADATA_URL = "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/insect-id-app/metadata.json";
 
@@ -31,5 +33,10 @@ public class Constants {
     public static final String FIELD_VERSION = "version";
     public static final String FIELD_MIN_ACCEPTED_LOGIT = "min_accepted_logit";
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX = "min_accepted_softmax";
+    public static final String FIELD_CLASSES = "classes";
+    public static final String FIELD_ACCEPTED_CLASSES = "accepted_classes";
+    public static final String FIELD_ASSET_PATH = "asset_path";
+
+    public static final String ROOT_CLASSIFIER = "root-classifier";
 
 }

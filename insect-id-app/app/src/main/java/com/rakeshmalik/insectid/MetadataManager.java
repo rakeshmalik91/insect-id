@@ -1,5 +1,9 @@
 package com.rakeshmalik.insectid;
 
+import static com.rakeshmalik.insectid.Constants.*;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -20,9 +24,13 @@ public class MetadataManager {
 
     private JSONObject metadata;
     private final TextView outputText;
+    private final Context context;
+    private final SharedPreferences prefs;
 
-    public MetadataManager(TextView outputText) {
+    public MetadataManager(Context context, TextView outputText) {
+        this.context = context;
         this.outputText = outputText;
+        this.prefs = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
     }
 
     public JSONObject getMetadata(ModelType modelType) {
@@ -33,7 +41,19 @@ public class MetadataManager {
         if(metadata == null) {
             mainHandler.post(() -> outputText.setText(R.string.fetching_metadata));
             Log.d(Constants.LOG_TAG, "Fetching metadata");
-            metadata = fetchJSONFromURL(Constants.METADATA_URL);
+            try {
+                metadata = fetchJSONFromURL(Constants.METADATA_URL);
+                prefs.edit().putString(PREF_METADATA, metadata.toString()).apply();
+            } catch(Exception ex1) {
+                Log.e(Constants.LOG_TAG, "Exception fetching metadata ", ex1);
+                if(prefs.contains(PREF_METADATA)) {
+                    try {
+                        metadata = new JSONObject(prefs.getString(PREF_METADATA, "{}"));
+                    } catch(Exception ex2) {
+                        Log.e(Constants.LOG_TAG, "Exception during parsing metadata json from shared prefs ", ex2);
+                    }
+                }
+            }
         }
         return metadata;
     }
@@ -45,10 +65,10 @@ public class MetadataManager {
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             String data = response.body().string();
-            Log.d(Constants.LOG_TAG, "Content: " + data);
+//            Log.d(Constants.LOG_TAG, "Content: " + data);
             return new JSONObject(data);
         } catch (IOException | JSONException ex) {
-            Log.d(Constants.LOG_TAG, "Exception during fetching json file from " + url, ex);
+            Log.e(Constants.LOG_TAG, "Exception during fetching json file from " + url, ex);
             return null;
         }
     }
