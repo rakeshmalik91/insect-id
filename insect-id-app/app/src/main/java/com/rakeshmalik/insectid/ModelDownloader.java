@@ -16,6 +16,8 @@ import java.io.InputStream;
 
 import okhttp3.*;
 
+//TODO have cancel/retry/resume download button
+//TODO have auto-update, pre-download & verify-integrity/re-download model settings
 public class ModelDownloader {
 
     private final OkHttpClient client = new OkHttpClient();
