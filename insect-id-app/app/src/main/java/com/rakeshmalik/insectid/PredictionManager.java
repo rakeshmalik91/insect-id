@@ -18,9 +18,11 @@ import org.pytorch.torchvision.TensorImageUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PredictionManager {
@@ -42,14 +44,17 @@ public class PredictionManager {
         Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
         float[] logitScores = outputTensor.getDataAsFloatArray();
         float[] softMaxScores = toSoftMax(logitScores.clone());
-        Integer predictedClassIdx = getTopKIndices(softMaxScores, 1)[0];
         List<String> classLabels = toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
-        String predictedClass = classLabels.get(predictedClassIdx);
+        Set<String> acceptedClasses = new HashSet<>(toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
         double minAcceptedSoftmax = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
-        List<String> acceptedClasses = toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES));
-        Log.d(LOG_TAG, String.format("Root classifier prediction: %s (%d) | classes: %s | scores: %s | softmax: %s | min accepted softmax: %f",
-                predictedClass, predictedClassIdx, classLabels, Arrays.toString(logitScores), Arrays.toString(softMaxScores), minAcceptedSoftmax));
-        return softMaxScores[predictedClassIdx] >= minAcceptedSoftmax && acceptedClasses.contains(predictedClass);
+        List<String> predictedClasses = Arrays.stream(getTopKIndices(softMaxScores, softMaxScores.length))
+                .filter(i -> softMaxScores[i] >= minAcceptedSoftmax)
+                .map(i -> classLabels.get(i))
+                .filter(l -> acceptedClasses.contains(l))
+                .collect(Collectors.toList());
+        Log.d(LOG_TAG, String.format("Root classifier prediction: %s\n    class labels: %s\n    logits: %s\n    softmax: %s\n    min accepted softmax: %f",
+                predictedClasses, classLabels, Arrays.toString(logitScores), Arrays.toString(softMaxScores), minAcceptedSoftmax));
+        return !predictedClasses.isEmpty();
     }
 
     public String predict(ModelType modelType, Uri photoUri) {
@@ -71,7 +76,7 @@ public class PredictionManager {
                     new float[]{0.229f, 0.224f, 0.225f});
 
             if(!canBePredicted(modelType, inputTensor)) {
-                return "Possibly not a " + modelType.displayName;
+                return "Possibly not a " + modelType.displayName + "!<br><font color='#777777'>Crop to fit the insect for better results</font>";
             }
 
             Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
@@ -95,7 +100,7 @@ public class PredictionManager {
                             + getScoreHtml(softMaxScores[c]))
                     .collect(Collectors.toList());
             Log.d(LOG_TAG, "Predicted class: " + predictions);
-            return predictions.isEmpty() ? context.getString(R.string.no_match_found) : String.join("\n", predictions);
+            return predictions.isEmpty() ? "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>" : String.join("\n", predictions);
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception during prediction", ex);
         }

@@ -2,8 +2,7 @@
 	"root-classifier": {
 		"asset_path": "m.checkpoint.root-classifier.pt",
 		"classes": ["butterfly", "moth", "other", "other-insect"],
-		"min_accepted_softmax": 0.7,
-		"version": 1
+		"min_accepted_softmax": 0.3
 	},
 	"lepidoptera": {
 		"model_url": "https://drive.usercontent.google.com/download?id=1-_LGRIn2drrX89Eq2nnDwGngyMnPVJO3&export=download&confirm=t&uuid=dd45abb0-6cbe-438e-a6de-1777cb6f0e71",
