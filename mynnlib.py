@@ -15,6 +15,10 @@ from torch.utils.data import DataLoader
 from torchvision import models
 import torch.nn as nn
 import torch.nn.functional as F
+import seaborn as sns
+import matplotlib.pyplot as plt
+from concurrent.futures import ThreadPoolExecutor
+from queue import Queue
 
 def split_data_for_train_and_val(data_dir, test_dir, val_dir, train_dir, test_data_weight=0.1, val_data_weight=0.2, min_file_cnt_for_val=4, class_name_filter_regex=None):
     if os.path.exists(test_dir):
@@ -361,11 +365,11 @@ def image_count(data_dir):
                     img_cnt += 1
     return img_cnt
 
-def test_class(model_data, test_dir, expected_classes):
+def test_class(model_data, test_dir, classes):
     model_data['model'].eval()
-    total = 0
-    success = 0
-    for expected_class in expected_classes:
+    for expected_class in classes:
+        total = 0
+        success = 0
         for file in Path(f"{test_dir}/{expected_class}").iterdir():
             if file.is_file():
                 prediction = predict(file, model_data)
@@ -373,4 +377,89 @@ def test_class(model_data, test_dir, expected_classes):
                 total = total + 1
                 if is_success:
                     success = success + 1
-        print(f"Class: {expected_class:15} ----> Success: {success}/{total} -> {success/total:.2}%")
+        print(f"Class: {expected_class:15} ----> Success: {success}/{total} -> {100*success/total:.2f}%")
+
+
+def analyze_top_k(image_path, model_data, k):
+    model_data['model'].eval()
+    image = Image.open(image_path).convert("RGB")
+    image = model_data['transform']['val'](image).unsqueeze(0).to(model_data['device'])
+    with torch.no_grad():
+        outputs = model_data['model'](image)
+        probabilities = F.softmax(outputs, dim=1)
+        top_probs, top_indices = torch.topk(probabilities, k)
+    try:
+        return { model_data['class_names'][top_indices[0][i]]: {
+            'class_idx': top_indices[0][i], 
+            'class_name': model_data['class_names'][top_indices[0][i]], 
+            'softmax': top_probs[0][i].item()} for i in range(0, k) }
+    except Exception:
+        return None
+
+def test_class_for_min_accepted_softmax(model_data, test_dir, classes, min_accepted_softmax, k=0, print_success=True):
+    if k <= 0 or k > len(classes):
+        k = len(classes)
+    model_data['model'].eval()
+    full_success_cnt = 0
+    for expected_class in classes:
+        total = 0
+        success = 0
+        class_dir = f"{test_dir}/{expected_class}"
+        if not os.path.exists(class_dir):
+            continue;
+        for file in Path(class_dir).iterdir():
+            if file.is_file():
+                predictions = analyze_top_k(file, model_data, k)
+                is_success = expected_class in [ p['class_name'] for _,p in predictions.items() if p['softmax'] >= min_accepted_softmax ]
+                total = total + 1
+                if is_success:
+                    success = success + 1
+        if success/total == 1.0:
+            full_success_cnt += 1
+            if print_success:
+                print(f"Class: {expected_class:15} ----> Success: {success}/{total} -> {100*success/total:.2f}%")
+        else:
+            print(f"\033[31mClass: {expected_class:15} ----> Success: {success}/{total} -> {100*success/total:.2f}%\033[0m")
+    if not print_success:
+        print(f"{full_success_cnt} classes ----> Success: 100%")
+
+
+
+def plot_dist(data, start, end, step, xlabel, ylabel, title):
+    bins = np.arange(start, end+step, step)
+    plt.figure(figsize=(4, 3))
+    sns.histplot(data, bins=bins, edgecolor='black', alpha=0.7, color='c')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.show()
+
+plot_data = Queue()
+def run_plot_confidence_thread(model_data, test_dir, expected_class, min_accepted_softmax, k):
+    total = 0
+    success = 0
+    class_dir = f"{test_dir}/{expected_class}"
+    if not os.path.exists(class_dir):
+        return;
+    for file in Path(class_dir).iterdir():
+        if file.is_file():
+            predictions = analyze_top_k(file, model_data, k)
+            is_success = expected_class in [ p['class_name'] for _,p in predictions.items() if p['softmax'] >= min_accepted_softmax ]
+            total = total + 1
+            if is_success:
+                success = success + 1
+    global plot_data
+    plot_data.put(100*success/total)
+def plot_confidence(model_data, test_dir, classes, min_accepted_softmax, k=0):
+    if k <= 0 or k > len(classes):
+        k = len(classes)
+    model_data['model'].eval()
+    global plot_data
+    plot_data = Queue()
+    futures = []
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        for expected_class in classes:
+            futures += [executor.submit(run_plot_confidence_thread, model_data, test_dir, expected_class, min_accepted_softmax, k)]
+    for future in futures:
+        future.result()
+    plot_dist(list(plot_data.queue), 0, 100, 2, f"top-{k} success on >={100*min_accepted_softmax}% confidence", "class count", test_dir)

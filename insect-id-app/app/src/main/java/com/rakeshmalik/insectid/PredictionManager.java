@@ -37,7 +37,7 @@ public class PredictionManager {
         this.modelLoader = new ModelLoader(context);
     }
 
-    private boolean canBePredicted(ModelType modelType, Tensor inputTensor) {
+    private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
         String rootClassifierModelPath = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optString(FIELD_ASSET_PATH, null);
         String modelPath = modelLoader.loadFromAsset(context, rootClassifierModelPath);
         Module model = Module.load(modelPath);
@@ -45,16 +45,13 @@ public class PredictionManager {
         float[] logitScores = outputTensor.getDataAsFloatArray();
         float[] softMaxScores = toSoftMax(logitScores.clone());
         List<String> classLabels = toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
-        Set<String> acceptedClasses = new HashSet<>(toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
         double minAcceptedSoftmax = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
         List<String> predictedClasses = Arrays.stream(getTopKIndices(softMaxScores, softMaxScores.length))
                 .filter(i -> softMaxScores[i] >= minAcceptedSoftmax)
-                .map(i -> classLabels.get(i))
-                .filter(l -> acceptedClasses.contains(l))
-                .collect(Collectors.toList());
+                .map(classLabels::get).collect(Collectors.toList());
         Log.d(LOG_TAG, String.format("Root classifier prediction: %s\n    class labels: %s\n    logits: %s\n    softmax: %s\n    min accepted softmax: %f",
                 predictedClasses, classLabels, Arrays.toString(logitScores), Arrays.toString(softMaxScores), minAcceptedSoftmax));
-        return !predictedClasses.isEmpty();
+        return predictedClasses;
     }
 
     public String predict(ModelType modelType, Uri photoUri) {
@@ -75,8 +72,14 @@ public class PredictionManager {
                     new float[]{0.485f, 0.456f, 0.406f},
                     new float[]{0.229f, 0.224f, 0.225f});
 
-            if(!canBePredicted(modelType, inputTensor)) {
-                return "Possibly not a " + modelType.displayName + "!<br><font color='#777777'>Crop to fit the insect for better results</font>";
+            List<String> predictedRootClasses = predictRootClasses(modelType, inputTensor);
+            Set<String> acceptedRootClasses = new HashSet<>(toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
+            if(predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
+                if(predictedRootClasses.contains(ROOT_CLASS_OTHER_INSECT)) {
+                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.displayName + "<br>Crop to fit the insect for better results</font>";
+                } else {
+                    return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
+                }
             }
 
             Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();

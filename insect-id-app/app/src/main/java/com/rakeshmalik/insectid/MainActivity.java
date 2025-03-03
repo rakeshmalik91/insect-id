@@ -284,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
                     downloadModelAndRunPredictionAsync();
                 }
             }
+            //TODO else auto-crop
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception during image crop", ex);
             Toast.makeText(this, "Failed to crop image", Toast.LENGTH_SHORT).show();

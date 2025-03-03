@@ -38,5 +38,6 @@ public class Constants {
     public static final String FIELD_ASSET_PATH = "asset_path";
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
+    public static final String ROOT_CLASS_OTHER_INSECT = "other-insect";
 
 }
