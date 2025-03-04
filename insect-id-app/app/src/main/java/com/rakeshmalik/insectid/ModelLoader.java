@@ -23,11 +23,9 @@ public class ModelLoader {
 
     private final Map<String, List<String>> classLabelsCache = new HashMap<>();
     private final Map<String, Map<String, Map<String, Object>>> classDetailsCache = new HashMap<>();
-    private final Context context;
     private final SharedPreferences prefs;
 
     public ModelLoader(Context context) {
-        this.context = context;
         this.prefs = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
     }
 
