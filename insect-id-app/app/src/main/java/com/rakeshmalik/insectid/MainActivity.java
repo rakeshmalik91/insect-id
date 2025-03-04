@@ -100,14 +100,12 @@ public class MainActivity extends AppCompatActivity {
                 private int previousSelection = 0;
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                    Log.d(LOG_TAG, "predicting = " + predicting);
                     if(predicting) {
                         Log.d(LOG_TAG, "Already predicting...");
                         modelTypeSpinner.setSelection(previousSelection);
                         return;
                     }
                     try {
-//                        Log.d(LOG_TAG, position + " selected on spinner");
                         selectedModelType = modelTypes[position];
                         previousSelection = position;
                         if(photoUri != null) {
@@ -319,48 +317,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private Bitmap edgeCrop(Bitmap img, float edgeCropPercent) {
-        return Bitmap.createBitmap(img,
-                (int) (img.getWidth() * edgeCropPercent), (int) (img.getHeight() * edgeCropPercent),
-                (int) (img.getWidth() * (1 - edgeCropPercent*2)), (int) (img.getHeight() * (1 - edgeCropPercent*2)));
-    }
-
-    private Bitmap centerCrop(Bitmap img) {
-        int centerCropSize = Math.min(img.getWidth(), img.getHeight());
-        return Bitmap.createBitmap(img,
-                (img.getWidth() - centerCropSize) / 2, (img.getHeight() - centerCropSize) / 2,
-                centerCropSize, centerCropSize);
-    }
-
     public Drawable predictedImageRenderer(String source) {
         String[] urls = source.split(",");
-        int size = 300;
-        int gap = 10;
-        int maxColumns = 3;
+        int maxColumns = 3, gap = 10;
+        int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
         int columns = Math.min(urls.length, maxColumns);
         int rows = (int) Math.ceil((double) urls.length / maxColumns);
         int gridWidth = size * columns + gap * (columns - 1);
         int gridHeight = size * rows + gap * (rows - 1);
         Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        int left = 0;
-        int top = 0;
+        int left = 0, top = 0;
         for (int i = 0; i < urls.length; i++) {
             try (InputStream is = (InputStream) new URL(urls[i]).getContent();) {
                 Bitmap img = BitmapFactory.decodeStream(is);
-                img = centerCrop(img);
-                img = edgeCrop(img, 0.1f);
+                img = Utils.topBottomEdgeCrop(img, 0.12f);
+                img = Utils.centerSquareCrop(img);
                 img = Bitmap.createScaledBitmap(img, size, size, true);
-//                Log.d(LOG_TAG, "position: " + left + ", " + top);
                 canvas.drawBitmap(img, left, top, null);
-                left += size + gap;
                 if(i % maxColumns == maxColumns - 1) {
                     top += size + gap;
                     left = 0;
+                } else {
+                    left += size + gap;
                 }
             } catch (Exception ex1) {
-                Log.e(LOG_TAG, "Exception showing image in html", ex1);
-                return null;
+                Log.e(LOG_TAG, "Exception loading image " + urls[i] + " as html in textview", ex1);
             }
         }
         Drawable drawable = new BitmapDrawable(getResources(), bitmap);
@@ -389,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
             blockPrediction();
             try {
                 if (modelDownloader.isModelDownloadOrUpdateRequired(selectedModelType)) {
-                    modelDownloader.downloadModel(selectedModelType, () -> runPrediction(), () -> unblockPrediction());
+                    modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unblockPrediction);
                 } else {
                     runPrediction();
                 }

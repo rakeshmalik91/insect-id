@@ -9,12 +9,8 @@ public class Constants {
     public static final String CLASSES_FILE_NAME_FMT = "classes.%s.json";
     public static final String CLASS_DETAILS_FILE_NAME_FMT = "class_details.%s.json";
 
-    // class suffix -> display name
-    public static final Map<String, String> CLASS_SUFFIXES = Map.of(
-            "-early", " (Early Stage)",
-            "-larva", " (Larva)",
-            "-pupa", " (Pupa)"
-    );
+    public static final String EARLY_STAGE_CLASS_SUFFIX = "-early";
+    public static final String EARLY_STAGE_DISPLAY_SUFFIX = " (Early)";
 
     public static final String NAME = "name";
     public static final String IMAGES = "images";
@@ -39,7 +35,7 @@ public class Constants {
     public static final String FIELD_ASSET_PATH = "asset_path";
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
-    public static final String ROOT_CLASS_OTHER_INSECT = "other-insect";
+    public static final String ROOT_CLASS_OTHER = "other";
 
     public static final int MAX_IMAGES_IN_PREDICTION = 6;
     public static final double MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = 0.95;
