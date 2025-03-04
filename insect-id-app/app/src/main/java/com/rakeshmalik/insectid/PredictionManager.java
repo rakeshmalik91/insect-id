@@ -63,7 +63,7 @@ public class PredictionManager {
             String modelPath = modelLoader.loadFromCache(context, modelName);
             Module model = Module.load(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
-            Map<String, Map<String, String>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
+            Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
 
             Log.d(LOG_TAG, "Loading photo: " + photoUri);
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
@@ -74,13 +74,6 @@ public class PredictionManager {
 
             List<String> predictedRootClasses = predictRootClasses(modelType, inputTensor);
             Set<String> acceptedRootClasses = new HashSet<>(toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
-            if(predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
-                if(predictedRootClasses.contains(ROOT_CLASS_OTHER_INSECT)) {
-                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.displayName + "<br>Crop to fit the insect for better results</font>";
-                } else {
-                    return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
-                }
-            }
 
             Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
             float[] logitScores = outputTensor.getDataAsFloatArray();
@@ -100,22 +93,36 @@ public class PredictionManager {
                     .filter(c -> logitScores[c] > minAcceptedLogit)
                     .map(c -> getScientificNameHtml(classLabels.get(c))
                             + getSpeciesNameHtml(classLabels.get(c), classDetails)
-                            + getScoreHtml(softMaxScores[c]))
+                            + getScoreHtml(softMaxScores[c])
+                            + getSpeciesImageList(classLabels.get(c), classDetails))
                     .collect(Collectors.toList());
             Log.d(LOG_TAG, "Predicted class: " + predictions);
-            return predictions.isEmpty() ? "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>" : String.join("\n", predictions);
+
+            boolean confident = softMaxScores[predictedClass[0]] < MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER;
+
+            if(confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
+                if(predictedRootClasses.isEmpty() || !predictedRootClasses.contains(ROOT_CLASS_OTHER_INSECT)) {
+                    return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
+                } else {
+                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.displayName + "<br>Crop to fit the insect for better results</font>";
+                }
+            } else if(predictions.isEmpty()) {
+                return "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>";
+            } else {
+                return String.join("<br/><br/>", predictions);
+            }
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception during prediction", ex);
         }
         return "Failed to predict!!!";
     }
 
-    private static String getScientificNameHtml(String className) {
-        className = className.replaceAll("-early$", "");
-        return "<font color='#FF7755'><i>" + className + "</i></font><br>";
+    private String getScientificNameHtml(String className) {
+        String sciName = className.replaceAll("-early$", "");
+        return "<font color='#FF7755'><i>" + sciName + "</i></font><br>";
     }
 
-    private static String getSpeciesNameHtml(String className, Map<String, Map<String, String>> classDetails) {
+    private String getSpeciesNameHtml(String className, Map<String, Map<String, Object>> classDetails) {
         String speciesName = "";
         try {
             for (String suffix : CLASS_SUFFIXES.keySet()) {
@@ -127,7 +134,7 @@ public class PredictionManager {
                 }
             }
             if (speciesName.isBlank() && classDetails.containsKey(className) && classDetails.get(className).containsKey(NAME)) {
-                speciesName = classDetails.get(className).get(NAME);
+                speciesName = (String) classDetails.get(className).get(NAME);
             }
             if (speciesName.isBlank()) {
                 speciesName = Arrays.stream(className.split("-"))
@@ -145,11 +152,27 @@ public class PredictionManager {
         return "<font color='#FFFFFF'>" + speciesName + "</font><br>";
     }
 
-    private static String getScoreHtml(Float score) {
+    private String getScoreHtml(Float score) {
         return String.format(Locale.getDefault(), "<font color='#777777'>~%.2f%% match</font><br><br>", score * 100);
     }
 
-    private static float[] toSoftMax(float[] scores) {
+    private String getSpeciesImageList(String className, Map<String, Map<String, Object>> classDetails) {
+        try {
+//            Log.d(LOG_TAG, "classDetails=" + classDetails.get(className));
+            if (classDetails.containsKey(className) && classDetails.get(className).containsKey(IMAGES)) {
+//                Log.d(LOG_TAG, "images=" + classDetails.get(className).get(IMAGES));
+                String urls = ((List<String>)classDetails.get(className).get(IMAGES)).stream()
+                        .limit(MAX_IMAGES_IN_PREDICTION)
+                        .collect(Collectors.joining(","));
+                return "<img src='" + urls + "'/>";
+            }
+        } catch(Exception ex) {
+            Log.e(LOG_TAG, "Exception fetching species image urls", ex);
+        }
+        return "";
+    }
+
+    private float[] toSoftMax(float[] scores) {
         float sumExp = 0.0f;
         for (float score : scores) {
             sumExp += (float) Math.exp(score);
@@ -160,7 +183,7 @@ public class PredictionManager {
         return scores;
     }
 
-    public static Integer[] getTopKIndices(float[] array, int k) {
+    public Integer[] getTopKIndices(float[] array, int k) {
         Integer[] indices = new Integer[array.length];
         for (int i = 0; i < array.length; i++) {
             indices[i] = i;

@@ -8,7 +8,7 @@
 		"model_url": "https://drive.usercontent.google.com/download?id=1-_LGRIn2drrX89Eq2nnDwGngyMnPVJO3&export=download&confirm=t&uuid=dd45abb0-6cbe-438e-a6de-1777cb6f0e71",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-		"version": 3,
+		"version": 4,
 		"min_accepted_logit": -60,
 		"min_accepted_softmax": 0.1,
 		"accepted_classes": ["butterfly", "moth"]
@@ -17,7 +17,7 @@
 		"model_url": "https://drive.usercontent.google.com/download?id=1ye5jbDjtx0jv4CSUlyMwNn2ftxOj2KHV&export=download&confirm=t&uuid=ac810624-b25b-45d3-b8df-2c195e4b5a99",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.moth.json",
-		"version": 1,
+		"version": 2,
 		"min_accepted_logit": -40,
 		"min_accepted_softmax": 0.1,
 		"accepted_classes": ["moth"]
@@ -26,7 +26,7 @@
 		"model_url": "https://drive.usercontent.google.com/download?id=13wIAnVHYSWh0N-MjqbEeq1zns2mADgOH&export=download&confirm=t&uuid=006fe3dc-a4a1-40ea-9b1b-30f8e86a83a0",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.butterfly.json",
-		"version": 1,
+		"version": 2,
 		"min_accepted_logit": -30,
 		"min_accepted_softmax": 0.1,
 		"accepted_classes": ["butterfly"]

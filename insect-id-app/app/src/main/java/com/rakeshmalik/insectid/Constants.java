@@ -17,6 +17,7 @@ public class Constants {
     );
 
     public static final String NAME = "name";
+    public static final String IMAGES = "images";
     public static final String LOG_TAG = "insect-id";
     public static final String PREF = "insect-id";
 
@@ -39,5 +40,8 @@ public class Constants {
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
     public static final String ROOT_CLASS_OTHER_INSECT = "other-insect";
+
+    public static final int MAX_IMAGES_IN_PREDICTION = 6;
+    public static final double MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = 0.95;
 
 }

@@ -5,10 +5,16 @@ import static com.rakeshmalik.insectid.Constants.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +35,8 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -92,14 +100,14 @@ public class MainActivity extends AppCompatActivity {
                 private int previousSelection = 0;
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Log.d(LOG_TAG, "predicting = " + predicting);
+//                    Log.d(LOG_TAG, "predicting = " + predicting);
                     if(predicting) {
                         Log.d(LOG_TAG, "Already predicting...");
                         modelTypeSpinner.setSelection(previousSelection);
                         return;
                     }
                     try {
-                        Log.d(LOG_TAG, position + " selected on spinner");
+//                        Log.d(LOG_TAG, position + " selected on spinner");
                         selectedModelType = modelTypes[position];
                         previousSelection = position;
                         if(photoUri != null) {
@@ -311,6 +319,55 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private Bitmap edgeCrop(Bitmap img, float edgeCropPercent) {
+        return Bitmap.createBitmap(img,
+                (int) (img.getWidth() * edgeCropPercent), (int) (img.getHeight() * edgeCropPercent),
+                (int) (img.getWidth() * (1 - edgeCropPercent*2)), (int) (img.getHeight() * (1 - edgeCropPercent*2)));
+    }
+
+    private Bitmap centerCrop(Bitmap img) {
+        int centerCropSize = Math.min(img.getWidth(), img.getHeight());
+        return Bitmap.createBitmap(img,
+                (img.getWidth() - centerCropSize) / 2, (img.getHeight() - centerCropSize) / 2,
+                centerCropSize, centerCropSize);
+    }
+
+    public Drawable predictedImageRenderer(String source) {
+        String[] urls = source.split(",");
+        int size = 300;
+        int gap = 10;
+        int maxColumns = 3;
+        int columns = Math.min(urls.length, maxColumns);
+        int rows = (int) Math.ceil((double) urls.length / maxColumns);
+        int gridWidth = size * columns + gap * (columns - 1);
+        int gridHeight = size * rows + gap * (rows - 1);
+        Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        int left = 0;
+        int top = 0;
+        for (int i = 0; i < urls.length; i++) {
+            try (InputStream is = (InputStream) new URL(urls[i]).getContent();) {
+                Bitmap img = BitmapFactory.decodeStream(is);
+                img = centerCrop(img);
+                img = edgeCrop(img, 0.1f);
+                img = Bitmap.createScaledBitmap(img, size, size, true);
+//                Log.d(LOG_TAG, "position: " + left + ", " + top);
+                canvas.drawBitmap(img, left, top, null);
+                left += size + gap;
+                if(i % maxColumns == maxColumns - 1) {
+                    top += size + gap;
+                    left = 0;
+                }
+            } catch (Exception ex1) {
+                Log.e(LOG_TAG, "Exception showing image in html", ex1);
+                return null;
+            }
+        }
+        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+        drawable.setBounds(0, 0, gridWidth, gridHeight);
+        return drawable;
+    }
+
     class PredictRunnable implements Runnable {
         private void runPrediction() {
             try {
@@ -318,7 +375,8 @@ public class MainActivity extends AppCompatActivity {
                 final ModelType modelType = selectedModelType;
                 String predictions = predictionManager.predict(selectedModelType, photoUri);
                 if (modelType == selectedModelType) {
-                    runOnUiThread(() -> outputText.setText(Html.fromHtml(predictions, Html.FROM_HTML_MODE_LEGACY)));
+                    Spanned html = Html.fromHtml(predictions, Html.FROM_HTML_MODE_COMPACT, MainActivity.this::predictedImageRenderer, null);
+                    runOnUiThread(() -> outputText.setText(html));
                 }
             } catch(Exception ex) {
                 Log.e(LOG_TAG, "Exception during prediction", ex);

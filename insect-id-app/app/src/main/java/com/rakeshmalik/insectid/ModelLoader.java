@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 public class ModelLoader {
 
     private final Map<String, List<String>> classLabelsCache = new HashMap<>();
-    private final Map<String, Map<String, Map<String, String>>> classDetailsCache = new HashMap<>();
+    private final Map<String, Map<String, Map<String, Object>>> classDetailsCache = new HashMap<>();
     private final Context context;
     private final SharedPreferences prefs;
 
@@ -70,11 +70,11 @@ public class ModelLoader {
         return classLabels;
     }
 
-    public Map<String, Map<String, String>> getClassDetails(Context context, String fileName) {
+    public Map<String, Map<String, Object>> getClassDetails(Context context, String fileName) {
         if(classDetailsCache.containsKey(fileName)) {
             return classDetailsCache.get(fileName);
         }
-        Map<String, Map<String, String>> classDetails = loadJsonFromFile(context, fileName, Map.of());
+        Map<String, Map<String, Object>> classDetails = loadJsonFromFile(context, fileName, Map.of());
         classDetailsCache.put(fileName, classDetails);
         return classDetails;
     }
