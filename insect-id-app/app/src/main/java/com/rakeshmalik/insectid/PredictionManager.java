@@ -98,9 +98,9 @@ public class PredictionManager {
                     .collect(Collectors.toList());
             Log.d(LOG_TAG, "Predicted class: " + predictions);
 
-            boolean confident = softMaxScores[predictedClass[0]] < MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER;
+            boolean confident = softMaxScores[predictedClass[0]] > MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER;
 
-            if(confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
+            if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
                 if(predictedRootClasses.isEmpty() || !predictedRootClasses.contains(ROOT_CLASS_OTHER_INSECT)) {
                     return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
                 } else {
