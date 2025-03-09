@@ -30,5 +30,23 @@
 		"min_accepted_logit": -30,
 		"min_accepted_softmax": 0.1,
 		"accepted_classes": ["butterfly"]
+	},
+	"cicada": {
+		"model_url": "https://drive.usercontent.google.com/download?id=1H2GOjc3iw6qf-IUan_SvzouOVusxVidD&export=download&confirm=t&uuid=766976ca-21b5-4fd4-83f4-9b370872592f",
+		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
+		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
+		"version": 1,
+		"min_accepted_logit": -50,
+		"min_accepted_softmax": 0.1,
+		"accepted_classes": ["other-insect"]
+	},
+	"odonata": {
+		"model_url": "https://drive.usercontent.google.com/download?id=1rh8CWwYznY1T3zU-BeEMIuQgw-k1qP3o&export=download&confirm=t&uuid=f20bea67-f0f0-4932-82e5-a5a09d008ecf",
+		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
+		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
+		"version": 1,
+		"min_accepted_logit": -50,
+		"min_accepted_softmax": 0.1,
+		"accepted_classes": ["other-insect"]
 	}
 }

@@ -3,7 +3,9 @@ package com.rakeshmalik.insectid;
 public enum ModelType {
     LEPIDOPTERA("Butterfly/Moth", "lepidoptera"),
     BUTTERFLY("Butterfly", "butterfly"),
-    MOTH("Moth", "moth");
+    MOTH("Moth", "moth"),
+    ODONATA("Dragonfly/Damselfly", "odonata"),
+    CICADA("Cicada", "cicada");
 
     public final String displayName;
     public final String modelName;
