@@ -1,7 +1,7 @@
 {
 	"root-classifier": {
 		"asset_path": "m.checkpoint.root-classifier.pt",
-		"classes": ["butterfly", "moth", "other", "other-insect"],
+		"classes": ["butterfly", "cicada", "moth", "odonata", "other", "other-insect"],
 		"min_accepted_softmax": 0.3
 	},
 	"lepidoptera": {
@@ -41,8 +41,8 @@
 		"version": 2,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["other-insect"],
-		"min_accepted_softmax_to_override_root_classifier": 0.1
+		"accepted_classes": ["cicada"],
+		"min_accepted_softmax_to_override_root_classifier": 0.9
 	},
 	"odonata": {
 		"model_url": "https://drive.usercontent.google.com/download?id=12mJm8hGF7G9qtnkyPsy4YcdF3VhDrp2n&export=download&confirm=t&uuid=023688f8-b910-4521-94da-a82c68878e4a",
@@ -51,7 +51,7 @@
 		"version": 2,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["other-insect"],
-		"min_accepted_softmax_to_override_root_classifier": 0.1
+		"accepted_classes": ["odonata"],
+		"min_accepted_softmax_to_override_root_classifier": 0.9
 	}
 }
