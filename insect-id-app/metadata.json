@@ -5,13 +5,14 @@
 		"min_accepted_softmax": 0.3
 	},
 	"lepidoptera": {
-		"model_url": "https://drive.usercontent.google.com/download?id=1-_LGRIn2drrX89Eq2nnDwGngyMnPVJO3&export=download&confirm=t&uuid=dd45abb0-6cbe-438e-a6de-1777cb6f0e71",
+		"model_url": "https://drive.usercontent.google.com/download?id=1tKaZNBXfUMfWBOoZ-h7lrDhnSsCEqCLW&export=download&confirm=t&uuid=1c1f21a7-c62d-4300-a580-b58717fce8a3",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-		"version": 5,
+		"version": 6,
 		"min_accepted_logit": -60,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["butterfly", "moth"]
+		"accepted_classes": ["butterfly", "moth"],
+		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"moth": {
 		"model_url": "https://drive.usercontent.google.com/download?id=1ye5jbDjtx0jv4CSUlyMwNn2ftxOj2KHV&export=download&confirm=t&uuid=ac810624-b25b-45d3-b8df-2c195e4b5a99",
@@ -20,33 +21,37 @@
 		"version": 3,
 		"min_accepted_logit": -40,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["moth"]
+		"accepted_classes": ["moth"],
+		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"butterfly": {
-		"model_url": "https://drive.usercontent.google.com/download?id=13wIAnVHYSWh0N-MjqbEeq1zns2mADgOH&export=download&confirm=t&uuid=006fe3dc-a4a1-40ea-9b1b-30f8e86a83a0",
+		"model_url": "https://drive.usercontent.google.com/download?id=10nk2Cto32tQrFTg--ssgReEncZCzMHuB&export=download&confirm=t&uuid=485ee6cd-c740-4b9e-9f48-f1e66138cf1e",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-		"version": 3,
+		"version": 4,
 		"min_accepted_logit": -30,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["butterfly"]
+		"accepted_classes": ["butterfly"],
+		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"cicada": {
-		"model_url": "https://drive.usercontent.google.com/download?id=1H2GOjc3iw6qf-IUan_SvzouOVusxVidD&export=download&confirm=t&uuid=766976ca-21b5-4fd4-83f4-9b370872592f",
+		"model_url": "https://drive.usercontent.google.com/download?id=1JFSBj8sivGOJKp52yE5jwoBAncC20rbU&export=download&confirm=t&uuid=0189898c-fde1-465b-8f73-3359c43940da",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
-		"version": 1,
+		"version": 2,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["other-insect"]
+		"accepted_classes": ["other-insect"],
+		"min_accepted_softmax_to_override_root_classifier": 0.1
 	},
 	"odonata": {
-		"model_url": "https://drive.usercontent.google.com/download?id=1rh8CWwYznY1T3zU-BeEMIuQgw-k1qP3o&export=download&confirm=t&uuid=f20bea67-f0f0-4932-82e5-a5a09d008ecf",
+		"model_url": "https://drive.usercontent.google.com/download?id=12mJm8hGF7G9qtnkyPsy4YcdF3VhDrp2n&export=download&confirm=t&uuid=023688f8-b910-4521-94da-a82c68878e4a",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-		"version": 1,
+		"version": 2,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.1,
-		"accepted_classes": ["other-insect"]
+		"accepted_classes": ["other-insect"],
+		"min_accepted_softmax_to_override_root_classifier": 0.1
 	}
 }

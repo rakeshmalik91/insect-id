@@ -105,7 +105,9 @@ public class PredictionManager {
             Log.d(LOG_TAG, "Predicted class: " + predictions);
 
             // if model is confident enough then override root classifier
-            boolean confident = softMaxScores[predictedClass[0]] > MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER;
+            double minAcceptedSoftmaxToOverrideRootClassifier = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER);
+            Log.d(LOG_TAG, "minAcceptedSoftmaxToOverrideRootClassifier: " + minAcceptedSoftmaxToOverrideRootClassifier);
+            boolean confident = softMaxScores[predictedClass[0]] > minAcceptedSoftmaxToOverrideRootClassifier;
 
             // decide result based on root classifier and model predictions
             if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {

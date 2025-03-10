@@ -30,6 +30,7 @@ public class Constants {
     public static final String FIELD_VERSION = "version";
     public static final String FIELD_MIN_ACCEPTED_LOGIT = "min_accepted_logit";
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX = "min_accepted_softmax";
+    public static final String FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = "min_accepted_softmax_to_override_root_classifier";
     public static final String FIELD_CLASSES = "classes";
     public static final String FIELD_ACCEPTED_CLASSES = "accepted_classes";
     public static final String FIELD_ASSET_PATH = "asset_path";
@@ -38,6 +39,5 @@ public class Constants {
     public static final String ROOT_CLASS_OTHER = "other";
 
     public static final int MAX_IMAGES_IN_PREDICTION = 6;
-    public static final double MIN_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = 0.95;
 
 }
