@@ -169,7 +169,8 @@ public class PredictionManager {
 
     private String getSpeciesImageList(String className, Map<String, Map<String, Object>> classDetails) {
         try {
-            if (classDetails.containsKey(className) && classDetails.get(className).containsKey(IMAGES)) {
+            if (classDetails.containsKey(className) && classDetails.get(className).containsKey(IMAGES)
+                    && !((List<String>)classDetails.get(className).get(IMAGES)).isEmpty()) {
                 String urls = ((List<String>)classDetails.get(className).get(IMAGES)).stream()
                         .limit(MAX_IMAGES_IN_PREDICTION)
                         .collect(Collectors.joining(","));
@@ -178,7 +179,7 @@ public class PredictionManager {
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception fetching species image urls", ex);
         }
-        return "";
+        return "<font color='#777777'>(No images available)</font><br/><br/>";
     }
 
 }

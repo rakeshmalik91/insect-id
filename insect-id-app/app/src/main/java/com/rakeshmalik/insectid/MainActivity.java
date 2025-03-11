@@ -357,6 +357,11 @@ public class MainActivity extends AppCompatActivity {
                 final ModelType modelType = selectedModelType;
                 String predictions = predictionManager.predict(selectedModelType, photoUri);
                 if (modelType == selectedModelType) {
+                    // set html with alt text while loading images
+                    String imageAltHtml = "<font color='#777777'>(Loading images...)</font><br/><br/>";
+                    Spanned simpleHtml = Html.fromHtml(predictions.replaceAll("<img [^>]+/>", imageAltHtml), Html.FROM_HTML_MODE_COMPACT, null, null);
+                    runOnUiThread(() -> outputText.setText(simpleHtml));
+                    // render html with images
                     Spanned html = Html.fromHtml(predictions, Html.FROM_HTML_MODE_COMPACT, MainActivity.this::predictedImageRenderer, null);
                     runOnUiThread(() -> outputText.setText(html));
                 }
