@@ -94,6 +94,8 @@ public class PredictionManager {
             Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClass).map(c -> softMaxScores[c]).collect(Collectors.toList()));
             final double minAcceptedSoftmax = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
             final double minAcceptedLogit = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_LOGIT);
+            Log.d(LOG_TAG, "minAcceptedSoftmax: " + minAcceptedSoftmax);
+            Log.d(LOG_TAG, "minAcceptedLogit: " + minAcceptedLogit);
             List<String> predictions = Arrays.stream(predictedClass)
                     .filter(c -> softMaxScores[c] > minAcceptedSoftmax)
                     .filter(c -> logitScores[c] > minAcceptedLogit)

@@ -10,17 +10,17 @@
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
 		"version": 6,
 		"min_accepted_logit": -60,
-		"min_accepted_softmax": 0.1,
+		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["butterfly", "moth"],
 		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"moth": {
-		"model_url": "https://drive.usercontent.google.com/download?id=1ye5jbDjtx0jv4CSUlyMwNn2ftxOj2KHV&export=download&confirm=t&uuid=ac810624-b25b-45d3-b8df-2c195e4b5a99",
+		"model_url": "https://drive.usercontent.google.com/download?id=1zsY88MPueeAaAFni_B31wAQFX5pzB2f0&export=download&confirm=t&uuid=8d4c0ba5-f217-46f7-aa08-3d612e3e2450",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
 		"version": 3,
-		"min_accepted_logit": -40,
-		"min_accepted_softmax": 0.1,
+		"min_accepted_logit": -50,
+		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["moth"],
 		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
@@ -30,17 +30,17 @@
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
 		"version": 4,
 		"min_accepted_logit": -30,
-		"min_accepted_softmax": 0.1,
+		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["butterfly"],
 		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"cicada": {
-		"model_url": "https://drive.usercontent.google.com/download?id=1JFSBj8sivGOJKp52yE5jwoBAncC20rbU&export=download&confirm=t&uuid=0189898c-fde1-465b-8f73-3359c43940da",
+		"model_url": "https://drive.usercontent.google.com/download?id=141JYq2P3S_spyra8Dw_of-LPxjauJavg&export=download&confirm=t&uuid=20be9175-98d2-4f89-a683-c4b5ecbfb106",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
-		"version": 3,
+		"version": 4,
 		"min_accepted_logit": -50,
-		"min_accepted_softmax": 0.1,
+		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["cicada"],
 		"min_accepted_softmax_to_override_root_classifier": 0.9
 	},
@@ -50,7 +50,7 @@
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
 		"version": 3,
 		"min_accepted_logit": -50,
-		"min_accepted_softmax": 0.1,
+		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["odonata"],
 		"min_accepted_softmax_to_override_root_classifier": 0.9
 	}

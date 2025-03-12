@@ -79,7 +79,7 @@ public class ModelDownloader {
 
             downloadFile(classesFileName, classesFileUrl, null, onFailure, "class list", modelType, updatingModel);
             downloadFile(classDetailsFileName, classDetailsFileUrl, null, onFailure, "class details", modelType, updatingModel);
-            downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model (" + modelType.displayName + ")", modelType, updatingModel);
+            downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType, updatingModel);
         } catch(Exception ex) {
             if(onFailure != null) {
                 onFailure.run();
@@ -118,9 +118,9 @@ public class ModelDownloader {
                     while ((bytesRead = inputStream.read(buffer)) != -1) {
                         outputStream.write(buffer, 0, bytesRead);
                         downloadedBytes += bytesRead;
-                        int progress = (int) ((downloadedBytes * 100) / totalBytes);
+                        int progress = Math.max(0, (int) ((downloadedBytes * 100) / totalBytes));
                         long elapsedTime = System.currentTimeMillis() - startTime;
-                        long eta = (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes;
+                        long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
                         String msg = String.format("%s %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)",
                                 (updatingModel ? "Updating" : "Downloading"),
                                 fileType, eta/60000, (eta%60000)/1000, progress, downloadedBytes/1024/1024, totalBytes/1024/1024);
