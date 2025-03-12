@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.*;
 
@@ -20,7 +21,11 @@ import okhttp3.*;
 //TODO have auto-update, pre-download & verify-integrity/re-download model settings
 public class ModelDownloader {
 
-    private final OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS) // Connection timeout
+            .readTimeout(30, TimeUnit.SECONDS)    // Read timeout
+            .writeTimeout(30, TimeUnit.SECONDS)   // Write timeout
+            .build();
     private final Context context;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private final SharedPreferences prefs;
@@ -55,14 +60,22 @@ public class ModelDownloader {
     }
 
     public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure) {
+        downloadModel(modelType, onSuccess, onFailure, false);
+    }
+
+    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean update) {
         try {
             boolean updatingModel = false;
             if (isModelAlreadyDownloaded(modelType)) {
-                updatingModel = isModelToBeUpdated(modelType);
+                updatingModel = update && isModelToBeUpdated(modelType);
                 if(updatingModel) {
                     Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
                 } else {
+                    if(update) {
+                        mainHandler.post(() -> outputText.setText("Model " + modelType.displayName + " already up to date"));
+                    }
                     Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
+                    onSuccess.run();
                     return;
                 }
             } else {

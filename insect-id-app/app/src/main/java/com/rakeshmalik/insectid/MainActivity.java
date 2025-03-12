@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ModelType selectedModelType;
     private ModelDownloader modelDownloader;
     private PredictionManager predictionManager;
+    private ImageButton buttonUpdateModel;
 
     private boolean predicting = false;
 
@@ -75,10 +77,20 @@ public class MainActivity extends AppCompatActivity {
             MetadataManager metadataManager = new MetadataManager(this, outputText);
             this.modelDownloader = new ModelDownloader(this, outputText, metadataManager);
             this.predictionManager = new PredictionManager(this, metadataManager);
+
+            this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
+            this.buttonUpdateModel.setOnClickListener(v -> downloadOrUpdateModel());
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
         }
+    }
+
+    private void downloadOrUpdateModel() {
+        blockPrediction();
+        imageView.setImageURI(null);
+        photoUri = null;
+        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unblockPrediction, this::unblockPrediction, true));
     }
 
     private void createModelTypeSpinner() {
@@ -106,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     try {
+                        runOnUiThread(() -> outputText.setText(""));
                         selectedModelType = modelTypes[position];
                         previousSelection = position;
                         if(photoUri != null) {
@@ -306,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(false);
             buttonPickImage.setEnabled(false);
+            buttonUpdateModel.setEnabled(false);
         });
     }
 
@@ -314,6 +328,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(true);
             buttonPickImage.setEnabled(true);
+            buttonUpdateModel.setEnabled(true);
         });
     }
 
