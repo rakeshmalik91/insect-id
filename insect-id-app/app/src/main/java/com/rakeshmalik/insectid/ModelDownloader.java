@@ -63,16 +63,21 @@ public class ModelDownloader {
         downloadModel(modelType, onSuccess, onFailure, false);
     }
 
-    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean update) {
+    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate) {
         try {
+            if(forceUpdate) {
+                metadataManager.getMetadata(true);
+            }
+
             boolean updatingModel = false;
             if (isModelAlreadyDownloaded(modelType)) {
-                updatingModel = update && isModelToBeUpdated(modelType);
+                updatingModel = forceUpdate && isModelToBeUpdated(modelType);
                 if(updatingModel) {
                     Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
                 } else {
-                    if(update) {
-                        mainHandler.post(() -> outputText.setText("Model " + modelType.displayName + " already up to date"));
+                    if(forceUpdate) {
+                        int currentVersion = prefs.getInt(modelVersionPrefName(modelType), 0);
+                        mainHandler.post(() -> outputText.setText("Model already up to date\nModel name: " + modelType.displayName + "\nVersion: " + currentVersion));
                     }
                     Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
                     onSuccess.run();
@@ -124,6 +129,7 @@ public class ModelDownloader {
                 long startTime = System.currentTimeMillis();
                 try(InputStream inputStream = response.body().byteStream();
                     FileOutputStream outputStream = new FileOutputStream(file); ) {
+                    int currentVersion = prefs.getInt(modelVersionPrefName(modelType), 0);
                     byte[] buffer = new byte[4096];
                     long totalBytes = response.body().contentLength();
                     long downloadedBytes = 0;
@@ -134,13 +140,20 @@ public class ModelDownloader {
                         int progress = Math.max(0, (int) ((downloadedBytes * 100) / totalBytes));
                         long elapsedTime = System.currentTimeMillis() - startTime;
                         long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
-                        String msg = String.format("%s %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)",
-                                (updatingModel ? "Updating" : "Downloading"),
-                                fileType, eta/60000, (eta%60000)/1000, progress, downloadedBytes/1024/1024, totalBytes/1024/1024);
+                        String msg;
+                        if(updatingModel) {
+                            int latestVersion = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
+                            msg = String.format("Updating %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nCurrent version: %d, Latest version: %d",
+                                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
+                                    currentVersion, latestVersion);
+                        } else {
+                            msg = String.format("Downloading %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)",
+                                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024);
+                        }
                         mainHandler.post(() -> outputText.setText(msg));
                     }
                     Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
-                    mainHandler.post(() -> outputText.setText("Downloaded " + fileType + " successfully"));
+                    mainHandler.post(() -> outputText.setText("Downloaded " + fileType + " successfully\nVersion: " + currentVersion));
                     if(onSuccess != null) {
                         onSuccess.run();
                     }

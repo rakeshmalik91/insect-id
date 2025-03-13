@@ -38,7 +38,11 @@ public class MetadataManager {
     }
 
     public JSONObject getMetadata() {
-        if(metadata == null) {
+        return getMetadata(false);
+    }
+
+    public JSONObject getMetadata(boolean forceRefresh) {
+        if(metadata == null || forceRefresh) {
             mainHandler.post(() -> outputText.setText(R.string.fetching_metadata));
             Log.d(Constants.LOG_TAG, "Fetching metadata");
             try {

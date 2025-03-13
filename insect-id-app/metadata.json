@@ -45,10 +45,10 @@
 		"min_accepted_softmax_to_override_root_classifier": 0.9
 	},
 	"odonata": {
-		"model_url": "https://drive.usercontent.google.com/download?id=12mJm8hGF7G9qtnkyPsy4YcdF3VhDrp2n&export=download&confirm=t&uuid=023688f8-b910-4521-94da-a82c68878e4a",
+		"model_url": "https://drive.usercontent.google.com/download?id=18Na9cR_SjIlF21zJptLpxysb61ZSMUfO&export=download&confirm=t&uuid=dfa68642-b4bf-463a-b3eb-fd2adbb5194e",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-		"version": 3,
+		"version": 4,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["odonata"],
