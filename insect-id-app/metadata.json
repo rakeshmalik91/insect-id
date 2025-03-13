@@ -35,10 +35,10 @@
 		"min_accepted_softmax_to_override_root_classifier": 0.95
 	},
 	"cicada": {
-		"model_url": "https://drive.usercontent.google.com/download?id=141JYq2P3S_spyra8Dw_of-LPxjauJavg&export=download&confirm=t&uuid=20be9175-98d2-4f89-a683-c4b5ecbfb106",
+		"model_url": "https://drive.usercontent.google.com/download?id=1k39tZ-Ku7drzUgzSCESC-IcA-mjIIriz&export=download&confirm=t&uuid=d03b806e-6c5c-41da-8615-cada346ba1dc",
 		"classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
 		"class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
-		"version": 4,
+		"version": 5,
 		"min_accepted_logit": -50,
 		"min_accepted_softmax": 0.05,
 		"accepted_classes": ["cicada"],
