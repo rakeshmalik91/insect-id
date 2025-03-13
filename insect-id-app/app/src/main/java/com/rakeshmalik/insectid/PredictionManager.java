@@ -39,8 +39,9 @@ public class PredictionManager {
 
     private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
         // run through root classifier model
-        String rootClassifierModelPath = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optString(FIELD_ASSET_PATH, null);
-        String modelPath = modelLoader.loadFromAsset(context, rootClassifierModelPath);
+        String modelName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
+        String modelPath = modelLoader.loadFromCache(context, modelName);
+        Log.d(LOG_TAG, modelPath);
         Module model = Module.load(modelPath);
         Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
         float[] logitScores = outputTensor.getDataAsFloatArray();
@@ -59,9 +60,9 @@ public class PredictionManager {
     }
 
     public String predict(ModelType modelType, Uri photoUri) {
-        String modelName = String.format(Constants.MODEL_FILE_NAME_FMT, modelType.modelName);
-        String classListName = String.format(Constants.CLASSES_FILE_NAME_FMT, modelType.modelName);
-        String classDetailsName = String.format(Constants.CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
+        String modelName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
+        String classListName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
+        String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
 
         try {
             String modelPath = modelLoader.loadFromCache(context, modelName);
@@ -181,7 +182,7 @@ public class PredictionManager {
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception fetching species image urls", ex);
         }
-        return "<font color='#777777'>(No images available)</font><br/><br/>";
+        return HTML_NO_IMAGE_AVAILABLE;
     }
 
 }

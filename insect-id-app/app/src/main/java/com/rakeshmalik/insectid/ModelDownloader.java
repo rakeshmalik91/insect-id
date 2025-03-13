@@ -22,9 +22,8 @@ import okhttp3.*;
 public class ModelDownloader {
 
     private final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS) // Connection timeout
-            .readTimeout(30, TimeUnit.SECONDS)    // Read timeout
-            .writeTimeout(30, TimeUnit.SECONDS)   // Write timeout
+            .connectTimeout(MODEL_LOAD_TIMEOUT, TimeUnit.MILLISECONDS)
+            .readTimeout(MODEL_LOAD_TIMEOUT, TimeUnit.MILLISECONDS)
             .build();
     private final Context context;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -53,7 +52,7 @@ public class ModelDownloader {
     }
 
     private boolean isModelToBeUpdated(ModelType modelType) {
-        int currentVersion = prefs.getInt(modelVersionPrefName(modelType), 0);
+        int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
         int latestVersion = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
         Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", modelType.modelName, currentVersion, latestVersion));
         return currentVersion < latestVersion;
@@ -63,41 +62,62 @@ public class ModelDownloader {
         downloadModel(modelType, onSuccess, onFailure, false);
     }
 
+    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate) {
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
+        int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
+        int latestVersion = metadataManager.getMetadata(ROOT_CLASSIFIER).optInt(FIELD_VERSION, 0);
+        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", ROOT_CLASSIFIER, currentVersion, latestVersion));
+        if(isFileAlreadyDownloaded(modelFileName) && currentVersion >= latestVersion) {
+            Log.d(LOG_TAG, "Model " + ROOT_CLASSIFIER + " already downloaded.");
+            onSuccess.run();
+        } else {
+            String fileUrl = metadataManager.getMetadata(ROOT_CLASSIFIER).optString(FIELD_MODEL_URL, null);
+            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "model Root Classifier", ROOT_CLASSIFIER, forceUpdate);
+        }
+    }
+
     public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate) {
         try {
             if(forceUpdate) {
                 metadataManager.getMetadata(true);
             }
 
-            boolean updatingModel = false;
+            final boolean downloadRequired;
+            final boolean updateRequired;
             if (isModelAlreadyDownloaded(modelType)) {
-                updatingModel = forceUpdate && isModelToBeUpdated(modelType);
-                if(updatingModel) {
+                updateRequired = forceUpdate && isModelToBeUpdated(modelType);
+                if(updateRequired) {
                     Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
                 } else {
                     if(forceUpdate) {
-                        int currentVersion = prefs.getInt(modelVersionPrefName(modelType), 0);
+                        int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
                         mainHandler.post(() -> outputText.setText("Model already up to date\nModel name: " + modelType.displayName + "\nVersion: " + currentVersion));
                     }
                     Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
                     onSuccess.run();
-                    return;
                 }
+                downloadRequired = updateRequired;
             } else {
+                downloadRequired = true;
+                updateRequired = false;
                 Log.d(LOG_TAG, "Going to download " + modelType.modelName + " model");
             }
 
-            String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
-            String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
-            String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
+            final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
+            final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
+            final String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
 
-            String classesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASSES_URL, null);
-            String classDetailsFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASS_DETAILS_URL, null);
-            String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
+            final String classesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASSES_URL, null);
+            final String classDetailsFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASS_DETAILS_URL, null);
+            final String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
 
-            downloadFile(classesFileName, classesFileUrl, null, onFailure, "class list", modelType, updatingModel);
-            downloadFile(classDetailsFileName, classDetailsFileUrl, null, onFailure, "class details", modelType, updatingModel);
-            downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType, updatingModel);
+            downloadRootClassifier(() -> {
+                if(downloadRequired) {
+                    downloadFile(classesFileName, classesFileUrl, null, onFailure, "class list", modelType.modelName, updateRequired);
+                    downloadFile(classDetailsFileName, classDetailsFileUrl, null, onFailure, "class details", modelType.modelName, updateRequired);
+                    downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType.modelName, updateRequired);
+                }
+            }, onFailure, forceUpdate);
         } catch(Exception ex) {
             if(onFailure != null) {
                 onFailure.run();
@@ -105,7 +125,7 @@ public class ModelDownloader {
         }
     }
 
-    private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure, String fileType, ModelType modelType, boolean updatingModel) {
+    private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure, String fileType, String modelName, boolean updateRequired) {
         Log.d(LOG_TAG, "Downloading " + fileType + " " + fileName + " from " + fileUrl + "...");
         client.newCall(new Request.Builder().url(fileUrl).build()).enqueue(new Callback() {
             @Override
@@ -129,7 +149,6 @@ public class ModelDownloader {
                 long startTime = System.currentTimeMillis();
                 try(InputStream inputStream = response.body().byteStream();
                     FileOutputStream outputStream = new FileOutputStream(file); ) {
-                    int currentVersion = prefs.getInt(modelVersionPrefName(modelType), 0);
                     byte[] buffer = new byte[4096];
                     long totalBytes = response.body().contentLength();
                     long downloadedBytes = 0;
@@ -141,8 +160,9 @@ public class ModelDownloader {
                         long elapsedTime = System.currentTimeMillis() - startTime;
                         long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
                         String msg;
-                        if(updatingModel) {
-                            int latestVersion = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
+                        if(updateRequired) {
+                            int latestVersion = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+                            int currentVersion = prefs.getInt(modelVersionPrefName(modelName), 0);
                             msg = String.format("Updating %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nCurrent version: %d, Latest version: %d",
                                     fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
                                     currentVersion, latestVersion);
@@ -153,14 +173,14 @@ public class ModelDownloader {
                         mainHandler.post(() -> outputText.setText(msg));
                     }
                     Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
-                    mainHandler.post(() -> outputText.setText("Downloaded " + fileType + " successfully\nVersion: " + currentVersion));
+                    mainHandler.post(() -> outputText.setText("Downloaded " + fileType + " successfully"));
                     if(onSuccess != null) {
                         onSuccess.run();
                     }
                     prefs.edit().putBoolean(fileDownloadedPrefName(fileName), true).apply();
-                    if(fileType.contains("model")) {
-                        int version = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
-                        prefs.edit().putInt(modelVersionPrefName(modelType), version).apply();
+                    if(fileType.toLowerCase().contains("model")) {
+                        int version = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+                        prefs.edit().putInt(modelVersionPrefName(modelName), version).apply();
                     }
                 }
             }
@@ -176,8 +196,8 @@ public class ModelDownloader {
         return PREF_FILE_DOWNLOADED + "::" + fileName;
     }
 
-    private String modelVersionPrefName(ModelType modelType) {
-        return PREF_MODEL_VERSION + "::" + modelType.modelName;
+    private String modelVersionPrefName(String modelName) {
+        return PREF_MODEL_VERSION + "::" + modelName;
     }
 
 }

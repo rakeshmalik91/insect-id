@@ -34,7 +34,11 @@ public class MetadataManager {
     }
 
     public JSONObject getMetadata(ModelType modelType) {
-        return getMetadata().optJSONObject(modelType.modelName);
+        return getMetadata(modelType.modelName);
+    }
+
+    public JSONObject getMetadata(String modelName) {
+        return getMetadata().optJSONObject(modelName);
     }
 
     public JSONObject getMetadata() {

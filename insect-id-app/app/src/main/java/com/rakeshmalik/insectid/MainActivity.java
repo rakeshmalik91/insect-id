@@ -6,7 +6,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -36,13 +35,15 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private PredictionManager predictionManager;
     private ImageButton buttonUpdateModel;
 
-    private boolean predicting = false;
+    private boolean uiLocked = false;
+    private long currentPredictionId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +89,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadOrUpdateModel() {
-        blockPrediction();
+        lockUI();
+        currentPredictionId = 0;
         imageView.setImageURI(null);
         photoUri = null;
-        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unblockPrediction, this::unblockPrediction, true));
+        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true));
     }
 
     private void createModelTypeSpinner() {
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 private int previousSelection = 0;
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(predicting) {
+                    if(uiLocked) {
                         Log.d(LOG_TAG, "Already predicting...");
                         modelTypeSpinner.setSelection(previousSelection);
                         return;
@@ -189,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Show dialog to choose Gallery or Camera
     private void showImagePickerDialog() {
-        if(predicting) {
+        if(uiLocked) {
             return;
         }
         try {
@@ -314,8 +317,8 @@ public class MainActivity extends AppCompatActivity {
         executorService.submit(new PredictRunnable());
     }
 
-    private void blockPrediction() {
-        predicting = true;
+    private synchronized void lockUI() {
+        uiLocked = true;
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(false);
             buttonPickImage.setEnabled(false);
@@ -323,8 +326,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void unblockPrediction() {
-        predicting = false;
+    private synchronized void unlockUI() {
+        uiLocked = false;
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(true);
             buttonPickImage.setEnabled(true);
@@ -333,31 +336,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Drawable predictedImageRenderer(String source) {
-        String[] urls = source.split(",");
+        List<Bitmap> images = Arrays.stream(source.split(","))
+                .map(url -> Utils.loadImageFromUrl(url, PREVIEW_IMAGE_TIMEOUT))
+                .filter(Objects::nonNull).collect(Collectors.toList());
         int maxColumns = 3, gap = 10;
         int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
-        int columns = Math.min(urls.length, maxColumns);
-        int rows = (int) Math.ceil((double) urls.length / maxColumns);
+        int columns = Math.min(images.size(), maxColumns);
+        int rows = (int) Math.ceil((double) images.size() / maxColumns);
         int gridWidth = size * columns + gap * (columns - 1);
         int gridHeight = size * rows + gap * (rows - 1);
         Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         int left = 0, top = 0;
-        for (int i = 0; i < urls.length; i++) {
-            try (InputStream is = (InputStream) new URL(urls[i]).getContent();) {
-                Bitmap img = BitmapFactory.decodeStream(is);
-                img = Utils.topBottomEdgeCrop(img, 0.12f);
-                img = Utils.centerSquareCrop(img);
-                img = Bitmap.createScaledBitmap(img, size, size, true);
-                canvas.drawBitmap(img, left, top, null);
-                if(i % maxColumns == maxColumns - 1) {
-                    top += size + gap;
-                    left = 0;
-                } else {
-                    left += size + gap;
-                }
-            } catch (Exception ex1) {
-                Log.e(LOG_TAG, "Exception loading image " + urls[i] + " as html in textview", ex1);
+        for (int i = 0; i < images.size(); i++) {
+            Bitmap img = images.get(i);
+            img = Utils.topBottomEdgeCrop(img, 0.12f);
+            img = Utils.centerSquareCrop(img);
+            img = Bitmap.createScaledBitmap(img, size, size, true);
+            canvas.drawBitmap(img, left, top, null);
+            if (i % maxColumns == maxColumns - 1) {
+                top += size + gap;
+                left = 0;
+            } else {
+                left += size + gap;
             }
         }
         Drawable drawable = new BitmapDrawable(getResources(), bitmap);
@@ -365,38 +366,50 @@ public class MainActivity extends AppCompatActivity {
         return drawable;
     }
 
+    private String getHtmlWithoutImage(String predictions) {
+        String predictionsWithoutImage = predictions.replaceAll("<img [^>]+/>", "");
+        while(predictionsWithoutImage.contains(HTML_NO_IMAGE_AVAILABLE)) {
+            predictionsWithoutImage = predictionsWithoutImage.replace(HTML_NO_IMAGE_AVAILABLE, "");
+        }
+        return predictionsWithoutImage;
+    }
+
     class PredictRunnable implements Runnable {
-        private void runPrediction() {
+        private void runPrediction(long predictionId) {
             try {
                 runOnUiThread(() -> outputText.setText(R.string.predicting));
                 final ModelType modelType = selectedModelType;
                 String predictions = predictionManager.predict(selectedModelType, photoUri);
                 if (modelType == selectedModelType) {
                     // set html with alt text while loading images
-                    String imageAltHtml = "<font color='#777777'>(Loading images...)</font><br/><br/>";
-                    Spanned simpleHtml = Html.fromHtml(predictions.replaceAll("<img [^>]+/>", imageAltHtml), Html.FROM_HTML_MODE_COMPACT, null, null);
-                    runOnUiThread(() -> outputText.setText(simpleHtml));
+                    Spanned htmlWithoutImage = Html.fromHtml(getHtmlWithoutImage(predictions), Html.FROM_HTML_MODE_COMPACT, null, null);
+                    runOnUiThread(() -> outputText.setText(htmlWithoutImage));
+                    unlockUI();
                     // render html with images
                     Spanned html = Html.fromHtml(predictions, Html.FROM_HTML_MODE_COMPACT, MainActivity.this::predictedImageRenderer, null);
-                    runOnUiThread(() -> outputText.setText(html));
+                    if(predictionId == currentPredictionId) { // to check that another prediction/download has not started
+                        runOnUiThread(() -> outputText.setText(html));
+                    }
                 }
             } catch(Exception ex) {
                 Log.e(LOG_TAG, "Exception during prediction", ex);
             } finally {
-                unblockPrediction();
+                unlockUI();
             }
         }
         @Override
         public void run() {
-            blockPrediction();
+            lockUI();
+            long predictionId = System.currentTimeMillis();
+            currentPredictionId = predictionId;
             try {
                 if (modelDownloader.isModelDownloadOrUpdateRequired(selectedModelType)) {
-                    modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unblockPrediction);
+                    modelDownloader.downloadModel(selectedModelType, () -> runPrediction(predictionId), MainActivity.this::unlockUI);
                 } else {
-                    runPrediction();
+                    runPrediction(predictionId);
                 }
             } catch(Exception ex) {
-                unblockPrediction();
+                unlockUI();
             }
         }
     }

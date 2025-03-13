@@ -34,30 +34,30 @@ public class ModelLoader {
         return file.getAbsolutePath();
     }
 
-    public String loadFromAsset(Context context, String assetName) {
-        String prefKey = PREF_ASSET_TEMP_PATH + "::" + assetName;
-        if(prefs.contains(prefKey)) {
-            File file = new File(prefs.getString(prefKey, ""));
-            if(file.exists()) {
-                return file.getAbsolutePath();
-            }
-        }
-        try(InputStream is = context.getAssets().open(assetName);) {
-            File tempFile = File.createTempFile(assetName, "tmp", context.getCacheDir());
-            tempFile.deleteOnExit();
-            try(FileOutputStream outputStream = new FileOutputStream(tempFile);) {
-                byte[] buffer = new byte[4 * 1024];
-                int bytesRead;
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-            }
-            prefs.edit().putString(prefKey, tempFile.getAbsolutePath()).apply();
-            return tempFile.getAbsolutePath();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public String loadFromAsset(Context context, String assetName) {
+//        String prefKey = PREF_ASSET_TEMP_PATH + "::" + assetName;
+//        if(prefs.contains(prefKey)) {
+//            File file = new File(prefs.getString(prefKey, ""));
+//            if(file.exists()) {
+//                return file.getAbsolutePath();
+//            }
+//        }
+//        try(InputStream is = context.getAssets().open(assetName);) {
+//            File tempFile = File.createTempFile(assetName, "tmp", context.getCacheDir());
+//            tempFile.deleteOnExit();
+//            try(FileOutputStream outputStream = new FileOutputStream(tempFile);) {
+//                byte[] buffer = new byte[4 * 1024];
+//                int bytesRead;
+//                while ((bytesRead = is.read(buffer)) != -1) {
+//                    outputStream.write(buffer, 0, bytesRead);
+//                }
+//            }
+//            prefs.edit().putString(prefKey, tempFile.getAbsolutePath()).apply();
+//            return tempFile.getAbsolutePath();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public List<String> getClassLabels(Context context, String fileName) {
         if(classLabelsCache.containsKey(fileName)) {

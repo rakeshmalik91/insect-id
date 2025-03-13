@@ -19,6 +19,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
+import json
 
 def split_data_for_train_and_val(data_dir, test_dir, val_dir, train_dir, test_data_weight=0.1, val_data_weight=0.2, min_file_cnt_for_val=4, class_name_filter_regex=None):
     if os.path.exists(test_dir):
@@ -463,3 +464,12 @@ def plot_confidence(model_data, test_dir, classes, min_accepted_softmax, k=0):
     for future in futures:
         future.result()
     plot_dist(list(plot_data.queue), 0, 100, 2, f"top-{k} success on >={100*min_accepted_softmax}% confidence", "class count", test_dir)
+
+
+def load_json(path):
+    with open(path, "r", encoding="utf-8") as file:
+        return json.load(file)
+    
+def dump_json(path, data):
+    with open(path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4)

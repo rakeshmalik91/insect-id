@@ -1,13 +1,19 @@
 package com.rakeshmalik.insectid;
 
 import static com.rakeshmalik.insectid.Constants.LOG_TAG;
+import static com.rakeshmalik.insectid.Constants.PREVIEW_IMAGE_TIMEOUT;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,5 +70,47 @@ public class Utils {
                 (img.getWidth() - centerCropSize) / 2, (img.getHeight() - centerCropSize) / 2,
                 centerCropSize, centerCropSize);
     }
+
+    public static Bitmap loadImageFromUrl(String urlString, int timeout) {
+        try {
+            URL url = new URL(urlString);
+            URLConnection connection = url.openConnection();
+            connection.setConnectTimeout(timeout);
+            connection.setReadTimeout(timeout);
+            try (InputStream is = connection.getInputStream();
+                 ByteArrayOutputStream buffer = new ByteArrayOutputStream();) {
+                byte[] data = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = is.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, bytesRead);
+                }
+                byte[] imageBytes = buffer.toByteArray();
+                return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            } catch (Exception ex1) {
+                Log.e(LOG_TAG, "Exception reading image " + urlString, ex1);
+            }
+        } catch (Exception ex2) {
+            Log.e(LOG_TAG, "Exception loading image " + urlString, ex2);
+        }
+        return null;
+    }
+
+    // loads partial image on timeout
+//    public static Bitmap loadImageFromUrlAsStream(String urlString, int timeout) {
+//        try {
+//            URL url = new URL(urlString);
+//            URLConnection connection = url.openConnection();
+//            connection.setConnectTimeout(timeout);
+//            connection.setReadTimeout(timeout);
+//            try (InputStream is = (InputStream) connection.getInputStream()) {
+//                return BitmapFactory.decodeStream(is);
+//            } catch (Exception ex1) {
+//                Log.e(LOG_TAG, "Exception reading image " + urlString, ex1);
+//            }
+//        } catch (Exception ex2) {
+//            Log.e(LOG_TAG, "Exception loading image " + urlString, ex2);
+//        }
+//        return null;
+//    }
 
 }

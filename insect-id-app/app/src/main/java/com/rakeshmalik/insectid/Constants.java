@@ -33,11 +33,16 @@ public class Constants {
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = "min_accepted_softmax_to_override_root_classifier";
     public static final String FIELD_CLASSES = "classes";
     public static final String FIELD_ACCEPTED_CLASSES = "accepted_classes";
-    public static final String FIELD_ASSET_PATH = "asset_path";
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
     public static final String ROOT_CLASS_OTHER = "other";
 
     public static final int MAX_IMAGES_IN_PREDICTION = 6;
+
+    public static final int PREVIEW_IMAGE_TIMEOUT = 10000;
+    public static final int MODEL_LOAD_TIMEOUT = 60000;
+
+    public static final String HTML_NO_IMAGE_AVAILABLE = "<font color='#777777'>(No images available)</font><br/><br/>";
+    public static final String HTML_LOADING_IMAGES = "<font color='#777777'>(Loading images...)</font><br/><br/>";
 
 }
