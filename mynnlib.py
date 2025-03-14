@@ -286,30 +286,32 @@ def test(model_data, test_dir, print_failures=True):
         print("Failures:")
         pprint.pprint(prediction['failures'])
 
-def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, print_top1_accuracy=True, print_no_match=False):
+def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, print_top1_accuracy=True, print_no_match=False, match_filter=0.0, print_genus_match=True):
     model_data['model'].eval()
     top1_success_cnt = 0
     top1_genus_success_cnt = 0
     success_cnt = 0
     genus_success_cnt = 0
     total_cnt = 0
+    max_file_name_length = max([ len(file.name.split('.')[0]) for file in Path(test_dir).iterdir() ])
     for file in Path(test_dir).iterdir():
         if print_preds:
-            print(f"{file.name.split('.')[0]:30}:", end=' ')
+            print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
         total_cnt = total_cnt + 1
         probs = predict_top_k(file, model_data, k)
         genus_matched = False
         species_matched = False
         for pred, prob in probs.items():
-            if pred in file.name:
-                species_matched = True
-                success_cnt = success_cnt + 1
-            if pred.split('-')[0] in file.name:
-                genus_matched = True
-            if print_preds and pred in file.name:
-                print(f"\033[32m{pred}\033[0m({prob:.3f}) ", end=' ')
-            elif print_preds:
-                print(f"{pred}({prob:.3f}) ", end=' ')
+            if not match_filter or prob >= match_filter:
+                if pred in file.name:
+                    species_matched = True
+                    success_cnt = success_cnt + 1
+                if pred.split('-')[0] in file.name:
+                    genus_matched = True
+                if print_preds and pred in file.name:
+                    print(f"\033[32m{pred}\033[0m({prob:.3f}) ", end=' ')
+                elif print_preds:
+                    print(f"{pred}({prob:.3f}) ", end=' ')
         if genus_matched:
             genus_success_cnt = genus_success_cnt + 1
         if [pred for pred, prob in probs.items()][0] in file.name:
@@ -324,15 +326,22 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
             for pred, prob in probs.items():
                 if i % 4 == 0:
                     print("\n\t", end=' ')
-                print(f"\033[{'33' if genus_matched else '31'}m{pred}\033[0m({prob:.3f}) ", end=' ')
+                if not match_filter or prob >= match_filter:
+                    print(f"\033[{'33' if genus_matched else '31'}m{pred}\033[0m({prob:.3f}) ", end=' ')
                 i += 1
             print()
     if print_accuracy:
         if print_preds:
             print("-"*10)
         if print_top1_accuracy:
-            print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%, genus matched: {top1_genus_success_cnt}/{total_cnt} -> {100*top1_genus_success_cnt/total_cnt:.2f}%")
-        print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
+            if print_genus_match:
+                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%, genus matched: {top1_genus_success_cnt}/{total_cnt} -> {100*top1_genus_success_cnt/total_cnt:.2f}%")
+            else:
+                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%")
+        if print_genus_match:
+            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
+        else:
+            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%")
 
 def extract_proto_dataset(data_dir, proto_data_dir, limit):
     file_cnt = 0

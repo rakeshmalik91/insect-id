@@ -1,6 +1,6 @@
 {
     "root-classifier": {
-        "model_url": "https://drive.usercontent.google.com/download?id=1A4rOj2wxOXYcBOYgBxeA-tWq0HYv2I-0&export=download&confirm=t&uuid=5414055c-198b-413c-8cfb-6a639c09fa9b",
+        "model_url": "https://drive.usercontent.google.com/download?id=19SUYxg8UmXJqK9wC39k78Wzn3lasz4O6&export=download&confirm=t&uuid=03231612-b556-4112-b8fa-a5c656107a2d",
         "classes": [
             "butterfly",
             "cicada",
@@ -9,7 +9,7 @@
             "other",
             "other-insect"
         ],
-        "version": 2,
+        "version": 3,
         "min_accepted_softmax": 0.3
     },
     "lepidoptera": {
@@ -59,7 +59,7 @@
         "accepted_classes": [
             "cicada"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.9
+        "min_accepted_softmax_to_override_root_classifier": 0.95
     },
     "odonata": {
         "model_url": "https://drive.usercontent.google.com/download?id=18Na9cR_SjIlF21zJptLpxysb61ZSMUfO&export=download&confirm=t&uuid=dfa68642-b4bf-463a-b3eb-fd2adbb5194e",
@@ -71,6 +71,6 @@
         "accepted_classes": [
             "odonata"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.9
+        "min_accepted_softmax_to_override_root_classifier": 0.95
     }
 }
