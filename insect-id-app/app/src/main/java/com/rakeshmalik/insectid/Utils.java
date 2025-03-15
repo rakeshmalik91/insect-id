@@ -12,6 +12,7 @@ import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InterruptedIOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -82,12 +83,13 @@ public class Utils {
                 byte[] data = new byte[8192];
                 int bytesRead;
                 while ((bytesRead = is.read(data, 0, data.length)) != -1) {
+                    if(Thread.currentThread().isInterrupted()) {
+                        throw new RuntimeException("thread interrupted");
+                    }
                     buffer.write(data, 0, bytesRead);
                 }
                 byte[] imageBytes = buffer.toByteArray();
                 return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            } catch (Exception ex1) {
-                Log.e(LOG_TAG, "Exception reading image " + urlString, ex1);
             }
         } catch (Exception ex2) {
             Log.e(LOG_TAG, "Exception loading image " + urlString, ex2);

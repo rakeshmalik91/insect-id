@@ -11,4 +11,5 @@
     <string name="image_to_be_classified">Image to be classified</string>
     <string name="fetching_metadata">Fetching metadata…</string>
     <string name="update_model">Update/Download model</string>
+    <string name="please_wait">Please wait…</string>
 </resources>

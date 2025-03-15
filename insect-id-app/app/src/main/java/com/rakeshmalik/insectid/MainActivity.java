@@ -41,8 +41,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,15 +53,16 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonPickImage;
     private TextView outputText;
     private Uri photoUri;
-    private ExecutorService executorService;
     private Spinner modelTypeSpinner;
     private ModelType selectedModelType;
     private ModelDownloader modelDownloader;
     private PredictionManager predictionManager;
     private ImageButton buttonUpdateModel;
 
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final ArrayBlockingQueue<Future<?>> runningTasks = new ArrayBlockingQueue<>(10);
+
     private boolean uiLocked = false;
-    private long currentPredictionId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
             this.outputText = findViewById(R.id.outputText);
             this.modelTypeSpinner = findViewById(R.id.modelTypeSpinner);
             createModelTypeSpinner();
-
-            this.executorService = Executors.newSingleThreadExecutor();
 
             MetadataManager metadataManager = new MetadataManager(this, outputText);
             this.modelDownloader = new ModelDownloader(this, outputText, metadataManager);
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void downloadOrUpdateModel() {
         lockUI();
-        currentPredictionId = 0;
         imageView.setImageURI(null);
         photoUri = null;
         executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true));
@@ -313,10 +313,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadModelAndRunPredictionAsync() {
-        executorService.submit(new PredictRunnable());
-    }
-
     private synchronized void lockUI() {
         uiLocked = true;
         runOnUiThread(() -> {
@@ -336,34 +332,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Drawable predictedImageRenderer(String source) {
-        List<Bitmap> images = Arrays.stream(source.split(","))
-                .map(url -> Utils.loadImageFromUrl(url, PREVIEW_IMAGE_TIMEOUT))
-                .filter(Objects::nonNull).collect(Collectors.toList());
-        int maxColumns = 3, gap = 10;
-        int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
-        int columns = Math.min(images.size(), maxColumns);
-        int rows = (int) Math.ceil((double) images.size() / maxColumns);
-        int gridWidth = size * columns + gap * (columns - 1);
-        int gridHeight = size * rows + gap * (rows - 1);
-        Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        int left = 0, top = 0;
-        for (int i = 0; i < images.size(); i++) {
-            Bitmap img = images.get(i);
-            img = Utils.topBottomEdgeCrop(img, 0.12f);
-            img = Utils.centerSquareCrop(img);
-            img = Bitmap.createScaledBitmap(img, size, size, true);
-            canvas.drawBitmap(img, left, top, null);
-            if (i % maxColumns == maxColumns - 1) {
-                top += size + gap;
-                left = 0;
-            } else {
-                left += size + gap;
+        try {
+            List<Bitmap> images = Arrays.stream(source.split(","))
+                    .map(url -> {
+                        if(Thread.currentThread().isInterrupted()) {
+                            throw new RuntimeException("thread interrupted");
+                        }
+                        return Utils.loadImageFromUrl(url, PREVIEW_IMAGE_TIMEOUT);
+                    })
+                    .filter(Objects::nonNull).collect(Collectors.toList());
+            int maxColumns = 3, gap = 10;
+            int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
+            int columns = Math.min(images.size(), maxColumns);
+            int rows = (int) Math.ceil((double) images.size() / maxColumns);
+            int gridWidth = size * columns + gap * (columns - 1);
+            int gridHeight = size * rows + gap * (rows - 1);
+            Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            int left = 0, top = 0;
+            for (int i = 0; i < images.size(); i++) {
+                Bitmap img = images.get(i);
+                img = Utils.topBottomEdgeCrop(img, 0.12f);
+                img = Utils.centerSquareCrop(img);
+                img = Bitmap.createScaledBitmap(img, size, size, true);
+                canvas.drawBitmap(img, left, top, null);
+                if (i % maxColumns == maxColumns - 1) {
+                    top += size + gap;
+                    left = 0;
+                } else {
+                    left += size + gap;
+                }
             }
+            Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+            drawable.setBounds(0, 0, gridWidth, gridHeight);
+            return drawable;
+        } catch(RuntimeException ex) {
+            Log.e(LOG_TAG, "Exception in predictedImageRenderer", ex);
+            return null;
         }
-        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-        drawable.setBounds(0, 0, gridWidth, gridHeight);
-        return drawable;
     }
 
     private String getHtmlWithoutImage(String predictions) {
@@ -375,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class PredictRunnable implements Runnable {
-        private void runPrediction(long predictionId) {
+        private void runPrediction() {
             try {
                 runOnUiThread(() -> outputText.setText(R.string.predicting));
                 final ModelType modelType = selectedModelType;
@@ -387,9 +393,7 @@ public class MainActivity extends AppCompatActivity {
                     unlockUI();
                     // render html with images
                     Spanned html = Html.fromHtml(predictions, Html.FROM_HTML_MODE_COMPACT, MainActivity.this::predictedImageRenderer, null);
-                    if(predictionId == currentPredictionId) { // to check that another prediction/download has not started
-                        runOnUiThread(() -> outputText.setText(html));
-                    }
+                    runOnUiThread(() -> outputText.setText(html));
                 }
             } catch(Exception ex) {
                 Log.e(LOG_TAG, "Exception during prediction", ex);
@@ -401,13 +405,27 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             try {
                 lockUI();
-                long predictionId = System.currentTimeMillis();
-                currentPredictionId = predictionId;
-                modelDownloader.downloadModel(selectedModelType, () -> runPrediction(predictionId), MainActivity.this::unlockUI);
+                modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unlockUI);
             } catch(Exception ex) {
                 unlockUI();
             }
         }
+    }
+
+    private void downloadModelAndRunPredictionAsync() {
+        if(!runningTasks.isEmpty()) {
+            Log.d(LOG_TAG, "Previous tasks still running. Going to try killing them.");
+            runOnUiThread(() -> outputText.setText(R.string.please_wait));
+        }
+        while(!runningTasks.isEmpty()) {
+            Future<?> future = runningTasks.poll();
+            if(future != null) {
+                future.cancel(true);
+                Log.d(LOG_TAG, "Task " + future + " killed");
+            }
+        }
+        Future<?> future = executorService.submit(new PredictRunnable());
+        runningTasks.add(future);
     }
 
 }

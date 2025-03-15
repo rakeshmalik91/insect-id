@@ -30,3 +30,8 @@ Apk: https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?us
 	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="200"/>
 	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="200"/>
 </p>
+<p align="center">
+	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="200"/>
+	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="200"/>
+	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="200"/>
+</p>
