@@ -10,7 +10,7 @@ public class Constants {
     public static final String CLASS_DETAILS_FILE_NAME_FMT = "class_details.%s.json";
 
     public static final String EARLY_STAGE_CLASS_SUFFIX = "-early";
-    public static final String EARLY_STAGE_DISPLAY_SUFFIX = " (Early)";
+    public static final String EARLY_STAGE_DISPLAY_SUFFIX = " (Early Stage)";
 
     public static final String NAME = "name";
     public static final String IMAGES = "images";

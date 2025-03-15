@@ -131,11 +131,11 @@ public class PredictionManager {
     }
 
     private String getScientificName(String className) {
-        return className.replaceFirst("-", " ");
+        return className.replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", "").replaceFirst("-", " ");
     }
 
     private String getScientificNameHtml(String className) {
-        String sciName = getScientificName(className).replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", "");
+        String sciName = getScientificName(className);
         return "<font color='#FF7755'><i>" + sciName + "</i></font><br>";
     }
 
@@ -143,7 +143,7 @@ public class PredictionManager {
         String speciesName = "";
         try {
             boolean isEarlyStage = className.endsWith(EARLY_STAGE_CLASS_SUFFIX);
-            className = className.replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", EARLY_STAGE_DISPLAY_SUFFIX);
+            className = className.replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", "");
             if (classDetails.containsKey(className) && classDetails.get(className).containsKey(NAME)) {
                 // get species name name if available in class details
                 speciesName = (String) classDetails.get(className).get(NAME);

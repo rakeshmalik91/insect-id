@@ -399,15 +399,11 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         public void run() {
-            lockUI();
-            long predictionId = System.currentTimeMillis();
-            currentPredictionId = predictionId;
             try {
-                if (modelDownloader.isModelDownloadOrUpdateRequired(selectedModelType)) {
-                    modelDownloader.downloadModel(selectedModelType, () -> runPrediction(predictionId), MainActivity.this::unlockUI);
-                } else {
-                    runPrediction(predictionId);
-                }
+                lockUI();
+                long predictionId = System.currentTimeMillis();
+                currentPredictionId = predictionId;
+                modelDownloader.downloadModel(selectedModelType, () -> runPrediction(predictionId), MainActivity.this::unlockUI);
             } catch(Exception ex) {
                 unlockUI();
             }

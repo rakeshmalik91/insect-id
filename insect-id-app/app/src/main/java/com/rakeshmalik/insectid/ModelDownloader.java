@@ -82,27 +82,6 @@ public class ModelDownloader {
                 metadataManager.getMetadata(true);
             }
 
-            final boolean downloadRequired;
-            final boolean updateRequired;
-            if (isModelAlreadyDownloaded(modelType)) {
-                updateRequired = forceUpdate && isModelToBeUpdated(modelType);
-                if(updateRequired) {
-                    Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
-                } else {
-                    if(forceUpdate) {
-                        int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
-                        mainHandler.post(() -> outputText.setText("Model already up to date\nModel name: " + modelType.displayName + "\nVersion: " + currentVersion));
-                    }
-                    Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
-                    onSuccess.run();
-                }
-                downloadRequired = updateRequired;
-            } else {
-                downloadRequired = true;
-                updateRequired = false;
-                Log.d(LOG_TAG, "Going to download " + modelType.modelName + " model");
-            }
-
             final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
             final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
             final String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
@@ -111,12 +90,35 @@ public class ModelDownloader {
             final String classDetailsFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASS_DETAILS_URL, null);
             final String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
 
+            // download root classifier
             downloadRootClassifier(() -> {
-                if(downloadRequired) {
-                    downloadFile(classesFileName, classesFileUrl, null, onFailure, "class list", modelType.modelName, updateRequired);
-                    downloadFile(classDetailsFileName, classDetailsFileUrl, null, onFailure, "class details", modelType.modelName, updateRequired);
-                    downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType.modelName, updateRequired);
+                final boolean updateRequired;
+                if (isModelAlreadyDownloaded(modelType)) {
+                    updateRequired = forceUpdate && isModelToBeUpdated(modelType);
+                    if(updateRequired) {
+                        Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
+                    } else {
+                        if(forceUpdate) {
+                            int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
+                            mainHandler.post(() -> outputText.setText("Model already up to date\nModel name: " + modelType.displayName + "\nVersion: " + currentVersion));
+                        }
+                        Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
+                        onSuccess.run();
+                        return;
+                    }
+                } else {
+                    updateRequired = false;
+                    Log.d(LOG_TAG, "Going to download " + modelType.modelName + " model");
                 }
+
+                // download class list
+                downloadFile(classesFileName, classesFileUrl, () -> {
+                    // download class details
+                    downloadFile(classDetailsFileName, classDetailsFileUrl, () -> {
+                        // download model
+                        downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType.modelName, updateRequired);
+                    }, onFailure, "class details", modelType.modelName, updateRequired);
+                }, onFailure, "class list", modelType.modelName, updateRequired);
             }, onFailure, forceUpdate);
         } catch(Exception ex) {
             if(onFailure != null) {
