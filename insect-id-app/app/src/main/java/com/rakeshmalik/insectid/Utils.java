@@ -98,21 +98,21 @@ public class Utils {
     }
 
     // loads partial image on timeout
-//    public static Bitmap loadImageFromUrlAsStream(String urlString, int timeout) {
-//        try {
-//            URL url = new URL(urlString);
-//            URLConnection connection = url.openConnection();
-//            connection.setConnectTimeout(timeout);
-//            connection.setReadTimeout(timeout);
-//            try (InputStream is = (InputStream) connection.getInputStream()) {
-//                return BitmapFactory.decodeStream(is);
-//            } catch (Exception ex1) {
-//                Log.e(LOG_TAG, "Exception reading image " + urlString, ex1);
-//            }
-//        } catch (Exception ex2) {
-//            Log.e(LOG_TAG, "Exception loading image " + urlString, ex2);
-//        }
-//        return null;
-//    }
+    public static Bitmap loadImageFromUrlAsStream(String urlString, int timeout) {
+        try {
+            URL url = new URL(urlString);
+            URLConnection connection = url.openConnection();
+            connection.setConnectTimeout(timeout);
+            connection.setReadTimeout(timeout);
+            try (InputStream is = (InputStream) connection.getInputStream()) {
+                return BitmapFactory.decodeStream(is);
+            } catch (Exception ex1) {
+                Log.e(LOG_TAG, "Exception reading image " + urlString, ex1);
+            }
+        } catch (Exception ex2) {
+            Log.e(LOG_TAG, "Exception loading image " + urlString, ex2);
+        }
+        return null;
+    }
 
 }

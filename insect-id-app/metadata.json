@@ -16,7 +16,8 @@
         "model_url": "https://drive.usercontent.google.com/download?id=1tKaZNBXfUMfWBOoZ-h7lrDhnSsCEqCLW&export=download&confirm=t&uuid=1c1f21a7-c62d-4300-a580-b58717fce8a3",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-        "version": 6,
+        "images_url": "https://drive.usercontent.google.com/download?id=15w2AIRWhzSnNKVTDbrJYjeIDlsUoT_CO&export=download&confirm=t&uuid=41f91863-dbc5-4e18-a52b-eff43d24ec24",
+        "version": 7,
         "min_accepted_logit": -60,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
@@ -29,7 +30,8 @@
         "model_url": "https://drive.usercontent.google.com/download?id=16PwKsg22FD96TYAlKsfTsMB6e2ehNuq6&export=download&confirm=t&uuid=58aba924-c1b2-41ac-848c-cce96b40c16a",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-        "version": 3,
+        "images_url": "https://drive.usercontent.google.com/download?id=1O-Ma-RsPH5gxf6Z6TLSykLF2dL4-vfO-&export=download&confirm=t&uuid=19e3c44f-bc10-486f-b812-8f2b40a52dcf",
+        "version": 4,
         "min_accepted_logit": -50,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
@@ -41,7 +43,8 @@
         "model_url": "https://drive.usercontent.google.com/download?id=1mFXxQuHS2IyZoYKUs_MwFgzYkmpX-xj9&export=download&confirm=t&uuid=96422f6b-9e70-4333-b35a-c43a22d63d33",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-        "version": 4,
+        "images_url": "https://drive.usercontent.google.com/download?id=1h3BKQ8eIQvIZ8cEutoUMTrQSCm7hXTrG&export=download&confirm=t&uuid=5ec5aa28-b366-4475-a296-df656b6ae1ae",
+        "version": 5,
         "min_accepted_logit": -30,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
@@ -53,7 +56,8 @@
         "model_url": "https://drive.usercontent.google.com/download?id=1k39tZ-Ku7drzUgzSCESC-IcA-mjIIriz&export=download&confirm=t&uuid=d03b806e-6c5c-41da-8615-cada346ba1dc",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
-        "version": 5,
+        "images_url": "https://drive.usercontent.google.com/download?id=1BbUS15PMajfikdXmY5kPkM3e0uW8vZ6V&export=download",
+        "version": 6,
         "min_accepted_logit": -50,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
@@ -65,7 +69,8 @@
         "model_url": "https://drive.usercontent.google.com/download?id=18Na9cR_SjIlF21zJptLpxysb61ZSMUfO&export=download&confirm=t&uuid=dfa68642-b4bf-463a-b3eb-fd2adbb5194e",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-        "version": 5,
+        "images_url": "https://drive.usercontent.google.com/download?id=1d1CN-guYNoATx5Dtm185GceJY2UHP2fA&export=download&confirm=t&uuid=413dc1ae-2499-41b9-8502-ff060944da45",
+        "version": 6,
         "min_accepted_logit": -50,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [

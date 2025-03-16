@@ -31,10 +31,10 @@ public class PredictionManager {
     private final MetadataManager metadataManager;
     private final ModelLoader modelLoader;
 
-    public PredictionManager(Context context, MetadataManager metadataManager) {
+    public PredictionManager(Context context, MetadataManager metadataManager, ModelLoader modelLoader) {
         this.context = context;
         this.metadataManager = metadataManager;
-        this.modelLoader = new ModelLoader(context);
+        this.modelLoader = modelLoader;
     }
 
     private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
@@ -60,12 +60,12 @@ public class PredictionManager {
     }
 
     public String predict(ModelType modelType, Uri photoUri) {
-        String modelName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
         String classListName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
         String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
 
         try {
-            String modelPath = modelLoader.loadFromCache(context, modelName);
+            String modelPath = modelLoader.loadFromCache(context, modelFileName);
             Module model = Module.load(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
@@ -103,7 +103,7 @@ public class PredictionManager {
                     .map(c -> getScientificNameHtml(classLabels.get(c))
                             + getSpeciesNameHtml(classLabels.get(c), classDetails)
                             + getScoreHtml(softMaxScores[c])
-                            + getSpeciesImageList(classLabels.get(c), classDetails))
+                            + getSpeciesImageList(modelType.modelName, classLabels.get(c)))
                     .collect(Collectors.toList());
             Log.d(LOG_TAG, "Predicted class: " + predictions);
 
@@ -170,19 +170,8 @@ public class PredictionManager {
         return String.format(Locale.getDefault(), "<font color='#777777'>~%.2f%% match</font><br><br>", score * 100);
     }
 
-    private String getSpeciesImageList(String className, Map<String, Map<String, Object>> classDetails) {
-        try {
-            if (classDetails.containsKey(className) && classDetails.get(className).containsKey(IMAGES)
-                    && !((List<String>)classDetails.get(className).get(IMAGES)).isEmpty()) {
-                String urls = ((List<String>)classDetails.get(className).get(IMAGES)).stream()
-                        .limit(MAX_IMAGES_IN_PREDICTION)
-                        .collect(Collectors.joining(","));
-                return "<img src='" + urls + "'/>";
-            }
-        } catch(Exception ex) {
-            Log.e(LOG_TAG, "Exception fetching species image urls", ex);
-        }
-        return HTML_NO_IMAGE_AVAILABLE;
+    private String getSpeciesImageList(String modelName, String className) {
+        return "<img src='" + modelName + "/" + className + "'/>";
     }
 
 }

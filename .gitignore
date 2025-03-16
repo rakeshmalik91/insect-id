@@ -24,3 +24,5 @@ insect-dataset/*
 !insect-dataset/src/
 insect-dataset/src/*
 !insect-dataset/src/*.json
+
+models/images.*

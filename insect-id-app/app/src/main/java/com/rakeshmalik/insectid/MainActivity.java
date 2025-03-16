@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private Uri photoUri;
     private Spinner modelTypeSpinner;
     private ModelType selectedModelType;
+    private ModelLoader modelLoader;
     private ModelDownloader modelDownloader;
     private PredictionManager predictionManager;
     private ImageButton buttonUpdateModel;
@@ -78,8 +79,9 @@ public class MainActivity extends AppCompatActivity {
             createModelTypeSpinner();
 
             MetadataManager metadataManager = new MetadataManager(this, outputText);
+            this.modelLoader = new ModelLoader(this);
             this.modelDownloader = new ModelDownloader(this, outputText, metadataManager);
-            this.predictionManager = new PredictionManager(this, metadataManager);
+            this.predictionManager = new PredictionManager(this, metadataManager, modelLoader);
 
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
             this.buttonUpdateModel.setOnClickListener(v -> downloadOrUpdateModel());
@@ -333,14 +335,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Drawable predictedImageRenderer(String source) {
         try {
-            List<Bitmap> images = Arrays.stream(source.split(","))
-                    .map(url -> {
-                        if(Thread.currentThread().isInterrupted()) {
-                            throw new RuntimeException("thread interrupted");
-                        }
-                        return Utils.loadImageFromUrl(url, PREVIEW_IMAGE_TIMEOUT);
-                    })
-                    .filter(Objects::nonNull).collect(Collectors.toList());
+            List<Bitmap> images = modelLoader.getImagesFromZip(this, source.split("/")[0], source.split("/")[1]);
             int maxColumns = 3, gap = 10;
             int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
             int columns = Math.min(images.size(), maxColumns);

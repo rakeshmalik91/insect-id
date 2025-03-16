@@ -9,6 +9,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,9 +47,11 @@ public class ModelDownloader {
     private boolean isModelAlreadyDownloaded(ModelType modelType) {
         String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
         String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
+        String imagesFileName = String.format(IMAGES_FILE_NAME_FMT, modelType.modelName);
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
         return isFileAlreadyDownloaded(classesFileName)
                 && isFileAlreadyDownloaded(classDetailsFileName)
+                && isFileAlreadyDownloaded(imagesFileName)
                 && isFileAlreadyDownloaded(modelFileName);
     }
 
@@ -72,7 +76,7 @@ public class ModelDownloader {
             onSuccess.run();
         } else {
             String fileUrl = metadataManager.getMetadata(ROOT_CLASSIFIER).optString(FIELD_MODEL_URL, null);
-            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "model Root Classifier", ROOT_CLASSIFIER, forceUpdate);
+            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, forceUpdate, 1, 5, true);
         }
     }
 
@@ -85,9 +89,11 @@ public class ModelDownloader {
             final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
             final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
             final String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
+            final String imagesFileName = String.format(IMAGES_FILE_NAME_FMT, modelType.modelName);
 
             final String classesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASSES_URL, null);
             final String classDetailsFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASS_DETAILS_URL, null);
+            final String imagesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_IMAGES_URL, null);
             final String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
 
             // download root classifier
@@ -115,10 +121,14 @@ public class ModelDownloader {
                 downloadFile(classesFileName, classesFileUrl, () -> {
                     // download class details
                     downloadFile(classDetailsFileName, classDetailsFileUrl, () -> {
-                        // download model
-                        downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure, "model " + modelType.displayName, modelType.modelName, updateRequired);
-                    }, onFailure, "class details", modelType.modelName, updateRequired);
-                }, onFailure, "class list", modelType.modelName, updateRequired);
+                        // download image archive
+                        downloadFile(imagesFileName, imagesFileUrl, () -> {
+                            // download model
+                            downloadFile(modelFileName, modelFileUrl, onSuccess,
+                                    onFailure, modelType.displayName + " model", modelType.modelName, updateRequired, 5, 5, true);
+                        }, onFailure, "image archives", modelType.modelName, updateRequired, 4, 5, false);
+                    }, onFailure, "class details", modelType.modelName, updateRequired, 3, 5, false);
+                }, onFailure, "class list", modelType.modelName, updateRequired, 2, 5, false);
             }, onFailure, forceUpdate);
         } catch(Exception ex) {
             if(onFailure != null) {
@@ -127,7 +137,9 @@ public class ModelDownloader {
         }
     }
 
-    private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure, String fileType, String modelName, boolean updateRequired) {
+    private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
+                              String fileType, String modelName, boolean updateRequired,
+                              int downloadSeq, int totalDownloads, boolean updatePrefs) {
         Log.d(LOG_TAG, "Downloading " + fileType + " " + fileName + " from " + fileUrl + "...");
         client.newCall(new Request.Builder().url(fileUrl).build()).enqueue(new Callback() {
             @Override
@@ -161,29 +173,46 @@ public class ModelDownloader {
                         int progress = Math.max(0, (int) ((downloadedBytes * 100) / totalBytes));
                         long elapsedTime = System.currentTimeMillis() - startTime;
                         long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
-                        String msg;
-                        if(updateRequired) {
-                            int latestVersion = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
-                            int currentVersion = prefs.getInt(modelVersionPrefName(modelName), 0);
-                            msg = String.format("Updating %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nCurrent version: %d, Latest version: %d",
-                                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
-                                    currentVersion, latestVersion);
-                        } else {
-                            msg = String.format("Downloading %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)",
-                                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024);
-                        }
-                        mainHandler.post(() -> outputText.setText(msg));
+                        final long finalDownloadedBytes = downloadedBytes;
+                        mainHandler.post(() -> outputText.setText(getDownloadInProgressMessage(eta, progress, finalDownloadedBytes, totalBytes)));
                     }
                     Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
-                    mainHandler.post(() -> outputText.setText("Downloaded " + fileType + " successfully"));
+                    mainHandler.post(() -> outputText.setText(getDownloadCompletedMessage()));
                     if(onSuccess != null) {
                         onSuccess.run();
                     }
-                    prefs.edit().putBoolean(fileDownloadedPrefName(fileName), true).apply();
-                    if(fileType.toLowerCase().contains("model")) {
-                        int version = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
-                        prefs.edit().putInt(modelVersionPrefName(modelName), version).apply();
+                    if(updatePrefs) {
+                        updatePrefs();
                     }
+                }
+            }
+
+            @NonNull
+            private String getDownloadCompletedMessage() {
+                return String.format("Downloaded %s successfully\nDownloads: %d/%d", fileType, downloadSeq, totalDownloads);
+            }
+
+            private String getDownloadInProgressMessage(long eta, int progress, long downloadedBytes, long totalBytes) {
+                String msg;
+                if(updateRequired) {
+                    int latestVersion = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+                    int currentVersion = prefs.getInt(modelVersionPrefName(modelName), 0);
+                    msg = String.format("Updating %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nVersion: %d -> %d\nDownloads: %d/%d",
+                            fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
+                            currentVersion, latestVersion, downloadSeq, totalDownloads);
+                } else {
+                    msg = String.format("Downloading %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nDownloads: %d/%d",
+                            fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
+                            downloadSeq, totalDownloads);
+                }
+                return msg;
+            }
+
+            private void updatePrefs() {
+                prefs.edit().putBoolean(fileDownloadedPrefName(fileName), true).apply();
+                if(fileType.toLowerCase().contains("model")) {
+                    int version = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+                    prefs.edit().putInt(modelVersionPrefName(modelName), version).apply();
                 }
             }
         });
