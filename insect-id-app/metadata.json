@@ -24,7 +24,23 @@
             "butterfly",
             "moth"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 5177,
+            "species_count": 3739,
+            "spp_class_count": 446,
+            "early_stage_class_count": 992,
+            "data_count": 312320,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "ifoundbutterflies.org",
+                "mothsofindia.org",
+                "inaturalist.org",
+                "wikipedia.org",
+                "indiabiodiversity.org",
+                "insecta.pro"
+            ]
+        }
     },
     "moth": {
         "model_url": "https://drive.usercontent.google.com/download?id=16PwKsg22FD96TYAlKsfTsMB6e2ehNuq6&export=download&confirm=t&uuid=58aba924-c1b2-41ac-848c-cce96b40c16a",
@@ -37,7 +53,22 @@
         "accepted_classes": [
             "moth"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 3600,
+            "species_count": 2649,
+            "spp_class_count": 411,
+            "early_stage_class_count": 540,
+            "data_count": 187498,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "mothsofindia.org",
+                "inaturalist.org",
+                "wikipedia.org",
+                "indiabiodiversity.org",
+                "insecta.pro"
+            ]
+        }
     },
     "butterfly": {
         "model_url": "https://drive.usercontent.google.com/download?id=1mFXxQuHS2IyZoYKUs_MwFgzYkmpX-xj9&export=download&confirm=t&uuid=96422f6b-9e70-4333-b35a-c43a22d63d33",
@@ -50,7 +81,22 @@
         "accepted_classes": [
             "butterfly"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 1577,
+            "species_count": 1090,
+            "spp_class_count": 35,
+            "early_stage_class_count": 452,
+            "data_count": 124808,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "ifoundbutterflies.org",
+                "inaturalist.org",
+                "wikipedia.org",
+                "indiabiodiversity.org",
+                "insecta.pro"
+            ]
+        }
     },
     "cicada": {
         "model_url": "https://drive.usercontent.google.com/download?id=1k39tZ-Ku7drzUgzSCESC-IcA-mjIIriz&export=download&confirm=t&uuid=d03b806e-6c5c-41da-8615-cada346ba1dc",
@@ -63,7 +109,19 @@
         "accepted_classes": [
             "cicada"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 217,
+            "species_count": 217,
+            "spp_class_count": 0,
+            "early_stage_class_count": 0,
+            "data_count": 7933,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "indiancicadas.org",
+                "inaturalist.org"
+            ]
+        }
     },
     "odonata": {
         "model_url": "https://drive.usercontent.google.com/download?id=18Na9cR_SjIlF21zJptLpxysb61ZSMUfO&export=download&confirm=t&uuid=dfa68642-b4bf-463a-b3eb-fd2adbb5194e",
@@ -76,6 +134,18 @@
         "accepted_classes": [
             "odonata"
         ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 427,
+            "species_count": 400,
+            "spp_class_count": 27,
+            "early_stage_class_count": 0,
+            "data_count": 44256,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "indianodonata.org",
+                "inaturalist.org"
+            ]
+        }
     }
 }
