@@ -35,6 +35,7 @@ public class Constants {
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = "min_accepted_softmax_to_override_root_classifier";
     public static final String FIELD_CLASSES = "classes";
     public static final String FIELD_ACCEPTED_CLASSES = "accepted_classes";
+    public static final String FIELD_STATS = "stats";
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
     public static final String ROOT_CLASS_OTHER = "other";

@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Butterfly/Moth ID</string>
+    <string name="app_name">InsectID.AI</string>
     <string name="insect_identification">Insect Identification</string>
     <string name="select_image">Select Image</string>
     <string name="predicting">Analyzing…</string>
-    <string name="use_model">Identify a </string>
+    <string name="use_model">Identify a</string>
     <string name="developed_by_rakesh_malik_2025">Developed by Rakesh Malik ©2025</string>
     <string name="version">Version 1.0.0 alpha</string>
     <string name="possible_matches">Possible matches:</string>

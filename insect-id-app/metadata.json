@@ -19,7 +19,7 @@
         "images_url": "https://drive.usercontent.google.com/download?id=15w2AIRWhzSnNKVTDbrJYjeIDlsUoT_CO&export=download&confirm=t&uuid=41f91863-dbc5-4e18-a52b-eff43d24ec24",
         "version": 7,
         "min_accepted_logit": -60,
-        "min_accepted_softmax": 0.05,
+        "min_accepted_softmax": 0.1,
         "accepted_classes": [
             "butterfly",
             "moth"
@@ -49,7 +49,7 @@
         "images_url": "https://drive.usercontent.google.com/download?id=1O-Ma-RsPH5gxf6Z6TLSykLF2dL4-vfO-&export=download&confirm=t&uuid=19e3c44f-bc10-486f-b812-8f2b40a52dcf",
         "version": 4,
         "min_accepted_logit": -50,
-        "min_accepted_softmax": 0.05,
+        "min_accepted_softmax": 0.1,
         "accepted_classes": [
             "moth"
         ],
@@ -77,7 +77,7 @@
         "images_url": "https://drive.usercontent.google.com/download?id=1h3BKQ8eIQvIZ8cEutoUMTrQSCm7hXTrG&export=download&confirm=t&uuid=5ec5aa28-b366-4475-a296-df656b6ae1ae",
         "version": 5,
         "min_accepted_logit": -30,
-        "min_accepted_softmax": 0.05,
+        "min_accepted_softmax": 0.1,
         "accepted_classes": [
             "butterfly"
         ],
@@ -105,7 +105,7 @@
         "images_url": "https://drive.usercontent.google.com/download?id=1BbUS15PMajfikdXmY5kPkM3e0uW8vZ6V&export=download",
         "version": 6,
         "min_accepted_logit": -50,
-        "min_accepted_softmax": 0.05,
+        "min_accepted_softmax": 0.1,
         "accepted_classes": [
             "cicada"
         ],
@@ -130,7 +130,7 @@
         "images_url": "https://drive.usercontent.google.com/download?id=1d1CN-guYNoATx5Dtm185GceJY2UHP2fA&export=download&confirm=t&uuid=413dc1ae-2499-41b9-8502-ff060944da45",
         "version": 6,
         "min_accepted_logit": -50,
-        "min_accepted_softmax": 0.05,
+        "min_accepted_softmax": 0.1,
         "accepted_classes": [
             "odonata"
         ],

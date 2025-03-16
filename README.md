@@ -1,12 +1,39 @@
 # Insect Species Identification
 
+## Android app APK
+
+[APK file](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
+
+## Android app screenshots
+
+<p align="center">
+	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="125"/>
+</p>
+
+## Trained species list (classes)
+
+- [Lepidoptera](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.lepidoptera.json)
+	- [Butterfly](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.butterfly.json)
+	- [Moth](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.moth.json)
+- [Odonata](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.odonata.json)
+- [Cicada](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.cicada.json)
+
+Note: early stage classes suffixed with "-early"
+
+Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
+
 ## Model checkpoints
 
-https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link
+[Model checkpoints](https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link)
 
-## Datasets
+## Datasets trained on
 
-https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link
+[Datasets](https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link)
 
 | Source					| Image count | Class count | Imago class | Early stage class | Species type   | Region   | Comments
 |---------------------------|-------------|-------------|-------------|-------------------|----------------|----------|------------------------------------
@@ -18,20 +45,3 @@ https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=dri
 | indiabiodiversity.org   	| 12k         | 1444        | 1444        | 0                 | moth+butterfly | india    | Contains typo in class names, <br/>uses legacy class names
 | insecta.pro               | 25k         | 5068        | 5068        | 0                 | moth+butterfly | all      | Low res images (320x~250)
 | wikipedia.org				| 2k          | 1825        | 1825        | 0                 | moth+butterfly | india    | Low res images (220x~160)
-- early stage classes suffixed with "-early"
-- spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
-
-## Android app
-
-Apk: https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link
-
-<p align="center">
-	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="200"/>
-	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="200"/>
-	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="200"/>
-</p>
-<p align="center">
-	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="200"/>
-	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="200"/>
-	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="200"/>
-</p>

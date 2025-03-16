@@ -106,7 +106,7 @@ public class ModelDownloader {
                     } else {
                         if(forceUpdate) {
                             int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
-                            mainHandler.post(() -> outputText.setText("Model already up to date\nModel name: " + modelType.displayName + "\nVersion: " + currentVersion));
+                            mainHandler.post(() -> outputText.setText(getModelUpToDateMessage(modelType, currentVersion)));
                         }
                         Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
                         onSuccess.run();
@@ -187,7 +187,6 @@ public class ModelDownloader {
                 }
             }
 
-            @NonNull
             private String getDownloadCompletedMessage() {
                 return String.format("Downloaded %s successfully\nDownloads: %d/%d", fileType, downloadSeq, totalDownloads);
             }
@@ -229,6 +228,13 @@ public class ModelDownloader {
 
     private String modelVersionPrefName(String modelName) {
         return PREF_MODEL_VERSION + "::" + modelName;
+    }
+
+    private String getModelUpToDateMessage(ModelType modelType, int currentVersion) {
+        long speciesCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("species_count", 0);
+        long dataCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("data_count", 0);
+        return String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %d",
+                modelType.displayName, currentVersion, speciesCount, dataCount);
     }
 
 }
