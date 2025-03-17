@@ -9,12 +9,11 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.*;
@@ -26,6 +25,14 @@ public class ModelDownloader {
     private final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(MODEL_LOAD_TIMEOUT, TimeUnit.MILLISECONDS)
             .readTimeout(MODEL_LOAD_TIMEOUT, TimeUnit.MILLISECONDS)
+            .retryOnConnectionFailure(true)
+            .addInterceptor(chain -> {
+                Request request = chain.request().newBuilder()
+                        .header("Connection", "keep-alive")
+                        .header("Keep-Alive", "timeout=60, max=100")
+                        .build();
+                return chain.proceed(request);
+            })
             .build();
     private final Context context;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -183,6 +190,16 @@ public class ModelDownloader {
                     }
                     if(updatePrefs) {
                         updatePrefs();
+                    }
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Download " + fileType + " failed: ", e);
+                    if(Objects.equals(e.getMessage(), "Software caused connection abort")) {
+                        mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!\nPlease restart the download and do not minimize or close the app or lock the screen."));
+                    } else {
+                        mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!"));
+                    }
+                    if(onFailure != null) {
+                        onFailure.run();
                     }
                 }
             }

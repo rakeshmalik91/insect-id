@@ -36,16 +36,13 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -347,8 +344,8 @@ public class MainActivity extends AppCompatActivity {
             int left = 0, top = 0;
             for (int i = 0; i < images.size(); i++) {
                 Bitmap img = images.get(i);
-                img = Utils.topBottomEdgeCrop(img, 0.12f);
-                img = Utils.centerSquareCrop(img);
+                //img = Utils.topBottomEdgeCrop(img, 0.12f);
+                //img = Utils.centerSquareCrop(img);
                 img = Bitmap.createScaledBitmap(img, size, size, true);
                 canvas.drawBitmap(img, left, top, null);
                 if (i % maxColumns == maxColumns - 1) {
