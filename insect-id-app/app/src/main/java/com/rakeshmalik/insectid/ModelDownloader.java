@@ -250,8 +250,9 @@ public class ModelDownloader {
     private String getModelUpToDateMessage(ModelType modelType, int currentVersion) {
         long speciesCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("species_count", 0);
         long dataCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("data_count", 0);
-        return String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %d",
-                modelType.displayName, currentVersion, speciesCount, dataCount);
+        String lastUpdatedDate = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("last_updated_date", "-");
+        return String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %d\nLast updated on %s",
+                modelType.displayName, currentVersion, speciesCount, dataCount, lastUpdatedDate);
     }
 
 }

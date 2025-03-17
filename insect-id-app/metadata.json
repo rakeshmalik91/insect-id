@@ -30,7 +30,7 @@
             "species_count": 3739,
             "spp_class_count": 446,
             "early_stage_class_count": 992,
-            "data_count": 312320,
+            "data_count": 306178,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "ifoundbutterflies.org",
@@ -39,7 +39,8 @@
                 "wikipedia.org",
                 "indiabiodiversity.org",
                 "insecta.pro"
-            ]
+            ],
+            "last_updated_date": "01-03-2025"
         }
     },
     "moth": {
@@ -59,7 +60,7 @@
             "species_count": 2649,
             "spp_class_count": 411,
             "early_stage_class_count": 540,
-            "data_count": 187498,
+            "data_count": 184284,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "mothsofindia.org",
@@ -67,7 +68,8 @@
                 "wikipedia.org",
                 "indiabiodiversity.org",
                 "insecta.pro"
-            ]
+            ],
+            "last_updated_date": "24-02-2025"
         }
     },
     "butterfly": {
@@ -87,7 +89,7 @@
             "species_count": 1090,
             "spp_class_count": 35,
             "early_stage_class_count": 452,
-            "data_count": 124808,
+            "data_count": 121994,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "ifoundbutterflies.org",
@@ -95,7 +97,8 @@
                 "wikipedia.org",
                 "indiabiodiversity.org",
                 "insecta.pro"
-            ]
+            ],
+            "last_updated_date": "03-03-2025"
         }
     },
     "cicada": {
@@ -115,12 +118,13 @@
             "species_count": 217,
             "spp_class_count": 0,
             "early_stage_class_count": 0,
-            "data_count": 7933,
+            "data_count": 7798,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "indiancicadas.org",
                 "inaturalist.org"
-            ]
+            ],
+            "last_updated_date": "13-03-2025"
         }
     },
     "odonata": {
@@ -140,12 +144,13 @@
             "species_count": 400,
             "spp_class_count": 27,
             "early_stage_class_count": 0,
-            "data_count": 44256,
+            "data_count": 43744,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "indianodonata.org",
                 "inaturalist.org"
-            ]
+            ],
+            "last_updated_date": "13-03-2025"
         }
     }
 }

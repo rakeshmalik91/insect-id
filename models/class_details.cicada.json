@@ -1,1787 +1,317 @@
 {
     "dundubia-annandalei": {
-        "name": "Comb Scraper",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4163-103-5bebeb23744e0-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/267_3987-17-552c95ff83251-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4163-103-5bebeb23744e0-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/316_4375-144-6088623dafe2b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4163-103-5bebeb23744e0-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4163-103-5bebeb23744e0-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/277_4025-155-55ae767a02c97-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/342_4181-894-5cc9656d6976a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4164-972-5bebee69aa6d3-1.jpg"
-        ]
+        "name": "Comb Scraper"
     },
     "dundubia-hastata": {
-        "name": "Bell Cicada",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3798-579-54e63ba279d6e-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3797-24-54e639f5f0dd6-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3797-24-54e639f5f0dd6-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3926-1-54e7babf1dc30-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3926-1-54e7babf1dc30-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3926-1-54e7babf1dc30-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3926-1-54e7babf1dc30-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3798-579-54e63ba279d6e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3926-1-54e7babf1dc30-4.jpg"
-        ]
+        "name": "Bell Cicada"
     },
     "mata-lenonia": {
-        "name": "Small Green Spotted-back cicada",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4356-127-5fe05069a1d09-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/styles/284_265/public/257_4356-127-5fe05069a1d09-2.jpg?itok=p3y1ZiC9",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4356-127-5fe05069a1d09-1.jpg"
-        ]
+        "name": "Small Green Spotted-back cicada"
     },
     "mata-meghalayana": {
-        "name": "Meghalayan Spotted-back cicada",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/styles/284_265/public/257_4357-729-5fe0510d46c33-2.jpg?itok=F3AZzcl8",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4357-729-5fe0510d46c33-5.jpg"
-        ]
+        "name": "Meghalayan Spotted-back cicada"
     },
     "mata-ruffordii": {
-        "name": "Rufford's Spotted-back cicada",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4355-499-5fe04f6bde7be-4.jpg"
-        ]
+        "name": "Rufford's Spotted-back cicada"
     },
     "meimuna-duffelsi": {
-        "name": "Sand Cicada",
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/317_4139-590-5adc1de5efeeb-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4167-205-5bebf8c98626f-3.jpg"
-        ]
-    },
-    "abroma-bengalensis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4036-479-569935d7dd036-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3952-672-54e8901eabb02-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4035-824-56991d1b80586-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3952-672-54e8901eabb02-2.jpg"
-        ]
-    },
-    "abroma-maculicollis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3953-420-54e89336c1252-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3953-420-54e89336c1252-1.jpg"
-        ]
-    },
-    "abroma-nubifurca": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3954-490-54e89427a1c17-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3954-490-54e89427a1c17-2.jpg"
-        ]
-    },
-    "ambragaeana-stellata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/285_4077-86-5767736b34d5a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3824-839-54e66eadd9729-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3823-865-54e66d04f3a44-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3823-865-54e66d04f3a44-1.jpg"
-        ]
-    },
-    "angamiana-aetherea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3758-832-54e5c2d1ec401-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3760-45-54e5c6f1137c7-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3760-45-54e5c6f1137c7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3758-832-54e5c2d1ec401-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3998-240-5541d62471669-1.jpg"
-        ]
-    },
-    "balinta-delinenda": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3744-18-54e3b6f83bf14-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3744-18-54e3b6f83bf14-1.jpg"
-        ]
-    },
-    "balinta-octonotata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3929-229-54e7bed9accfd-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3929-229-54e7bed9accfd-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3743-396-54e3b5dcd0de3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4166-150-5bebf79a186ec-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4166-150-5bebf79a186ec-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4166-150-5bebf79a186ec-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3743-396-54e3b5dcd0de3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4166-150-5bebf79a186ec-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4166-150-5bebf79a186ec-2.jpg"
-        ]
-    },
-    "balinta-tenebricosa": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4165-936-5bebf6efe1fe3-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4165-936-5bebf6efe1fe3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4165-936-5bebf6efe1fe3-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4165-936-5bebf6efe1fe3-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4165-936-5bebf6efe1fe3-1.jpg"
-        ]
-    },
-    "basa-singularis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3870-988-54e6d95e60d40-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3870-988-54e6d95e60d40-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4056-483-56a85a45b57de-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3869-873-54e6d7fc097ad-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4056-483-56a85a45b57de-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4056-483-56a85a45b57de-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3869-873-54e6d7fc097ad-1.jpg"
-        ]
-    },
-    "bijaurana-sita": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3955-131-54e89491a7ffc-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3955-131-54e89491a7ffc-1.jpg"
-        ]
-    },
-    "bijaurana-typica": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3957-523-54e89764d3cab-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3957-523-54e89764d3cab-1.jpg"
-        ]
-    },
-    "calcagninus-picturatus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3891-395-54e6f8d07e764-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3891-395-54e6f8d07e764-1.jpg"
-        ]
-    },
-    "callogaeana-festiva": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/267_3991-946-552ca36f8c2c0-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3818-288-54e663e298a89-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/277_4024-906-55ae75f23d62f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3819-528-54e6676035940-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/277_4024-906-55ae75f23d62f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3818-288-54e663e298a89-2.jpg"
-        ]
-    },
-    "changa-sita": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3779-795-54e5e1931b598-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3779-795-54e5e1931b598-2.jpg"
-        ]
-    },
-    "chremistica-ribhoi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3934-263-54e7d539b0a79-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_3742-528-54d391ebcb2d2-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_3740-428-54d390be0e419-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_3741-852-54d3919801c54-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_3736-620-54d38bba53145-1.jpg"
-        ]
-    },
-    "chremistica-seminiger": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/356_4220-330-5d6b9d473b3c9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/356_4220-330-5d6b9d473b3c9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/356_4220-330-5d6b9d473b3c9-3.jpg"
-        ]
-    },
-    "cicadatra-acberi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3901-309-54e7089a34322-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3901-309-54e7089a34322-2.jpg"
-        ]
-    },
-    "cicadatra-inconspicua": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3900-959-54e707e8e3f25-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3900-959-54e707e8e3f25-2.jpg"
-        ]
-    },
-    "cicadatra-sankara": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3897-263-54e6fbc1cb654-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3897-263-54e6fbc1cb654-1.jpg"
-        ]
-    },
-    "cicadatra-xantes": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3894-352-54e6fa601cf46-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3894-352-54e6fa601cf46-2.jpg"
-        ]
-    },
-    "cryptotympana-acuta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_3745-154-54e3b7ca67e35-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3745-154-54e3b7ca67e35-1.jpg"
-        ]
-    },
-    "cryptotympana-corvus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3747-48-54e3ba4893d56-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3747-48-54e3ba4893d56-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3746-654-54e3b971665cd-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3746-654-54e3b971665cd-1.jpg"
-        ]
-    },
-    "cryptotympana-exalbida": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3755-952-54e3c3a6b82d7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4084-906-58baa05fdd3af-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3756-649-54e3c50e8ccd4-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3756-649-54e3c50e8ccd4-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3755-952-54e3c3a6b82d7-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4084-906-58baa05fdd3af-1.jpg"
-        ]
-    },
-    "cryptotympana-insularis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3749-483-54e3bbbc02f1b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3750-742-54e3bd4dd6ccd-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3749-483-54e3bbbc02f1b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3750-742-54e3bd4dd6ccd-1.jpg"
-        ]
-    },
-    "cryptotympana-intermedia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/362_4247-50-5e528a4f8afed-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3748-352-54e3bb3d8155e-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3748-352-54e3bb3d8155e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/362_4247-50-5e528a4f8afed-3.jpg"
-        ]
-    },
-    "cryptotympana-limborgi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3754-513-54e3c20f0b9c3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3754-513-54e3c20f0b9c3-1.jpg"
-        ]
-    },
-    "cryptotympana-recta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3751-36-54e3bd953c7aa-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3751-36-54e3bd953c7aa-2.jpg"
-        ]
-    },
-    "cryptotympana-vesta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3752-386-54e3bed93529b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3752-386-54e3bed93529b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3753-406-54e3bf9c43c02-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3753-406-54e3bf9c43c02-2.jpg"
-        ]
-    },
-    "distantalna-splendida": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_4367-42-6079196ed5df5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3851-715-54e6968183853-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3850-20-54e695a1e2248-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4141-932-5af031aac88ed-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3979-947-55119dc499d7e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3850-20-54e695a1e2248-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4242-242-5deaaf2916cab-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3851-715-54e6968183853-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/281_4032-771-55cb9495691d9-2.jpg"
-        ]
-    },
-    "dundubia-emanatura": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3794-991-54e63764d935d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3793-491-54e636767a81b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3793-491-54e636767a81b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3794-991-54e63764d935d-2.jpg"
-        ]
-    },
-    "dundubia-feae": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3796-872-54e638a4c560a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3796-872-54e638a4c560a-1.jpg"
-        ]
-    },
-    "dundubia-nagarasingna": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3800-650-54e63d114a5df-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3799-826-54e63bee2add8-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3799-826-54e63bee2add8-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3800-650-54e63d114a5df-1.jpg"
-        ]
-    },
-    "dundubia-oopaga": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3801-385-54e63d462b585-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3801-385-54e63d462b585-1.jpg"
-        ]
-    },
-    "dundubia-rufivena": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3803-239-54e63ea28a92a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3802-671-54e63dfe0e9bd-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3803-239-54e63ea28a92a-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3803-239-54e63ea28a92a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3802-671-54e63dfe0e9bd-2.jpg"
-        ]
-    },
-    "dundubia-terpsichore": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3804-637-54e63ee34b31f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3804-637-54e63ee34b31f-2.jpg"
-        ]
-    },
-    "eopycna-repanda": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/284_4083-502-585f8c134f69a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/284_4083-502-585f8c134f69a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/284_4083-502-585f8c134f69a-3.jpg"
-        ]
-    },
-    "euterpnosia-crowfooti": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3882-201-54e6e13dce40e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3882-201-54e6e13dce40e-2.jpg"
-        ]
-    },
-    "euterpnosia-madhava": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4196-177-5d090f401a453-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4197-696-5d090f80db892-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3878-900-54e6dd35870b9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4196-177-5d090f401a453-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4195-486-5d090e8955698-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4196-177-5d090f401a453-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4196-177-5d090f401a453-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4197-696-5d090f80db892-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3878-900-54e6dd35870b9-2.jpg"
-        ]
-    },
-    "formotosena-montivaga": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/322_4152-855-5b75b3de11f3c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3844-999-54e6898b59488-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3844-999-54e6898b59488-2.jpg"
-        ]
-    },
-    "gaeana-atkinsoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3820-258-54e668237c546-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/273_4009-587-554f3f1fd54ef-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4052-478-5699493bb8185-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3820-258-54e668237c546-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/314_4126-599-5a09e92d6c023-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/273_4010-397-554f4035bab12-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4004-511-554a3f385205b-1.jpg"
-        ]
-    },
-    "gaeana-maculata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3978-77-55119c1a70e2c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/277_4023-152-55ae7507be84f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3978-77-55119c1a70e2c-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3822-114-54e66b8a09f4d-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3822-114-54e66b8a09f4d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/352_4212-941-5d56fa6ea237d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4037-614-569935fc161c4-1.jpg"
-        ]
-    },
-    "graptotettix-guttatus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3945-767-54e846aa759e6-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3945-767-54e846aa759e6-1_0.jpg"
-        ]
-    },
-    "graptotettix-thoracicus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3946-853-54e8473c16644-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3946-853-54e8473c16644-1.jpg"
-        ]
-    },
-    "haphsa-durga": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/317_4175-652-5ca22aa3cc23d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3857-590-54e69e5eaa67f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/317_4175-652-5ca22aa3cc23d-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3857-590-54e69e5eaa67f-1.jpg"
-        ]
-    },
-    "haphsa-nicomache": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4199-470-5d112f9ca17c9-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4198-49-5d112f4360eba-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4199-470-5d112f9ca17c9-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3786-218-54e5e95148a6d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4199-470-5d112f9ca17c9-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4199-470-5d112f9ca17c9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4198-49-5d112f4360eba-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3786-218-54e5e95148a6d-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4199-470-5d112f9ca17c9-3.jpg"
-        ]
-    },
-    "haphsa-scitula": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3817-452-54e65ea08444b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3817-452-54e65ea08444b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/267_4017-310-5559584e19abe-1.jpg"
-        ]
-    },
-    "huechys-incarnata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4129-23-5a4b33e60d160-3_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_4146-410-5b4c9d82e9a47-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4128-529-5a4b2bc50bd2c-3_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4129-23-5a4b33e60d160-4_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4128-529-5a4b2bc50bd2c-1_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4128-529-5a4b2bc50bd2c-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4128-529-5a4b2bc50bd2c-4_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4129-23-5a4b33e60d160-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4129-23-5a4b33e60d160-1_0.jpg"
-        ]
-    },
-    "huechys-sanguinea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/300_4130-456-5a717556ee0a3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3825-346-54e66f4db0d07-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3825-346-54e66f4db0d07-1.jpg"
-        ]
-    },
-    "hyalessa-expansa": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3788-559-54e5ec1eb39dc-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3788-559-54e5ec1eb39dc-2.jpg"
-        ]
-    },
-    "hyalessa-mahoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4377-808-608f3d1499cc2-2.jpg"
-        ]
-    },
-    "hyalessa-mahoni-0": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4314-449-5f0d92a8efb50-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4314-449-5f0d92a8efb50-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4313-960-5f0d916d9f4b3-4.jpg"
-        ]
-    },
-    "hyalessa-obnubila": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/352_4240-502-5dab6fb0d6fbe-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3790-196-54e5f0a4cfd9c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3790-196-54e5f0a4cfd9c-2.jpg"
-        ]
-    },
-    "hyalessa-obnubila-0": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4348-897-5f6eeb8dd2a8b-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4348-897-5f6eeb8dd2a8b-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4353-129-5f71cf0bca795-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4353-129-5f71cf0bca795-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4353-129-5f71cf0bca795-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4348-897-5f6eeb8dd2a8b-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4348-897-5f6eeb8dd2a8b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4353-129-5f71cf0bca795-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4348-897-5f6eeb8dd2a8b-2.jpg"
-        ]
-    },
-    "khimbya-diminuta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4132-108-5a717f4fe8ae7-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4131-191-5a717e64e6120-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3778-313-54e5d6044bbda-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3778-313-54e5d6044bbda-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4131-191-5a717e64e6120-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4132-108-5a717f4fe8ae7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4132-108-5a717f4fe8ae7-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4131-191-5a717e64e6120-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4131-191-5a717e64e6120-4.jpg"
-        ]
-    },
-    "khimbya-evanescens": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3783-595-54e5e7e7785d5-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3783-595-54e5e7e7785d5-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3781-32-54e5e6ac03d08-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3783-595-54e5e7e7785d5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3781-32-54e5e6ac03d08-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3781-32-54e5e6ac03d08-1.jpg"
-        ]
-    },
-    "khimbya-immsi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3782-553-54e5e7361daf8-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3782-553-54e5e7361daf8-1.jpg"
-        ]
-    },
-    "lahugada-dohertyi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3829-923-54e67595c92b0-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3828-645-54e673d300dbd-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4270-168-5ecbee9231c6c-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3827-78-54e6730724baa-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4270-168-5ecbee9231c6c-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/styles/284_265/public/257_4270-168-5ecbee9231c6c-2.jpg?itok=_XpmHHfm",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3828-645-54e673d300dbd-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3827-78-54e6730724baa-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4270-168-5ecbee9231c6c-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/254_3735-359-54d38acb969a5-1.jpg"
-        ]
-    },
-    "lemuriana-apicalis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4028-419-55b279c48cb0b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4029-928-55b27b175db4a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4029-928-55b27b175db4a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4022-586-559aa11ca0302-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3931-216-54e7c23b863e4-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3930-421-54e7c1688c8e6-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3930-421-54e7c1688c8e6-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4028-419-55b279c48cb0b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_3966-314-54f095c271aea-1.jpg"
-        ]
-    },
-    "leptopsaltria-andamanensis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3775-223-54e5d2e18c0a2-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3775-223-54e5d2e18c0a2-1.jpg"
-        ]
-    },
-    "leptopsaltria-samia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3776-706-54e5d450cfd64-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3776-706-54e5d450cfd64-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3776-706-54e5d450cfd64-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4323-830-5f19b347db8f0-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4323-830-5f19b347db8f0-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4323-830-5f19b347db8f0-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4323-830-5f19b347db8f0-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4323-830-5f19b347db8f0-3.jpg"
-        ]
-    },
-    "leptopsaltria-tuberosa": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4200-893-5d12ff23eac47-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4200-893-5d12ff23eac47-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4200-893-5d12ff23eac47-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4200-893-5d12ff23eac47-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4200-893-5d12ff23eac47-4.jpg"
-        ]
-    },
-    "lethama-locusta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3861-822-54e6d1979e1e0-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3860-404-54e6d13c7bce9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3860-404-54e6d13c7bce9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3861-822-54e6d1979e1e0-1.jpg"
-        ]
-    },
-    "lycurgus-subvittus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3959-903-54e8984980f63-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3959-903-54e8984980f63-1.jpg"
-        ]
-    },
-    "macrosemia-assamensis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3840-944-54e68198986ef-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3840-944-54e68198986ef-1.jpg"
-        ]
-    },
-    "macrosemia-saturata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4120-367-59aeeaeb00d60-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4043-941-5699391b862c9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/358_4229-245-5d902b6ad6093-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3841-838-54e686c44c78a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4120-367-59aeeaeb00d60-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4120-367-59aeeaeb00d60-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4120-367-59aeeaeb00d60-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3841-838-54e686c44c78a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4120-367-59aeeaeb00d60-2.jpg"
-        ]
-    },
-    "macrosemia-umbrata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3842-818-54e68736c1cd2-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4041-501-5699380dc8600-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3842-818-54e68736c1cd2-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4147-7-5b51666038ebe-6.jpg"
-        ]
-    },
-    "mata-kama": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3826-679-54e671cc1c9f8-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3826-679-54e671cc1c9f8-1.jpg"
-        ]
-    },
-    "megapomponia-intermedia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3843-219-54e6880f0b563-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3843-219-54e6880f0b563-2.jpg"
-        ]
-    },
-    "meimuna-cassandra": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3852-473-54e697509a1f3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3852-473-54e697509a1f3-2.jpg"
-        ]
-    },
-    "meimuna-microdon": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4047-572-56993a00bc936-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3853-387-54e699c7e38a9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3853-387-54e699c7e38a9-1.jpg"
-        ]
-    },
-    "meimuna-silhetana": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3854-30-54e69b32e913e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3854-30-54e69b32e913e-2.jpg"
-        ]
-    },
-    "meimuna-tripurasura": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/313_4125-546-5a070c4e899f1-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4127-648-5a100948d8f09-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4127-648-5a100948d8f09-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3855-702-54e69c35ddde5-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4127-648-5a100948d8f09-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4127-648-5a100948d8f09-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3855-702-54e69c35ddde5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4127-648-5a100948d8f09-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3856-881-54e69da40b518-1.jpg"
-        ]
-    },
-    "melampsalta-literata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3962-183-54e89a4236cbb-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3962-183-54e89a4236cbb-1_0.jpg"
-        ]
-    },
-    "mogannia-cyanea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3981-35-55183dc960e6a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3981-35-55183dc960e6a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3938-467-54e83d6f7401c-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3938-467-54e83d6f7401c-1.jpg"
-        ]
-    },
-    "mogannia-effecta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3939-95-54e83e15b51c9-1.jpg"
-        ]
-    },
-    "mogannia-funebris": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3940-773-54e83e6e3dcb9-1.jpg"
-        ]
-    },
-    "mogannia-obliqua": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4170-321-5bfd58f1efe5a-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4170-321-5bfd58f1efe5a-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3941-404-54e83f49ca685-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4170-321-5bfd58f1efe5a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3941-404-54e83f49ca685-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3942-946-54e8415396f13-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4170-321-5bfd58f1efe5a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4170-321-5bfd58f1efe5a-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3942-946-54e8415396f13-1.jpg"
-        ]
-    },
-    "mosaica-irregularis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4044-793-5699395c7fd8e-1.jpg"
-        ]
-    },
-    "orientopsaltria-fangrayae": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4168-537-5bebfaa7e12cc-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4168-537-5bebfaa7e12cc-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4168-537-5bebfaa7e12cc-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4168-537-5bebfaa7e12cc-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4168-537-5bebfaa7e12cc-3.jpg"
-        ]
-    },
-    "oxypleura-atkinsoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3905-758-54e79090bda24-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3905-758-54e79090bda24-2.jpg"
-        ]
-    },
-    "paharia-lacteipennis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3949-926-54e84d612e36d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3949-926-54e84d612e36d-2.jpg"
-        ]
-    },
-    "pauropsalta-exaequata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4100-211-593286871c2cf-4_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4100-211-593286871c2cf-3_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4100-211-593286871c2cf-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3964-537-54e89b6068c3d-1_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3964-537-54e89b6068c3d-2_0.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4100-211-593286871c2cf-1_0.jpg"
-        ]
-    },
-    "platylomia-amicta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3834-336-54e67b585df84-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3834-336-54e67b585df84-1.jpg"
-        ]
-    },
-    "platylomia-brevis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3835-455-54e67ce842f1c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3835-455-54e67ce842f1c-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/306_4122-642-59be86dd310a5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/316_4250-806-5e79ea829192b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/360_4245-850-5e0b68dc79fd3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/360_4244-989-5e0b66d98c98a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/316_4250-806-5e79ea829192b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/360_4244-989-5e0b66d98c98a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4347-301-5f6eeb01ea122-5.jpg"
-        ]
-    },
-    "platylomia-ficulnea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3836-477-54e67deabdbc2-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3836-477-54e67deabdbc2-2.jpg"
-        ]
-    },
-    "platylomia-insignis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4352-659-5f71c5b63751a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4352-659-5f71c5b63751a-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4352-659-5f71c5b63751a-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4351-12-5f71c4d19aa88-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4351-12-5f71c4d19aa88-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4352-659-5f71c5b63751a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4351-12-5f71c4d19aa88-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4352-659-5f71c5b63751a-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4351-12-5f71c4d19aa88-2.jpg"
-        ]
-    },
-    "platylomia-larus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/363_4248-610-5e7861a6a7c93-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3837-298-54e67eed4192e-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3837-298-54e67eed4192e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/363_4248-610-5e7861a6a7c93-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/363_4248-610-5e7861a6a7c93-7.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/363_4248-610-5e7861a6a7c93-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/363_4248-610-5e7861a6a7c93-5.jpg"
-        ]
-    },
-    "platylomia-operculata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4178-143-5cc1f009b36de-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4178-143-5cc1f009b36de-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3838-577-54e67f9bcf4ff-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4178-143-5cc1f009b36de-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4178-143-5cc1f009b36de-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3838-577-54e67f9bcf4ff-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4178-143-5cc1f009b36de-5.jpg"
-        ]
-    },
-    "platylomia-radha": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3839-748-54e680cecc9da-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4169-300-5bebfcf7cbe62-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4169-300-5bebfcf7cbe62-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4169-300-5bebfcf7cbe62-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4169-300-5bebfcf7cbe62-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4169-300-5bebfcf7cbe62-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3839-748-54e680cecc9da-1.jpg"
-        ]
-    },
-    "platylomia-vibrans": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3833-159-54e67a47a705b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3831-617-54e679f060cb9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3831-617-54e679f060cb9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3833-159-54e67a47a705b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3831-617-54e679f060cb9-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3830-581-54e67623cb024-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3830-581-54e67623cb024-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3830-581-54e67623cb024-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/277_4026-147-55ae771529529-1.jpg"
-        ]
-    },
-    "platypleura-affinis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3906-771-54e79345adc65-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3906-771-54e79345adc65-2.jpg"
-        ]
-    },
-    "platypleura-andamana": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3908-702-54e7941abc2e6-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3908-702-54e7941abc2e6-1.jpg"
-        ]
-    },
-    "platypleura-assamensis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4098-272-593282eb3c095-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4097-258-5932811dd1d62-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3909-415-54e794ac582dc-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3909-415-54e794ac582dc-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/325_4161-937-5bc114fc0050a-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4097-258-5932811dd1d62-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4097-258-5932811dd1d62-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4098-272-593282eb3c095-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4098-272-593282eb3c095-3.jpg"
-        ]
-    },
-    "platypleura-badia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3910-816-54e7983c27501-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3910-816-54e7983c27501-2.jpg"
-        ]
-    },
-    "platypleura-basialba": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/261_3976-838-550ee9d9a3708-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3912-770-54e79f1caaee5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_4087-746-58dfa1e64c819-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/261_3976-838-550ee9d9a3708-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_4087-746-58dfa1e64c819-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3912-770-54e79f1caaee5-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/400_4383-951-609a234d006e2-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3911-909-54e79e0ae3cf9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3911-909-54e79e0ae3cf9-1.jpg"
-        ]
-    },
-    "platypleura-basiviridis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3913-778-54e7a067def24-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3913-778-54e7a067def24-1.jpg"
-        ]
-    },
-    "platypleura-bufo": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4400-981-60e53f9349f18-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3914-982-54e7a0de33309-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4400-981-60e53f9349f18-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4400-981-60e53f9349f18-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3914-982-54e7a0de33309-2.jpg"
-        ]
-    },
-    "platypleura-capitata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_4019-406-556412ab76980-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3915-3-54e7a3883df53-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4038-756-569936a792cf5-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/259_3971-140-54fa695ce9643-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_4019-406-556412ab76980-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/258_4031-444-55b4f09a23cba-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/318_4140-906-5adf28201575f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_4019-406-556412ab76980-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3915-3-54e7a3883df53-1.jpg"
-        ]
-    },
-    "platypleura-cervina": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3916-576-54e7a49458cf9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3916-576-54e7a49458cf9-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3916-576-54e7a49458cf9-2.jpg"
-        ]
-    },
-    "platypleura-coelebs": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3917-822-54e7a5779578f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3917-822-54e7a5779578f-1.jpg"
-        ]
-    },
-    "platypleura-hampsoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_4144-177-5b28e8bf055e2-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_4300-506-5eeb269454e8a-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3918-738-54e7a6360dffc-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3918-738-54e7a6360dffc-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_4300-506-5eeb269454e8a-2.jpg"
-        ]
-    },
-    "platypleura-insignis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3919-156-54e7a774c124f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3919-156-54e7a774c124f-2.jpg"
-        ]
-    },
-    "platypleura-mackinnoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3920-69-54e7a84d6de21-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3920-69-54e7a84d6de21-1.jpg"
-        ]
-    },
-    "platypleura-nobilis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_4301-827-5eeb27c3a6692-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_4301-827-5eeb27c3a6692-2.jpg"
-        ]
-    },
-    "platypleura-octoguttata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/269_3997-842-553f1c257197e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3995-219-553d1d125e121-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3921-6-54e7a9b819c45-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4039-785-5699379b31119-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_3993-388-5533956f37ee1-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_3993-388-5533956f37ee1-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3921-6-54e7a9b819c45-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_3973-398-5509aa56f06fe-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/260_3993-388-5533956f37ee1-1.jpg"
-        ]
-    },
-    "platypleura-polita": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/272_4003-448-55488fe748730-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/275_4018-455-5560956e631d3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/315_4137-631-5ac76c187bcea-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/284_4143-996-5b214bbe895ff-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/272_4003-448-55488fe748730-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/275_4018-455-5560956e631d3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/315_4137-631-5ac76c187bcea-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_3922-692-54e7ac1fd7551-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3922-692-54e7ac1fd7551-1.jpg"
-        ]
-    },
-    "platypleura-poorvachala": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4116-925-599fc2bb0c260-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4117-493-599fc58269bc7-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/357_4226-461-5d72818bb1873-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4116-925-599fc2bb0c260-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4117-493-599fc58269bc7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4118-573-599fcafc1b239-1.jpg"
-        ]
-    },
-    "platypleura-sphinx": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3924-336-54e7adcacdf7d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3924-336-54e7adcacdf7d-2.jpg"
-        ]
-    },
-    "platypleura-watsoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3925-485-54e7ae264b988-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3925-485-54e7ae264b988-1.jpg"
-        ]
-    },
-    "polyneura-ducalis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4034-53-55dc07a4eb5d6-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3759-34-54e5c62a574bb-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3759-34-54e5c62a574bb-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4067-591-56a85cd6abea9-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/266_3985-642-552b8f0d94cb3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4034-53-55dc07a4eb5d6-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4034-53-55dc07a4eb5d6-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4030-50-55b350fa09f72-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4034-53-55dc07a4eb5d6-2.jpg"
-        ]
-    },
-    "pomponia-cinctimanus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3805-252-54e63f8d36756-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3805-252-54e63f8d36756-1.jpg"
-        ]
-    },
-    "pomponia-cyanea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3808-987-54e6512f5cddf-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3810-769-54e652c130a6f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3809-256-54e6526c01629-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3807-586-54e650f2e5f37-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3808-987-54e6512f5cddf-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3806-398-54e64c9f87bcc-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3810-769-54e652c130a6f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3807-586-54e650f2e5f37-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3809-256-54e6526c01629-1.jpg"
-        ]
-    },
-    "pomponia-linearis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3812-26-54e6578280b23-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3812-26-54e6578280b23-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3811-838-54e6534bcf2c0-1.jpg"
-        ]
-    },
-    "pomponia-ramifera": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3813-899-54e658a10757e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3813-899-54e658a10757e-2.jpg"
-        ]
-    },
-    "pomponia-solitaria": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3814-709-54e65934e6f46-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3814-709-54e65934e6f46-2.jpg"
-        ]
-    },
-    "pomponia-sp": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/353_4218-654-5d5be5402144d-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/317_4238-475-5d9b2d090ada7-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_4218-654-5d5be5402144d-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/276_4021-992-5598f3870b5c0-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/273_4007-851-554f392dce3b3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/317_4238-475-5d9b2d090ada7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/282_4033-599-55dc0735a3e97-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/370_4284-92-5ece37ff46951-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/304_4115-30-59914729345e1-1.jpg"
-        ]
-    },
-    "pomponia-surya": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3815-269-54e65c9555c8d-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4310-654-5f0760a099f57-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4311-964-5f07613cb4648-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4310-654-5f0760a099f57-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4310-654-5f0760a099f57-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4310-654-5f0760a099f57-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4310-654-5f0760a099f57-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4311-964-5f07613cb4648-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3815-269-54e65c9555c8d-1.jpg"
-        ]
-    },
-    "pomponia-urania": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3816-295-54e65e169acd4-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3816-295-54e65e169acd4-2.jpg"
-        ]
-    },
-    "psalmocharias-rugipennis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3902-660-54e77b009e732-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3902-660-54e77b009e732-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3935-878-54e838b56c4e9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3935-878-54e838b56c4e9-2.jpg"
-        ]
-    },
-    "purana-campanula": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3764-352-54e5c97366f24-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3764-352-54e5c97366f24-1.jpg"
-        ]
-    },
-    "purana-guttularis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3763-93-54e5c8de95d1c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3763-93-54e5c8de95d1c-2.jpg"
-        ]
-    },
-    "purana-morrisi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4185-841-5ceb7e6e8f89e-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3766-888-54e5caf5cb091-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4217-451-5d5b646b53493-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4203-620-5d1757f91bd5b-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4203-620-5d1757f91bd5b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4185-841-5ceb7e6e8f89e-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3766-888-54e5caf5cb091-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/343_4267-554-5ec0d5de5f6f1-1.jpg"
-        ]
-    },
-    "purana-tigrina": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3762-23-54e5c7b044c91-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/295_4094-471-5931369f2d0a6-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/295_4094-471-5931369f2d0a6-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3762-23-54e5c7b044c91-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/297_4096-144-59317195486fa-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/295_4094-471-5931369f2d0a6-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/297_4104-191-5932f78839346-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/295_4094-471-5931369f2d0a6-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/297_4104-191-5932f78839346-2.jpg"
-        ]
-    },
-    "quintilia-pomponia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3958-982-54e897db754f3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3958-982-54e897db754f3-1.jpg"
-        ]
-    },
-    "rustia-apicata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3890-890-54e6f7ba09c3f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3890-890-54e6f7ba09c3f-2.jpg"
-        ]
-    },
-    "rustia-dentivitta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3886-607-54e6f221d3cd9-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4099-516-593283027a830-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3885-47-54e6ee1ae641a-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3886-607-54e6f221d3cd9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4099-516-593283027a830-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4099-516-593283027a830-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3885-47-54e6ee1ae641a-1.jpg"
-        ]
-    },
-    "rustia-kodagura": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/299_4105-861-593a704a2aca3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4149-380-5b6c1076e97e3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4150-172-5b6c13d6d56ea-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/299_4105-861-593a704a2aca3-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4149-380-5b6c1076e97e3-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4150-172-5b6c13d6d56ea-1.jpg"
-        ]
-    },
-    "rustia-maculata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4290-265-5ed7eac0e52db-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4289-451-5ed7e63f4b2d4-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4291-749-5ed7ebb674863-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4290-265-5ed7eac0e52db-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3889-404-54e6f7720f01c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4289-451-5ed7e63f4b2d4-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4290-265-5ed7eac0e52db-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4290-265-5ed7eac0e52db-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3889-404-54e6f7720f01c-2.jpg"
-        ]
-    },
-    "rustia-marginatus": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3888-827-54e6f43eb54ff-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3888-827-54e6f43eb54ff-1.jpg"
-        ]
-    },
-    "rustia-minuta": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4148-234-5b6c0f497b1ee-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4148-234-5b6c0f497b1ee-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4151-394-5b6c13ff224da-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4151-394-5b6c13ff224da-2.jpg"
-        ]
-    },
-    "rustia-tigrina": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3887-547-54e6f2b4ebf37-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3887-547-54e6f2b4ebf37-2.jpg"
-        ]
-    },
-    "scieroptera-fumigata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3903-277-54e78b4c9fe1f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3903-277-54e78b4c9fe1f-2.jpg"
-        ]
-    },
-    "scieroptera-splendidula": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3904-322-54e7903992241-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3904-322-54e7903992241-1.jpg"
-        ]
-    },
-    "sulphogaeana-sulphurea": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3821-884-54e66a11eaa88-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/252_3967-561-54f4ea6907066-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3821-884-54e66a11eaa88-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3968-971-54f57b46d23fb-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3980-222-55119e0154139-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/270_3999-675-55423d6af003f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_3980-222-55119e0154139-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4060-78-56a85b35842d1-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3968-971-54f57b46d23fb-1.jpg"
-        ]
-    },
-    "talainga-binghami": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/313_4123-820-5a070c1b77f51-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4069-357-56a85e4255df4-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/313_4124-89-5a070c3b75e74-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4069-357-56a85e4255df4-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3947-184-54e84808f0588-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4068-957-56a85dce68c13-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4068-957-56a85dce68c13-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4068-957-56a85dce68c13-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3947-184-54e84808f0588-1.jpg"
-        ]
-    },
-    "tanna-bhutanensis": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3773-52-54e5d1d5dac34-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3773-52-54e5d1d5dac34-2.jpg"
-        ]
-    },
-    "tanna-tigroides": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3772-100-54e5d1401942f-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3771-135-54e5d118e5301-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3771-135-54e5d118e5301-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3772-100-54e5d1401942f-1.jpg"
-        ]
-    },
-    "terpnosia-andersoni": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3874-241-54e6db706df37-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3874-241-54e6db706df37-2.jpg"
-        ]
-    },
-    "terpnosia-clio": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3876-383-54e6dc7dc4429-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3876-383-54e6dc7dc4429-1.jpg"
-        ]
-    },
-    "terpnosia-collina": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3875-942-54e6dbb256d90-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3875-942-54e6dbb256d90-1.jpg"
-        ]
-    },
-    "terpnosia-confusa": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3871-582-54e6d9c0cc56c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3871-582-54e6d9c0cc56c-2.jpg"
-        ]
-    },
-    "terpnosia-ganesa": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4349-339-5f6eec8478a09-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3868-533-54e6d73a3e139-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4349-339-5f6eec8478a09-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4349-339-5f6eec8478a09-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3868-533-54e6d73a3e139-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4349-339-5f6eec8478a09-3.jpg"
-        ]
-    },
-    "terpnosia-jenkinsi": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3881-608-54e6e0277cfa9-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3881-608-54e6e0277cfa9-1.jpg"
-        ]
-    },
-    "terpnosia-maculipes": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3867-791-54e6d70102f75-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3867-791-54e6d70102f75-1.jpg"
-        ]
-    },
-    "terpnosia-oberthuri": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3879-421-54e6dda74159b-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3879-421-54e6dda74159b-2.jpg"
-        ]
-    },
-    "terpnosia-ransonneti": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3883-88-54e6e9a18f6b6-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3883-88-54e6e9a18f6b6-2.jpg"
-        ]
-    },
-    "terpnosia-ridens": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3872-570-54e6d9ffc5d86-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3872-570-54e6d9ffc5d86-1.jpg"
-        ]
-    },
-    "terpnosia-stipata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3873-788-54e6daf129764-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3873-788-54e6daf129764-1.jpg"
-        ]
-    },
-    "terpnosia-versicolor": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3880-275-54e6de66c4080-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3880-275-54e6de66c4080-2.jpg"
-        ]
-    },
-    "tibeta-zenobia": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4058-477-56a85ac9f4194-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3963-476-54e89add18f29-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_4048-786-56993aa0ac3b4-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3963-476-54e89add18f29-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/262_4058-477-56a85ac9f4194-1.jpg"
-        ]
-    },
-    "tibicina-casyapae": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3950-704-54e84df38e23f-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3950-704-54e84df38e23f-2.jpg"
-        ]
-    },
-    "tibicina-reticulata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3948-375-54e84cb99083c-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/255_3948-375-54e84cb99083c-2.jpg"
-        ]
-    },
-    "tosena-albata": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3845-184-54e68ca2b8c9e-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3845-184-54e68ca2b8c9e-1.jpg"
-        ]
-    },
-    "tosena-dives": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3848-365-54e69449b65b1-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3848-365-54e69449b65b1-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3849-488-54e6952fe8025-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3849-488-54e6952fe8025-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4258-512-5eb5253b81bf9-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4258-512-5eb5253b81bf9-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3848-365-54e69449b65b1-4.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4258-512-5eb5253b81bf9-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3848-365-54e69449b65b1-3.jpg"
-        ]
-    },
-    "tosena-mearesiana": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3969-333-54f590dd83f33-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3847-805-54e693e476526-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3847-805-54e693e476526-2.jpg"
-        ]
-    },
-    "tosena-melanoptera": {
-        "images": [
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4259-454-5eb6a2f7edf55-6.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/322_4233-284-5d94649df4122-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/1_4234-215-5d946626870ce-3.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_4259-454-5eb6a2f7edf55-5.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/285_4078-415-57677c932e493-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/257_3846-830-54e690b1ad5d7-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/322_4234-215-5d946626870ce-1.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/322_4233-284-5d94649df4122-2.jpg",
-            "https://www.indiancicadas.org/sites/indiancicadas.org/files/322_4234-215-5d946626870ce-2.jpg"
-        ]
-    },
+        "name": "Sand Cicada"
+    },
+    "abroma-bengalensis": {},
+    "abroma-maculicollis": {},
+    "abroma-nubifurca": {},
+    "ambragaeana-stellata": {},
+    "angamiana-aetherea": {},
+    "balinta-delinenda": {},
+    "balinta-octonotata": {},
+    "balinta-tenebricosa": {},
+    "basa-singularis": {},
+    "bijaurana-sita": {},
+    "bijaurana-typica": {},
+    "calcagninus-picturatus": {},
+    "callogaeana-festiva": {},
+    "changa-sita": {},
+    "chremistica-ribhoi": {},
+    "chremistica-seminiger": {},
+    "cicadatra-acberi": {},
+    "cicadatra-inconspicua": {},
+    "cicadatra-sankara": {},
+    "cicadatra-xantes": {},
+    "cryptotympana-acuta": {},
+    "cryptotympana-corvus": {},
+    "cryptotympana-exalbida": {},
+    "cryptotympana-insularis": {},
+    "cryptotympana-intermedia": {},
+    "cryptotympana-limborgi": {},
+    "cryptotympana-recta": {},
+    "cryptotympana-vesta": {},
+    "distantalna-splendida": {},
+    "dundubia-emanatura": {},
+    "dundubia-feae": {},
+    "dundubia-nagarasingna": {},
+    "dundubia-oopaga": {},
+    "dundubia-rufivena": {},
+    "dundubia-terpsichore": {},
+    "eopycna-repanda": {},
+    "euterpnosia-crowfooti": {},
+    "euterpnosia-madhava": {},
+    "formotosena-montivaga": {},
+    "gaeana-atkinsoni": {},
+    "gaeana-maculata": {},
+    "graptotettix-guttatus": {},
+    "graptotettix-thoracicus": {},
+    "haphsa-durga": {},
+    "haphsa-nicomache": {},
+    "haphsa-scitula": {},
+    "huechys-incarnata": {},
+    "huechys-sanguinea": {},
+    "hyalessa-expansa": {},
+    "hyalessa-mahoni": {},
+    "hyalessa-mahoni-0": {},
+    "hyalessa-obnubila": {},
+    "hyalessa-obnubila-0": {},
+    "khimbya-diminuta": {},
+    "khimbya-evanescens": {},
+    "khimbya-immsi": {},
+    "lahugada-dohertyi": {},
+    "lemuriana-apicalis": {},
+    "leptopsaltria-andamanensis": {},
+    "leptopsaltria-samia": {},
+    "leptopsaltria-tuberosa": {},
+    "lethama-locusta": {},
+    "lycurgus-subvittus": {},
+    "macrosemia-assamensis": {},
+    "macrosemia-saturata": {},
+    "macrosemia-umbrata": {},
+    "mata-kama": {},
+    "megapomponia-intermedia": {},
+    "meimuna-cassandra": {},
+    "meimuna-microdon": {},
+    "meimuna-silhetana": {},
+    "meimuna-tripurasura": {},
+    "melampsalta-literata": {},
+    "mogannia-cyanea": {},
+    "mogannia-effecta": {},
+    "mogannia-funebris": {},
+    "mogannia-obliqua": {},
+    "mosaica-irregularis": {},
+    "orientopsaltria-fangrayae": {},
+    "oxypleura-atkinsoni": {},
+    "paharia-lacteipennis": {},
+    "pauropsalta-exaequata": {},
+    "platylomia-amicta": {},
+    "platylomia-brevis": {},
+    "platylomia-ficulnea": {},
+    "platylomia-insignis": {},
+    "platylomia-larus": {},
+    "platylomia-operculata": {},
+    "platylomia-radha": {},
+    "platylomia-vibrans": {},
+    "platypleura-affinis": {},
+    "platypleura-andamana": {},
+    "platypleura-assamensis": {},
+    "platypleura-badia": {},
+    "platypleura-basialba": {},
+    "platypleura-basiviridis": {},
+    "platypleura-bufo": {},
+    "platypleura-capitata": {},
+    "platypleura-cervina": {},
+    "platypleura-coelebs": {},
+    "platypleura-hampsoni": {},
+    "platypleura-insignis": {},
+    "platypleura-mackinnoni": {},
+    "platypleura-nobilis": {},
+    "platypleura-octoguttata": {},
+    "platypleura-polita": {},
+    "platypleura-poorvachala": {},
+    "platypleura-sphinx": {},
+    "platypleura-watsoni": {},
+    "polyneura-ducalis": {},
+    "pomponia-cinctimanus": {},
+    "pomponia-cyanea": {},
+    "pomponia-linearis": {},
+    "pomponia-ramifera": {},
+    "pomponia-solitaria": {},
+    "pomponia-sp": {},
+    "pomponia-surya": {},
+    "pomponia-urania": {},
+    "psalmocharias-rugipennis": {},
+    "purana-campanula": {},
+    "purana-guttularis": {},
+    "purana-morrisi": {},
+    "purana-tigrina": {},
+    "quintilia-pomponia": {},
+    "rustia-apicata": {},
+    "rustia-dentivitta": {},
+    "rustia-kodagura": {},
+    "rustia-maculata": {},
+    "rustia-marginatus": {},
+    "rustia-minuta": {},
+    "rustia-tigrina": {},
+    "scieroptera-fumigata": {},
+    "scieroptera-splendidula": {},
+    "sulphogaeana-sulphurea": {},
+    "talainga-binghami": {},
+    "tanna-bhutanensis": {},
+    "tanna-tigroides": {},
+    "terpnosia-andersoni": {},
+    "terpnosia-clio": {},
+    "terpnosia-collina": {},
+    "terpnosia-confusa": {},
+    "terpnosia-ganesa": {},
+    "terpnosia-jenkinsi": {},
+    "terpnosia-maculipes": {},
+    "terpnosia-oberthuri": {},
+    "terpnosia-ransonneti": {},
+    "terpnosia-ridens": {},
+    "terpnosia-stipata": {},
+    "terpnosia-versicolor": {},
+    "tibeta-zenobia": {},
+    "tibicina-casyapae": {},
+    "tibicina-reticulata": {},
+    "tosena-albata": {},
+    "tosena-dives": {},
+    "tosena-mearesiana": {},
+    "tosena-melanoptera": {},
     "becquartina-goera": {
-        "name": "Balpakram Butterfly Cicada",
-        "images": []
-    },
-    "abricta-brunnea": {
-        "images": []
-    },
-    "abricta-pusilla": {
-        "images": []
-    },
-    "abroma-apicalis": {
-        "images": []
-    },
-    "balinta-pulchella": {
-        "images": []
-    },
-    "balinta-sanguiniventris": {
-        "images": []
-    },
-    "birrima-varians": {
-        "images": []
-    },
-    "calcagninus-divaricatus": {
-        "images": []
-    },
-    "calcagninus-nilgirensis": {
-        "images": []
-    },
-    "callogaeana-annamensis": {
-        "images": []
-    },
-    "champaka-abdulla": {
-        "images": []
-    },
-    "champaka-spinosa": {
-        "images": []
-    },
-    "chremistica-bimaculata": {
-        "images": []
-    },
-    "chremistica-germana": {
-        "images": []
-    },
-    "chremistica-mixta": {
-        "images": []
-    },
-    "chremistica-nigra": {
-        "images": []
-    },
-    "chremistica-ochracea": {
-        "images": []
-    },
-    "chremistica-tridentigera": {
-        "images": []
-    },
-    "chremistica-viridis": {
-        "images": []
-    },
-    "cicada-complex": {
-        "images": []
-    },
-    "cicada-conspurcata": {
-        "images": []
-    },
-    "cicada-olivierana": {
-        "images": []
-    },
-    "cicada-orni": {
-        "images": []
-    },
-    "cicadatra-anoea": {
-        "images": []
-    },
-    "cicadatra-gingat": {
-        "images": []
-    },
-    "cicadatra-intermedia": {
-        "images": []
-    },
-    "cicadatra-karachiensis": {
-        "images": []
-    },
-    "cicadatra-minuta": {
-        "images": []
-    },
-    "cicadatra-raja": {
-        "images": []
-    },
-    "cicadatra-walkeri": {
-        "images": []
-    },
-    "cicadetta-inglisi": {
-        "images": []
-    },
-    "cicadetta-intermedia": {
-        "images": []
-    },
-    "cicadetta-minuta": {
-        "images": []
-    },
-    "cryptotympana-aquila": {
-        "images": []
-    },
-    "cryptotympana-atrata": {
-        "images": []
-    },
-    "cryptotympana-auropilosa": {
-        "images": []
-    },
-    "cryptotympana-edwardsi": {
-        "images": []
-    },
-    "cryptotympana-facialis": {
-        "images": []
-    },
-    "cryptotympana-holsti": {
-        "images": []
-    },
-    "cryptotympana-mandarina": {
-        "images": []
-    },
-    "cryptotympana-takasagona": {
-        "images": []
-    },
-    "cryptotympana-timorica": {
-        "images": []
-    },
-    "cryptotympana-varicolor": {
-        "images": []
-    },
-    "diceroprocta-semicincta": {
-        "images": []
-    },
-    "dundubia-ensifera": {
-        "images": []
-    },
-    "dundubia-laterocurvata": {
-        "images": []
-    },
-    "dundubia-myitkyinensis": {
-        "images": []
-    },
-    "dundubia-vaginata": {
-        "images": []
-    },
-    "emathia-aegrota": {
-        "images": []
-    },
-    "emathia-dup-aegrota": {
-        "images": []
-    },
-    "eopycna-himalayana": {
-        "images": []
-    },
-    "eopycna-minor": {
-        "images": []
-    },
-    "eopycna-montana": {
-        "images": []
-    },
-    "eopycna-spp": {
-        "images": []
-    },
-    "eopycna-verna": {
-        "images": []
-    },
-    "gaeana-consors": {
-        "images": []
-    },
-    "hamza-ciliaris": {
-        "images": []
-    },
-    "haphsa-bindusara": {
-        "images": []
-    },
-    "haphsa-karenensis": {
-        "images": []
-    },
-    "haphsa-stellata": {
-        "images": []
-    },
-    "huechys-beata": {
-        "images": []
-    },
-    "huechys-haematica": {
-        "images": []
-    },
-    "huechys-phaenicura": {
-        "images": []
-    },
-    "huechys-thoracica": {
-        "images": []
-    },
-    "hyalessa-expansa-0": {
-        "images": []
-    },
-    "hyalessa-melanoptera": {
-        "images": []
-    },
-    "hyalessa-melanoptera-0": {
-        "images": []
-    },
-    "hyalessa-stratoria": {
-        "images": []
-    },
-    "hyalessa-stratoria-0": {
-        "images": []
-    },
-    "hyalessa-virescens": {
-        "images": []
-    },
-    "karenia-ravida": {
-        "images": []
-    },
-    "khimbya-cuneata": {
-        "images": []
-    },
-    "kumanga-sandaracata": {
-        "images": []
-    },
-    "linguacicada-continuata": {
-        "images": []
-    },
-    "macrosemia-tonkiniana": {
-        "images": []
-    },
-    "mata-rama": {
-        "images": []
-    },
-    "maua-quadrituberculata": {
-        "images": []
-    },
-    "megapomponia-imperatoria": {
-        "images": []
-    },
-    "meimuna-gamameda": {
-        "images": []
-    },
-    "meimuna-pallida": {
-        "images": []
-    },
-    "meimuna-tavoyana": {
-        "images": []
-    },
-    "meimuna-velitaris": {
-        "images": []
-    },
-    "melampsalta-mogannia": {
-        "images": []
-    },
-    "mogannia-aurea": {
-        "images": []
-    },
-    "mogannia-conica": {
-        "images": []
-    },
-    "mogannia-hebes": {
-        "images": []
-    },
-    "mogannia-nasalis": {
-        "images": []
-    },
-    "mogannia-spurcata": {
-        "images": []
-    },
-    "mogannia-venutissima": {
-        "images": []
-    },
-    "mogannia-viridis": {
-        "images": []
-    },
-    "nabalua-mascula": {
-        "images": []
-    },
-    "neotanna-thalia": {
-        "images": []
-    },
-    "orientopsaltria-beaudouini": {
-        "images": []
-    },
-    "panka-simulata": {
-        "images": []
-    },
-    "paratanna-parata": {
-        "images": []
-    },
-    "platylomia-juno": {
-        "images": []
-    },
-    "platylomia-lemoultii": {
-        "images": []
-    },
-    "platylomia-malickyi": {
-        "images": []
-    },
-    "platypleura-inglisi": {
-        "images": []
-    },
-    "platypleura-intermedia": {
-        "images": []
-    },
-    "platypleura-nigrosignata": {
-        "images": []
-    },
-    "platypleura-stridula": {
-        "images": []
-    },
-    "platypleura-takasagona": {
-        "images": []
-    },
-    "platypleura-testacea": {
-        "images": []
-    },
-    "platypleura-westwoodi": {
-        "images": []
-    },
-    "polyneura-laevigata": {
-        "images": []
-    },
-    "pomponia-adusta": {
-        "images": []
-    },
-    "pomponia-picta": {
-        "images": []
-    },
-    "pomponia-secreta": {
-        "images": []
-    },
-    "pomponia-zebra": {
-        "images": []
-    },
-    "proarna-hilaris": {
-        "images": []
-    },
-    "proarna-shaoshia": {
-        "images": []
-    },
-    "psalmocharias-balochii": {
-        "images": []
-    },
-    "psalmocharias-chitralensis": {
-        "images": []
-    },
-    "psalmocharias-gizarensis": {
-        "images": []
-    },
-    "psalmocharias-japokensis": {
-        "images": []
-    },
-    "psalmocharias-paliur": {
-        "images": []
-    },
-    "psalmocharias-querula": {
-        "images": []
-    },
-    "scieroptera-crocea": {
-        "images": []
-    },
-    "scieroptera-formosana": {
-        "images": []
-    },
-    "scieroptera-montana": {
-        "images": []
-    },
-    "scieroptera-sumatrana": {
-        "images": []
-    },
-    "shaoshia-zhangi": {
-        "images": []
-    },
-    "subtibicina-tigris": {
-        "images": []
-    },
-    "tacua-speciosa": {
-        "images": []
-    },
-    "talainga-japrona": {
-        "images": []
-    },
-    "talainga-naga": {
-        "images": []
-    },
-    "tanna-chekiangensis": {
-        "images": []
-    },
-    "tanna-japonensis": {
-        "images": []
-    },
-    "tanna-minor": {
-        "images": []
-    },
-    "taungia-abnormis": {
-        "images": []
-    },
-    "terpnosia-abdullah": {
-        "images": []
-    },
-    "terpnosia-elegans": {
-        "images": []
-    },
-    "terpnosia-lactea": {
-        "images": []
-    },
-    "terpnosia-polei": {
-        "images": []
-    },
-    "terpnosia-psecas": {
-        "images": []
-    },
-    "tettigetta-musiva": {
-        "images": []
-    },
-    "unduncus-connexa": {
-        "images": []
-    },
-    "zouga-fornicata": {
-        "images": []
-    }
+        "name": "Balpakram Butterfly Cicada"
+    },
+    "abricta-brunnea": {},
+    "abricta-pusilla": {},
+    "abroma-apicalis": {},
+    "balinta-pulchella": {},
+    "balinta-sanguiniventris": {},
+    "birrima-varians": {},
+    "calcagninus-divaricatus": {},
+    "calcagninus-nilgirensis": {},
+    "callogaeana-annamensis": {},
+    "champaka-abdulla": {},
+    "champaka-spinosa": {},
+    "chremistica-bimaculata": {},
+    "chremistica-germana": {},
+    "chremistica-mixta": {},
+    "chremistica-nigra": {},
+    "chremistica-ochracea": {},
+    "chremistica-tridentigera": {},
+    "chremistica-viridis": {},
+    "cicada-complex": {},
+    "cicada-conspurcata": {},
+    "cicada-olivierana": {},
+    "cicada-orni": {},
+    "cicadatra-anoea": {},
+    "cicadatra-gingat": {},
+    "cicadatra-intermedia": {},
+    "cicadatra-karachiensis": {},
+    "cicadatra-minuta": {},
+    "cicadatra-raja": {},
+    "cicadatra-walkeri": {},
+    "cicadetta-inglisi": {},
+    "cicadetta-intermedia": {},
+    "cicadetta-minuta": {},
+    "cryptotympana-aquila": {},
+    "cryptotympana-atrata": {},
+    "cryptotympana-auropilosa": {},
+    "cryptotympana-edwardsi": {},
+    "cryptotympana-facialis": {},
+    "cryptotympana-holsti": {},
+    "cryptotympana-mandarina": {},
+    "cryptotympana-takasagona": {},
+    "cryptotympana-timorica": {},
+    "cryptotympana-varicolor": {},
+    "diceroprocta-semicincta": {},
+    "dundubia-ensifera": {},
+    "dundubia-laterocurvata": {},
+    "dundubia-myitkyinensis": {},
+    "dundubia-vaginata": {},
+    "emathia-aegrota": {},
+    "emathia-dup-aegrota": {},
+    "eopycna-himalayana": {},
+    "eopycna-minor": {},
+    "eopycna-montana": {},
+    "eopycna-spp": {},
+    "eopycna-verna": {},
+    "gaeana-consors": {},
+    "hamza-ciliaris": {},
+    "haphsa-bindusara": {},
+    "haphsa-karenensis": {},
+    "haphsa-stellata": {},
+    "huechys-beata": {},
+    "huechys-haematica": {},
+    "huechys-phaenicura": {},
+    "huechys-thoracica": {},
+    "hyalessa-expansa-0": {},
+    "hyalessa-melanoptera": {},
+    "hyalessa-melanoptera-0": {},
+    "hyalessa-stratoria": {},
+    "hyalessa-stratoria-0": {},
+    "hyalessa-virescens": {},
+    "karenia-ravida": {},
+    "khimbya-cuneata": {},
+    "kumanga-sandaracata": {},
+    "linguacicada-continuata": {},
+    "macrosemia-tonkiniana": {},
+    "mata-rama": {},
+    "maua-quadrituberculata": {},
+    "megapomponia-imperatoria": {},
+    "meimuna-gamameda": {},
+    "meimuna-pallida": {},
+    "meimuna-tavoyana": {},
+    "meimuna-velitaris": {},
+    "melampsalta-mogannia": {},
+    "mogannia-aurea": {},
+    "mogannia-conica": {},
+    "mogannia-hebes": {},
+    "mogannia-nasalis": {},
+    "mogannia-spurcata": {},
+    "mogannia-venutissima": {},
+    "mogannia-viridis": {},
+    "nabalua-mascula": {},
+    "neotanna-thalia": {},
+    "orientopsaltria-beaudouini": {},
+    "panka-simulata": {},
+    "paratanna-parata": {},
+    "platylomia-juno": {},
+    "platylomia-lemoultii": {},
+    "platylomia-malickyi": {},
+    "platypleura-inglisi": {},
+    "platypleura-intermedia": {},
+    "platypleura-nigrosignata": {},
+    "platypleura-stridula": {},
+    "platypleura-takasagona": {},
+    "platypleura-testacea": {},
+    "platypleura-westwoodi": {},
+    "polyneura-laevigata": {},
+    "pomponia-adusta": {},
+    "pomponia-picta": {},
+    "pomponia-secreta": {},
+    "pomponia-zebra": {},
+    "proarna-hilaris": {},
+    "proarna-shaoshia": {},
+    "psalmocharias-balochii": {},
+    "psalmocharias-chitralensis": {},
+    "psalmocharias-gizarensis": {},
+    "psalmocharias-japokensis": {},
+    "psalmocharias-paliur": {},
+    "psalmocharias-querula": {},
+    "scieroptera-crocea": {},
+    "scieroptera-formosana": {},
+    "scieroptera-montana": {},
+    "scieroptera-sumatrana": {},
+    "shaoshia-zhangi": {},
+    "subtibicina-tigris": {},
+    "tacua-speciosa": {},
+    "talainga-japrona": {},
+    "talainga-naga": {},
+    "tanna-chekiangensis": {},
+    "tanna-japonensis": {},
+    "tanna-minor": {},
+    "taungia-abnormis": {},
+    "terpnosia-abdullah": {},
+    "terpnosia-elegans": {},
+    "terpnosia-lactea": {},
+    "terpnosia-polei": {},
+    "terpnosia-psecas": {},
+    "tettigetta-musiva": {},
+    "unduncus-connexa": {},
+    "zouga-fornicata": {}
 }

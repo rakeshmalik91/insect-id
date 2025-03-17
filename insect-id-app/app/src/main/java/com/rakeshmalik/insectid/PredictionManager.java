@@ -150,9 +150,7 @@ public class PredictionManager {
             } else {
                 // generate species name using scientific name
                 String sciName = getScientificName(className);
-                speciesName = Arrays.stream(sciName.split(" "))
-                        .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
-                        .collect(Collectors.joining(" "))
+                speciesName = (sciName.substring(0, 1).toUpperCase() + sciName.substring(1))
                         .replaceAll("(?i)-genera", " Genera")
                         .replaceAll("(?i)-spp$", " spp.");
             }
