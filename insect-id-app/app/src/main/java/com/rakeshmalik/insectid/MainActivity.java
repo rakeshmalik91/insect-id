@@ -36,6 +36,8 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -43,6 +45,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,18 +84,11 @@ public class MainActivity extends AppCompatActivity {
             this.predictionManager = new PredictionManager(this, metadataManager, modelLoader);
 
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
-            this.buttonUpdateModel.setOnClickListener(v -> downloadOrUpdateModel());
+            this.buttonUpdateModel.setOnClickListener(v -> showDowloadOrUpdateModelDialog());
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
         }
-    }
-
-    private void downloadOrUpdateModel() {
-        lockUI();
-        imageView.setImageURI(null);
-        photoUri = null;
-        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true));
     }
 
     private void createModelTypeSpinner() {
@@ -418,6 +414,50 @@ public class MainActivity extends AppCompatActivity {
         }
         Future<?> future = executorService.submit(new PredictRunnable());
         runningTasks.add(future);
+    }
+
+    private void showDowloadOrUpdateModelDialog() {
+        if(uiLocked) {
+            return;
+        }
+        try {
+            String[] options = { selectedModelType.displayName + " Model", "All Models" };
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Download/Update");
+            builder.setItems(options, (dialog, which) -> {
+                if (which == 0) {
+                    downloadOrUpdateModel();
+                } else {
+                    downloadOrUpdateAllModels();
+                }
+            });
+            builder.show();
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, "Exception during show image picker dialog", ex);
+            throw ex;
+        }
+    }
+
+    private void downloadOrUpdateModel() {
+        lockUI();
+        imageView.setImageURI(null);
+        photoUri = null;
+        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true));
+    }
+
+    private void downloadOrUpdateAllModels() {
+        lockUI();
+        imageView.setImageURI(null);
+        photoUri = null;
+        Runnable runnable = () -> {
+            runOnUiThread(() -> outputText.setText("All " + ModelType.values().length + " models are now up to date"));
+            unlockUI();
+        };
+        for(ModelType modelType : Arrays.stream(ModelType.values()).sorted(Collections.reverseOrder()).collect(Collectors.toList())) {
+            Runnable onSuccess = runnable;
+            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true);
+        }
+        executorService.submit(runnable);
     }
 
 }

@@ -51,7 +51,7 @@ public class ModelDownloader {
         return !isModelAlreadyDownloaded(modelType) || isModelToBeUpdated(modelType);
     }
 
-    private boolean isModelAlreadyDownloaded(ModelType modelType) {
+    public boolean isModelAlreadyDownloaded(ModelType modelType) {
         String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
         String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
         String imagesFileName = String.format(IMAGES_FILE_NAME_FMT, modelType.modelName);
@@ -62,7 +62,7 @@ public class ModelDownloader {
                 && isFileAlreadyDownloaded(modelFileName);
     }
 
-    private boolean isModelToBeUpdated(ModelType modelType) {
+    public boolean isModelToBeUpdated(ModelType modelType) {
         int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
         int latestVersion = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
         Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", modelType.modelName, currentVersion, latestVersion));
@@ -103,8 +103,7 @@ public class ModelDownloader {
             final String imagesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_IMAGES_URL, null);
             final String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
 
-            // download root classifier
-            downloadRootClassifier(() -> {
+            Runnable downloadModelData = () -> {
                 final boolean updateRequired;
                 if (isModelAlreadyDownloaded(modelType)) {
                     updateRequired = forceUpdate && isModelToBeUpdated(modelType);
@@ -124,19 +123,20 @@ public class ModelDownloader {
                     Log.d(LOG_TAG, "Going to download " + modelType.modelName + " model");
                 }
 
-                // download class list
-                downloadFile(classesFileName, classesFileUrl, () -> {
-                    // download class details
-                    downloadFile(classDetailsFileName, classDetailsFileUrl, () -> {
-                        // download image archive
-                        downloadFile(imagesFileName, imagesFileUrl, () -> {
-                            // download model
-                            downloadFile(modelFileName, modelFileUrl, onSuccess,
-                                    onFailure, modelType.displayName + " model", modelType.modelName, updateRequired, 5, 5, true);
-                        }, onFailure, "image archives", modelType.modelName, updateRequired, 4, 5, false);
-                    }, onFailure, "class details", modelType.modelName, updateRequired, 3, 5, false);
-                }, onFailure, "class list", modelType.modelName, updateRequired, 2, 5, false);
-            }, onFailure, forceUpdate);
+                Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure,
+                        modelType.displayName + " model", modelType.modelName, updateRequired, 5, 5, true);
+
+                Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, onFailure,
+                        "image archives", modelType.modelName, updateRequired, 4, 5, false);
+
+                Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, onFailure,
+                        "class details", modelType.modelName, updateRequired, 3, 5, false);
+
+                downloadFile(classesFileName, classesFileUrl, downloadClassDetails, onFailure,
+                        "class list", modelType.modelName, updateRequired, 2, 5, false);
+            };
+
+            downloadRootClassifier(downloadModelData, onFailure, forceUpdate);
         } catch(Exception ex) {
             if(onFailure != null) {
                 onFailure.run();
@@ -185,11 +185,11 @@ public class ModelDownloader {
                     }
                     Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
                     mainHandler.post(() -> outputText.setText(getDownloadCompletedMessage()));
-                    if(onSuccess != null) {
-                        onSuccess.run();
-                    }
                     if(updatePrefs) {
                         updatePrefs();
+                    }
+                    if(onSuccess != null) {
+                        onSuccess.run();
                     }
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "Download " + fileType + " failed: ", e);
