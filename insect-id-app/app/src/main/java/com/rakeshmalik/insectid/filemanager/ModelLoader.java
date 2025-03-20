@@ -1,13 +1,12 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.filemanager;
 
-import static com.rakeshmalik.insectid.Constants.IMAGES_FILE_NAME_FMT;
-import static com.rakeshmalik.insectid.Constants.MAX_IMAGES_IN_PREDICTION;
-import static com.rakeshmalik.insectid.Constants.PREF;
-import static com.rakeshmalik.insectid.Constants.PREF_ASSET_TEMP_PATH;
+import static com.rakeshmalik.insectid.constants.Constants.IMAGES_ARCHIVE_FILE_NAME_FMT;
+import static com.rakeshmalik.insectid.constants.Constants.MAX_IMAGES_IN_PREDICTION;
+import static com.rakeshmalik.insectid.constants.Constants.PREF;
+import static com.rakeshmalik.insectid.constants.Constants.PREF_ASSET_TEMP_PATH;
 
 import android.content.Context;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -19,9 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -30,6 +27,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.rakeshmalik.insectid.constants.Constants;
 
 public class ModelLoader {
 
@@ -109,7 +107,7 @@ public class ModelLoader {
     }
 
     public List<Bitmap> getImagesFromZip(Context context, String modelName, String className) {
-        final String zipFileName = String.format(IMAGES_FILE_NAME_FMT, modelName);
+        final String zipFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelName);
         File file = new File(context.getCacheDir(), zipFileName);
         try (ZipFile zipFile = new ZipFile(file.getAbsolutePath())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -1,6 +1,6 @@
 package com.rakeshmalik.insectid;
 
-import static com.rakeshmalik.insectid.Constants.*;
+import static com.rakeshmalik.insectid.constants.Constants.*;
 
 import android.Manifest;
 import android.content.Intent;
@@ -31,6 +31,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.rakeshmalik.insectid.filemanager.MetadataManager;
+import com.rakeshmalik.insectid.filemanager.ModelDownloader;
+import com.rakeshmalik.insectid.filemanager.ModelLoader;
+import com.rakeshmalik.insectid.enums.ModelType;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             this.predictionManager = new PredictionManager(this, metadataManager, modelLoader);
 
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
-            this.buttonUpdateModel.setOnClickListener(v -> showDowloadOrUpdateModelDialog());
+            this.buttonUpdateModel.setOnClickListener(v -> showDownloadOrUpdateModelDialog());
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
@@ -416,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
         runningTasks.add(future);
     }
 
-    private void showDowloadOrUpdateModelDialog() {
+    private void showDownloadOrUpdateModelDialog() {
         if(uiLocked) {
             return;
         }

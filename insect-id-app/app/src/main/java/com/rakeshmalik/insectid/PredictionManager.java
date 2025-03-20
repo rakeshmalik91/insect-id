@@ -1,6 +1,6 @@
 package com.rakeshmalik.insectid;
 
-import static com.rakeshmalik.insectid.Constants.*;
+import static com.rakeshmalik.insectid.constants.Constants.*;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,15 +8,16 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.rakeshmalik.insectid.filemanager.MetadataManager;
+import com.rakeshmalik.insectid.filemanager.ModelLoader;
+import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.utils.CommonUtils;
+
 import org.pytorch.IValue;
 import org.pytorch.Module;
 import org.pytorch.Tensor;
 import org.pytorch.torchvision.TensorImageUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -45,12 +46,12 @@ public class PredictionManager {
         Module model = Module.load(modelPath);
         Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
         float[] logitScores = outputTensor.getDataAsFloatArray();
-        float[] softMaxScores = Utils.toSoftMax(logitScores.clone());
-        List<String> classLabels = Utils.toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
+        float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
+        List<String> classLabels = CommonUtils.toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
         double minAcceptedSoftmax = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
 
         // sort by top score and filter using min accepted softmax
-        Integer[] predictedClassIdx = Utils.getSortedIndices(softMaxScores);
+        Integer[] predictedClassIdx = CommonUtils.getSortedIndices(softMaxScores);
         List<String> predictedClass = Arrays.stream(predictedClassIdx)
                 .filter(i -> softMaxScores[i] >= minAcceptedSoftmax)
                 .map(classLabels::get).collect(Collectors.toList());
@@ -79,18 +80,18 @@ public class PredictionManager {
 
             // run through root classifier model
             List<String> predictedRootClasses = predictRootClasses(modelType, inputTensor);
-            Set<String> acceptedRootClasses = new HashSet<>(Utils.toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
+            Set<String> acceptedRootClasses = new HashSet<>(CommonUtils.toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
 
             // run through selected model
             Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
             float[] logitScores = outputTensor.getDataAsFloatArray();
             Log.d(LOG_TAG, "scores: " + Arrays.toString(logitScores));
-            float[] softMaxScores = Utils.toSoftMax(logitScores.clone());
+            float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
             Log.d(LOG_TAG, "softMaxScores: " + Arrays.toString(softMaxScores));
 
             // get top 10 predictions and filter using min accepted softmax and logit
             int k = MAX_PREDICTIONS;
-            Integer[] predictedClass = Utils.getTopKIndices(softMaxScores, k);
+            Integer[] predictedClass = CommonUtils.getTopKIndices(softMaxScores, k);
             Log.d(LOG_TAG, "Top " + k + " scores: " + Arrays.stream(predictedClass).map(c -> logitScores[c]).collect(Collectors.toList()));
             Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClass).map(c -> softMaxScores[c]).collect(Collectors.toList()));
             final double minAcceptedSoftmax = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);

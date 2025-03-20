@@ -1,12 +1,10 @@
-package com.rakeshmalik.insectid;
-
-import java.util.Map;
+package com.rakeshmalik.insectid.constants;
 
 public class Constants {
 
     public static final int MAX_PREDICTIONS = 10;
     public static final String MODEL_FILE_NAME_FMT = "m.checkpoint.%s.pt";
-    public static final String IMAGES_FILE_NAME_FMT = "images.%s.zip";
+    public static final String IMAGES_ARCHIVE_FILE_NAME_FMT = "images.%s.zip";
     public static final String CLASSES_FILE_NAME_FMT = "classes.%s.json";
     public static final String CLASS_DETAILS_FILE_NAME_FMT = "class_details.%s.json";
 
@@ -47,5 +45,8 @@ public class Constants {
 
     public static final String HTML_NO_IMAGE_AVAILABLE = "<font color='#777777'>(No images available)</font><br/><br/>";
     public static final String HTML_LOADING_IMAGES = "<font color='#777777'>(Loading images...)</font><br/><br/>";
+
+    public static final String WAKE_LOCK_NAME = "insect-id::DownloadLock";
+    public static final long WAKE_LOCK_TIME = 10 * 60 * 1000L; /*10 minutes*/
 
 }

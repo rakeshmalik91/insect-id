@@ -1,6 +1,6 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.filemanager;
 
-import static com.rakeshmalik.insectid.Constants.*;
+import static com.rakeshmalik.insectid.constants.Constants.*;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.rakeshmalik.insectid.R;
+import com.rakeshmalik.insectid.constants.Constants;
+import com.rakeshmalik.insectid.enums.ModelType;
 
 import org.json.JSONException;
 import org.json.JSONObject;

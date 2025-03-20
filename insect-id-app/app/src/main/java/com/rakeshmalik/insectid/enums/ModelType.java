@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.enums;
 
 public enum ModelType {
     LEPIDOPTERA("Butterfly/Moth", "lepidoptera"),

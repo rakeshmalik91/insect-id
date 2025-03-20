@@ -1,7 +1,6 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.utils;
 
-import static com.rakeshmalik.insectid.Constants.LOG_TAG;
-import static com.rakeshmalik.insectid.Constants.PREVIEW_IMAGE_TIMEOUT;
+import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,14 +11,13 @@ import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InterruptedIOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Utils {
+public class CommonUtils {
 
     public static float[] toSoftMax(float[] scores) {
         float sumExp = 0.0f;

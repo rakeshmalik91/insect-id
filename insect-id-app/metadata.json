@@ -128,11 +128,11 @@
         }
     },
     "odonata": {
-        "model_url": "https://drive.usercontent.google.com/download?id=18Na9cR_SjIlF21zJptLpxysb61ZSMUfO&export=download&confirm=t&uuid=dfa68642-b4bf-463a-b3eb-fd2adbb5194e",
+        "model_url": "https://drive.usercontent.google.com/download?id=1r7kv2BIIlG78H06jYNF5gI7bUQ8uk_hJ&export=download&confirm=t&uuid=7013beb1-3f18-4534-886b-ae6fd3789d8d",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1d1CN-guYNoATx5Dtm185GceJY2UHP2fA&export=download&confirm=t&uuid=413dc1ae-2499-41b9-8502-ff060944da45",
-        "version": 6,
+        "images_url": "https://drive.usercontent.google.com/download?id=1d1CN-guYNoATx5Dtm185GceJY2UHP2fA&export=download&authuser=2&confirm=t&uuid=fe9ef34b-fc58-45ed-946b-c3fa6e96080f&at=AEz70l4vdYQeqAWgWPKvHZFb5CM3:1742487095189",
+        "version": 10,
         "min_accepted_logit": -50,
         "min_accepted_softmax": 0.1,
         "accepted_classes": [
@@ -140,11 +140,11 @@
         ],
         "min_accepted_softmax_to_override_root_classifier": 0.95,
         "stats": {
-            "class_count": 427,
-            "species_count": 400,
+            "class_count": 437,
+            "species_count": 410,
             "spp_class_count": 27,
             "early_stage_class_count": 0,
-            "data_count": 43744,
+            "data_count": 44288,
             "model_arch": "Resnet-152",
             "data_sources": [
                 "indianodonata.org",
