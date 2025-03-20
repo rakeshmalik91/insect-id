@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.show();
         } catch (Exception ex) {
-            Log.e(LOG_TAG, "Exception during sho image picker dialog", ex);
+            Log.e(LOG_TAG, "Exception during show image picker dialog", ex);
             throw ex;
         }
     }

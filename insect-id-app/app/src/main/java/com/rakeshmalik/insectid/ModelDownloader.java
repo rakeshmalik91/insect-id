@@ -127,7 +127,7 @@ public class ModelDownloader {
                         modelType.displayName + " model", modelType.modelName, updateRequired, 5, 5, true);
 
                 Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, onFailure,
-                        "image archives", modelType.modelName, updateRequired, 4, 5, false);
+                        modelType.displayName + " images", modelType.modelName, updateRequired, 4, 5, false);
 
                 Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, onFailure,
                         "class details", modelType.modelName, updateRequired, 3, 5, false);
