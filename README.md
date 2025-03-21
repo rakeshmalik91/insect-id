@@ -29,6 +29,10 @@ Note: early stage classes suffixed with "-early"
 
 Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
 
+## Android app dependencies
+
+- [OpenCV 4.11.0](https://github.com/opencv/opencv/releases/tag/4.11.0) (location: insect-id-app/opencv)
+
 ## Model checkpoints
 
 [Model checkpoints](https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link)

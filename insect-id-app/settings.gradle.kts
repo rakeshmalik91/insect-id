@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Insect ID"
 include(":app")
+include(":opencv")

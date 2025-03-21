@@ -5,15 +5,9 @@ import static com.rakeshmalik.insectid.constants.Constants.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +29,11 @@ import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelDownloader;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.prediction.PredictionRunnable;
+import com.rakeshmalik.insectid.prediction.PredictionManager;
 import com.yalantis.ucrop.UCrop;
+
+import org.opencv.android.OpenCVLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +41,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -89,10 +86,28 @@ public class MainActivity extends AppCompatActivity {
 
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
             this.buttonUpdateModel.setOnClickListener(v -> showDownloadOrUpdateModelDialog());
+
+            System.loadLibrary("opencv_java4");
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
         }
+    }
+
+    public ModelType getSelectedModelType() {
+        return selectedModelType;
+    }
+
+    public Uri getPhotoUri() {
+        return photoUri;
+    }
+
+    public TextView getOutputText() {
+        return outputText;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 
     private void createModelTypeSpinner() {
@@ -312,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private synchronized void lockUI() {
+    public synchronized void lockUI() {
         uiLocked = true;
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(false);
@@ -321,87 +336,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private synchronized void unlockUI() {
+    public synchronized void unlockUI() {
         uiLocked = false;
         runOnUiThread(() -> {
             modelTypeSpinner.setEnabled(true);
             buttonPickImage.setEnabled(true);
             buttonUpdateModel.setEnabled(true);
         });
-    }
-
-    public Drawable predictedImageRenderer(String source) {
-        try {
-            List<Bitmap> images = modelLoader.getImagesFromZip(this, source.split("/")[0], source.split("/")[1]);
-            int maxColumns = 3, gap = 10;
-            int size = (outputText.getWidth() - gap * (maxColumns - 1)) / maxColumns;
-            int columns = Math.min(images.size(), maxColumns);
-            int rows = (int) Math.ceil((double) images.size() / maxColumns);
-            int gridWidth = size * columns + gap * (columns - 1);
-            int gridHeight = size * rows + gap * (rows - 1);
-            Bitmap bitmap = Bitmap.createBitmap(gridWidth, gridHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            int left = 0, top = 0;
-            for (int i = 0; i < images.size(); i++) {
-                Bitmap img = images.get(i);
-                //img = Utils.topBottomEdgeCrop(img, 0.12f);
-                //img = Utils.centerSquareCrop(img);
-                img = Bitmap.createScaledBitmap(img, size, size, true);
-                canvas.drawBitmap(img, left, top, null);
-                if (i % maxColumns == maxColumns - 1) {
-                    top += size + gap;
-                    left = 0;
-                } else {
-                    left += size + gap;
-                }
-            }
-            Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-            drawable.setBounds(0, 0, gridWidth, gridHeight);
-            return drawable;
-        } catch(RuntimeException ex) {
-            Log.e(LOG_TAG, "Exception in predictedImageRenderer", ex);
-            return null;
-        }
-    }
-
-    private String getHtmlWithoutImage(String predictions) {
-        String predictionsWithoutImage = predictions.replaceAll("<img [^>]+/>", "");
-        while(predictionsWithoutImage.contains(HTML_NO_IMAGE_AVAILABLE)) {
-            predictionsWithoutImage = predictionsWithoutImage.replace(HTML_NO_IMAGE_AVAILABLE, "");
-        }
-        return predictionsWithoutImage;
-    }
-
-    class PredictRunnable implements Runnable {
-        private void runPrediction() {
-            try {
-                runOnUiThread(() -> outputText.setText(R.string.predicting));
-                final ModelType modelType = selectedModelType;
-                String predictions = predictionManager.predict(selectedModelType, photoUri);
-                if (modelType == selectedModelType) {
-                    // set html with alt text while loading images
-                    Spanned htmlWithoutImage = Html.fromHtml(getHtmlWithoutImage(predictions), Html.FROM_HTML_MODE_COMPACT, null, null);
-                    runOnUiThread(() -> outputText.setText(htmlWithoutImage));
-                    unlockUI();
-                    // render html with images
-                    Spanned html = Html.fromHtml(predictions, Html.FROM_HTML_MODE_COMPACT, MainActivity.this::predictedImageRenderer, null);
-                    runOnUiThread(() -> outputText.setText(html));
-                }
-            } catch(Exception ex) {
-                Log.e(LOG_TAG, "Exception during prediction", ex);
-            } finally {
-                unlockUI();
-            }
-        }
-        @Override
-        public void run() {
-            try {
-                lockUI();
-                modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unlockUI, 1, 1);
-            } catch(Exception ex) {
-                unlockUI();
-            }
-        }
     }
 
     private void downloadModelAndRunPredictionAsync() {
@@ -416,7 +357,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "Task " + future + " killed");
             }
         }
-        Future<?> future = executorService.submit(new PredictRunnable());
+        PredictionRunnable runnable = new PredictionRunnable(this, predictionManager, modelLoader, modelDownloader);
+        Future<?> future = executorService.submit(runnable);
         runningTasks.add(future);
     }
 

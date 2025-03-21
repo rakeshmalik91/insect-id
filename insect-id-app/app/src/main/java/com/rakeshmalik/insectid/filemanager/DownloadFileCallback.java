@@ -23,7 +23,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class DownloadFileCallback implements Callback {
+class DownloadFileCallback implements Callback {
 
     private Context context;
     private TextView outputText;

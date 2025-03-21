@@ -16,7 +16,7 @@
         "model_url": "https://drive.usercontent.google.com/download?id=1tKaZNBXfUMfWBOoZ-h7lrDhnSsCEqCLW&export=download&confirm=t&uuid=1c1f21a7-c62d-4300-a580-b58717fce8a3",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1I1uu3-TG1WqkRe8JTF8Koq_3js7Yt7l9&export=download&confirm=t&uuid=f9e176c0-0302-4b8c-8153-4ab277f151ee",
+        "images_url": "https://drive.usercontent.google.com/download?id=1sUasHdjIYpUHebUjmnT1SDSllHAMxKva&export=download&confirm=t&uuid=6828b117-2339-4eba-9462-39fd1338d13a",
         "version": 8,
         "min_accepted_logit": -60,
         "min_accepted_softmax": 0.1,
