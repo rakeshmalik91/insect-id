@@ -2,7 +2,7 @@
 
 ## Android app APK
 
-[APK file](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
+[Download APK file](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
 
 ## Android app screenshots
 
@@ -15,13 +15,15 @@
 	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="125"/>
 </p>
 
-## Trained species list (classes)
+## List of species and classes trained on
 
-- [Lepidoptera](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.lepidoptera.json)
-	- [Butterfly](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.butterfly.json)
-	- [Moth](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.moth.json)
-- [Odonata](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.odonata.json)
-- [Cicada](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.cicada.json)
+[All species](https://github.com/rakeshmalik91/insect-id/blob/main/species.json) (contains species that do not have any images available as well)
+
+- [Lepidoptera classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.lepidoptera.json)
+	- [Butterfly classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.butterfly.json)
+	- [Moth classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.moth.json)
+- [Odonata (Dragonfly/Damselfly) classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.odonata.json)
+- [Cicada classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.cicada.json)
 
 Note: early stage classes suffixed with "-early"
 
