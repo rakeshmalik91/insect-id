@@ -67,11 +67,11 @@ public class ModelDownloader {
         return currentVersion < latestVersion;
     }
 
-    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure) {
-        downloadModel(modelType, onSuccess, onFailure, false);
+    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, int modelDownloadSeq, int totalModelDownloads) {
+        downloadModel(modelType, onSuccess, onFailure, false, modelDownloadSeq, totalModelDownloads);
     }
 
-    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate) {
+    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
         int latestVersion = metadataManager.getMetadata(ROOT_CLASSIFIER).optInt(FIELD_VERSION, 0);
@@ -81,11 +81,12 @@ public class ModelDownloader {
             onSuccess.run();
         } else {
             String fileUrl = metadataManager.getMetadata(ROOT_CLASSIFIER).optString(FIELD_MODEL_URL, null);
-            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, forceUpdate, 1, 5);
+            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, forceUpdate,
+                    1, 5, modelDownloadSeq, totalModelDownloads);
         }
     }
 
-    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate) {
+    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
         try {
 
             if(forceUpdate) {
@@ -123,20 +124,25 @@ public class ModelDownloader {
                 }
 
                 Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure,
-                        modelType.displayName + " model", modelType.modelName, updateRequired, 5, 5);
+                        modelType.displayName + " model", modelType.modelName, updateRequired,
+                        5, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, onFailure,
-                        modelType.displayName + " images", modelType.modelName, updateRequired, 4, 5);
+                        modelType.displayName + " images", modelType.modelName, updateRequired,
+                        4, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, onFailure,
-                        "class details", modelType.modelName, updateRequired, 3, 5);
+                        modelType.displayName + " metadata", modelType.modelName, updateRequired,
+                        3, 5, modelDownloadSeq, totalModelDownloads);
 
                 downloadFile(classesFileName, classesFileUrl, downloadClassDetails, onFailure,
-                        "class list", modelType.modelName, updateRequired, 2, 5);
+                        modelType.displayName + " classes", modelType.modelName, updateRequired,
+                        2, 5, modelDownloadSeq, totalModelDownloads);
             };
 
-            downloadRootClassifier(downloadModelData, onFailure, forceUpdate);
+            downloadRootClassifier(downloadModelData, onFailure, forceUpdate, modelDownloadSeq, totalModelDownloads);
         } catch(Exception ex) {
+            Log.e(LOG_TAG, "Exception downloading model " + modelType, ex);
             if(onFailure != null) {
                 onFailure.run();
             }
@@ -151,12 +157,21 @@ public class ModelDownloader {
 //    }
 
     private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
-                              String fileType, String modelName, boolean updateRequired,
-                              int downloadSeq, int totalDownloads) {
-        Log.d(LOG_TAG, "Downloading " + fileType + " " + fileName + " from " + fileUrl + "...");
-        DownloadFileCallback callback = new DownloadFileCallback(context, outputText, metadataManager, mainHandler, prefs,
-                fileName, fileUrl, onSuccess, onFailure, fileType, modelName, updateRequired, downloadSeq, totalDownloads);
-        client.newCall(new Request.Builder().url(fileUrl).build()).enqueue(callback);
+                              String downloadName, String modelName, boolean updateRequired,
+                              int fileDownloadSeq, int totalFileDownloads,
+                              int modelDownloadSeq, int totalModelDownloads) {
+        try {
+            Log.d(LOG_TAG, "Downloading " + downloadName + " " + fileName + " from " + fileUrl + "...");
+            DownloadFileCallback callback = new DownloadFileCallback(context, outputText, metadataManager, mainHandler, prefs,
+                    fileName, onSuccess, onFailure, downloadName, modelName, updateRequired,
+                    fileDownloadSeq, totalFileDownloads, modelDownloadSeq, totalModelDownloads);
+            client.newCall(new Request.Builder().url(fileUrl).build()).enqueue(callback);
+        } catch(Exception ex) {
+            Log.e(LOG_TAG, "Exception downloading " + fileUrl, ex);
+            if(onFailure != null) {
+                onFailure.run();
+            }
+        }
     }
 
     private boolean isFileAlreadyDownloaded(String fileName) {

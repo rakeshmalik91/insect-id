@@ -397,7 +397,7 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             try {
                 lockUI();
-                modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unlockUI);
+                modelDownloader.downloadModel(selectedModelType, this::runPrediction, MainActivity.this::unlockUI, 1, 1);
             } catch(Exception ex) {
                 unlockUI();
             }
@@ -446,20 +446,24 @@ public class MainActivity extends AppCompatActivity {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
-        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true));
+        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true, 1, 1));
     }
 
     private void downloadOrUpdateAllModels() {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
+        final int totalModelDownloads = ModelType.values().length;
+        int modelDownloadSeq = ModelType.values().length;
         Runnable runnable = () -> {
             runOnUiThread(() -> outputText.setText("All " + ModelType.values().length + " models are now up to date"));
             unlockUI();
         };
         for(ModelType modelType : Arrays.stream(ModelType.values()).sorted(Collections.reverseOrder()).collect(Collectors.toList())) {
             Runnable onSuccess = runnable;
-            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true);
+            final int modelDownloadSeqFinal = modelDownloadSeq;
+            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, totalModelDownloads);
+            modelDownloadSeq--;
         }
         executorService.submit(runnable);
     }

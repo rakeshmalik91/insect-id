@@ -5,6 +5,7 @@ import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 import static com.rakeshmalik.insectid.constants.Constants.WAKE_LOCK_NAME;
 import static com.rakeshmalik.insectid.constants.Constants.WAKE_LOCK_TIME;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -31,32 +32,34 @@ public class DownloadFileCallback implements Callback {
     private SharedPreferences prefs;
 
     private String fileName;
-    private String fileUrl;
     private Runnable onSuccess;
     private Runnable onFailure;
-    private String fileType;
+    private String downloadName;
     private String modelName;
     private boolean updateRequired;
-    private int downloadSeq;
-    private int totalDownloads;
+    private int fileDownloadSeq;
+    private int totalFileDownloads;
+    private int modelDownloadSeq;
+    private int totalModelDownloads;
 
     PowerManager.WakeLock wakeLock;
 
     private DownloadFileCallback() {}
 
     public DownloadFileCallback(Context context, TextView outputText, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
-                                String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
-                                String fileType, String modelName, boolean updateRequired,
-                                int downloadSeq, int totalDownloads) {
+                                String fileName, Runnable onSuccess, Runnable onFailure,
+                                String downloadName, String modelName, boolean updateRequired,
+                                int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads) {
         this.fileName = fileName;
-        this.fileUrl = fileUrl;
         this.onSuccess = onSuccess;
         this.onFailure = onFailure;
-        this.fileType = fileType;
+        this.downloadName = downloadName;
         this.modelName = modelName;
         this.updateRequired = updateRequired;
-        this.downloadSeq = downloadSeq;
-        this.totalDownloads = totalDownloads;
+        this.fileDownloadSeq = fileDownloadSeq;
+        this.totalFileDownloads = totalFileDownloads;
+        this.modelDownloadSeq = modelDownloadSeq;
+        this.totalModelDownloads = totalModelDownloads;
         this.context = context;
         this.outputText = outputText;
         this.metadataManager = metadataManager;
@@ -71,8 +74,8 @@ public class DownloadFileCallback implements Callback {
 
     @Override
     public void onFailure(Call call, IOException e) {
-        Log.e(LOG_TAG, "Download " + fileType + " failed: " + e.getMessage());
-        mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!"));
+        Log.e(LOG_TAG, "Download " + downloadName + " failed: " + e.getMessage());
+        mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
         if(onFailure != null) {
             onFailure.run();
         }
@@ -85,7 +88,7 @@ public class DownloadFileCallback implements Callback {
     public void onResponse(Call call, Response response) throws IOException {
         if (!response.isSuccessful()) {
             Log.e(LOG_TAG, "Server error: " + response.code());
-            mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!"));
+            mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
             return;
         }
         File cacheDir = context.getCacheDir();
@@ -113,11 +116,11 @@ public class DownloadFileCallback implements Callback {
                 onSuccess.run();
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Download " + fileType + " failed: ", e);
+            Log.e(LOG_TAG, "Download " + downloadName + " failed: ", e);
             if(Objects.equals(e.getMessage(), "Software caused connection abort")) {
-                mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!\nPlease restart the download and do not minimize or close the app or lock the screen."));
+                mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!\nPlease restart the download and do not minimize or close the app or lock the screen."));
             } else {
-                mainHandler.post(() -> outputText.setText("Download " + fileType + " failed!"));
+                mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
             }
             if(onFailure != null) {
                 onFailure.run();
@@ -129,29 +132,46 @@ public class DownloadFileCallback implements Callback {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private String getDownloadCompletedMessage() {
-        return String.format("Downloaded %s successfully\nDownloads: %d/%d", fileType, downloadSeq, totalDownloads);
+        return String.format("Downloaded %s successfully\n" +
+                        "Downloads: %d/%d",
+                downloadName,
+                totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
     }
 
+    @SuppressLint("DefaultLocale")
     private String getDownloadInProgressMessage(long eta, int progress, long downloadedBytes, long totalBytes) {
         String msg;
         if(updateRequired) {
             int latestVersion = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
             int currentVersion = prefs.getInt(ModelDownloader.modelVersionPrefName(modelName), 0);
-            msg = String.format("Updating %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nVersion: %d -> %d\nDownloads: %d/%d",
-                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
-                    currentVersion, latestVersion, downloadSeq, totalDownloads);
+            msg = String.format("Updating %s...\n" +
+                            "%d min %d sec remaining\n" +
+                            "%d%% (%d/%d MB)\n" +
+                            "Version: %d -> %d\n" +
+                            "Downloads: %d/%d",
+                    downloadName,
+                    eta / 60000, (eta % 60000) / 1000,
+                    progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
+                    currentVersion, latestVersion,
+                    totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
         } else {
-            msg = String.format("Downloading %s...\n%d min %d sec remaining\n%d%% (%d/%d MB)\nDownloads: %d/%d",
-                    fileType, eta / 60000, (eta % 60000) / 1000, progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
-                    downloadSeq, totalDownloads);
+            msg = String.format("Downloading %s...\n" +
+                            "%d min %d sec remaining\n" +
+                            "%d%% (%d/%d MB)\n" +
+                            "Downloads: %d/%d",
+                    downloadName,
+                    eta / 60000, (eta % 60000) / 1000,
+                    progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
+                    totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
         }
         return msg;
     }
 
     private void updatePrefs() {
         prefs.edit().putBoolean(ModelDownloader.fileDownloadedPrefName(fileName), true).apply();
-        if(downloadSeq == totalDownloads) { // if last download  in sequence
+        if(downloadName.contains("model")) {
             int version = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
             prefs.edit().putInt(ModelDownloader.modelVersionPrefName(modelName), version).apply();
         }

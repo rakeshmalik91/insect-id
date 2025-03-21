@@ -131,7 +131,7 @@
         "model_url": "https://drive.usercontent.google.com/download?id=1r7kv2BIIlG78H06jYNF5gI7bUQ8uk_hJ&export=download&confirm=t&uuid=7013beb1-3f18-4534-886b-ae6fd3789d8d",
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1d1CN-guYNoATx5Dtm185GceJY2UHP2fA&export=download&authuser=2&confirm=t&uuid=fe9ef34b-fc58-45ed-946b-c3fa6e96080f&at=AEz70l4vdYQeqAWgWPKvHZFb5CM3:1742487095189",
+        "images_url": "https://drive.usercontent.google.com/download?id=1824VAebNTz2KX1laoBuOYJWS110_MoOc&export=download&confirm=t&uuid=cd4d27c2-8298-4176-877a-80ee7fbcd21f",
         "version": 10,
         "min_accepted_logit": -50,
         "min_accepted_softmax": 0.1,
