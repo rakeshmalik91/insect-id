@@ -13,7 +13,7 @@
 //
 //import com.rakeshmalik.insectid.constants.Constants;
 //
-//public class DownloadService extends Service {
+//class DownloadService extends Service {
 //
 //    public static final String CHANNEL_ID = "DownloadChannel";
 //

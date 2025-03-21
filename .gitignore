@@ -26,3 +26,5 @@ insect-dataset/src/*
 !insect-dataset/src/*.json
 
 models/images.*
+
+insect-id-app/opencv

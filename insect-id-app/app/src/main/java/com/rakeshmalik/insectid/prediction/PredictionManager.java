@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.prediction;
 
 import static com.rakeshmalik.insectid.constants.Constants.*;
 
@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.rakeshmalik.insectid.MainActivity;
+import com.rakeshmalik.insectid.enums.Operation;
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.enums.ModelType;
 import com.rakeshmalik.insectid.utils.CommonUtils;
+import com.rakeshmalik.insectid.utils.ImageUtils;
 
 import org.pytorch.IValue;
 import org.pytorch.Module;
@@ -28,12 +31,12 @@ import java.util.stream.Collectors;
 
 public class PredictionManager {
 
-    private final Context context;
+    private final MainActivity context;
     private final MetadataManager metadataManager;
     private final ModelLoader modelLoader;
 
     public PredictionManager(Context context, MetadataManager metadataManager, ModelLoader modelLoader) {
-        this.context = context;
+        this.context = (MainActivity) context;
         this.metadataManager = metadataManager;
         this.modelLoader = modelLoader;
     }
@@ -73,8 +76,13 @@ public class PredictionManager {
 
             Log.d(LOG_TAG, "Loading photo: " + photoUri);
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
-            Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(resizedBitmap,
+            bitmap = ImageUtils.removeBlackBorders(bitmap, 25, Operation.MEDIAN);
+            if(ImageUtils.isScreenCapture(bitmap, 0.25)) {
+                bitmap = ImageUtils.applyGaussianBlur(bitmap, 0.01);
+            }
+            previewPreprocessedImage(bitmap);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
+            Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
                     new float[]{0.485f, 0.456f, 0.406f},
                     new float[]{0.229f, 0.224f, 0.225f});
 
@@ -171,6 +179,10 @@ public class PredictionManager {
 
     private String getSpeciesImageList(String modelName, String className) {
         return "<img src='" + modelName + "/" + className + "'/>";
+    }
+
+    private void previewPreprocessedImage(final Bitmap bitmap) {
+        context.runOnUiThread(() -> context.getImageView().setImageBitmap(bitmap));
     }
 
 }
