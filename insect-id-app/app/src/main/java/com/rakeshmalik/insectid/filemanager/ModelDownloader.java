@@ -2,6 +2,7 @@ package com.rakeshmalik.insectid.filemanager;
 
 import static com.rakeshmalik.insectid.constants.Constants.*;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.rakeshmalik.insectid.enums.ModelType;
 
 import java.io.File;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.*;
@@ -179,12 +181,19 @@ public class ModelDownloader {
         return file.exists() && prefs.getBoolean(fileDownloadedPrefName(fileName), false);
     }
 
+    @SuppressLint("DefaultLocale")
     private String getModelUpToDateMessage(ModelType modelType, int currentVersion) {
         long speciesCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("species_count", 0);
         long dataCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("data_count", 0);
-        String lastUpdatedDate = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("last_updated_date", "-");
-        return String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %d\nLast updated on %s",
-                modelType.displayName, currentVersion, speciesCount, dataCount, lastUpdatedDate);
+        String msg = String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %dk",
+                modelType.displayName, currentVersion, speciesCount, dataCount/1000);
+        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy", null))
+                .map((accuracy) -> String.format("\nOverall accuracy: %s", accuracy)).orElse("");
+        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy_top3", null))
+                .map((accuracyTop3) -> String.format("\nTop-3 accuracy: %s", accuracyTop3)).orElse("");
+        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("last_updated_date", null))
+                .map((lastUpdatedDate) -> String.format("\nLast updated on: %s", lastUpdatedDate)).orElse("");
+        return msg;
     }
 
     public static String fileDownloadedPrefName(String fileName) {

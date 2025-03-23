@@ -2,6 +2,8 @@ package com.rakeshmalik.insectid.utils;
 
 import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -18,6 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CommonUtils {
+
+    public static boolean isDebugMode(Context context) {
+        return (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+    }
 
     public static float[] toSoftMax(float[] scores) {
         float sumExp = 0.0f;

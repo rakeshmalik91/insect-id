@@ -19,3 +19,23 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep BouncyCastle classes used by OkHttp
+-keep class org.bouncycastle.** { *; }
+-dontwarn org.bouncycastle.**
+
+# Keep Conscrypt classes used by OkHttp
+-keep class org.conscrypt.** { *; }
+-dontwarn org.conscrypt.**
+
+# Keep OpenJSSE classes used by OkHttp
+-keep class org.openjsse.** { *; }
+-dontwarn org.openjsse.**
+
+# Keep OkHttp internals (avoids accidental stripping)
+-keep class okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+# Keep SSLSocket-related classes (TLS configuration)
+-keep class javax.net.ssl.** { *; }
+-dontwarn javax.net.ssl.**

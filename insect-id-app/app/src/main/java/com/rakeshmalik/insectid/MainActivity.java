@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.getkeepsafe.relinker.ReLinker;
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelDownloader;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
@@ -33,14 +34,13 @@ import com.rakeshmalik.insectid.prediction.PredictionRunnable;
 import com.rakeshmalik.insectid.prediction.PredictionManager;
 import com.yalantis.ucrop.UCrop;
 
-import org.opencv.android.OpenCVLoader;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
             this.buttonUpdateModel.setOnClickListener(v -> showDownloadOrUpdateModelDialog());
 
-            System.loadLibrary("opencv_java4");
+            //System.loadLibrary("opencv_java4");
+            ReLinker.loadLibrary(this, "opencv_java4");
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
@@ -395,16 +396,19 @@ public class MainActivity extends AppCompatActivity {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
-        final int totalModelDownloads = ModelType.values().length;
-        int modelDownloadSeq = ModelType.values().length;
+        List<ModelType> modelsToDownload = Arrays.stream(ModelType.values())
+                .filter(m -> modelDownloader.isModelDownloadOrUpdateRequired(m))
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
+        int modelDownloadSeq = modelsToDownload.size();
         Runnable runnable = () -> {
             runOnUiThread(() -> outputText.setText("All " + ModelType.values().length + " models are now up to date"));
             unlockUI();
         };
-        for(ModelType modelType : Arrays.stream(ModelType.values()).sorted(Collections.reverseOrder()).collect(Collectors.toList())) {
+        for(ModelType modelType : modelsToDownload) {
             Runnable onSuccess = runnable;
             final int modelDownloadSeqFinal = modelDownloadSeq;
-            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, totalModelDownloads);
+            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, modelsToDownload.size());
             modelDownloadSeq--;
         }
         executorService.submit(runnable);

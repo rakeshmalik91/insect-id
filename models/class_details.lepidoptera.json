@@ -6785,7 +6785,9 @@
     "spinosuncus-contractalis": {},
     "spinosuncus-praepandalis": {},
     "spirama-spp": {},
-    "spodoptera-mauritia": {},
+    "spodoptera-mauritia": {
+        "name": "Lawn Armyworm"
+    },
     "spodoptera-spp": {},
     "squamosa-ocellata": {},
     "stathmopoda-spp": {},
@@ -7073,5 +7075,8 @@
     "zurobata-rorata": {},
     "zurobata-vacillans": {},
     "zygaenidae-genera-spp": {},
-    "zythos-avellanea": {}
+    "zythos-avellanea": {},
+    "agrotis-segetum": {
+        "name": "Common Cutworm / Turnip Moth"
+    }
 }

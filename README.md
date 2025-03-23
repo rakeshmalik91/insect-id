@@ -15,6 +15,10 @@
 	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="125"/>
 </p>
 
+## Android app dependencies
+
+- [OpenCV 4.11.0](https://github.com/opencv/opencv/releases/tag/4.11.0) (location: insect-id-app/opencv)
+
 ## List of species and classes trained on
 
 [All species](https://github.com/rakeshmalik91/insect-id/blob/main/species.json) (contains species that do not have any images available as well)
@@ -28,10 +32,6 @@
 Note: early stage classes suffixed with "-early"
 
 Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
-
-## Android app dependencies
-
-- [OpenCV 4.11.0](https://github.com/opencv/opencv/releases/tag/4.11.0) (location: insect-id-app/opencv)
 
 ## Model checkpoints
 

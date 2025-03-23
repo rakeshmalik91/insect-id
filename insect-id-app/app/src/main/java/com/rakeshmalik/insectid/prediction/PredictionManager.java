@@ -76,11 +76,15 @@ public class PredictionManager {
 
             Log.d(LOG_TAG, "Loading photo: " + photoUri);
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-            bitmap = ImageUtils.removeBlackBorders(bitmap, 25, Operation.MEDIAN);
+
+            // preprocess image
+            bitmap = ImageUtils.removeBlackBorders(bitmap, 10, Operation.MEDIAN);
             if(ImageUtils.isScreenCapture(bitmap, 0.25)) {
                 bitmap = ImageUtils.applyGaussianBlur(bitmap, 0.01);
             }
             previewPreprocessedImage(bitmap);
+
+            // convert to tensor
             bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
             Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
                     new float[]{0.485f, 0.456f, 0.406f},
@@ -182,7 +186,9 @@ public class PredictionManager {
     }
 
     private void previewPreprocessedImage(final Bitmap bitmap) {
-        context.runOnUiThread(() -> context.getImageView().setImageBitmap(bitmap));
+        if (CommonUtils.isDebugMode(context)) {
+            context.runOnUiThread(() -> context.getImageView().setImageBitmap(bitmap));
+        }
     }
 
 }

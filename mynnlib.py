@@ -77,40 +77,47 @@ def match_val_class_to_idx_with_train(model_data, silent=False):
                 new_val_samples.append((path, model_data['datasets']['train'].class_to_idx[class_name]))
         model_data['datasets']['val'].samples = new_val_samples
     return model_data
-    
+
+
+img_header_footer_ratio = 1.1
+normazile_x = [0.485, 0.456, 0.406]
+normalize_y = [0.229, 0.224, 0.225]
+
 def get_train_transforms(image_size, robustness):
     if robustness < 0.5:
         return [
-            transforms.Resize((int(image_size * 1.1), int(image_size * 1.1))),
+            transforms.Resize(int(image_size * img_header_footer_ratio)),
             transforms.CenterCrop((image_size, image_size)),
-            transforms.RandomRotation(45*robustness),
-            transforms.ColorJitter(brightness=0.2*robustness, contrast=0.2*robustness),
+            transforms.RandomRotation(45 * robustness, fill=(0, 0, 0)),
+            transforms.ColorJitter(brightness=0.2 * robustness, contrast=0.2 * robustness),
             transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+            transforms.Normalize(normazile_x, normalize_y),
         ]
     else:
         return [
-            transforms.Resize((int(image_size * 1.1), int(image_size * 1.1))),
-            transforms.CenterCrop((image_size, image_size)),
+            transforms.Resize(int(image_size * img_header_footer_ratio)),
+            transforms.RandomResizedCrop(image_size),
             transforms.RandomHorizontalFlip(),
             transforms.RandomVerticalFlip(),
-            transforms.RandomRotation(45*robustness),
-            transforms.ColorJitter(brightness=0.2*robustness, contrast=0.2*robustness),
-            transforms.RandomResizedCrop(image_size),
+            transforms.RandomRotation(45 * robustness, fill=(0, 0, 0)),
+            transforms.ColorJitter(brightness=0.2 * robustness, contrast=0.2 * robustness),
             transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+            transforms.Normalize(normazile_x, normalize_y),
+        ]
+
+def get_val_transforms(image_size):
+    return [
+            transforms.Resize(int(image_size * img_header_footer_ratio)),
+            transforms.CenterCrop((image_size, image_size)),
+            transforms.ToTensor(),
+            transforms.Normalize(normazile_x, normalize_y),
         ]
 
 
 def prepare_dataloaders(model_data, train_dir, val_dir, batch_size, image_size, robustness, silent=True):
     model_data['transform'] = {
         'train': transforms.Compose(get_train_transforms(image_size, robustness)),
-        'val': transforms.Compose([
-            transforms.Resize((int(image_size * 1.1), int(image_size * 1.1))),
-            transforms.CenterCrop((image_size, image_size)),
-            transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        ]),
+        'val': transforms.Compose(get_val_transforms(image_size)),
     }
     model_data['datasets'] = {
         'train': datasets.ImageFolder(root=train_dir, transform=model_data['transform']['train']),
@@ -190,7 +197,7 @@ def train(model_data, num_epochs, model_path, phases=['train', 'val'], break_at_
     break_loop = False
     response = {}
     for epoch in range(num_epochs):
-        print(f"Epoch {(epoch+1):4} / {num_epochs:4}", end=' ')
+        print(f"Epoch {(epoch):4} / {num_epochs-1:4}", end=' ')
         for phase in phases:
             if phase == 'train':
                 model_data['model'].train()
@@ -252,6 +259,7 @@ def predict_top_k(image_path, model_data, k):
     except Exception:
         return None
 
+# test_dir: hierarchically structured
 def validate_prediction_in_dir(test_dir, model_data):
     model_data['model'].eval()
     total = 0
@@ -275,6 +283,31 @@ def validate_prediction_in_dir(test_dir, model_data):
         'failures': failures
     }
 
+# test_dir: hierarchically structured
+def validate_prediction_in_dir_top_k(test_dir, model_data, k):
+    model_data['model'].eval()
+    total = 0
+    success = 0
+    failures = {}
+    for species_dir in Path(test_dir).iterdir():
+        if species_dir.is_dir():
+            for file in Path(f"{species_dir}").iterdir():
+                if file.is_file():
+                    species = file.parts[-2]
+                    predictions = predict_top_k(file, model_data, k)
+                    is_success = (species in predictions)
+                    if not is_success:
+                        failures[species] = predictions
+                    total = total + 1
+                    if is_success:
+                        success = success + 1
+    return {
+        'total': total, 
+        'success': success,
+        'failures': failures
+    }
+
+# test_dir: flat structured
 def test(model_data, test_dir, print_failures=True):
     model_data['model'].eval()
     start_time = time.time()
@@ -286,6 +319,7 @@ def test(model_data, test_dir, print_failures=True):
         print("Failures:")
         pprint.pprint(prediction['failures'])
 
+# test_dir: flat structured
 def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, print_top1_accuracy=True, print_no_match=False, match_filter=0.0, print_genus_match=True):
     model_data['model'].eval()
     top1_success_cnt = 0
@@ -297,7 +331,8 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
     for file in Path(test_dir).iterdir():
         if print_preds:
             print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
-        total_cnt = total_cnt + 1
+        if not 'unidentified' in file.name:
+            total_cnt = total_cnt + 1
         probs = predict_top_k(file, model_data, k)
         genus_matched = False
         species_matched = False
@@ -375,6 +410,7 @@ def image_count(data_dir):
                     img_cnt += 1
     return img_cnt
 
+# test_dir: hierarchically structured
 def test_class(model_data, test_dir, classes):
     model_data['model'].eval()
     for expected_class in classes:
@@ -406,6 +442,7 @@ def analyze_top_k(image_path, model_data, k):
     except Exception:
         return None
 
+# test_dir: hierarchically structured
 def test_class_for_min_accepted_softmax(model_data, test_dir, classes, min_accepted_softmax, k=0, print_success=True):
     if k <= 0 or k > len(classes):
         k = len(classes)
@@ -445,6 +482,8 @@ def plot_dist(data, start, end, step, xlabel, ylabel, title):
     plt.show()
 
 plot_data = Queue()
+
+# test_dir: hierarchically structured
 def run_plot_confidence_thread(model_data, test_dir, expected_class, min_accepted_softmax, k):
     total = 0
     success = 0
@@ -460,6 +499,8 @@ def run_plot_confidence_thread(model_data, test_dir, expected_class, min_accepte
                 success = success + 1
     global plot_data
     plot_data.put(100*success/total)
+
+# test_dir: hierarchically structured
 def plot_confidence(model_data, test_dir, classes, min_accepted_softmax, k=0):
     if k <= 0 or k > len(classes):
         k = len(classes)
