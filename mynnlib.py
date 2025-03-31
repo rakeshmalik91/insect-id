@@ -21,6 +21,13 @@ from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 import json
 
+
+
+
+# --------------------------------------------------------------------------------------------------
+#                                    DATASET CREATION METHODS
+# --------------------------------------------------------------------------------------------------
+
 def split_data_for_train_and_val(data_dir, test_dir, val_dir, train_dir, test_data_weight=0.1, val_data_weight=0.2, min_file_cnt_for_val=4, class_name_filter_regex=None):
     if os.path.exists(test_dir):
         shutil.rmtree(test_dir)
@@ -64,20 +71,12 @@ def split_data_for_train_and_val(data_dir, test_dir, val_dir, train_dir, test_da
     print(f"Validation data count: {val_data_cnt}")
     print(f"Test data count: {test_data_cnt}")
 
-def match_val_class_to_idx_with_train(model_data, silent=False):
-    if not silent:
-        print(f"train class count: {len(model_data['datasets']['train'].class_to_idx)}")
-        print(f"val class count: {len(model_data['datasets']['val'].class_to_idx)}")
-    if len(model_data['datasets']['val'].class_to_idx) != len(model_data['datasets']['train'].class_to_idx):
-        model_data['datasets']['val'].class_to_idx =  model_data['datasets']['train'].class_to_idx
-        new_val_samples = []
-        for path, label in model_data['datasets']['val'].samples:
-            class_name = model_data['datasets']['val'].classes[label]
-            if class_name in model_data['datasets']['train'].class_to_idx:
-                new_val_samples.append((path, model_data['datasets']['train'].class_to_idx[class_name]))
-        model_data['datasets']['val'].samples = new_val_samples
-    return model_data
 
+
+
+# --------------------------------------------------------------------------------------------------
+#                                    MODEL INITIALIZATION METHODS
+# --------------------------------------------------------------------------------------------------
 
 img_header_footer_ratio = 1.1
 normazile_x = [0.485, 0.456, 0.406]
@@ -113,8 +112,39 @@ def get_val_transforms(image_size):
             transforms.Normalize(normazile_x, normalize_y),
         ]
 
+def merge_new_train_class_to_idx_to_old(model_data, old_train_class_to_idx, silent=True):
+    old_class_cnt = len(old_train_class_to_idx)
+    if old_train_class_to_idx:
+        max_old_train_class_to_idx = max(old_train_class_to_idx.values(), default=-1)
+        merged_train_class_to_idx = old_train_class_to_idx
+        for c, i in model_data['datasets']['train'].class_to_idx.items():
+            if c not in merged_train_class_to_idx:
+                merged_train_class_to_idx[c] = i + max_old_train_class_to_idx
+        model_data['datasets']['train'].class_to_idx = merged_train_class_to_idx
+    if not silent:
+        print(f"train class count: {old_class_cnt} updated to {len(model_data['datasets']['train'].class_to_idx)}")
+    return model_data
 
-def prepare_dataloaders(model_data, train_dir, val_dir, batch_size, image_size, robustness, silent=True):
+# required when val data does not have all train classes
+def match_val_class_to_idx_with_train(model_data, silent=True):
+    old_val_class_cnt = len(model_data['datasets']['val'].class_to_idx)
+    if len(model_data['datasets']['val'].class_to_idx) != len(model_data['datasets']['train'].class_to_idx):
+        model_data['datasets']['val'].class_to_idx =  model_data['datasets']['train'].class_to_idx
+        new_val_samples = []
+        for path, label in model_data['datasets']['val'].samples:
+            class_name = model_data['datasets']['val'].classes[label]
+            if class_name in model_data['datasets']['train'].class_to_idx:
+                new_val_samples.append((path, model_data['datasets']['train'].class_to_idx[class_name]))
+        model_data['datasets']['val'].samples = new_val_samples
+        if model_data['datasets']['val'].class_to_idx != model_data['datasets']['train'].class_to_idx:
+            print(f"ERROR: val and train class indices do not match")
+            return model_data
+        if not silent:
+            print(f"val class count: {old_val_class_cnt} synced to train class count {len(model_data['datasets']['val'].class_to_idx)}")
+    return model_data
+
+def init_model_for_training(train_dir, val_dir, batch_size=32, arch='resnet18', image_size=224, robustness=0.3, lr=0.001, weight_decay=None, label_smoothing=None, silent=False):
+    model_data = {}
     model_data['transform'] = {
         'train': transforms.Compose(get_train_transforms(image_size, robustness)),
         'val': transforms.Compose(get_val_transforms(image_size)),
@@ -123,16 +153,14 @@ def prepare_dataloaders(model_data, train_dir, val_dir, batch_size, image_size, 
         'train': datasets.ImageFolder(root=train_dir, transform=model_data['transform']['train']),
         'val': datasets.ImageFolder(root=val_dir, transform=model_data['transform']['val']),
     }
+    if not silent:
+        print(f"train class count: {len(model_data['datasets']['train'].class_to_idx)}")
     model_data = match_val_class_to_idx_with_train(model_data, silent)
     model_data['dataloaders'] = {
         'train': DataLoader(model_data['datasets']['train'], batch_size=batch_size, shuffle=True),
         'val': DataLoader(model_data['datasets']['val'], batch_size=batch_size, shuffle=False),
     }
-    return model_data
 
-def init_model_for_training(train_dir, val_dir, batch_size=32, arch='resnet18', image_size=224, robustness=0.3, lr=0.001, weight_decay=None, label_smoothing=None, silent=False):
-    model_data = {}
-    model_data = prepare_dataloaders(model_data, train_dir, val_dir, batch_size, image_size, robustness, silent)
     model_data['class_names'] = model_data['datasets']['train'].classes
 
     if arch == 'resnet152':
@@ -158,13 +186,89 @@ def init_model_for_training(train_dir, val_dir, batch_size=32, arch='resnet18', 
         print(f"device: {model_data['device']}")
     
     model_data['criterion'] = nn.CrossEntropyLoss(label_smoothing)
-    model_data['optimizer'] = torch.optim.Adam(model_data['model'].parameters(), lr=lr, weight_decay=weight_decay)
+    if weight_decay:
+        model_data['optimizer'] = torch.optim.Adam(model_data['model'].parameters(), lr=lr, weight_decay=weight_decay)
+    else:
+        model_data['optimizer'] = torch.optim.Adam(model_data['model'].parameters(), lr=lr)
     model_data['scheduler'] = torch.optim.lr_scheduler.StepLR(model_data['optimizer'], step_size=7, gamma=0.1)
 
     return model_data
-    
+
+# new train data must have all existing classes only
 def prepare_for_retraining(model_data, train_dir, val_dir, batch_size=32, image_size=224, robustness=0.3, silent=False):
-    model_data = prepare_dataloaders(model_data, train_dir, val_dir, batch_size, image_size, robustness, silent)
+    model_data['transform'] = {
+        'train': transforms.Compose(get_train_transforms(image_size, robustness)),
+        'val': transforms.Compose(get_val_transforms(image_size)),
+    }
+
+    train_dataset = datasets.ImageFolder(root=train_dir, transform=model_data['transform']['train'])
+    if model_data['num_classes'] != len(train_dataset.classes):
+        print(f"ERROR: {model_data['num_classes']} classes in model but {len(train_dataset.classes)} classes in train dataset")
+        return model_data
+    model_data['datasets'] = {
+        'train': train_dataset,
+        'val': datasets.ImageFolder(root=val_dir, transform=model_data['transform']['val']),
+    }
+    model_data = match_val_class_to_idx_with_train(model_data, silent)
+
+    model_data['dataloaders'] = {
+        'train': DataLoader(model_data['datasets']['train'], batch_size=batch_size, shuffle=True),
+        'val': DataLoader(model_data['datasets']['val'], batch_size=batch_size, shuffle=False),
+    }
+
+    # new_classes_cnt = 0
+    # new_classes = []
+    # for class_name in model_data['datasets']['train'].classes:
+    #     if class_name not in model_data['class_names']:
+    #         model_data['class_names'].append(class_name)
+    #         new_classes_cnt += 1
+    #         new_classes.append(class_name)
+    # old_classes_cnt = model_data['num_classes']
+    # model_data['num_classes'] = len(model_data['class_names'])
+    # if not silent:
+    #     print(f"{new_classes_cnt} new classes added: {new_classes}")
+    
+    # old_fc_weights = model_data['model'].fc.weight.data[:old_classes_cnt]
+    # model_data['model'].fc = nn.Linear(model_data['num_features'], model_data['num_classes'])
+    # model_data['model'].fc.weight.data[:old_classes_cnt] = old_fc_weights
+    # if not silent:
+    #     print(f"feature count: {model_data['num_features']}")
+    #     if new_classes_cnt > 0:
+    #         print(f"old features: {old_fc_weights}")
+    #         print(f"new features: {model_data['model'].fc.weight.data}")
+    
+    model_data['device'] = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model_data['model'] = model_data['model'].to(model_data['device'])
+    if not silent:
+        print(f"device: {model_data['device']}")
+
+    return model_data
+
+def prepare_for_incremental_training(model_data, train_dir, val_dir, batch_size=32, image_size=224, robustness=0.3, silent=False):
+    old_classes_cnt = model_data['num_classes']
+    old_fc_weights = model_data['model'].fc.weight.data[:old_classes_cnt].detach().clone()
+    old_fc_bias = model_data['model'].fc.bias.data[:old_classes_cnt].detach().clone()
+
+    old_weight_std = old_fc_weights.std()
+    old_weight_mean = model_data['model'].fc.weight.data[:old_classes_cnt].abs().mean()
+    old_bias_mean = model_data['model'].fc.bias.data[:old_classes_cnt].mean()
+
+    model_data['transform'] = {
+        'train': transforms.Compose(get_train_transforms(image_size, robustness)),
+        'val': transforms.Compose(get_val_transforms(image_size)),
+    }
+    if model_data['datasets']['train'].class_to_idx:
+        old_train_class_to_idx = model_data['datasets']['train'].class_to_idx
+    model_data['datasets'] = {
+        'train': datasets.ImageFolder(root=train_dir, transform=model_data['transform']['train']),
+        'val': datasets.ImageFolder(root=val_dir, transform=model_data['transform']['val']),
+    }
+    model_data = merge_new_train_class_to_idx_to_old(model_data, old_train_class_to_idx, silent)
+    model_data = match_val_class_to_idx_with_train(model_data, silent)
+    model_data['dataloaders'] = {
+        'train': DataLoader(model_data['datasets']['train'], batch_size=batch_size, shuffle=True),
+        'val': DataLoader(model_data['datasets']['val'], batch_size=batch_size, shuffle=False),
+    }
 
     new_classes_cnt = 0
     new_classes = []
@@ -173,16 +277,38 @@ def prepare_for_retraining(model_data, train_dir, val_dir, batch_size=32, image_
             model_data['class_names'].append(class_name)
             new_classes_cnt += 1
             new_classes.append(class_name)
-    old_num_classes = model_data['num_classes']
     model_data['num_classes'] = len(model_data['class_names'])
     if not silent:
-        print(f"{new_classes_cnt} new classes added: {new_classes}")
+        print(f"{new_classes_cnt} new classes added: {model_data['class_names'][old_classes_cnt:]}")
     
-    old_fc_weights = model_data['model'].fc.weight.data[:old_num_classes]
-    model_data['model'].fc = nn.Linear(model_data['num_features'], model_data['num_classes'])
-    model_data['model'].fc.weight.data[:old_num_classes] = old_fc_weights
-    if not silent:
-        print(f"feature count: {model_data['num_features']}")
+    for param in model_data['model'].parameters():
+        param.requires_grad = False
+
+    model_data['model'].fc = nn.Linear(model_data['num_features'], old_classes_cnt + new_classes_cnt)
+    with torch.no_grad():
+        if not silent:
+            print("Old Weight Std:", old_weight_std)
+            print("Old FC Weight Shape:", old_fc_weights.shape)
+            print("Old FC Weights Mean (Before Copy):", old_fc_weights.mean().item())
+            print("New FC Weights Mean (Before Copy):", model_data['model'].fc.weight.data[:old_classes_cnt].mean().item())
+
+        model_data['model'].fc.weight.data[:old_classes_cnt].copy_(old_fc_weights.detach().clone())
+        model_data['model'].fc.bias.data[:old_classes_cnt].copy_(old_fc_bias.detach().clone())
+
+        if not silent:
+            print("New FC Weight Mean (After Copy): ", model_data['model'].fc.weight.data[:old_classes_cnt].mean().item())
+            print("New FC Weight Slice Shape:", model_data['model'].fc.weight.data[:old_classes_cnt].shape)
+
+        torch.nn.init.xavier_uniform_(model_data['model'].fc.weight.data[old_classes_cnt:])
+        # torch.nn.init.zeros_(model_data['model'].fc.bias.data[old_classes_cnt:])
+        torch.nn.init.uniform_(model_data['model'].fc.bias.data[old_classes_cnt:], old_bias_mean - 0.05, old_bias_mean + 0.05)
+
+        # new_weight_std = model_data['model'].fc.weight.data[old_classes_cnt:].std()
+        # if new_weight_std > 0:
+        #     model_data['model'].fc.weight.data[old_classes_cnt:] *= (old_weight_std / new_weight_std)
+
+    for param in model_data['model'].fc.parameters():
+        param.requires_grad = True
     
     model_data['device'] = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model_data['model'] = model_data['model'].to(model_data['device'])
@@ -191,6 +317,15 @@ def prepare_for_retraining(model_data, train_dir, val_dir, batch_size=32, image_
     
     return model_data;
     
+
+
+
+
+
+# --------------------------------------------------------------------------------------------------
+#                                        TRAINING METHODS
+# --------------------------------------------------------------------------------------------------
+
 def train(model_data, num_epochs, model_path, phases=['train', 'val'], break_at_val_acc_diff=None):
     start_time = time.time()
     last_val_acc = -1.0
@@ -233,6 +368,13 @@ def train(model_data, num_epochs, model_path, phases=['train', 'val'], break_at_
         if break_loop:
             break;
     return response
+
+
+
+
+# --------------------------------------------------------------------------------------------------
+#                                    TEST / VALIDATION METHODS
+# --------------------------------------------------------------------------------------------------
 
 def predict(image_path, model_data):
     model_data['model'].eval()
