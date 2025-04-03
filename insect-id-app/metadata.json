@@ -42,7 +42,7 @@
             ],
             "last_updated_date": "25-03-2025",
             "accuracy": "79.88%",
-            "accuracy_top3": "92.62%"
+            "accuracy_top3": "89.24%"
         }
     },
     "butterfly": {
@@ -72,8 +72,8 @@
                 "insecta.pro"
             ],
             "last_updated_date": "28-03-2025",
-            "accuracy": "78.11%",
-            "accuracy_top3": "92.90%"
+            "accuracy": "87.02%",
+            "accuracy_top3": "95.24%"
         }
     },
     "moth": {
@@ -103,8 +103,8 @@
                 "insecta.pro"
             ],
             "last_updated_date": "27-03-2025",
-            "accuracy": "87.01%",
-            "accuracy_top3": "98.70%"
+            "accuracy": "87.02%",
+            "accuracy_top3": "94.85%"
         }
     },
     "odonata": {
@@ -131,8 +131,8 @@
                 "inaturalist.org"
             ],
             "last_updated_date": "24-03-2025",
-            "accuracy": "83.11%",
-            "accuracy_top3": "94.07%"
+            "accuracy": "83.25%",
+            "accuracy_top3": "93.42%"
         }
     },
     "cicada": {
@@ -159,8 +159,8 @@
                 "inaturalist.org"
             ],
             "last_updated_date": "24-03-2025",
-            "accuracy": "78.57%",
-            "accuracy_top3": "90.48%"
+            "accuracy": "62.36%",
+            "accuracy_top3": "70.60%"
         }
     }
 }

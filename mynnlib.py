@@ -567,7 +567,6 @@ def test_class(model_data, test_dir, classes):
                     success = success + 1
         print(f"Class: {expected_class:15} ----> Success: {success}/{total} -> {100*success/total:.2f}%")
 
-
 def analyze_top_k(image_path, model_data, k):
     model_data['model'].eval()
     image = Image.open(image_path).convert("RGB")
