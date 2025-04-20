@@ -51,3 +51,60 @@ Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
 | indiabiodiversity.org   	| 12k         | 1444        | 1444        | 0                 | moth+butterfly | india    | Contains typo in class names, <br/>uses legacy class names
 | insecta.pro               | 25k         | 5068        | 5068        | 0                 | moth+butterfly | all      | Low res images (320x~250)
 | wikipedia.org				| 2k          | 1825        | 1825        | 0                 | moth+butterfly | india    | Low res images (220x~160)
+
+
+## Using mynnlib & the models
+
+#### Prerequisites:
+```
+python -m pip install --upgrade pip setuptools wheel
+pip install pandas seaborn
+pip install scikit-learn
+pip install pillow
+pip install tensorflow
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+`torch.cuda.is_available()` must return `True`
+
+```
+pip install matplotlib
+pip install opencv-python
+pip install python-Levenshtein
+pip install imagehash
+```
+
+Note: Refer `prerequisites.ipynb` for more details
+
+#### Import library:
+```
+import mynnlib
+from mynnlib import *
+```
+
+#### Run prediction on an image:
+```
+model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
+prediction = predict("path-to-image.jpg", model_data)
+```
+
+#### Run top 5 prediction on an image:
+```
+model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
+prediction = predict_top_k("path-to-image.jpg", model_data, 5)
+```
+
+#### Train a new model:
+```
+model_data = init_model_for_training("path-to-train-data-dir", "path-to-val-data-dir", batch_size=32, arch="resnet152", image_size=224, robustness=0.2, lr=1e-4, weight_decay=1e-4, silent=False)
+num_epochs = 5
+train(model_data, num_epochs, "path-to-output-model-checkpoint-ep###.pth", -0.01)
+```
+
+#### Retrain an existing model:
+```
+model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
+model_data = prepare_for_retraining(model_data, "path-to-train-data-dir", "path-to-val-data-dir", batch_size=32, image_size=224, robustness=0.2, silent=False)
+num_epochs = 5
+train(model_data, num_epochs, "path-to-output-model-checkpoint-ep###.pth", -0.01)
+```
