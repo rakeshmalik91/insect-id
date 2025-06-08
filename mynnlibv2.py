@@ -10,6 +10,8 @@ from PIL import Image
 import time
 import datetime
 import copy
+from IPython.display import display, clear_output
+import ipywidgets as widgets
 
 
 class SimpleImageDataset(Dataset):
@@ -85,7 +87,7 @@ def __get_transforms(phase, image_size, robustness):
 def __validate_images(phase, phase_dir):
     num_images = 0
     for class_dir in os.listdir(phase_dir):
-        class_path = os.path.join(phase_dir, class_dir)
+        class_path = f"{phase_dir}/{class_dir}"
         images = os.listdir(class_path)
         if not images:
             print(f"[WARNING] No images in: {class_path}")
@@ -106,6 +108,9 @@ def __validate_images_for_all_phase(train_dir, val_dir):
     for phase in ['train', 'val']:
         phase_dir = train_dir if phase == 'train' else val_dir
         __validate_images(phase, phase_dir)
+    
+def validate_dataset(train_dir, val_dir):
+    __validate_images_for_all_phase(train_dir, val_dir)
 
 def __init_classes(model_data, train_dir):
     if 'class_names' not in model_data:
@@ -140,7 +145,7 @@ def __init_teacher_model(model_data):
             p.requires_grad = False
     return model_data
 
-def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4):
+def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4, validate=True):
     model_data = { 
         'version': 'v2', 
         'iteration': 1, 
@@ -152,21 +157,23 @@ def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4):
     }
 
     model_data = __init_classes(model_data, train_dir)
-    __validate_images_for_all_phase(train_dir, val_dir)
+    if validate:
+        __validate_images_for_all_phase(train_dir, val_dir)
     model_data = __init_model(model_data)
     model_data['optimizer'] = torch.optim.Adam(model_data['model'].parameters(), lr=lr)
     model_data['criterion'] = nn.CrossEntropyLoss()
 
     return model_data
 
-def init_iteration(model_data, train_dir, val_dir, lr=1e-4):
+def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
     model_data['iteration'] += 1
     model_data['epoch'] = 0
     del model_data['train_start_time']
     model_data['train_dir'], model_data['val_dir'] = train_dir, val_dir
 
     model_data = __init_classes(model_data, train_dir)
-    __validate_images_for_all_phase(train_dir, val_dir)
+    if validate:
+        __validate_images_for_all_phase(train_dir, val_dir)
     model_data = __init_model(model_data)
     model_data['optimizer'] = torch.optim.Adam(model_data['model'].parameters(), lr=lr)
     model_data['criterion'] = nn.CrossEntropyLoss()
@@ -183,6 +190,11 @@ def __init_dataloaders(model_data, robustness=0.3):
 
     if 'dataloaders' not in model_data:
         model_data['transform'], model_data['datasets'], model_data['dataloaders'] = {}, {}, {}
+
+    train_class_cnt = len(os.listdir(train_dir))
+    val_class_cnt = len(os.listdir(val_dir))
+    if train_class_cnt != val_class_cnt:
+        print(f"[WARNING] train class count ({val_class_cnt}) does not match val class count ({val_class_cnt})")
 
     for phase in ['train', 'val']:
         model_data['transform'][phase] = transforms.Compose(__get_transforms(phase, image_size, robustness))
@@ -206,9 +218,47 @@ def __distillation_loss(student_logits, teacher_logits, temperature=2.0):
     teacher_probs = F.softmax(teacher_logits / temperature, dim=1)
     return F.kl_div(student_log_probs, teacher_probs, reduction='batchmean') * (temperature ** 2)
 
+def __init_epoch_progress_bar(phase, model_data):
+    epoch_start_time = time.time()
+    data_cnt = len(model_data['dataloaders'][phase])
+    data_idx = 0
+    progress = widgets.IntProgress(
+        value=0, min=0, max=data_cnt, 
+        description=f"Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace("_", " ").capitalize()} ", 
+        layout=widgets.Layout(width='500px'),
+        bar_style=('info' if phase=='train' else 'success')
+    )
+    progress.style = {'description_width': '250px'}
+    label = widgets.Label(value=f"0/{data_cnt}")
+    box = widgets.HBox([progress, label])
+    display(box)
+    return {
+        'epoch_start_time': epoch_start_time,
+        'data_idx': data_idx,
+        'data_cnt': data_cnt,
+        'progress': progress,
+        'label': label,
+        'box': box
+    }
+
+def __update_epoch_progress_bar(progress_data, total_loss, total_correct, total_samples):
+    progress_data['data_idx'] += 1
+    elapsed = time.time() - progress_data['epoch_start_time']
+    remaining = (elapsed / progress_data['data_idx']) * (progress_data['data_cnt'] - progress_data['data_idx'])
+    progress_data['label'].value = f"{progress_data['progress'].value}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | ETA: {time.strftime('%H:%M:%S', time.gmtime(remaining))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}"
+    progress_data['progress'].value = progress_data['data_idx']
+
+def __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, total_correct, total_samples):
+    progress_data['box'].close()
+    elapsed = time.time() - progress_data['epoch_start_time']
+    print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace("_", " ").capitalize():10} --> {progress_data['progress'].value}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}")
+
+
 def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0):
     model_data['model'].train() if phase == 'train' else model_data['model'].eval()
     total_loss, total_correct, total_samples = 0.0, 0, 0
+
+    progress_data = __init_epoch_progress_bar(phase, model_data)
 
     for imgs, labels in model_data['dataloaders'][phase]:
         imgs, labels = imgs.to(model_data['device']), labels.to(model_data['device'])
@@ -233,6 +283,10 @@ def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0):
         total_correct += torch.sum(preds == labels).item()
         total_samples += imgs.size(0)
 
+        __update_epoch_progress_bar(progress_data, total_loss, total_correct, total_samples)
+
+    __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, total_correct, total_samples)
+
     return {
         "loss": total_loss / total_samples,
         "acc": total_correct / total_samples,
@@ -246,26 +300,26 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05):
         print(f"[INFO] Training started at {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}")
     start_time = time.time()
     model_data['epoch'] += 1
-    print(f"[INFO] I{model_data['iteration']:02}.E{model_data['epoch']:02} | ", end='')
+    # print(f"[INFO] Iteration {model_data['iteration']:02} Epoch {model_data['epoch']:02} started...")
 
     robustness = model_data['epoch'] * robustness_lambda
     model_data = __init_dataloaders(model_data, robustness=robustness)
 
     train_result = __run_epoch('train', model_data)
-    print(f"Train Loss={train_result['loss']:.3f} Acc={train_result['acc']:.3f} | ", end='')
+    # print(f"[INFO] Train Loss={train_result['loss']:.3f} Acc={train_result['acc']:.3f}")
     model_data = train_result['model_data']
 
     val_result = __run_epoch('val', model_data)
-    print(f"Val Loss={val_result['loss']:.3f} Acc={val_result['acc']:.3f} | ", end='')
+    # print(f"[INFO] Val Loss={val_result['loss']:.3f} Acc={val_result['acc']:.3f}")
 
     if model_data['iteration'] > 1 and 'old_val' in model_data['dataloaders']:
         old_val_result = __run_epoch('old_val', model_data)
-        print(f"Old Val Loss={old_val_result['loss']:.3f} Acc={old_val_result['acc']:.3f} | ", end='')
+        # print(f"[INFO] Old Val Loss={old_val_result['loss']:.3f} Acc={old_val_result['acc']:.3f}")
 
     torch.save(model_data, f"{output_path}.i{model_data['iteration']:02}.e{model_data['epoch']:02}.pth")
 
     elapsed_time = time.time() - start_time
     model_data['elapsed_time'] += elapsed_time
-    print(f"Elapsed {datetime.timedelta(seconds=model_data['elapsed_time'])}")
+    # print(f"[INFO] Total elapsed time: {datetime.timedelta(seconds=model_data['elapsed_time'])}")
 
     return model_data
