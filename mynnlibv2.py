@@ -10,8 +10,9 @@ from PIL import Image
 import time
 import datetime
 import copy
-from IPython.display import display, clear_output
+from IPython.display import display
 import ipywidgets as widgets
+from pathlib import Path
 
 
 class SimpleImageDataset(Dataset):
@@ -323,3 +324,75 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05):
     # print(f"[INFO] Total elapsed time: {datetime.timedelta(seconds=model_data['elapsed_time'])}")
 
     return model_data
+
+
+def predict_top_k(image_path, model_data, k):
+    model_data['model'].eval()
+    image = Image.open(image_path).convert("RGB")
+    image = model_data['transform']['val'](image).unsqueeze(0).to(model_data['device'])
+    with torch.no_grad():
+        outputs = model_data['model'](image)
+        probabilities = F.softmax(outputs, dim=1)
+        top_probs, top_indices = torch.topk(probabilities, k)
+    try:
+        return {model_data['class_names'][top_indices[0][i]]: top_probs[0][i].item() for i in range(0, k)}
+    except Exception:
+        return None
+
+def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, print_top1_accuracy=True, print_no_match=False, match_filter=0.0, print_genus_match=True):
+    model_data['model'].eval()
+    top1_success_cnt = 0
+    top1_genus_success_cnt = 0
+    success_cnt = 0
+    genus_success_cnt = 0
+    total_cnt = 0
+    max_file_name_length = max([ len(file.name.split('.')[0]) for file in Path(test_dir).iterdir() ])
+    for file in Path(test_dir).iterdir():
+        if print_preds:
+            print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
+        if not 'unidentified' in file.name:
+            total_cnt = total_cnt + 1
+        probs = predict_top_k(file, model_data, k)
+        genus_matched = False
+        species_matched = False
+        for pred, prob in probs.items():
+            if not match_filter or prob >= match_filter:
+                if pred in file.name:
+                    species_matched = True
+                    success_cnt = success_cnt + 1
+                if pred.split('-')[0] in file.name:
+                    genus_matched = True
+                if print_preds and pred in file.name:
+                    print(f"\033[32m{pred}\033[0m({prob:.3f}) ", end=' ')
+                elif print_preds:
+                    print(f"{pred}({prob:.3f}) ", end=' ')
+        if genus_matched:
+            genus_success_cnt = genus_success_cnt + 1
+        if [pred for pred, prob in probs.items()][0] in file.name:
+            top1_success_cnt = top1_success_cnt + 1
+        if [pred.split('-')[0] for pred, prob in probs.items()][0] in file.name:
+            top1_genus_success_cnt = top1_genus_success_cnt + 1
+        if print_preds:
+            print()
+        if not print_preds and print_no_match and not species_matched:
+            print(f"{file.name.split('.')[0]}:", end=' ')
+            i = 0
+            for pred, prob in probs.items():
+                if i % 4 == 0:
+                    print("\n\t", end=' ')
+                if not match_filter or prob >= match_filter:
+                    print(f"\033[{'33' if genus_matched else '31'}m{pred}\033[0m({prob:.3f}) ", end=' ')
+                i += 1
+            print()
+    if print_accuracy:
+        if print_preds:
+            print("-"*10)
+        if print_top1_accuracy:
+            if print_genus_match:
+                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%, genus matched: {top1_genus_success_cnt}/{total_cnt} -> {100*top1_genus_success_cnt/total_cnt:.2f}%")
+            else:
+                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%")
+        if print_genus_match:
+            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
+        else:
+            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%")
