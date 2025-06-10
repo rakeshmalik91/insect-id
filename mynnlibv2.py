@@ -119,11 +119,12 @@ def __init_classes(model_data, train_dir):
         model_data['num_classes'] = len(model_data['class_names'])
         print(f"[INFO] classes: {model_data['num_classes']}")
     else:
-        new_classes = [ cls for cls in os.listdir(train_dir) if cls not in model_data['class_names'] ]
+        current_iteration_classes = os.listdir(train_dir)
+        new_classes = [ cls for cls in current_iteration_classes if cls not in model_data['class_names'] ]
         model_data['class_names'] += new_classes
         model_data['num_classes'] = len(model_data['class_names'])
         model_data['num_new_classes'] = len(new_classes)
-        print(f"[INFO] classes: {model_data['num_classes']}, added {model_data['num_new_classes']} new classes")
+        print(f"[INFO] classes: total {model_data['num_classes']}, {len(current_iteration_classes)} in current iteration, {model_data['num_new_classes']} new")
     return model_data
 
 def __init_model(model_data):
@@ -180,8 +181,8 @@ def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
     model_data['criterion'] = nn.CrossEntropyLoss()
     model_data = __init_teacher_model(model_data)
 
-    if 'dataloaders' in model_data and 'val' in model_data['dataloaders']:
-        model_data['dataloaders']['old_val'] = model_data['dataloaders']['val']
+    if 'dataloaders' in model_data and 'val' in model_data['dataloaders'] and 'full_val' not in model_data['dataloaders']:
+        model_data['dataloaders']['full_val'] = model_data['dataloaders']['val']
 
     return model_data
 
@@ -204,6 +205,7 @@ def __init_dataloaders(model_data, robustness=0.3):
             (f"{phase_dir}/{class_dir}/{img}", model_data['class_names'].index(class_dir))
             for class_dir in os.listdir(phase_dir) 
             for img in os.listdir(f"{phase_dir}/{class_dir}")
+            if class_dir in model_data['class_names']
         ]
         model_data['datasets'][phase] = SimpleImageDataset(
             image_paths = [ img[0] for img in image_data],
@@ -313,9 +315,9 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05):
     val_result = __run_epoch('val', model_data)
     # print(f"[INFO] Val Loss={val_result['loss']:.3f} Acc={val_result['acc']:.3f}")
 
-    if model_data['iteration'] > 1 and 'old_val' in model_data['dataloaders']:
-        old_val_result = __run_epoch('old_val', model_data)
-        # print(f"[INFO] Old Val Loss={old_val_result['loss']:.3f} Acc={old_val_result['acc']:.3f}")
+    if model_data['iteration'] > 1 and 'full_val' in model_data['dataloaders']:
+        full_val_result = __run_epoch('full_val', model_data)
+        # print(f"[INFO] Old Val Loss={full_val_result['loss']:.3f} Acc={full_val_result['acc']:.3f}")
 
     torch.save(model_data, f"{output_path}.i{model_data['iteration']:02}.e{model_data['epoch']:02}.pth")
 
@@ -375,11 +377,11 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
         if print_preds:
             print()
         if not print_preds and print_no_match and not species_matched:
-            print(f"{file.name.split('.')[0]}:", end=' ')
+            print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
             i = 0
             for pred, prob in probs.items():
-                if i % 4 == 0:
-                    print("\n\t", end=' ')
+                # if i % 4 == 0:
+                #     print("\n\t", end=' ')
                 if not match_filter or prob >= match_filter:
                     print(f"\033[{'33' if genus_matched else '31'}m{pred}\033[0m({prob:.3f}) ", end=' ')
                 i += 1
