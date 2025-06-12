@@ -16,9 +16,9 @@
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1VjmwqvPpis6wjElGZuz0GoF4kw-OMjO9&export=download&confirm=t&uuid=13016f6f-e921-4cf2-878b-2549b368df3d",
-        "model_url": "https://drive.usercontent.google.com/download?id=1zwJD63OWcrlJNqEoymtI9ijjtE2pK0NV&export=download&confirm=t&uuid=da1cf4ed-4c2d-4230-87e5-e052684d1937",
-        "version": 10,
-        "min_accepted_logit": -90,
+        "model_url": "https://drive.usercontent.google.com/download?id=1ChFdtWUz8fJxVb2-V7o8Rmqudjbec4OW&export=download&confirm=t&uuid=9cd6a75e-1415-4391-88ca-40298caf221d",
+        "version": 11,
+        "min_accepted_logit": -120,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
             "butterfly",
