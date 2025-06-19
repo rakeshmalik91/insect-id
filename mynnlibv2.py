@@ -181,8 +181,8 @@ def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
     model_data['criterion'] = nn.CrossEntropyLoss()
     model_data = __init_teacher_model(model_data)
 
-    if 'dataloaders' in model_data and 'val' in model_data['dataloaders'] and 'full_val' not in model_data['dataloaders']:
-        model_data['dataloaders']['full_val'] = model_data['dataloaders']['val']
+    if 'dataloaders' in model_data and 'val' in model_data['dataloaders'] and f"val_i{model_data['iteration'] - 1}" not in model_data['dataloaders']:
+        model_data['dataloaders'][f"val_i{model_data['iteration'] - 1}"] = model_data['dataloaders']['val']
 
     return model_data
 
@@ -303,27 +303,24 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05):
         print(f"[INFO] Training started at {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}")
     start_time = time.time()
     model_data['epoch'] += 1
-    # print(f"[INFO] Iteration {model_data['iteration']:02} Epoch {model_data['epoch']:02} started...")
 
     robustness = model_data['epoch'] * robustness_lambda
     model_data = __init_dataloaders(model_data, robustness=robustness)
 
     train_result = __run_epoch('train', model_data)
-    # print(f"[INFO] Train Loss={train_result['loss']:.3f} Acc={train_result['acc']:.3f}")
     model_data = train_result['model_data']
 
-    val_result = __run_epoch('val', model_data)
-    # print(f"[INFO] Val Loss={val_result['loss']:.3f} Acc={val_result['acc']:.3f}")
+    __run_epoch('val', model_data)
 
-    if model_data['iteration'] > 1 and 'full_val' in model_data['dataloaders']:
-        full_val_result = __run_epoch('full_val', model_data)
-        # print(f"[INFO] Old Val Loss={full_val_result['loss']:.3f} Acc={full_val_result['acc']:.3f}")
+    if model_data['iteration'] > 1:
+        for i in range(model_data['iteration'] - 1, 0, -1):
+            if f"val_i{i}" in model_data['dataloaders']:
+                __run_epoch(f"val_i{i}", model_data)
 
     torch.save(model_data, f"{output_path}.i{model_data['iteration']:02}.e{model_data['epoch']:02}.pth")
 
     elapsed_time = time.time() - start_time
     model_data['elapsed_time'] += elapsed_time
-    # print(f"[INFO] Total elapsed time: {datetime.timedelta(seconds=model_data['elapsed_time'])}")
 
     return model_data
 
