@@ -224,9 +224,9 @@ def __distillation_loss(student_logits, teacher_logits, temperature=2.0):
     teacher_probs = F.softmax(teacher_logits / temperature, dim=1)
     return F.kl_div(student_log_probs, teacher_probs, reduction='batchmean') * (temperature ** 2)
 
-def __init_epoch_progress_bar(phase, model_data):
+def __init_epoch_progress_bar(phase, model_data, dataloader):
     epoch_start_time = time.time()
-    data_cnt = len(model_data['dataloaders'][phase])
+    data_cnt = len(dataloader)
     data_idx = 0
     progress = widgets.IntProgress(
         value=0, min=0, max=data_cnt, 
@@ -279,14 +279,16 @@ def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0, replay_r
     model_data['model'].train() if phase == 'train' else model_data['model'].eval()
     total_loss, total_correct, total_samples = 0.0, 0, 0
 
-    progress_data = __init_epoch_progress_bar(phase, model_data)
-
     # merge replay data
     dataloader = model_data['dataloaders'][phase]
     if phase == 'train' and model_data['iteration'] > 1 and replay_ratio > 0.0:
         for i in range(model_data['iteration'] - 1, 0, -1):
-            if f"val_i{i}" in model_data['dataloaders']:
-                dataloader = __merge_dataloaders(dataloader, __extract_dataloader_subset(dataloader, replay_ratio))
+            replay_key = f"train_i{i}"
+            if replay_key in model_data['dataloaders']:
+                replay_loader = __extract_dataloader_subset(model_data['dataloaders'][replay_key], replay_ratio)
+                dataloader = __merge_dataloaders(dataloader, replay_loader)
+
+    progress_data = __init_epoch_progress_bar(phase, model_data, dataloader)
 
     for imgs, labels in dataloader:
         imgs, labels = imgs.to(model_data['device']), labels.to(model_data['device'])
