@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models, transforms
-from torch.utils.data import DataLoader, Dataset, ConcatDataset
+from torch.utils.data import DataLoader, Dataset, ConcatDataset, Subset
 from collections import defaultdict
 import random
 import os
@@ -181,6 +181,9 @@ def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
     model_data['criterion'] = nn.CrossEntropyLoss()
     model_data = __init_teacher_model(model_data)
 
+    if 'dataloaders' in model_data and 'train' in model_data['dataloaders'] and f"train_i{model_data['iteration'] - 1}" not in model_data['dataloaders']:
+        model_data['dataloaders'][f"train_i{model_data['iteration'] - 1}"] = model_data['dataloaders']['train']
+
     if 'dataloaders' in model_data and 'val' in model_data['dataloaders'] and f"val_i{model_data['iteration'] - 1}" not in model_data['dataloaders']:
         model_data['dataloaders'][f"val_i{model_data['iteration'] - 1}"] = model_data['dataloaders']['val']
 
@@ -257,13 +260,35 @@ def __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, to
     print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace("_", " ").capitalize():10} --> {progress_data['progress'].value}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}")
 
 
-def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0):
+def __extract_dataloader_subset(dataloader, dataset_subset_ratio):
+    if dataset_subset_ratio >= 1.0:
+        return dataloader
+    dataset = dataloader.dataset
+    total_size = len(dataset)
+    subset_size = int(total_size * dataset_subset_ratio)
+    subset_size = max(1, subset_size)
+    indices = random.sample(range(total_size), subset_size)
+    subset = Subset(dataset, indices)
+    return DataLoader(subset, batch_size=dataloader.batch_size, shuffle=True)
+
+def __merge_dataloaders(loader1, loader2):
+    combined_dataset = ConcatDataset([loader1.dataset, loader2.dataset])
+    return DataLoader(combined_dataset, batch_size=loader1.batch_size, shuffle=True)
+
+def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0, replay_ratio=0.0):
     model_data['model'].train() if phase == 'train' else model_data['model'].eval()
     total_loss, total_correct, total_samples = 0.0, 0, 0
 
     progress_data = __init_epoch_progress_bar(phase, model_data)
 
-    for imgs, labels in model_data['dataloaders'][phase]:
+    # merge replay data
+    dataloader = model_data['dataloaders'][phase]
+    if phase == 'train' and model_data['iteration'] > 1 and replay_ratio > 0.0:
+        for i in range(model_data['iteration'] - 1, 0, -1):
+            if f"val_i{i}" in model_data['dataloaders']:
+                dataloader = __merge_dataloaders(dataloader, __extract_dataloader_subset(dataloader, replay_ratio))
+
+    for imgs, labels in dataloader:
         imgs, labels = imgs.to(model_data['device']), labels.to(model_data['device'])
 
         model_data['optimizer'].zero_grad()
@@ -296,7 +321,7 @@ def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0):
         "model_data": model_data
     }
 
-def run_epoch(model_data, output_path, robustness_lambda=0.05):
+def run_epoch(model_data, output_path, robustness_lambda=0.05, replay_ratio=0):
     if 'train_start_time' not in model_data:
         model_data['train_start_time'] = time.time()
         model_data['elapsed_time'] = 0
@@ -307,7 +332,7 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05):
     robustness = model_data['epoch'] * robustness_lambda
     model_data = __init_dataloaders(model_data, robustness=robustness)
 
-    train_result = __run_epoch('train', model_data)
+    train_result = __run_epoch('train', model_data, replay_ratio=replay_ratio)
     model_data = train_result['model_data']
 
     __run_epoch('val', model_data)
