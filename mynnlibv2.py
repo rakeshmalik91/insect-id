@@ -422,3 +422,7 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
             print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
         else:
             print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%")
+
+
+def clamp(value, min_value, max_value):
+    return max(min_value, min(value, max_value))
