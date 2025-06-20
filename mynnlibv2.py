@@ -330,27 +330,54 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05, replay_ratio=0):
         print(f"[INFO] Training started at {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}")
     start_time = time.time()
     model_data['epoch'] += 1
+    result = { 'model_data': model_data, 'epoch': model_data['epoch'], 'iteration': model_data['iteration'] }
 
     robustness = model_data['epoch'] * robustness_lambda
     model_data = __init_dataloaders(model_data, robustness=robustness)
 
-    train_result = __run_epoch('train', model_data, replay_ratio=replay_ratio)
-    model_data = train_result['model_data']
+    result['train_result'] = __run_epoch('train', model_data, replay_ratio=replay_ratio)
+    model_data = result['train_result']['model_data']
 
-    __run_epoch('val', model_data)
+    result['val_result'] = __run_epoch('val', model_data)
 
     if model_data['iteration'] > 1:
         for i in range(model_data['iteration'] - 1, 0, -1):
             if f"val_i{i}" in model_data['dataloaders']:
-                __run_epoch(f"val_i{i}", model_data)
+                result[f'val_i{i}_result'] = __run_epoch(f"val_i{i}", model_data)
 
     torch.save(model_data, f"{output_path}.i{model_data['iteration']:02}.e{model_data['epoch']:02}.pth")
 
     elapsed_time = time.time() - start_time
     model_data['elapsed_time'] += elapsed_time
 
-    return model_data
+    return result
 
+def run_epochs(model_data, output_path, robustness_lambda=0.05, replay_ratio=0, replay_ratio_increment=0, max_replay_ratio=0, max_epochs=50, max_val_acc=0.95, max_val_acc_diff=0.001, stopping_threshold=3):
+    results = []
+    stopping_cnt = 0
+    batch_start_time = time.time()
+
+    for e in range(max_epochs):
+        result = run_epoch(model_data, output_path, robustness_lambda=robustness_lambda, replay_ratio=clamp(replay_ratio + e * replay_ratio_increment, 0.0, max_replay_ratio))
+        results.append(result)
+        
+        if results[e]['val_result']['acc'] >= max_val_acc:
+            print(f"[INFO] Early stopping at {e+1} epochs with accuracy {result['val_result']['acc']:.3f}")
+            break
+        
+        if e > 0 and results[e]['val_result']['acc'] - results[e-1]['val_result']['acc'] < max_val_acc_diff:
+            stopping_cnt += 1
+            if stopping_cnt >= stopping_threshold:
+                print(f"[INFO] Stopping after {stopping_threshold} epochs with no significant improvement")
+                break
+            else:
+                print(f"[INFO] ({stopping_cnt}/{stopping_threshold}) Early stopping imminent at {e+1} epochs with no significant improvement in accuracy ({results[e]['val_result']['acc']:.3f})")
+        else:
+            stopping_cnt = 0
+
+    elapsed_time = time.time() - batch_start_time
+    print(f"[INFO] Training completed after {len(results)} epochs in {time.strftime('%H:%M:%S', time.gmtime(elapsed_time))}")
+    return results
 
 def predict_top_k(image_path, model_data, k):
     model_data['model'].eval()
