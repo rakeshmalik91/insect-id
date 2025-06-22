@@ -12,9 +12,9 @@
         "version": 3,
         "min_accepted_softmax": 0.3
     },
-    "lepidoptera": {
-        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
-        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
+    "lepidoptera.v2alpha": {
+        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
+        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v2alpha.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1VjmwqvPpis6wjElGZuz0GoF4kw-OMjO9&export=download&confirm=t&uuid=13016f6f-e921-4cf2-878b-2549b368df3d",
         "model_url": "https://drive.usercontent.google.com/download?id=1ChFdtWUz8fJxVb2-V7o8Rmqudjbec4OW&export=download&confirm=t&uuid=9cd6a75e-1415-4391-88ca-40298caf221d",
         "version": 11,
@@ -31,7 +31,7 @@
             "spp_class_count": 446,
             "early_stage_class_count": 1029,
             "data_count": 325920,
-            "model_arch": "Resnet-152 (modified)",
+            "model_arch": "Resnet-152 (modified for incremental training)",
             "data_sources": [
                 "ifoundbutterflies.org",
                 "mothsofindia.org",
@@ -45,9 +45,9 @@
             "accuracy_top3": "99.38%"
         }
     },
-    "lepidoptera.v0": {
-        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v0.json",
-        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v0.json",
+    "lepidoptera": {
+        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
+        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1sUasHdjIYpUHebUjmnT1SDSllHAMxKva&export=download&confirm=t&uuid=6828b117-2339-4eba-9462-39fd1338d13a",
         "model_url": "https://drive.usercontent.google.com/download?id=1FVknmAgmeP88Qfs4rUfVurWG1LFRKYvZ&export=download&confirm=t&uuid=e436eb0f-c415-4e1b-b0d5-7484ee7751a3",
         "version": 11,

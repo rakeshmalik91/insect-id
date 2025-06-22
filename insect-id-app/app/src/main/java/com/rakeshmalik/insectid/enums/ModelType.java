@@ -2,7 +2,7 @@ package com.rakeshmalik.insectid.enums;
 
 public enum ModelType {
     LEPIDOPTERA("Butterfly/Moth", "lepidoptera"),
-    LEPIDOPTERA_V0("Butterfly/Moth (v0)", "lepidoptera.v0"),
+    LEPIDOPTERA_V2ALPHA("Butterfly/Moth (v2 alpha)", "lepidoptera.v2alpha"),
     BUTTERFLY("Butterfly", "butterfly"),
     MOTH("Moth", "moth"),
     ODONATA("Dragonfly/Damselfly", "odonata"),
