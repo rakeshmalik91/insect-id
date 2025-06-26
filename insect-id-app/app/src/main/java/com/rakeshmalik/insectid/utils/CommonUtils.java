@@ -26,12 +26,17 @@ public class CommonUtils {
     }
 
     public static float[] toSoftMax(float[] scores) {
-        float sumExp = 0.0f;
+        float max = Float.NEGATIVE_INFINITY;
         for (float score : scores) {
-            sumExp += (float) Math.exp(score);
+            if (score > max) max = score;
+        }
+        float sumExp = 0.0f;
+        for (int i = 0; i < scores.length; i++) {
+            scores[i] = (float) Math.exp(scores[i] - max);
+            sumExp += scores[i];
         }
         for (int i = 0; i < scores.length; i++) {
-            scores[i] = (float) Math.exp(scores[i]) / sumExp;
+            scores[i] /= sumExp;
         }
         return scores;
     }
