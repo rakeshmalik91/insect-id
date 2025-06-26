@@ -1,5 +1,7 @@
 package com.rakeshmalik.insectid.utils;
 
+import static com.rakeshmalik.insectid.constants.Constants.DERIVED_CLASS_REGEX;
+import static com.rakeshmalik.insectid.constants.Constants.EARLY_STAGE_CLASS_SUFFIX;
 import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 
 import android.content.Context;
@@ -66,6 +68,26 @@ public class CommonUtils {
             }
         }
         return list;
+    }
+
+    public static boolean isEarlyStage(String className) {
+        return className.endsWith(EARLY_STAGE_CLASS_SUFFIX);
+    }
+
+    public static String getImagoClassName(String earlyClassName) {
+        return earlyClassName.replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", "");
+    }
+
+    public static boolean isDerivedClass(String className) {
+        return className.matches(DERIVED_CLASS_REGEX);
+    }
+
+    public static String getGenus(String className) {
+        return className.split("-")[0];
+    }
+
+    public static boolean isPossibleDuplicate(String className1, String className2) {
+        return className1.split("-", 2)[1].equals(className2.split("-", 2)[1]);
     }
 
 }

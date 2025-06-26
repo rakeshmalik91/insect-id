@@ -1,12 +1,19 @@
 package com.rakeshmalik.insectid.prediction;
 
 import static com.rakeshmalik.insectid.constants.Constants.*;
+import static com.rakeshmalik.insectid.utils.CommonUtils.getGenus;
+import static com.rakeshmalik.insectid.utils.CommonUtils.getImagoClassName;
+import static com.rakeshmalik.insectid.utils.CommonUtils.isDerivedClass;
+import static com.rakeshmalik.insectid.utils.CommonUtils.isEarlyStage;
+import static com.rakeshmalik.insectid.utils.CommonUtils.isPossibleDuplicate;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.rakeshmalik.insectid.MainActivity;
 import com.rakeshmalik.insectid.enums.Operation;
@@ -21,7 +28,9 @@ import org.pytorch.Module;
 import org.pytorch.Tensor;
 import org.pytorch.torchvision.TensorImageUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -103,27 +112,30 @@ public class PredictionManager {
 
             // get top 10 predictions and filter using min accepted softmax and logit
             int k = MAX_PREDICTIONS;
-            Integer[] predictedClass = CommonUtils.getTopKIndices(softMaxScores, k);
-            Log.d(LOG_TAG, "Top " + k + " scores: " + Arrays.stream(predictedClass).map(c -> logitScores[c]).collect(Collectors.toList()));
-            Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClass).map(c -> softMaxScores[c]).collect(Collectors.toList()));
+            Integer[] predictedClassIndices = CommonUtils.getTopKIndices(softMaxScores, k);
+            Log.d(LOG_TAG, "Top " + k + " scores: " + Arrays.stream(predictedClassIndices).map(c -> logitScores[c]).collect(Collectors.toList()));
+            Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClassIndices).map(c -> softMaxScores[c]).collect(Collectors.toList()));
             final double minAcceptedSoftmax = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
             final double minAcceptedLogit = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_LOGIT);
             Log.d(LOG_TAG, "minAcceptedSoftmax: " + minAcceptedSoftmax);
             Log.d(LOG_TAG, "minAcceptedLogit: " + minAcceptedLogit);
-            List<String> predictions = Arrays.stream(predictedClass)
-                    .filter(c -> softMaxScores[c] > minAcceptedSoftmax)
-                    .filter(c -> logitScores[c] > minAcceptedLogit)
-                    .map(c -> getScientificNameHtml(classLabels.get(c))
-                            + getSpeciesNameHtml(classLabels.get(c), classDetails)
-                            + getScoreHtml(softMaxScores[c])
-                            + getSpeciesImageList(modelType.modelName, classLabels.get(c)))
+            List<String> predictions = Arrays.stream(predictedClassIndices).map(classLabels::get).collect(Collectors.toList());
+            Set<String> predictedGenus = predictions.stream().filter(name -> !isDerivedClass(name)).map(CommonUtils::getGenus).collect(Collectors.toSet());
+            List<Integer> filteredPredictionsIndex = Arrays.stream(predictedClassIndices)
+                    .filter(classIndex -> softMaxScores[classIndex] > minAcceptedSoftmax)
+                    .filter(classIndex -> logitScores[classIndex] > minAcceptedLogit)
+                    .filter(classIndex -> isUniquePrediction(classIndex, classLabels, predictions, predictedGenus))
                     .collect(Collectors.toList());
-            Log.d(LOG_TAG, "Predicted class: " + predictions);
+            filteredPredictionsIndex = filterPossibleDuplicateSpeciesNames(filteredPredictionsIndex, classLabels, softMaxScores);
+            List<String> filteredPredictionsHtml = filteredPredictionsIndex.stream()
+                    .peek(classIndex -> Log.d(LOG_TAG, String.format("Predicted class index: %d, class: %s, logit: %f, softMax: %f", classIndex, classLabels.get(classIndex), logitScores[classIndex], softMaxScores[classIndex])))
+                    .map(classIndex -> getPredictionHtml(modelType, classIndex, classLabels, classDetails, softMaxScores))
+                    .collect(Collectors.toList());
 
             // if model is confident enough then override root classifier
             double minAcceptedSoftmaxToOverrideRootClassifier = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER);
             Log.d(LOG_TAG, "minAcceptedSoftmaxToOverrideRootClassifier: " + minAcceptedSoftmaxToOverrideRootClassifier);
-            boolean confident = softMaxScores[predictedClass[0]] > minAcceptedSoftmaxToOverrideRootClassifier;
+            boolean confident = softMaxScores[predictedClassIndices[0]] > minAcceptedSoftmaxToOverrideRootClassifier;
 
             // decide result based on root classifier and model predictions
             if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
@@ -132,15 +144,55 @@ public class PredictionManager {
                 } else {
                     return "No match found!<br><font color='#777777'>Possibly not a " + modelType.displayName + "<br>Crop to fit the insect for better results</font>";
                 }
-            } else if(predictions.isEmpty()) {
+            } else if(filteredPredictionsHtml.isEmpty()) {
                 return "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>";
             } else {
-                return String.join("<br/><br/>", predictions);
+                return String.join("<br/><br/>", filteredPredictionsHtml);
             }
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception during prediction", ex);
         }
         return "Failed to predict!!!";
+    }
+
+    @NonNull
+    private static List<Integer> filterPossibleDuplicateSpeciesNames(List<Integer> filteredPredictionsIndex, List<String> classLabels, float[] softMaxScores) {
+        // ignore possible duplicate species prediction (eg nepita/asura conferta) and add scores to the highest match
+        List<Integer> filteredPredictionsIndexNew = new ArrayList<>();
+        for(int i1 = 0; i1 < filteredPredictionsIndex.size(); i1++) {
+            int classIndex1 = filteredPredictionsIndex.get(i1);
+            if(softMaxScores[classIndex1] > 0) {
+                for (int i2 = 0; i2 < filteredPredictionsIndex.size(); i2++) {
+                    int classIndex2 = filteredPredictionsIndex.get(i2);
+                    if (isPossibleDuplicate(classLabels.get(classIndex1), classLabels.get(classIndex2)) && softMaxScores[classIndex1] > softMaxScores[classIndex2]) {
+                        softMaxScores[classIndex1] += softMaxScores[classIndex2];
+                        softMaxScores[classIndex2] = 0;
+                    }
+                }
+                filteredPredictionsIndexNew.add(classIndex1);
+            }
+        }
+        return filteredPredictionsIndexNew;
+    }
+
+    private static boolean isUniquePrediction(Integer classIndex, List<String> classLabels, List<String> predictions, Set<String> predictedGenus) {
+        String name = classLabels.get(classIndex);
+        if(isEarlyStage(name)) {
+            // imago stage class already predicted, ignore early stage class
+            return !predictions.contains(getImagoClassName(name));
+        } else if(isDerivedClass(name)) {
+            // species level already predicted, ignore genera/spp class
+            return !predictedGenus.contains(getGenus(name));
+        }
+        return true;
+    }
+
+    @NonNull
+    private String getPredictionHtml(ModelType modelType, Integer classIndex, List<String> classLabels, Map<String, Map<String, Object>> classDetails, float[] softMaxScores) {
+        return getScientificNameHtml(classLabels.get(classIndex))
+                + getSpeciesNameHtml(classLabels.get(classIndex), classDetails)
+                + getScoreHtml(softMaxScores[classIndex])
+                + getSpeciesImageList(modelType.modelName, classLabels.get(classIndex));
     }
 
     private String getScientificName(String className) {
