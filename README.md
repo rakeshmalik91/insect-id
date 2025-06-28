@@ -1,18 +1,29 @@
+
+<img src="insect-id-app/logo.png" alt="InsectID-AI Logo" width="125"/>
+
 # Insect Species Identification
 
+This open source project aims to train ML models and develop apps to identify insect species from images.
+
 ## Android app APK
+
+### InsectID-AI India v1.0.0 alpha
+
+<!-- <img src="insect-id-app/android-feature-graphic.png" alt="Android Feature Graphic"/> -->
+
+Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonflies, Damselflies & Cicada species.
 
 [Download APK file](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
 
 ## Android app screenshots
 
 <p align="center">
-	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="125"/>
-	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="125"/>
-	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="125"/>
-	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="125"/>
-	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="125"/>
-	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="125"/>
+	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="120"/>
 </p>
 
 ## Android app dependencies

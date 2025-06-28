@@ -18,7 +18,8 @@ __pycache__
 *.7z
 
 *.apk
-*.obb
+*.aab
+*.dm
 
 insect-dataset/*
 !insect-dataset/src/
