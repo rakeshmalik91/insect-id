@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -11,13 +9,14 @@ android {
     defaultConfig {
         applicationId = "com.rakeshmalik.insectid"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
+            //noinspection ChromeOsAbiSupport
             abiFilters += listOf("armeabi-v7a", "arm64-v8a")
 //            abiFilters.clear()
 //            abiFilters += listOf("arm64-v8a")

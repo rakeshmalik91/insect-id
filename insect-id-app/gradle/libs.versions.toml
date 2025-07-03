@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.2"
 gson = "2.10.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -11,7 +11,7 @@ constraintlayout = "2.2.0"
 okhttp = "4.9.3"
 pytorch_android = "2.1.0"
 relinker = "1.4.4"
-ucrop = "2.2.9"
+ucrop = "2.2.10"
 
 [libraries]
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
