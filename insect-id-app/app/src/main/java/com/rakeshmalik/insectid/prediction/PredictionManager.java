@@ -50,13 +50,35 @@ public class PredictionManager {
         this.modelLoader = modelLoader;
     }
 
+    private Module loadModel(String modelPath) {
+        try {
+            Module model = Module.load(modelPath);
+            Log.d(LOG_TAG, "Model loaded successfully from " + modelPath);
+            return model;
+        } catch (Throwable ex) {
+            Log.e(LOG_TAG, "Exception loading model", ex);
+            throw ex;
+        }
+    }
+
+    private Tensor modelForward(String modelPath, Module model, Tensor inputTensor) {
+        try {
+            Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+            Log.d(LOG_TAG, "Model forward completed successfully through " + modelPath);
+            return outputTensor;
+        } catch (Throwable ex) {
+            Log.e(LOG_TAG, "Exception during model.forward()", ex);
+            throw ex;
+        }
+    }
+
     private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
         // run through root classifier model
         String modelName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         String modelPath = modelLoader.loadFromCache(context, modelName);
         Log.d(LOG_TAG, modelPath);
-        Module model = Module.load(modelPath);
-        Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+        Module model = loadModel(modelPath);
+        Tensor outputTensor = modelForward(modelPath, model, inputTensor);
         float[] logitScores = outputTensor.getDataAsFloatArray();
         float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
         List<String> classLabels = CommonUtils.toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
@@ -81,14 +103,7 @@ public class PredictionManager {
 
         try {
             String modelPath = modelLoader.loadFromCache(context, modelFileName);
-            Module model;
-            try {
-                model = Module.load(modelPath);
-            } catch (Throwable ex) {
-                Log.e(LOG_TAG, "Exception loading model", ex);
-                throw ex;
-            }
-            Log.d(LOG_TAG, "Model loaded successfully from " + modelPath);
+            Module model = loadModel(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
 
@@ -113,7 +128,7 @@ public class PredictionManager {
             Set<String> acceptedRootClasses = new HashSet<>(CommonUtils.toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
 
             // run through selected model
-            Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+            Tensor outputTensor = modelForward(modelPath, model, inputTensor);
             float[] logitScores = outputTensor.getDataAsFloatArray();
             Log.d(LOG_TAG, "scores: " + Arrays.toString(logitScores));
             float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
