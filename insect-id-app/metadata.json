@@ -49,8 +49,8 @@
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1sUasHdjIYpUHebUjmnT1SDSllHAMxKva&export=download&confirm=t&uuid=6828b117-2339-4eba-9462-39fd1338d13a",
-        "model_url": "https://drive.usercontent.google.com/download?id=1FVknmAgmeP88Qfs4rUfVurWG1LFRKYvZ&export=download&confirm=t&uuid=e436eb0f-c415-4e1b-b0d5-7484ee7751a3",
-        "version": 11,
+        "model_url": "https://drive.usercontent.google.com/download?id=1yuLCbq_1Pn1Xt-6yXNsV-lA6N2zQqpAU&export=download&confirm=t&uuid=c799381a-fa1a-4bc9-92d1-ac255e1a4493",
+        "version": 12,
         "min_accepted_logit": -60,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
