@@ -74,6 +74,7 @@ public class ModelDownloader {
     }
 
     private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+        Log.d(LOG_TAG, "Inside ModelDownloader.downloadRootClassifier()");
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
         int latestVersion = metadataManager.getMetadata(ROOT_CLASSIFIER).optInt(FIELD_VERSION, 0);
@@ -89,6 +90,7 @@ public class ModelDownloader {
     }
 
     public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+        Log.d(LOG_TAG, "Inside ModelDownloader.downloadModel()");
         try {
 
             if(forceUpdate) {

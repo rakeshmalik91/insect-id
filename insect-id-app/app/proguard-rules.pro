@@ -39,3 +39,12 @@
 # Keep SSLSocket-related classes (TLS configuration)
 -keep class javax.net.ssl.** { *; }
 -dontwarn javax.net.ssl.**
+
+#-keep class org.pytorch.** { *; }
+#-dontwarn org.pytorch.**
+#
+#-keep class * extends org.pytorch.Module { *; }
+#
+#-keepclassmembers class * {
+#    native <methods>;
+#}

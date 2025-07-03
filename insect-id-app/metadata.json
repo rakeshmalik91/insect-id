@@ -74,8 +74,8 @@
                 "insecta.pro"
             ],
             "last_updated_date": "25-03-2025",
-            "accuracy": "96.04%",
-            "accuracy_top3": "99.38%"
+            "accuracy": "79.88%",
+            "accuracy_top3": "89.24%"
         }
     },
     "butterfly": {

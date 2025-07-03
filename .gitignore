@@ -29,3 +29,5 @@ insect-dataset/src/*
 models/images.*
 
 insect-id-app/opencv
+insect-id-app/tools
+insect-id-app/app-release.apks

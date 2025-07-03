@@ -37,6 +37,7 @@ public class PredictionRunnable implements Runnable {
 
     @Override
     public void run() {
+        Log.d(LOG_TAG, "Inside PredictionRunnable.run()");
         try {
             mainActivity.lockUI();
             modelDownloader.downloadModel(mainActivity.getSelectedModelType(), this::runPrediction, mainActivity::unlockUI, 1, 1);
@@ -46,10 +47,12 @@ public class PredictionRunnable implements Runnable {
     }
 
     private void runPrediction() {
+        Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction()");
         try {
             mainActivity.runOnUiThread(() -> outputText.setText(R.string.predicting));
             String predictions = predictionManager.predict(mainActivity.getSelectedModelType(), mainActivity.getPhotoUri());
 
+            Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction(): Going to render");
             // set html with alt text while loading images
             Spanned htmlWithoutImage = Html.fromHtml(getHtmlWithoutImage(predictions), Html.FROM_HTML_MODE_COMPACT, null, null);
             mainActivity.runOnUiThread(() -> outputText.setText(htmlWithoutImage));

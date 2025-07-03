@@ -73,13 +73,22 @@ public class PredictionManager {
     }
 
     public String predict(ModelType modelType, Uri photoUri) {
+        Log.d(LOG_TAG, "inside PredictionManager.predict(" + modelType + ", " + photoUri + ")");
+
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
         String classListName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
         String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
 
         try {
             String modelPath = modelLoader.loadFromCache(context, modelFileName);
-            Module model = Module.load(modelPath);
+            Module model;
+            try {
+                model = Module.load(modelPath);
+            } catch (Throwable ex) {
+                Log.e(LOG_TAG, "Exception loading model", ex);
+                throw ex;
+            }
+            Log.d(LOG_TAG, "Model loaded successfully from " + modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
 

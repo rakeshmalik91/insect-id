@@ -19,6 +19,8 @@ android {
 
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+//            abiFilters.clear()
+//            abiFilters += listOf("arm64-v8a")
         }
     }
 
@@ -38,12 +40,21 @@ android {
     }
     packaging {
         jniLibs {
+//            useLegacyPackaging = false
+
             // conflicts between opencv and pytorch
             pickFirsts.add("lib/arm64-v8a/libc++_shared.so")
             pickFirsts.add("lib/armeabi-v7a/libc++_shared.so")
             pickFirsts.add("lib/x86/libc++_shared.so")
             pickFirsts.add("lib/x86_64/libc++_shared.so")
         }
+//        resources {
+//            pickFirsts += listOf(
+//                "**/libc++_shared.so",
+//                "**/libpytorch_jni.so",
+//                "**/libpytorch_vision_jni.so"
+//            )
+//        }
     }
 }
 

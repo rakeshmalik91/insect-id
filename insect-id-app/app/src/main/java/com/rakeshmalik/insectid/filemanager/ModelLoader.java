@@ -1,6 +1,7 @@
 package com.rakeshmalik.insectid.filemanager;
 
 import static com.rakeshmalik.insectid.constants.Constants.IMAGES_ARCHIVE_FILE_NAME_FMT;
+import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 import static com.rakeshmalik.insectid.constants.Constants.MAX_IMAGES_IN_PREDICTION;
 import static com.rakeshmalik.insectid.constants.Constants.PREF;
 import static com.rakeshmalik.insectid.constants.Constants.PREF_ASSET_TEMP_PATH;
@@ -40,8 +41,11 @@ public class ModelLoader {
     }
 
     public String loadFromCache(Context context, String fileName) {
+        Log.d(LOG_TAG, "inside ModelLoader.loadFromCache(context,"  + fileName + ")");
         File file = new File(context.getCacheDir(), fileName);
-        return file.getAbsolutePath();
+        String path = file.getAbsolutePath();
+        Log.d(LOG_TAG, "absolute path: " + path + ", exists: " + file.exists() + ", size: " + file.length());
+        return path;
     }
 
     public String loadFromAsset(Context context, String assetName) {
