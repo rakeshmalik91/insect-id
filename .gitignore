@@ -19,7 +19,6 @@ __pycache__
 
 *.apk
 *.aab
-*.dm
 
 insect-dataset/*
 !insect-dataset/src/
@@ -31,3 +30,4 @@ models/images.*
 insect-id-app/opencv
 insect-id-app/tools
 insect-id-app/app-release.apks
+insect-id-app/app/release

@@ -1,1 +1,0 @@
-unzip -l app-release.aab | grep libpytorch
