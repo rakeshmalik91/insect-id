@@ -40,11 +40,13 @@
 -keep class javax.net.ssl.** { *; }
 -dontwarn javax.net.ssl.**
 
-#-keep class org.pytorch.** { *; }
-#-dontwarn org.pytorch.**
-#
-#-keep class * extends org.pytorch.Module { *; }
-#
-#-keepclassmembers class * {
-#    native <methods>;
-#}
+-keep class * extends org.pytorch.Module { *; }
+-keep class org.pytorch.** { *; }
+-dontwarn org.pytorch.**
+
+-keep class com.facebook.jni.** { *; }
+-keep class com.facebook.soloader.** { *; }
+
+-keepclassmembers class * {
+    native <methods>;
+}
