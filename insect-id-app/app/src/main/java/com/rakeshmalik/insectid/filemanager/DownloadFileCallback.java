@@ -13,6 +13,10 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.rakeshmalik.insectid.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -73,9 +77,9 @@ class DownloadFileCallback implements Callback {
     }
 
     @Override
-    public void onFailure(Call call, IOException e) {
+    public void onFailure(@NonNull Call call, IOException e) {
         Log.e(LOG_TAG, "Download " + downloadName + " failed: " + e.getMessage());
-        mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
+        mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
         if(onFailure != null) {
             onFailure.run();
         }
@@ -88,7 +92,7 @@ class DownloadFileCallback implements Callback {
     public void onResponse(Call call, Response response) throws IOException {
         if (!response.isSuccessful()) {
             Log.e(LOG_TAG, "Server error: " + response.code());
-            mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
+            mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
             return;
         }
         File cacheDir = context.getCacheDir();
@@ -118,9 +122,9 @@ class DownloadFileCallback implements Callback {
         } catch (Exception e) {
             Log.e(LOG_TAG, "Download " + downloadName + " failed: ", e);
             if(Objects.equals(e.getMessage(), "Software caused connection abort")) {
-                mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!\nPlease restart the download and do not minimize or close the app or lock the screen."));
+                mainHandler.post(() -> outputText.setText(context.getString(R.string.download_connection_aborted, downloadName)));
             } else {
-                mainHandler.post(() -> outputText.setText("Download " + downloadName + " failed!"));
+                mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
             }
             if(onFailure != null) {
                 onFailure.run();

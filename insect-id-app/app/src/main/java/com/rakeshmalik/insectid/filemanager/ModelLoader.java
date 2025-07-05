@@ -120,9 +120,7 @@ public class ModelLoader {
                         .map(f -> {
                             try {
                                 InputStream inputStream = zipFile.getInputStream(f);
-                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//                                Log.d(Constants.LOG_TAG, "Loaded bitmap " + bitmap + " from path " + f.getName() + " in archive " + zipFileName);
-                                return bitmap;
+                                return BitmapFactory.decodeStream(inputStream);
                             } catch (IOException ex) {
                                 Log.e(Constants.LOG_TAG, "Exception creating bitmap from file " + f.getName() + " in archive " + zipFileName, ex);
                                 return null;

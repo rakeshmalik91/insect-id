@@ -12,4 +12,6 @@
     <string name="fetching_metadata">Fetching metadata…</string>
     <string name="update_model">Update/Download model</string>
     <string name="please_wait">Please wait…</string>
+    <string name="download_failed">Download %1$s failed!</string>
+    <string name="download_connection_aborted">Download %1$s failed! \nPlease restart the download and do not minimize or close the app or lock the screen</string>
 </resources>
