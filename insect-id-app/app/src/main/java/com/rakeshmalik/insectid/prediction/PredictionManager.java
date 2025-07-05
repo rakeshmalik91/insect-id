@@ -20,6 +20,7 @@ import com.rakeshmalik.insectid.enums.Operation;
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.utils.CVImageUtils;
 import com.rakeshmalik.insectid.utils.CommonUtils;
 import com.rakeshmalik.insectid.utils.ImageUtils;
 
@@ -111,8 +112,8 @@ public class PredictionManager {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
 
             // preprocess image
-            bitmap = ImageUtils.removeBlackBorders(bitmap, 10, Operation.MEDIAN);
-            if(ImageUtils.isScreenCapture(bitmap, 0.25)) {
+            bitmap = CVImageUtils.removeBlackBorders(bitmap, 10, Operation.MEDIAN);
+            if(CVImageUtils.isScreenCapture(bitmap, 0.25)) {
                 bitmap = ImageUtils.applyGaussianBlur(bitmap, 0.01);
             }
             previewPreprocessedImage(bitmap);

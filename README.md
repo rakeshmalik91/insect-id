@@ -13,7 +13,7 @@ This open source project aims to train ML models and develop apps to identify in
 
 Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonflies, Damselflies & Cicada species.
 
-[Google Play Store Testing Program](https://play.google.com/apps/testing/com.rakeshmalik.insectid)
+[Google Play Store](https://play.google.com/store/apps/details?id=com.rakeshmalik.insectid)
 
 [APK files archive](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
 

@@ -10,7 +10,7 @@ android {
         applicationId = "com.rakeshmalik.insectid"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -37,10 +37,7 @@ android {
     packaging {
         jniLibs {
             // conflicts between opencv and pytorch
-            pickFirsts.add("lib/arm64-v8a/libc++_shared.so")
-            pickFirsts.add("lib/armeabi-v7a/libc++_shared.so")
-            pickFirsts.add("lib/x86/libc++_shared.so")
-            pickFirsts.add("lib/x86_64/libc++_shared.so")
+            pickFirsts.add("lib/**/libc++_shared.so")
         }
     }
 }

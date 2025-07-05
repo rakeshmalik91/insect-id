@@ -1,18 +1,31 @@
 @echo off
 
+set nobuild=false
+for %%i in (%*) do (
+    for /f "tokens=1,2 delims==" %%a in ("%%i") do (
+        if /i "%%a"=="nobuild" set nobuild=%%b
+    )
+)
+
 :: wsl bash -c "mkdir tools"
 :: wsl bash -c "wget https://github.com/google/bundletool/releases/download/1.15.6/bundletool-all-1.15.6.jar -O /mnt/d/Projects/insect-id/insect-id-app/tools/bundletool.jar"
 
 set ANDROID_HOME=%USERPROFILE%\AppData\Local\Android\Sdk
 set PATH=%PATH%;%ANDROID_HOME%\platform-tools
 
-echo "Building AAB..."
-call gradlew :app:clean
-call gradlew :app:bundleRelease
-set AAB_PATH=app\build\outputs\bundle\release\app-release.aab
+if /i "%nobuild%"=="false" (
+    echo "Building AAB..."
+    call gradlew :app:clean
+    call gradlew :app:bundleRelease
+    set AAB_PATH=app\build\outputs\bundle\release\app-release.aab
+    set AAB_WSL_PATH=/mnt/d/Projects/insect-id/insect-id-app/app/build/outputs/bundle/release/app-release.aab
+) else (
+    echo "Skipping build step"
+    set AAB_PATH=app\release\app-release.aab
+    set AAB_WSL_PATH=/mnt/d/Projects/insect-id/insect-id-app/app/release/app-release.aab
+)
 
 echo "Verifying AAB contents for libpytorch..."
-set AAB_WSL_PATH=/mnt/d/Projects/insect-id/insect-id-app/app/build/outputs/bundle/release/app-release.aab
 wsl bash -c "unzip -l %AAB_WSL_PATH% | grep libpytorch"
 
 echo "Build APKs..."
