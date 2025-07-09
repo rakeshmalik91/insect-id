@@ -10,7 +10,8 @@
             "other-insect"
         ],
         "version": 3,
-        "min_accepted_softmax": 0.3
+        "min_accepted_softmax": 0.3,
+        "size": 233592706
     },
     "lepidoptera.v2alpha": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
@@ -43,7 +44,8 @@
             "last_updated_date": "25-03-2025",
             "accuracy": "96.04%",
             "accuracy_top3": "99.38%"
-        }
+        },
+        "size": 635815018
     },
     "lepidoptera": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
@@ -76,7 +78,8 @@
             "last_updated_date": "25-03-2025",
             "accuracy": "79.88%",
             "accuracy_top3": "89.24%"
-        }
+        },
+        "size": 635270339
     },
     "butterfly": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
@@ -107,7 +110,8 @@
             "last_updated_date": "28-03-2025",
             "accuracy": "87.02%",
             "accuracy_top3": "95.24%"
-        }
+        },
+        "size": 359190623
     },
     "moth": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
@@ -138,7 +142,8 @@
             "last_updated_date": "27-03-2025",
             "accuracy": "87.02%",
             "accuracy_top3": "94.85%"
-        }
+        },
+        "size": 501321075
     },
     "odonata": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
@@ -166,7 +171,8 @@
             "last_updated_date": "24-03-2025",
             "accuracy": "83.25%",
             "accuracy_top3": "93.42%"
-        }
+        },
+        "size": 268564866
     },
     "cicada": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
@@ -194,6 +200,7 @@
             "last_updated_date": "24-03-2025",
             "accuracy": "62.36%",
             "accuracy_top3": "70.60%"
-        }
+        },
+        "size": 246856885
     }
 }

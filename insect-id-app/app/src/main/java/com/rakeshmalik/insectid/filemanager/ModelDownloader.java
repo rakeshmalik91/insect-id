@@ -73,19 +73,24 @@ public class ModelDownloader {
         downloadModel(modelType, onSuccess, onFailure, false, modelDownloadSeq, totalModelDownloads);
     }
 
-    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
-        Log.d(LOG_TAG, "Inside ModelDownloader.downloadRootClassifier()");
+    private boolean isRootClassifierDownloadRequired() {
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
         int latestVersion = metadataManager.getMetadata(ROOT_CLASSIFIER).optInt(FIELD_VERSION, 0);
         Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", ROOT_CLASSIFIER, currentVersion, latestVersion));
-        if(isFileAlreadyDownloaded(modelFileName) && currentVersion >= latestVersion) {
-            Log.d(LOG_TAG, "Model " + ROOT_CLASSIFIER + " already downloaded.");
-            onSuccess.run();
-        } else {
+        return !isFileAlreadyDownloaded(modelFileName) || currentVersion < latestVersion;
+    }
+
+    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+        Log.d(LOG_TAG, "Inside ModelDownloader.downloadRootClassifier()");
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
+        if(isRootClassifierDownloadRequired()) {
             String fileUrl = metadataManager.getMetadata(ROOT_CLASSIFIER).optString(FIELD_MODEL_URL, null);
             downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, forceUpdate,
                     1, 5, modelDownloadSeq, totalModelDownloads);
+        } else {
+            Log.d(LOG_TAG, "Model " + ROOT_CLASSIFIER + " already downloaded.");
+            onSuccess.run();
         }
     }
 
@@ -166,7 +171,7 @@ public class ModelDownloader {
                               int modelDownloadSeq, int totalModelDownloads) {
         try {
             Log.d(LOG_TAG, "Downloading " + downloadName + " " + fileName + " from " + fileUrl + "...");
-            DownloadFileCallback callback = new DownloadFileCallback(context, outputText, metadataManager, mainHandler, prefs,
+            DownloadFileHttpCallback callback = new DownloadFileHttpCallback(context, outputText, metadataManager, mainHandler, prefs,
                     fileName, onSuccess, onFailure, downloadName, modelName, updateRequired,
                     fileDownloadSeq, totalFileDownloads, modelDownloadSeq, totalModelDownloads);
             client.newCall(new Request.Builder().url(fileUrl).build()).enqueue(callback);
@@ -204,6 +209,34 @@ public class ModelDownloader {
 
     public static String modelVersionPrefName(String modelName) {
         return PREF_MODEL_VERSION + "::" + modelName;
+    }
+
+    public long getModelDownloadSizeInMB(ModelType modelType) {
+        long size = 0;
+        if(isRootClassifierDownloadRequired()) {
+            size += metadataManager.getModelSize(ROOT_CLASSIFIER);
+        }
+        if(isModelDownloadOrUpdateRequired(modelType)) {
+            size += metadataManager.getModelSize(modelType.modelName);
+        }
+        return size / 1000 / 1000;
+    }
+
+    public long getTotalModelDownloadSizeInMB() {
+        long totalSize = 0;
+        if(isRootClassifierDownloadRequired()) {
+            long size = metadataManager.getModelSize(ROOT_CLASSIFIER);
+            if(size <= 0) return 0;
+            totalSize += size;
+        }
+        for(ModelType modelType: ModelType.values()) {
+            if (isModelDownloadOrUpdateRequired(modelType)) {
+                long size = metadataManager.getModelSize(modelType.modelName);
+                if(size <= 0) return 0;
+                totalSize += size;
+            }
+        }
+        return totalSize / 1000 / 1000;
     }
 
 }

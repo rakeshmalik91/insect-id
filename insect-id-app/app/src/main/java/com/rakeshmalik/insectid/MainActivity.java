@@ -3,6 +3,7 @@ package com.rakeshmalik.insectid;
 import static com.rakeshmalik.insectid.constants.Constants.*;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
             //System.loadLibrary("opencv_java4");
             ReLinker.loadLibrary(this, "opencv_java4");
+
+            new Thread(metadataManager::getMetadata).start();
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
@@ -363,12 +366,18 @@ public class MainActivity extends AppCompatActivity {
         runningTasks.add(future);
     }
 
+    @SuppressLint("DefaultLocale")
     private void showDownloadOrUpdateModelDialog() {
         if(uiLocked) {
             return;
         }
         try {
-            String[] options = { selectedModelType.displayName + " Model", "All Models" };
+            long modelSize = modelDownloader.getModelDownloadSizeInMB(selectedModelType);
+            long totalModelSize = modelDownloader.getTotalModelDownloadSizeInMB();
+            String[] options = {
+                    selectedModelType.displayName + " Model" + (modelSize > 0 ? String.format(" (%d MB)", modelSize) : ""),
+                    "All Models" + (totalModelSize > 0 ? String.format(" (%d MB)", totalModelSize) : "")
+            };
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Download/Update");
             builder.setItems(options, (dialog, which) -> {

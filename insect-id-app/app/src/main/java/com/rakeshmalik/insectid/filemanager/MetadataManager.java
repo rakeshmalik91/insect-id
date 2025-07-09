@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.constants.Constants;
 import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.utils.FileUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +55,7 @@ public class MetadataManager {
             mainHandler.post(() -> outputText.setText(R.string.fetching_metadata));
             Log.d(Constants.LOG_TAG, "Fetching metadata");
             try {
-                metadata = fetchJSONFromURL(Constants.METADATA_URL);
+                metadata = FileUtils.fetchJSONFromURL(Constants.METADATA_URL);
                 prefs.edit().putString(PREF_METADATA, metadata.toString()).apply();
             } catch(Exception ex1) {
                 Log.e(Constants.LOG_TAG, "Exception fetching metadata ", ex1);
@@ -62,7 +63,7 @@ public class MetadataManager {
                     try {
                         metadata = new JSONObject(prefs.getString(PREF_METADATA, "{}"));
                     } catch(Exception ex2) {
-                        Log.e(Constants.LOG_TAG, "Exception during parsing metadata json from shared prefs ", ex2);
+                        Log.e(Constants.LOG_TAG, "Exception during parsing metadata json from shared prefs", ex2);
                     }
                 }
             }
@@ -70,19 +71,8 @@ public class MetadataManager {
         return metadata;
     }
 
-    private JSONObject fetchJSONFromURL(String url) {
-        Log.d(Constants.LOG_TAG, "Fetching json file from url: " + url);
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(url).build();
-        try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-            String data = response.body().string();
-//            Log.d(Constants.LOG_TAG, "Content: " + data);
-            return new JSONObject(data);
-        } catch (IOException | JSONException ex) {
-            Log.e(Constants.LOG_TAG, "Exception during fetching json file from " + url, ex);
-            return null;
-        }
+    public long getModelSize(String modelName) {
+        return getMetadata(modelName).optLong(FIELD_SIZE);
     }
 
 }

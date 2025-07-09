@@ -28,6 +28,7 @@ public class Constants {
     public static final String FIELD_MODEL_URL = "model_url";
     public static final String FIELD_IMAGES_URL = "images_url";
     public static final String FIELD_VERSION = "version";
+    public static final String FIELD_SIZE = "size";
     public static final String FIELD_MIN_ACCEPTED_LOGIT = "min_accepted_logit";
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX = "min_accepted_softmax";
     public static final String FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER = "min_accepted_softmax_to_override_root_classifier";

@@ -27,7 +27,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-class DownloadFileCallback implements Callback {
+class DownloadFileHttpCallback implements Callback {
 
     private Context context;
     private TextView outputText;
@@ -48,12 +48,12 @@ class DownloadFileCallback implements Callback {
 
     PowerManager.WakeLock wakeLock;
 
-    private DownloadFileCallback() {}
+    private DownloadFileHttpCallback() {}
 
-    public DownloadFileCallback(Context context, TextView outputText, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
-                                String fileName, Runnable onSuccess, Runnable onFailure,
-                                String downloadName, String modelName, boolean updateRequired,
-                                int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads) {
+    public DownloadFileHttpCallback(Context context, TextView outputText, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
+                                    String fileName, Runnable onSuccess, Runnable onFailure,
+                                    String downloadName, String modelName, boolean updateRequired,
+                                    int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads) {
         this.fileName = fileName;
         this.onSuccess = onSuccess;
         this.onFailure = onFailure;
@@ -89,7 +89,7 @@ class DownloadFileCallback implements Callback {
     }
 
     @Override
-    public void onResponse(Call call, Response response) throws IOException {
+    public void onResponse(@NonNull Call call, Response response) throws IOException {
         if (!response.isSuccessful()) {
             Log.e(LOG_TAG, "Server error: " + response.code());
             mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));

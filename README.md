@@ -7,8 +7,6 @@ This open source project aims to train ML models and develop apps to identify in
 
 ## Android app APK
 
-### InsectID-AI India v1.0.0 alpha
-
 <!-- <img src="insect-id-app/android-feature-graphic.png" alt="Android Feature Graphic"/> -->
 
 Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonflies, Damselflies & Cicada species.
