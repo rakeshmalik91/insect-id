@@ -119,3 +119,26 @@ model_data = prepare_for_retraining(model_data, "path-to-train-data-dir", "path-
 num_epochs = 5
 train(model_data, num_epochs, "path-to-output-model-checkpoint-ep###.pth", -0.01)
 ```
+
+## Using mynnlibv2 (Supports incremental training)
+
+#### Import library:
+```
+import mynnlibv2
+from mynnlibv2 import *
+```
+
+#### Train a new model:
+```
+init_model(f"{dataset_dir}/data", f"{dataset_dir}/val", batch_size=32, image_size=224, lr=1e-4, validate=False)
+for epoch in range(15):
+    result = run_epoch(model_data, output_path=f"{dataset_dir}/checkpoint.inc.lepidoptera.ta", robustness_lambda=0.1)
+```
+
+#### Retrain existing model with a new data:
+```
+model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
+model_data = init_iteration(model_data, f"{dataset_dir}/i01-train", f"{dataset_dir}/i01-val", lr=1e-4)
+for epoch in range(5):
+    result = run_epoch(model_data, output_path=f"{dataset_dir}/checkpoint.inc.lepidoptera.ta", robustness_lambda=0.1)
+```
