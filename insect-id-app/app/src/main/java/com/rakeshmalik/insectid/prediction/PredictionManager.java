@@ -202,14 +202,23 @@ public class PredictionManager {
 
     private static boolean isUniquePrediction(Integer classIndex, List<String> classLabels, List<String> predictions, Set<String> predictedGenus) {
         String name = classLabels.get(classIndex);
+        boolean unique = true;
         if(isEarlyStage(name)) {
             // imago stage class already predicted, ignore early stage class
-            return !predictions.contains(getImagoClassName(name));
+            String imago = getImagoClassName(name);
+            unique = !predictions.contains(imago);
+            if(!unique) {
+                Log.d(LOG_TAG, "Non-unique prediction " + name + " with imago " + imago);
+            }
         } else if(isDerivedClass(name)) {
             // species level already predicted, ignore genera/spp class
-            return !predictedGenus.contains(getGenus(name));
+            String genus = getGenus(name);
+            unique = !predictedGenus.contains(genus);
+            if(!unique) {
+                Log.d(LOG_TAG, "Non-unique prediction " + name + " with genus " + genus);
+            }
         }
-        return true;
+        return unique;
     }
 
     @NonNull

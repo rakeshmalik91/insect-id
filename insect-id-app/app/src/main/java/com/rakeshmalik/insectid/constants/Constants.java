@@ -10,7 +10,7 @@ public class Constants {
 
     public static final String EARLY_STAGE_CLASS_SUFFIX = "-early";
     public static final String EARLY_STAGE_DISPLAY_SUFFIX = " (Early Stage)";
-    public static final String DERIVED_CLASS_REGEX = "-\\(spp|genera|early\\)";
+    public static final String DERIVED_CLASS_REGEX = ".+-(spp|genera|early)";
 
     public static final String NAME = "name";
     public static final String LOG_TAG = "insect-id";
