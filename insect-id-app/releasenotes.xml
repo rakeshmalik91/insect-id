@@ -1,6 +1,9 @@
 <en-US>
+    v0.0.3 alpha:
+    - Prediction filtering enhancements
+    ---------
     v0.0.2 alpha:
-    1. Model download enhancements
+    - Model download enhancements
     ---------
     v0.0.1 alpha:
     Initial release
