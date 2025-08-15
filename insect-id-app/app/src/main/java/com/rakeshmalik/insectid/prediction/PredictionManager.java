@@ -114,7 +114,7 @@ public class PredictionManager {
             // preprocess image
             bitmap = CVImageUtils.removeBlackBorders(bitmap, 10, Operation.MEDIAN);
             if(CVImageUtils.isScreenCapture(bitmap, 0.25)) {
-                bitmap = ImageUtils.applyGaussianBlur(bitmap, 0.01);
+                bitmap = CVImageUtils.applyGaussianBlur(bitmap, 0.005);
             }
             previewPreprocessedImage(bitmap);
 

@@ -4,7 +4,7 @@
     <string name="select_image">Select Image</string>
     <string name="predicting">Analyzing…</string>
     <string name="use_model">Identify a</string>
-    <string name="version">Version 1.0.0 alpha | © Rakesh Malik 2025</string>
+    <string name="version">Version 0.0.5 alpha | © Rakesh Malik 2025</string>
     <string name="no_match_found">No match found</string>
     <string name="image_to_be_classified">Image to be classified</string>
     <string name="fetching_metadata">Fetching metadata…</string>

@@ -18,6 +18,10 @@ import org.opencv.imgproc.Imgproc;
 
 public class CVImageUtils {
 
+    public static Bitmap applyGaussianBlur(Bitmap bitmap, double radiusRatio) {
+        return applyGaussianBlur(bitmap, (int) Math.ceil(Math.min(bitmap.getHeight(), bitmap.getWidth()) * radiusRatio));
+    }
+
     public static Bitmap applyGaussianBlur(Bitmap bitmap, int radius) {
         Log.d(LOG_TAG, "Applying openCV gaussian blur");
         Mat mat = new Mat();

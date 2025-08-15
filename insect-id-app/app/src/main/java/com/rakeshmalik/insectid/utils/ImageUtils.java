@@ -71,11 +71,8 @@ public class ImageUtils {
         return null;
     }
 
-    public static Bitmap applyGaussianBlur(Bitmap bitmap, double radiusRatio) {
-        return ImageUtils.applyGaussianBlur(bitmap, (int) Math.ceil(Math.min(bitmap.getHeight(), bitmap.getWidth()) * radiusRatio));
-    }
-
-    public static Bitmap applyGaussianBlurV2(Bitmap src, int radius) {
+    @Deprecated
+    public static Bitmap applyGaussianBlur(Bitmap src, int radius) {
         int width = src.getWidth();
         int height = src.getHeight();
         Bitmap blurredBitmap = Bitmap.createBitmap(width, height, Objects.requireNonNull(src.getConfig()));
