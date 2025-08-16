@@ -18,9 +18,9 @@ Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonfl
 ## Android app screenshots
 
 <p align="center">
+	<img src="insect-id-app/screenshots/0.jpg" alt="Screenshot" width="120"/>
 	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="120"/>
 	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/3.jpg" alt="Screenshot" width="120"/>
 	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="120"/>
 	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="120"/>
 	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="120"/>
@@ -52,16 +52,16 @@ Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
 
 [Datasets](https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link)
 
-| Source					| Image count | Class count | Imago class | Early stage class | Species type   | Region   | Comments
-|---------------------------|-------------|-------------|-------------|-------------------|----------------|----------|------------------------------------
-| mothsofindia.org   		| 44k         | 3364        | 3060        | 304               | moth           | india    | Contains 411 spp. classes
-| ifoundbutterflies.org   	| 66k         | 1554        | 1125        | 429               | butterfly      | india    | Contains 35 spp. classes
-| indianodonata.org			| 13k         | 737         | 510         | 200               | odonata        | india    | Contains 27 spp. classes <br/>& 157 empty classes
-| indiancicada.org		   	| 1k          | 308         | 308         | 7                 | cicada         | india    | Contains 1 spp. classes <br/>& 139 empty classes
-| inaturalist.org           | 232k        | 4221        | 3773        | 448               | all            | india    | Contains <br/>2732 moth, <br/>976 butterfly, <br/>370 odonata, <br/>154 cicada classes
-| indiabiodiversity.org   	| 12k         | 1444        | 1444        | 0                 | moth+butterfly | india    | Contains typo in class names, <br/>uses legacy class names
-| insecta.pro               | 25k         | 5068        | 5068        | 0                 | moth+butterfly | all      | Low res images (320x~250)
-| wikipedia.org				| 2k          | 1825        | 1825        | 0                 | moth+butterfly | india    | Low res images (220x~160)
+| Source				            	| Image count | Class count | Imago class | Early stage class | Species groups | Region   | Comments
+|---------------------------------------|-------------|-------------|-------------|-------------------|----------------|----------|------------------------------------
+| https://www.mothsofindia.org   		| 44k         | 3364        | 3060        | 304               | moth           | india    | Contains 411 spp. classes
+| https://www.ifoundbutterflies.org   	| 66k         | 1554        | 1125        | 429               | butterfly      | india    | Contains 35 spp. classes
+| https://www.indianodonata.org			| 13k         | 737         | 510         | 200               | odonata        | india    | Contains 27 spp. classes <br/>& 157 empty classes
+| https://www.indiancicadas.org		   	| 1k          | 308         | 308         | 7                 | cicada         | india    | Contains 1 spp. classes <br/>& 139 empty classes
+| https://www.inaturalist.org           | 232k        | 4221        | 3773        | 448               | all            | india    | Contains <br/>2732 moth, <br/>976 butterfly, <br/>370 odonata, <br/>154 cicada classes
+| https://indiabiodiversity.org		   	| 12k         | 1444        | 1444        | 0                 | moth+butterfly | india    | Contains typo in class names, <br/>uses legacy class names
+| https://insecta.pro	                | 25k         | 5068        | 5068        | 0                 | moth+butterfly | all      | Low res images (320x~250)
+| https://www.wikipedia.org				| 2k          | 1825        | 1825        | 0                 | moth+butterfly | india    | Low res images (220x~160)
 
 
 ## Using mynnlib & the models
@@ -142,3 +142,31 @@ model_data = init_iteration(model_data, f"{dataset_dir}/i01-train", f"{dataset_d
 for epoch in range(5):
     result = run_epoch(model_data, output_path=f"{dataset_dir}/checkpoint.inc.lepidoptera.ta", robustness_lambda=0.1)
 ```
+
+# Backlog
+
+- Cover other species groups
+- Complete existing incomplete species groups
+- Graceful handling of Larvae, Pupae, Imago, Eggs, Cocoon etc.
+- Fine tune incremental training and explore other architectures
+- Fine tune data for common issues
+	- Typo in species names
+	- Resolve existance of same species with different names (e.g. nepita-conferta / asura-conferta)
+- App backlog
+	- Fine tune image preprocessing for screen capture and other common issues
+	- Move models from Google Drive to better alternative, as it may have rate limit or other issues
+	- Settings in app to properly control models download/update
+	- Run through Root-classifier model and multiple models to identify unknown species group images
+
+| Species Groups			| Estimated species count in India | Species covered 
+|---------------------------|----------------------------------|---------------------
+| Lepidoptera > Moth		| 12000+                           | 2899           
+| Lepidoptera > Butterfly	| 1300+                            | 1501           
+| Odonata					| 760+                             | 510           
+| Hemiptera > Cicada		| 250+                             | 300     
+
+
+# Related Issues/Blogs
+
+- [libc++_shared.so conflicts on Android project when using PyTorch and OpenCV](https://medium.com/@ghostknife/libc-shared-so-conflicts-on-android-project-when-using-pytorch-and-opencv-811abb6322e6)
+
