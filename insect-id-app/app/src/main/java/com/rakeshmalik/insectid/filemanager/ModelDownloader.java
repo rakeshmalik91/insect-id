@@ -230,7 +230,7 @@ public class ModelDownloader {
             totalSize += size;
         }
         for(ModelType modelType: ModelType.values()) {
-            if (isModelDownloadOrUpdateRequired(modelType)) {
+            if (!modelType.legacy && isModelDownloadOrUpdateRequired(modelType)) {
                 long size = metadataManager.getModelSize(modelType.modelName);
                 if(size <= 0) return 0;
                 totalSize += size;

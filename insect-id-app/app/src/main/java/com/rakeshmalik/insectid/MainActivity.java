@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
             long totalModelSize = modelDownloader.getTotalModelDownloadSizeInMB();
             String[] options = {
                     selectedModelType.displayName + " Model" + (modelSize > 0 ? String.format(" (%d MB)", modelSize) : ""),
-                    "All Models" + (totalModelSize > 0 ? String.format(" (%d MB)", totalModelSize) : "")
+                    "All Non-legacy Models" + (totalModelSize > 0 ? String.format(" (%d MB)", totalModelSize) : "")
             };
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Download/Update");

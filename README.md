@@ -28,7 +28,7 @@ Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonfl
 
 ## Android app dependencies
 
-- [OpenCV 4.11.0](https://github.com/opencv/opencv/releases/tag/4.11.0) (location: insect-id-app/opencv)
+- [OpenCV 4.12.0](https://github.com/opencv/opencv/releases/tag/4.12.0) (location: insect-id-app/opencv)
 
 ## List of species and classes trained on
 
