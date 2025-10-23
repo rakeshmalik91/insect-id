@@ -22,16 +22,18 @@ import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.enums.ModelType;
 import com.rakeshmalik.insectid.utils.CVImageUtils;
 import com.rakeshmalik.insectid.utils.CommonUtils;
-import com.rakeshmalik.insectid.utils.ImageUtils;
+import com.rakeshmalik.insectid.utils.TensorImageUtils;
 
-import org.pytorch.IValue;
-import org.pytorch.Module;
-import org.pytorch.Tensor;
-import org.pytorch.torchvision.TensorImageUtils;
+//import org.pytorch.IValue;
+//import org.pytorch.Module;
+//import org.pytorch.Tensor;
+//import org.pytorch.torchvision.TensorImageUtils;
+import org.pytorch.executorch.EValue;
+import org.pytorch.executorch.Module;
+import org.pytorch.executorch.Tensor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +66,8 @@ public class PredictionManager {
 
     private Tensor modelForward(String modelPath, Module model, Tensor inputTensor) {
         try {
-            Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+//            Tensor outputTensor = model.forward(IValue.from(inputTensor)).toTensor();
+            Tensor outputTensor = model.forward(EValue.from(inputTensor))[0].toTensor();
             Log.d(LOG_TAG, "Model forward completed successfully through " + modelPath);
             return outputTensor;
         } catch (Throwable ex) {

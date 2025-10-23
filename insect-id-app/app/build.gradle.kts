@@ -43,27 +43,36 @@ android {
 }
 
 
-// TODO
-// APK app-debug.apk is not compatible with 16 KB devices. Some libraries have LOAD segments not aligned at 16 KB boundaries:
-// lib/arm64-v8a/libfbjni.so
-// lib/arm64-v8a/libpytorch_jni.so
-// lib/arm64-v8a/libpytorch_vision_jni.so
-// Starting November 1st, 2025, all new apps and updates to existing apps submitted to Google Play and targeting Android 15+ devices must support 16 KB page sizes. For more information about compatibility with 16 KB devices, visit developer.android.com/16kb-page-size.
-// https://github.com/pytorch/pytorch/issues/154449
 
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.pytorch.android)
-    implementation(libs.pytorch.android.torchvision)
-    implementation(libs.gson)
-    implementation(libs.ucrop)
-    implementation(libs.okhttp)
-    implementation(project(":opencv"))
+
     implementation(libs.relinker)
+
+    implementation(libs.gson)
+
+    implementation(libs.ucrop)
+
+    implementation(libs.okhttp)
+
+    // TODO
+    // APK app-debug.apk is not compatible with 16 KB devices. Some libraries have LOAD segments not aligned at 16 KB boundaries:
+    // lib/arm64-v8a/libfbjni.so
+    // lib/arm64-v8a/libpytorch_jni.so
+    // lib/arm64-v8a/libpytorch_vision_jni.so
+    // Starting November 1st, 2025, all new apps and updates to existing apps submitted to Google Play and targeting Android 15+ devices must support 16 KB page sizes. For more information about compatibility with 16 KB devices, visit developer.android.com/16kb-page-size.
+    // https://github.com/pytorch/pytorch/issues/154449
+//    implementation(libs.pytorch.android)
+//    implementation(libs.pytorch.android.torchvision)
+
+    implementation(libs.executorch.android)
+
+    implementation(project(":opencv"))
 }
