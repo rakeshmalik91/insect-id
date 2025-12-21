@@ -1,6 +1,6 @@
 <en-US>
     v0.0.6 alpha:
-    - <!-- TODO 16KB page compatibility for android-->
+    - 16 KB page support for Google play store
     -----
     v0.0.5 alpha:
     - Model update

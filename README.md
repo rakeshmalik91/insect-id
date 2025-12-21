@@ -74,6 +74,7 @@ pip install scikit-learn
 pip install pillow
 pip install tensorflow
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install executorch		# requires python <= 3.12
 ```
 
 `torch.cuda.is_available()` must return `True`
