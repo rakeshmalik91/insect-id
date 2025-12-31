@@ -43,13 +43,6 @@ android {
 }
 
 
-// TODO
-// APK app-debug.apk is not compatible with 16 KB devices. Some libraries have LOAD segments not aligned at 16 KB boundaries:
-// lib/arm64-v8a/libfbjni.so
-// lib/arm64-v8a/libpytorch_jni.so
-// lib/arm64-v8a/libpytorch_vision_jni.so
-// Starting November 1st, 2025, all new apps and updates to existing apps submitted to Google Play and targeting Android 15+ devices must support 16 KB page sizes. For more information about compatibility with 16 KB devices, visit developer.android.com/16kb-page-size.
-// https://github.com/pytorch/pytorch/issues/154449
 
 dependencies {
     implementation(libs.appcompat)
@@ -59,11 +52,25 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.pytorch.android)
-    implementation(libs.pytorch.android.torchvision)
+
     implementation(libs.gson)
     implementation(libs.ucrop)
     implementation(libs.okhttp)
-    implementation(project(":opencv"))
     implementation(libs.relinker)
+
+// APK app-debug.apk is not compatible with 16 KB devices. Some libraries have LOAD segments not aligned at 16 KB boundaries:
+// lib/arm64-v8a/libfbjni.so
+// lib/arm64-v8a/libpytorch_jni.so
+// lib/arm64-v8a/libpytorch_vision_jni.so
+// Starting November 1st, 2025, all new apps and updates to existing apps submitted to Google Play and targeting Android 15+ devices must support 16 KB page sizes. For more information about compatibility with 16 KB devices, visit developer.android.com/16kb-page-size.
+// https://github.com/pytorch/pytorch/issues/154449
+//    implementation(libs.pytorch.android)
+//    implementation(libs.pytorch.android.torchvision)
+    implementation("com.facebook.fbjni:fbjni-java-only:0.2.2")
+    implementation("com.facebook.soloader:nativeloader:0.10.5")
+//    implementation("com.facebook.soloader:nativeloader:0.12.1")
+    implementation(files("$rootDir/libs/pytorch_android-release.aar"))
+    implementation(files("$rootDir/libs/pytorch_android_torchvision-release.aar"))
+
+    implementation(project(":opencv"))
 }

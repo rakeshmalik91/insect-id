@@ -169,4 +169,5 @@ for epoch in range(5):
 # Related Issues/Blogs
 
 - [libc++_shared.so conflicts on Android project when using PyTorch and OpenCV](https://medium.com/@ghostknife/libc-shared-so-conflicts-on-android-project-when-using-pytorch-and-opencv-811abb6322e6)
+- [KB pagination support for PyTorch Torch Vision and PyTorch Lite](https://github.com/pytorch/pytorch/issues/154449)
 
