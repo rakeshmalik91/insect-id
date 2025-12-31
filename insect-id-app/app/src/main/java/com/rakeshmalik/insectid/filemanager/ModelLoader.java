@@ -4,7 +4,6 @@ import static com.rakeshmalik.insectid.constants.Constants.IMAGES_ARCHIVE_FILE_N
 import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 import static com.rakeshmalik.insectid.constants.Constants.MAX_IMAGES_IN_PREDICTION;
 import static com.rakeshmalik.insectid.constants.Constants.PREF;
-import static com.rakeshmalik.insectid.constants.Constants.PREF_ASSET_TEMP_PATH;
 
 import android.content.Context;
 
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -40,37 +38,12 @@ public class ModelLoader {
         this.prefs = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
     }
 
-    public String loadFromCache(Context context, String fileName) {
+    public String loadFile(Context context, String fileName) {
         Log.d(LOG_TAG, "inside ModelLoader.loadFromCache(context,"  + fileName + ")");
-        File file = new File(context.getCacheDir(), fileName);
+        File file = new File(context.getFilesDir(), fileName);
         String path = file.getAbsolutePath();
         Log.d(LOG_TAG, "absolute path: " + path + ", exists: " + file.exists() + ", size: " + file.length());
         return path;
-    }
-
-    public String loadFromAsset(Context context, String assetName) {
-        String prefKey = PREF_ASSET_TEMP_PATH + "::" + assetName;
-        if(prefs.contains(prefKey)) {
-            File file = new File(prefs.getString(prefKey, ""));
-            if(file.exists()) {
-                return file.getAbsolutePath();
-            }
-        }
-        try(InputStream is = context.getAssets().open(assetName);) {
-            File tempFile = File.createTempFile(assetName, "tmp", context.getCacheDir());
-            tempFile.deleteOnExit();
-            try(FileOutputStream outputStream = new FileOutputStream(tempFile);) {
-                byte[] buffer = new byte[4 * 1024];
-                int bytesRead;
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-            }
-            prefs.edit().putString(prefKey, tempFile.getAbsolutePath()).apply();
-            return tempFile.getAbsolutePath();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public List<String> getClassLabels(Context context, String fileName) {
@@ -92,7 +65,7 @@ public class ModelLoader {
     }
 
     private <T> T loadJsonFromFile(Context context, String fileName, T defaultValue) {
-        File file = new File(context.getCacheDir(), fileName);
+        File file = new File(context.getFilesDir(), fileName);
         try(InputStream is = new FileInputStream(file)) {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
@@ -112,7 +85,7 @@ public class ModelLoader {
 
     public List<Bitmap> getImagesFromZip(Context context, String modelName, String className) {
         final String zipFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelName);
-        File file = new File(context.getCacheDir(), zipFileName);
+        File file = new File(context.getFilesDir(), zipFileName);
         try (ZipFile zipFile = new ZipFile(file.getAbsolutePath())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return zipFile.stream()

@@ -95,8 +95,8 @@ class DownloadFileHttpCallback implements Callback {
             mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
             return;
         }
-        File cacheDir = context.getCacheDir();
-        File file = new File(cacheDir, fileName);
+        File filesDir = context.getFilesDir();
+        File file = new File(filesDir, fileName);
         long startTime = System.currentTimeMillis();
         try(InputStream inputStream = response.body().byteStream();
             FileOutputStream outputStream = new FileOutputStream(file); ) {

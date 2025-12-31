@@ -19,7 +19,6 @@ public class Constants {
     public static final String PREF_FILE_DOWNLOADED = PREF + "::file-downloaded";
     public static final String PREF_MODEL_VERSION = PREF + "::version";
     public static final String PREF_METADATA = PREF + "::metadata";
-    public static final String PREF_ASSET_TEMP_PATH = PREF + "::asset-temp-path";
 
     public static final String METADATA_URL = "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/insect-id-app/metadata.json";
 

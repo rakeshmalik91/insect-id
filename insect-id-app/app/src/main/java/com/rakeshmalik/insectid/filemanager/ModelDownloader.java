@@ -184,7 +184,7 @@ public class ModelDownloader {
     }
 
     private boolean isFileAlreadyDownloaded(String fileName) {
-        File file = new File(context.getCacheDir(), fileName);
+        File file = new File(context.getFilesDir(), fileName);
         return file.exists() && prefs.getBoolean(fileDownloadedPrefName(fileName), false);
     }
 

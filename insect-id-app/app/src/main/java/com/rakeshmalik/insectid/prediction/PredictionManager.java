@@ -22,7 +22,6 @@ import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.enums.ModelType;
 import com.rakeshmalik.insectid.utils.CVImageUtils;
 import com.rakeshmalik.insectid.utils.CommonUtils;
-import com.rakeshmalik.insectid.utils.ImageUtils;
 
 import org.pytorch.IValue;
 import org.pytorch.Module;
@@ -31,7 +30,6 @@ import org.pytorch.torchvision.TensorImageUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -76,7 +74,7 @@ public class PredictionManager {
     private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
         // run through root classifier model
         String modelName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
-        String modelPath = modelLoader.loadFromCache(context, modelName);
+        String modelPath = modelLoader.loadFile(context, modelName);
         Log.d(LOG_TAG, modelPath);
         Module model = loadModel(modelPath);
         Tensor outputTensor = modelForward(modelPath, model, inputTensor);
@@ -103,7 +101,7 @@ public class PredictionManager {
         String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
 
         try {
-            String modelPath = modelLoader.loadFromCache(context, modelFileName);
+            String modelPath = modelLoader.loadFile(context, modelFileName);
             Module model = loadModel(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
