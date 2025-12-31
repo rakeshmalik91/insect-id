@@ -158,13 +158,6 @@ public class ModelDownloader {
         }
     }
 
-//    private void startDownloadFileService(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
-//                              String fileType, String modelName, boolean updateRequired,
-//                              int downloadSeq, int totalDownloads) {
-//        Intent serviceIntent = new Intent(context, DownloadService.class);
-//        context.startService(serviceIntent);
-//    }
-
     private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
                               String downloadName, String modelName, boolean updateRequired,
                               int fileDownloadSeq, int totalFileDownloads,

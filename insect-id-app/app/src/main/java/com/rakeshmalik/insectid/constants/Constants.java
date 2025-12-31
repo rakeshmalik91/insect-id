@@ -40,11 +40,9 @@ public class Constants {
 
     public static final int MAX_IMAGES_IN_PREDICTION = 6;
 
-    public static final int PREVIEW_IMAGE_TIMEOUT = 10000;
     public static final int MODEL_LOAD_TIMEOUT = 60000;
 
     public static final String HTML_NO_IMAGE_AVAILABLE = "<font color='#777777'>(No images available)</font><br/><br/>";
-    public static final String HTML_LOADING_IMAGES = "<font color='#777777'>(Loading images...)</font><br/><br/>";
 
     public static final String WAKE_LOCK_NAME = "insect-id::DownloadLock";
     public static final long WAKE_LOCK_TIME = 10 * 60 * 1000L; /*10 minutes*/
