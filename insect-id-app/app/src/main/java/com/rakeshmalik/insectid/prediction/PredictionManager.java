@@ -165,7 +165,7 @@ public class PredictionManager {
                 if(predictedRootClasses.size() == 1 && predictedRootClasses.contains(ROOT_CLASS_OTHER)) {
                     return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
                 } else {
-                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.displayName + "<br>Crop to fit the insect for better results</font>";
+                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.getIdentificationTypeDisplayName() + "<br>Crop to fit the insect for better results</font>";
                 }
             } else if(filteredPredictionsHtml.isEmpty()) {
                 return "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>";

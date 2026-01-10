@@ -1,6 +1,6 @@
 package com.rakeshmalik.insectid;
 
-import static com.rakeshmalik.insectid.constants.Constants.*;
+import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             ModelType[] modelTypes = ModelType.values();
             String[] modelTypeNames = new String[modelTypes.length];
             for (int i = 0; i < modelTypes.length; i++) {
-                modelTypeNames[i] = modelTypes[i].displayName;
+                modelTypeNames[i] = modelTypes[i].getModelDisplayName();
             }
 
             // Create and set adapter for the Spinner
@@ -163,18 +164,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Launcher for picking an image from the gallery
-    private final ActivityResultLauncher<Intent> galleryLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                try {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        photoUri = result.getData().getData();
-                        if (photoUri != null) {
-                            launchImageCrop();
-                        }
-                    }
-                } catch (Exception ex) {
-                    Log.e(LOG_TAG, "Exception during gallery launcher", ex);
-                    throw ex;
+    private final ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+                if (uri != null) {
+                    photoUri = uri;
+                    launchImageCrop();
+                } else {
+                    Log.d("PhotoPicker", "No media selected");
                 }
             });
 
@@ -234,9 +230,9 @@ public class MainActivity extends AppCompatActivity {
     // Open the Gallery
     private void openGallery() {
         try {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            galleryLauncher.launch(intent);
+            pickMedia.launch(new PickVisualMediaRequest.Builder()
+                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                    .build());
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception during open gallery", ex);
             throw ex;
@@ -373,18 +369,20 @@ public class MainActivity extends AppCompatActivity {
         }
         try {
             long modelSize = modelDownloader.getModelDownloadSizeInMB(selectedModelType);
-            long totalModelSize = modelDownloader.getTotalModelDownloadSizeInMB();
+            long totalNonLegacyModelSize = modelDownloader.getTotalModelDownloadSizeInMB(true);
+            long totalModelSize = modelDownloader.getTotalModelDownloadSizeInMB(false);
             String[] options = {
-                    selectedModelType.displayName + " Model" + (modelSize > 0 ? String.format(" (%d MB)", modelSize) : ""),
-                    "All Non-legacy Models" + (totalModelSize > 0 ? String.format(" (%d MB)", totalModelSize) : "")
+                    selectedModelType.getModelDisplayName() + " " + (modelSize > 0 ? String.format("(%d MB)", modelSize) : "(Up to date)"),
+                    "All Non-legacy Models " + (totalNonLegacyModelSize > 0 ? String.format("(%d MB)", totalNonLegacyModelSize) : "(Up to date)"),
+                    "All Models " + (totalModelSize > 0 ? String.format("(%d MB)", totalModelSize) : "(Up to date)")
             };
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Download/Update");
             builder.setItems(options, (dialog, which) -> {
-                if (which == 0) {
-                    downloadOrUpdateModel();
-                } else {
-                    downloadOrUpdateAllModels();
+                switch (which) {
+                    case 0: downloadOrUpdateModel(); break;
+                    case 1: downloadOrUpdateAllModels(true); break;
+                    default: downloadOrUpdateAllModels(false); break;
                 }
             });
             builder.show();
@@ -401,12 +399,12 @@ public class MainActivity extends AppCompatActivity {
         executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true, 1, 1));
     }
 
-    private void downloadOrUpdateAllModels() {
+    private void downloadOrUpdateAllModels(boolean onlyNonLegacy) {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
         List<ModelType> modelsToDownload = Arrays.stream(ModelType.values())
-                .filter(m -> modelDownloader.isModelDownloadOrUpdateRequired(m))
+                .filter(m -> (!onlyNonLegacy || !m.legacy) && modelDownloader.isModelDownloadOrUpdateRequired(m))
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
         int modelDownloadSeq = modelsToDownload.size();
