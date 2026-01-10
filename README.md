@@ -13,7 +13,7 @@ Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonfl
 
 [Google Play Store](https://play.google.com/store/apps/details?id=com.rakeshmalik.insectid)
 
-[APK files archive](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link)
+APK files archive [GDrive](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link) [Dropbox](https://www.dropbox.com/scl/fo/5t1zgkn419ctlzkuacu3h/ACC-_MbfOOu151yPRRH25XU?rlkey=3tirqkq5xland2qx3dfa8hrda&st=0aosjy2b&dl=0)
 
 ## Android app screenshots
 

@@ -133,19 +133,19 @@ public class ModelDownloader {
                 }
 
                 Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure,
-                        modelType.displayName + " model", modelType.modelName, updateRequired,
+                        modelType.getModelDisplayName() + " model", modelType.modelName, updateRequired,
                         5, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, onFailure,
-                        modelType.displayName + " images", modelType.modelName, updateRequired,
+                        modelType.getModelDisplayName() + " images", modelType.modelName, updateRequired,
                         4, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, onFailure,
-                        modelType.displayName + " metadata", modelType.modelName, updateRequired,
+                        modelType.getModelDisplayName() + " metadata", modelType.modelName, updateRequired,
                         3, 5, modelDownloadSeq, totalModelDownloads);
 
                 downloadFile(classesFileName, classesFileUrl, downloadClassDetails, onFailure,
-                        modelType.displayName + " classes", modelType.modelName, updateRequired,
+                        modelType.getModelDisplayName() + " classes", modelType.modelName, updateRequired,
                         2, 5, modelDownloadSeq, totalModelDownloads);
             };
 
@@ -186,7 +186,7 @@ public class ModelDownloader {
         long speciesCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("species_count", 0);
         long dataCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("data_count", 0);
         String msg = String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %dk",
-                modelType.displayName, currentVersion, speciesCount, dataCount/1000);
+                modelType.getModelDisplayName(), currentVersion, speciesCount, dataCount/1000);
         msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy", null))
                 .map((accuracy) -> String.format("\nOverall accuracy: %s", accuracy)).orElse("");
         msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy_top3", null))
@@ -215,7 +215,7 @@ public class ModelDownloader {
         return size / 1000 / 1000;
     }
 
-    public long getTotalModelDownloadSizeInMB() {
+    public long getTotalModelDownloadSizeInMB(boolean onlyNonLegacy) {
         long totalSize = 0;
         if(isRootClassifierDownloadRequired()) {
             long size = metadataManager.getModelSize(ROOT_CLASSIFIER);
@@ -223,7 +223,7 @@ public class ModelDownloader {
             totalSize += size;
         }
         for(ModelType modelType: ModelType.values()) {
-            if (!modelType.legacy && isModelDownloadOrUpdateRequired(modelType)) {
+            if ((!onlyNonLegacy || !modelType.legacy) && isModelDownloadOrUpdateRequired(modelType)) {
                 long size = metadataManager.getModelSize(modelType.modelName);
                 if(size <= 0) return 0;
                 totalSize += size;
