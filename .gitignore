@@ -32,3 +32,6 @@ insect-id-app/pytorch
 insect-id-app/tools
 insect-id-app/app-release.apks
 insect-id-app/app/release
+
+*.keystore
+*.jks
