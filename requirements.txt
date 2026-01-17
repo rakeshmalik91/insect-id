@@ -1,0 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+pandas
+seaborn
+scikit-learn
+pillow
+tensorflow
+torch
+torchvision
+torchaudio
+matplotlib
+opencv-python
+python-Levenshtein
+imagehash

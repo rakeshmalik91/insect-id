@@ -1,172 +1,134 @@
-
-<img src="insect-id-app/logo.png" alt="InsectID-AI Logo" width="125"/>
-
 # Insect Species Identification
 
-This open source project aims to train ML models and develop apps to identify insect species from images.
+<div align="center">
+	<img src="insect-id-app/logo.png" alt="InsectID-AI Logo" width="150"/>
+	<br/>
+	<b>AI-Powered Identification for Indian Insects</b>
+</div>
 
-## Android app APK
+<br/>
 
-<!-- <img src="insect-id-app/android-feature-graphic.png" alt="Android Feature Graphic"/> -->
+**InsectID** is an open-source project combining deep learning and mobile technology to identify insect species from images. With a focus on **Indian** biodiversity, the system is currently trained to recognize thousands of species including **butterflies, moths, dragonflies, and cicadas**.
 
-Currently trained on 378k images of a total of 4767 Butterflies, Moths, Dragonflies, Damselflies & Cicada species.
+> ⚠️ **Note**: This project is currently in an **early prototype stage**. Mechanics, visuals, and features are subject to change and improvement.
+>
+> 🛑 **Disclaimer**: This project is developed for **educational purposes and personal use only**.
 
-[Google Play Store](https://play.google.com/store/apps/details?id=com.rakeshmalik.insectid)
+## 📱 Mobile App (Android)
 
-APK files archive [GDrive](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link) [Dropbox](https://www.dropbox.com/scl/fo/5t1zgkn419ctlzkuacu3h/ACC-_MbfOOu151yPRRH25XU?rlkey=3tirqkq5xland2qx3dfa8hrda&st=0aosjy2b&dl=0)
+Identify insects on the go with the Android application.
 
-## Android app screenshots
+- **[Google Play Store](https://play.google.com/store/apps/details?id=com.rakeshmalik.insectid)** (Latest Beta)
+- **APK Archives**: [Google Drive](https://drive.google.com/drive/folders/1UNogisKp3rtcOnigcibAPiNsQB-gZJpD?usp=drive_link) | [Dropbox](https://www.dropbox.com/scl/fo/5t1zgkn419ctlzkuacu3h/ACC-_MbfOOu151yPRRH25XU?rlkey=3tirqkq5xland2qx3dfa8hrda&st=0aosjy2b&dl=0)
 
 <p align="center">
-	<img src="insect-id-app/screenshots/0.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="120"/>
-	<img src="insect-id-app/screenshots/6.jpg" alt="Screenshot" width="120"/>
+	<img src="insect-id-app/screenshots/0.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
+	<img src="insect-id-app/screenshots/1.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
+	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
+	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
+	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
 </p>
 
-## Android app dependencies
+## 🚀 How to Use
 
-- [OpenCV 4.12.0](https://github.com/opencv/opencv/releases/tag/4.12.0) (location: insect-id-app/opencv)
+1. **Launch the App**: Open InsectID on your Android device.
+2. **Manage Models**:
+   - Before identifying, ensure you download the relevant model for your insect type.
+   - Available Models: **Butterfly & Moth**, **Dragonfly & Damselfly**, **Cicada**.
+   - *Note: Models require internet to download once, but identification works **completely offline** afterwards.*
+3. **Choose Input Method**:
+   - 📷 **Camera**: Point your camera at an insect to capture a photo.
+   - 🖼️ **Gallery**: Select an existing image from your photo library.
+4. **Crop & Focus**: For best results, crop the image so the insect fills most of the frame.
+5. **Select Model & Identify**: Choose the correct model group from the dropdown/menu and tap the checkmark to analyze.
+6. **Results**: The AI will list the most likely species matches with confidence scores.
 
-## List of species and classes trained on
+## 🧠 Model & Data Statistics
 
-[All species](https://github.com/rakeshmalik91/insect-id/blob/main/species.json) (contains species that do not have any images available as well)
+The current model is trained on **378k+ images** covering **4,767 unique species/classes**.
 
-- [Lepidoptera classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.lepidoptera.json)
-	- [Butterfly classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.butterfly.json)
-	- [Moth classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.moth.json)
-- [Odonata (Dragonfly/Damselfly) classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.odonata.json)
-- [Cicada classes](https://github.com/rakeshmalik91/insect-id/blob/main/models/classes.cicada.json)
+| Species Group | Covered (Count) | Estimated (India) |
+| :--- | :--- | :--- |
+| **Moths** (Lepidoptera) | 2,899 | 12,000+ |
+| **Butterflies** (Lepidoptera) | 1,501 | 1,300+ |
+| **Dragonflies/Damselflies** (Odonata) | 510 | 760+ |
+| **Cicadas** (Hemiptera) | 300 | 250+ |
 
-Note: early stage classes suffixed with "-early"
+### Dataset Sources
+| Source | Images | Classes | Region | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| [Moths of India](https://www.mothsofindia.org) | 44k | 3,364 | India | Primary source for moths |
+| [Butterflies of India](https://www.ifoundbutterflies.org) | 66k | 1,554 | India | High quality verified images |
+| [Indian Odonata](https://www.indianodonata.org) | 13k | 737 | India | Includes empty classes |
+| [Indian Cicadas](https://www.indiancicadas.org) | 1k | 308 | India | Sparse data |
+| [iNaturalist](https://www.inaturalist.org) | 232k | 4,221 | India | Large volume, mixed quality |
+| [India Biodiversity](https://indiabiodiversity.org) | 12k | 1,444 | India | Legacy names, some typos |
+| [Insecta.pro](https://insecta.pro) | 25k | 5,068 | Global | Low res images |
+| [Wikipedia](https://www.wikipedia.org) | 2k | 1,825 | India | Reference only |
 
-Note: spp. classes suffixed with "-spp" or "-genera" or "-genera-spp"
+**Model Checkpoints**: [Google Drive](https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link)
+**Raw Datasets**: [Google Drive](https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link)
 
-## Model checkpoints
+## 🛠️ Python Library Usage (`mynnlib`)
 
-[Model checkpoints](https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link)
+The project includes custom wrapper libraries `mynnlib` and `mynnlibv2` for easy training and inference.
 
-## Datasets trained on
+### Installation
+Ensure you have `torch` (with CUDA support if available) and other dependencies installed.
 
-[Datasets](https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link)
-
-| Source				            	| Image count | Class count | Imago class | Early stage class | Species groups | Region   | Comments
-|---------------------------------------|-------------|-------------|-------------|-------------------|----------------|----------|------------------------------------
-| https://www.mothsofindia.org   		| 44k         | 3364        | 3060        | 304               | moth           | india    | Contains 411 spp. classes
-| https://www.ifoundbutterflies.org   	| 66k         | 1554        | 1125        | 429               | butterfly      | india    | Contains 35 spp. classes
-| https://www.indianodonata.org			| 13k         | 737         | 510         | 200               | odonata        | india    | Contains 27 spp. classes <br/>& 157 empty classes
-| https://www.indiancicadas.org		   	| 1k          | 308         | 308         | 7                 | cicada         | india    | Contains 1 spp. classes <br/>& 139 empty classes
-| https://www.inaturalist.org           | 232k        | 4221        | 3773        | 448               | all            | india    | Contains <br/>2732 moth, <br/>976 butterfly, <br/>370 odonata, <br/>154 cicada classes
-| https://indiabiodiversity.org		   	| 12k         | 1444        | 1444        | 0                 | moth+butterfly | india    | Contains typo in class names, <br/>uses legacy class names
-| https://insecta.pro	                | 25k         | 5068        | 5068        | 0                 | moth+butterfly | all      | Low res images (320x~250)
-| https://www.wikipedia.org				| 2k          | 1825        | 1825        | 0                 | moth+butterfly | india    | Low res images (220x~160)
-
-
-## Using mynnlib & the models
-
-#### Prerequisites:
-```
-python -m pip install --upgrade pip setuptools wheel
-pip install pandas seaborn
-pip install scikit-learn
-pip install pillow
-pip install tensorflow
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-`torch.cuda.is_available()` must return `True`
-
-```
-pip install matplotlib
-pip install opencv-python
-pip install python-Levenshtein
-pip install imagehash
+```bash
+pip install -r requirements.txt
 ```
 
-Note: Refer `prerequisites.ipynb` for more details
+*Note: The `requirements.txt` includes an extra index URL for PyTorch with CUDA 11.8 support. Adjust if necessary for your system.*
 
-#### Import library:
-```
+### Inference Example
+```python
 import mynnlib
-from mynnlib import *
+from mynnlib import predict, predict_top_k
+
+# Load Model
+model_data = torch.load("path/to/checkpoint.pth", weights_only=False)
+
+# Single Prediction
+result = predict("image.jpg", model_data)
+print(f"Species: {result}")
+
+# Top-5 Predictions
+top5 = predict_top_k("image.jpg", model_data, 5)
+print(top5)
 ```
 
-#### Run prediction on an image:
-```
-model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
-prediction = predict("path-to-image.jpg", model_data)
-```
+### Training Example (Incremental)
+Use `mynnlibv2` for incremental learning capabilities.
 
-#### Run top 5 prediction on an image:
-```
-model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
-prediction = predict_top_k("path-to-image.jpg", model_data, 5)
-```
-
-#### Train a new model:
-```
-model_data = init_model_for_training("path-to-train-data-dir", "path-to-val-data-dir", batch_size=32, arch="resnet152", image_size=224, robustness=0.2, lr=1e-4, weight_decay=1e-4, silent=False)
-num_epochs = 5
-train(model_data, num_epochs, "path-to-output-model-checkpoint-ep###.pth", -0.01)
-```
-
-#### Retrain an existing model:
-```
-model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
-model_data = prepare_for_retraining(model_data, "path-to-train-data-dir", "path-to-val-data-dir", batch_size=32, image_size=224, robustness=0.2, silent=False)
-num_epochs = 5
-train(model_data, num_epochs, "path-to-output-model-checkpoint-ep###.pth", -0.01)
-```
-
-## Using mynnlibv2 (Supports incremental training)
-
-#### Import library:
-```
+```python
 import mynnlibv2
-from mynnlibv2 import *
-```
+from mynnlibv2 import init_model, run_epoch
 
-#### Train a new model:
-```
-init_model(f"{dataset_dir}/data", f"{dataset_dir}/val", batch_size=32, image_size=224, lr=1e-4, validate=False)
+# Initialize New Model
+model_data = init_model(
+    train_dir="dataset/data",
+    val_dir="dataset/val",
+    batch_size=32,
+    image_size=224,
+    lr=1e-4
+)
+
+# Train Loop
 for epoch in range(15):
-    result = run_epoch(model_data, output_path=f"{dataset_dir}/checkpoint.inc.lepidoptera.ta", robustness_lambda=0.1)
+    run_epoch(model_data, output_path="checkpoints/model", robustness_lambda=0.1)
 ```
 
-#### Retrain existing model with a new data:
-```
-model_data = torch.load("path-to-model-checkpoint.pth", weights_only=False)
-model_data = init_iteration(model_data, f"{dataset_dir}/i01-train", f"{dataset_dir}/i01-val", lr=1e-4)
-for epoch in range(5):
-    result = run_epoch(model_data, output_path=f"{dataset_dir}/checkpoint.inc.lepidoptera.ta", robustness_lambda=0.1)
-```
+## 🗓️ Backlog & Roadmap
+- [ ] **Species Expansion**: Cover Beeltes, Hymenoptera (Bees/Wasps), and Orthoptera.
+- [ ] **Lifecycle Handling**: Better classification for Larvae, Pupae, and Eggs.
+- [ ] **App Improvements**:
+    - Better screen capture handling.
+    - User-controlled model downloading (move away from Google Drive).
+- [ ] **Data Cleanup**: Resolve taxonomic synonyms and typos in source data.
+- [ ] **Root Classifier**: Hierarchical model to first identify Order/Family before Species.
 
-# Backlog
-
-- Cover other species groups
-- Complete existing incomplete species groups
-- Graceful handling of Larvae, Pupae, Imago, Eggs, Cocoon etc.
-- Fine tune incremental training and explore other architectures
-- Fine tune data for common issues
-	- Typo in species names
-	- Resolve existance of same species with different names (e.g. nepita-conferta / asura-conferta)
-- App backlog
-	- Fine tune image preprocessing for screen capture and other common issues
-	- Move models from Google Drive to better alternative, as it may have rate limit or other issues
-	- Settings in app to properly control models download/update
-	- Run through Root-classifier model and multiple models to identify unknown species group images
-
-| Species Groups			| Estimated species count in India | Species covered 
-|---------------------------|----------------------------------|---------------------
-| Lepidoptera > Moth		| 12000+                           | 2899           
-| Lepidoptera > Butterfly	| 1300+                            | 1501           
-| Odonata					| 760+                             | 510           
-| Hemiptera > Cicada		| 250+                             | 300     
-
-
-# Related Issues/Blogs
-
-- [libc++_shared.so conflicts on Android project when using PyTorch and OpenCV](https://medium.com/@ghostknife/libc-shared-so-conflicts-on-android-project-when-using-pytorch-and-opencv-811abb6322e6)
-- [KB pagination support for PyTorch Torch Vision and PyTorch Lite (Future dependency for Google Play Store)](https://github.com/pytorch/pytorch/issues/154449)
+## 📚 Related Resources
+- **Blog**: [Fixing libc++_shared.so conflicts on Android with PyTorch/OpenCV](https://medium.com/@ghostknife/libc-shared-so-conflicts-on-android-project-when-using-pytorch-and-opencv-811abb6322e6)
+- **Issue**: [KB pagination support for PyTorch Lite](https://github.com/pytorch/pytorch/issues/154449)
