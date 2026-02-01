@@ -1,5 +1,5 @@
 # Usage Example:
-# python -u .\scrape.py --types moth --new-species --ignore-sources insecta.pro,wikipedia.org,indianbiodiversity.org >>log.txt 2>&1
+# python -u .\scrape.py --types moth --new-species --ignore-sources insecta.pro,wikipedia.org,indianbiodiversity.org >>logs\scrape.log 2>&1
 
 import argparse
 import sys
@@ -16,19 +16,17 @@ from PIL import Image
 import time
 from datetime import datetime
 
-# Add parent directory to path using absolute path
+# Add project root to path
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir) # "../" relative to script
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
-# Change working directory to project root for consistent file access if needed
-# (Though best practice is to use absolute paths or paths relative to variable roots)
-if os.getcwd() != project_root:
+# Ensure consistent working directory
+if os.getcwd() != current_dir:
     try:
-        os.chdir(project_root)
+        os.chdir(current_dir)
     except Exception as e:
-        print(f"Warning: Could not change directory to {project_root}: {e}")
+        print(f"Warning: Could not change directory to {current_dir}: {e}")
 
 try:
     import mynnlib
