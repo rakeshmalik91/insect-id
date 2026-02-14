@@ -1,39 +1,114 @@
-# Usage Example:
-# python -u .\scrape.py --types moth --new-species --ignore-sources insecta.pro,wikipedia.org,indianbiodiversity.org >>logs\scrape.log 2>&1
+"""
+Insect Data Scraper
+===================
+
+Scrapes insect images from multiple sources (mothsofindia.org, indianodonata.org,
+ifoundbutterflies.org, indiancicadas.org, inaturalist.org) into the insect-dataset directory.
+All output is logged to both the console and logs/scrape.log (append mode).
+
+Usage examples:
+
+  1. Scrape moths and odonata (default types):
+     python scrape.py
+
+  2. Scrape only moths:
+     python scrape.py --types moth
+
+  3. Scrape butterflies and cicadas:
+     python scrape.py --types butterfly cicada
+
+  4. Scrape all supported types:
+     python scrape.py --types moth butterfly odonata cicada
+
+  5. Scrape only new/missing species (skip existing directories):
+     python scrape.py --types moth --new-species
+
+  6. Scrape odonata, skipping already-downloaded species:
+     python scrape.py --types odonata --new-species
+"""
 
 import argparse
 import sys
 import os
 import json
 import re
-import requests
-from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from PIL import Image
 import time
 from datetime import datetime
 
-# Add project root to path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
 
-# Ensure consistent working directory
-if os.getcwd() != current_dir:
+LOG_FILE = "logs/scrape.log"
+
+
+class TeeLogger:
+    """Duplicates writes to both a stream (e.g. stdout) and a log file.
+    ANSI escape codes are stripped from the file output."""
+
+    _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+    def __init__(self, stream, log_file):
+        self.stream = stream
+        self.log_file = log_file
+        self._lock = threading.Lock()
+
+    def write(self, message):
+        with self._lock:
+            self.stream.write(message)
+            self.log_file.write(self._ANSI_RE.sub("", message))
+            self.log_file.flush()
+
+    def flush(self):
+        self.stream.flush()
+        self.log_file.flush()
+
+    def isatty(self):
+        return self.stream.isatty()
+
+
+def setup_logging():
+    """Tee stdout and stderr to LOG_FILE (append mode)."""
+    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+    log_fh = open(LOG_FILE, "a", encoding="utf-8")
+    log_fh.write(f"\n{'='*60}\n")
+    log_fh.write(f"Session started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+    log_fh.write(f"Command: {' '.join(sys.argv)}\n")
+    log_fh.write(f"{'='*60}\n")
+    sys.stdout = TeeLogger(sys.__stdout__, log_fh)
+    sys.stderr = TeeLogger(sys.__stderr__, log_fh)
+    return log_fh
+
+def _import_libs():
+    """Lazy-import heavy dependencies so --help works without them."""
+    global load_json, dump_json, requests, BeautifulSoup, Image
+    import requests as _requests
+    from bs4 import BeautifulSoup as _BeautifulSoup
+    from PIL import Image as _Image
+    requests = _requests
+    BeautifulSoup = _BeautifulSoup
+    Image = _Image
+
+    # Add project root to path
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+
+    # Ensure consistent working directory
+    if os.getcwd() != current_dir:
+        try:
+            os.chdir(current_dir)
+        except Exception as e:
+            print(f"Warning: Could not change directory to {current_dir}: {e}")
+
     try:
-        os.chdir(current_dir)
-    except Exception as e:
-        print(f"Warning: Could not change directory to {current_dir}: {e}")
-
-try:
-    import mynnlib
-    from mynnlib import load_json, dump_json
-except ImportError:
-    print("Error: mynnlib not found. Ensure you are running this from the correct directory.")
-    sys.exit(1)
+        from mynnlib import load_json as _load_json, dump_json as _dump_json
+        load_json = _load_json
+        dump_json = _dump_json
+    except ImportError:
+        print("Error: mynnlib not found. Ensure you are running this from the correct directory.")
+        sys.exit(1)
 
 
 class BaseScraper:
@@ -443,18 +518,19 @@ def get_species_list(species_json, family, group_name):
     return []
 
 def main():
-    print(f"Script started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     parser = argparse.ArgumentParser(description="Insect Data Scraper")
-    # Removed --sources, added --ignore-sources
     parser.add_argument("--types", nargs="+", default=["moth", "odonata"], 
                         help="List of insect types (e.g., moth, butterfly, odonata, cicada)")
-    parser.add_argument("--ignore-sources", type=str, default="", 
-                        help="Comma-separated list of sources to ignore (e.g., insecta.pro,wikipedia.org)")
+
     parser.add_argument("--new-species", action="store_true", 
                         help="Skip species for which a directory already exists")
     
     args = parser.parse_args()
-    ignored_sources = [s.strip() for s in args.ignore_sources.split(",") if s.strip()]
+
+    log_fh = setup_logging()
+    print(f"Script started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    _import_libs()
+
 
     # Define Source Map
     SOURCE_MAP = {
@@ -463,6 +539,8 @@ def main():
         "odonata": ['indianodonata.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org']
     }
+
+    IGNORED_SOURCES = ["insecta.pro", "wikipedia.org", "indianbiodiversity.org"]
 
     # Load species.json
     species_json = load_json("species.json")
@@ -509,7 +587,7 @@ def main():
         sources = SOURCE_MAP.get(insect_type, [])
         
         # 1. Fetch new species (Only for moth currently supported/requested)
-        if insect_type == "moth" and "mothsofindia.org" in sources and "mothsofindia.org" not in ignored_sources:
+        if insect_type == "moth" and "mothsofindia.org" in sources and "mothsofindia.org" not in IGNORED_SOURCES:
              scraper = scrapers.get("mothsofindia.org")
              if scraper:
                 found = scraper.fetch_missing_species()
@@ -535,7 +613,7 @@ def main():
         
         # 2. Iterate through sources
         for source in sources:
-            if source in ignored_sources:
+            if source in IGNORED_SOURCES:
                 continue
 
             scraper = scrapers.get(source)
