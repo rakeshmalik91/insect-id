@@ -1,0 +1,55 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-14 09:28:12
+# COMMAND: test.py --test-dirs insect-dataset/src/test/lepidoptera --print-no-match -e 14
+################################################################################
+
+[INFO] Auto-detected checkpoint: checkpoint.lepidoptera.v1.i01.e14.pth (Iteration 1, Epoch 14)
+[INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v1.i01.e14.pth
+
+============================================================
+[INFO] Testing on: insect-dataset/src/test/lepidoptera
+============================================================
+amata-spp                : amata-cyssea(0.969)  amata-bicincta(0.029)  amata-cyssea-early(0.001)  
+catopsilia-pomona        : belenois-aurota(0.439)  appias-libythea(0.178)  colias-erate(0.139)  
+neptis-spp-2             : neptis-soma(0.737)  neptis-clinia(0.196)  neptis-nata(0.056)  
+neptis-spp               : neptis-nata(0.596)  neptis-clinia(0.304)  neptis-soma(0.038)  
+unidentified-buttrefly-1 : tarucus-callinara(0.527)  zizeeria-karsandra(0.264)  zizina-otis(0.060)  
+unidentified-larva-1     : curetis-thetis(0.349)  papilio-polymnestor(0.140)  charaxes-dolon(0.070)  
+unidentified-moth-2      : orgyia-postica-early(0.636)  asura-conferta(0.205)  nepita-conferta-early(0.065)  
+unidentified-moth-3a     : pyralis-pictalis(0.423)  marasmia-poeyalis(0.247)  chlumetia-transversa(0.075)  
+unidentified-moth-3b     : pyralis-manihotalis(0.646)  locastra-muscosalis(0.311)  syntypistis-pallidifascia(0.024)  
+unidentified-moth-4a     : cleora-injectaria(0.486)  cleora-fraterna(0.319)  cleora-alienaria(0.106)  
+unidentified-moth-4b     : cleora-injectaria(0.719)  boarmiini-genera-spp(0.084)  hypomecis-cineracea(0.040)  
+unidentified-moth-5      : athetis-bremusa(0.460)  mythimna-separata(0.189)  spodoptera-mauritia(0.171)  
+vindula-spp              : cirrochroa-tyche(0.893)  vindula-erota(0.101)  cirrochroa-aoris(0.003)  
+Top   1 accuracy: 41/55 -> 74.55%, genus matched: 52/55 -> 94.55%
+Top   3 accuracy: 50/55 -> 90.91%, genus matched: 54/55 -> 98.18%
+
+################################################################################
+# SESSION STARTED: 2026-02-14 09:28:35
+# COMMAND: test.py --test-dirs insect-dataset/src/test/lepidoptera --print-no-match
+################################################################################
+
+[INFO] Auto-detected checkpoint: checkpoint.lepidoptera.v1.i01.e20.pth (Iteration 1, Epoch 20)
+[INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v1.i01.e20.pth
+
+============================================================
+[INFO] Testing on: insect-dataset/src/test/lepidoptera
+============================================================
+amata-spp                : amata-cyssea(0.702)  amata-bicincta(0.297)  amata-passalis(0.001)  
+amyna-axis               : ariolica-lineolata(0.415)  nolinae-genera-spp(0.229)  amyna-spp(0.118)  
+neptis-spp-2             : neptis-soma(0.845)  neptis-clinia(0.117)  neptis-neptis-spp(0.029)  
+neptis-spp               : neptis-clinia(0.705)  neptis-harita(0.157)  neptis-nata(0.094)  
+papilio-demoleus-2       : graphium-arycles(0.461)  caprona-agama(0.135)  graphium-agamemnon(0.122)  
+unidentified-buttrefly-1 : zizeeria-karsandra(0.740)  freyeria-trochylus(0.128)  chilades-parrhasius(0.052)  
+unidentified-larva-1     : papilio-polymnestor(0.289)  hippotion-rosetta-early(0.205)  hippotion-rosetta(0.098)  
+unidentified-moth-2      : orgyia-postica-early(0.978)  asura-conferta(0.005)  olene-mendosa(0.005)  
+unidentified-moth-3a     : pyralis-manihotalis(0.271)  marasmia-poeyalis(0.200)  herminiinae-genera-spp(0.092)  
+unidentified-moth-3b     : pyralis-manihotalis(0.601)  locastra-muscosalis(0.156)  aporodes-floralis(0.144)  
+unidentified-moth-4a     : cleora-injectaria(0.456)  catoria-sublavaria(0.153)  cleora-alienaria(0.134)  
+unidentified-moth-4b     : cleora-injectaria(0.426)  boarmiini-genera-spp(0.126)  hypomecis-transcissa(0.118)  
+unidentified-moth-5      : spodoptera-mauritia(0.558)  laelia-exclamationis(0.269)  dichagyris-flammatra(0.045)  
+vindula-spp              : cirrochroa-tyche(0.996)  cirrochroa-thais(0.002)  vindula-erota(0.001)  
+Top   1 accuracy: 41/55 -> 74.55%, genus matched: 50/55 -> 90.91%
+Top   3 accuracy: 49/55 -> 89.09%, genus matched: 54/55 -> 98.18%

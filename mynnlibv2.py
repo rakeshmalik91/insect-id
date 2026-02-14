@@ -10,8 +10,12 @@ from PIL import Image
 import time
 import datetime
 import copy
-from IPython.display import display
-import ipywidgets as widgets
+try:
+    from IPython.display import display
+    import ipywidgets as widgets
+    HAS_WIDGETS = True
+except ImportError:
+    HAS_WIDGETS = False
 from pathlib import Path
 
 
@@ -228,6 +232,15 @@ def __init_epoch_progress_bar(phase, model_data, dataloader):
     epoch_start_time = time.time()
     data_cnt = len(dataloader)
     data_idx = 0
+    
+    if not HAS_WIDGETS:
+        return {
+            'epoch_start_time': epoch_start_time,
+            'data_idx': data_idx,
+            'data_cnt': data_cnt,
+            'has_widgets': False
+        }
+
     progress = widgets.IntProgress(
         value=0, min=0, max=data_cnt, 
         description=f"Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace("_", " ").capitalize()} ", 
@@ -244,20 +257,26 @@ def __init_epoch_progress_bar(phase, model_data, dataloader):
         'data_cnt': data_cnt,
         'progress': progress,
         'label': label,
-        'box': box
+        'box': box,
+        'has_widgets': True
     }
 
 def __update_epoch_progress_bar(progress_data, total_loss, total_correct, total_samples):
     progress_data['data_idx'] += 1
+    
+    if not progress_data.get('has_widgets', False):
+        return
+
     elapsed = time.time() - progress_data['epoch_start_time']
     remaining = (elapsed / progress_data['data_idx']) * (progress_data['data_cnt'] - progress_data['data_idx'])
     progress_data['label'].value = f"{progress_data['progress'].value}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | ETA: {time.strftime('%H:%M:%S', time.gmtime(remaining))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}"
     progress_data['progress'].value = progress_data['data_idx']
 
 def __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, total_correct, total_samples):
-    progress_data['box'].close()
+    if progress_data.get('has_widgets', False):
+        progress_data['box'].close()
     elapsed = time.time() - progress_data['epoch_start_time']
-    print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace("_", " ").capitalize():10} --> {progress_data['progress'].value}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}")
+    print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace('_', ' ').capitalize():10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}")
 
 
 def __extract_dataloader_subset(dataloader, dataset_subset_ratio):
