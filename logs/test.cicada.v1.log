@@ -1,0 +1,20 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-14 17:18:12
+# COMMAND: test.py -m cicada -v v1 --test-dirs insect-dataset/src/test*/cicada --print-no-match --top-k 3
+################################################################################
+
+[INFO] Loading checkpoint: insect-dataset/cicada\checkpoint.cicada.v1.i06.e01.pth
+
+============================================================
+[INFO] Testing on: insect-dataset/src\test\cicada
+============================================================
+Top   1 accuracy: 2/2 -> 100.00%, genus matched: 2/2 -> 100.00%
+Top   3 accuracy: 2/2 -> 100.00%, genus matched: 2/2 -> 100.00%
+
+============================================================
+[INFO] Combined Statistics
+============================================================
+Top   1 accuracy: 2/2 -> 100.00%, genus matched: 2/2 -> 100.00%
+Top   3 accuracy: 2/2 -> 100.00%, genus matched: 2/2 -> 100.00%
+----------

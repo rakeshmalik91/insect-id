@@ -69,6 +69,64 @@ The current model is trained on **378k+ images** covering **4,767 unique species
 **Model Checkpoints**: [Google Drive](https://drive.google.com/drive/folders/1FtGjLJc_JNwLs0cey3euyzUxwpids10G?usp=drive_link)
 **Raw Datasets**: [Google Drive](https://drive.google.com/drive/folders/10qLVcGkJlLplKjIluRc9GEyQhcqpyhhD?usp=drive_link)
 
+## 🖥️ Command Line Tools
+
+The project provides three main scripts for the end-to-end ML workflow: scraping, training, and testing.
+
+### 1. Scraping Data (`scrape.py`)
+Collects images from various online sources (e.g., MothsofIndia, iNaturalist) based on a species list (`species.json`).
+
+```bash
+# Scrape specific types (default: moth)
+python scrape.py --types moth butterfly
+
+# Scrape only new/missing species (skip existing directories)
+python scrape.py --new-species
+```
+
+**Logs**: `logs/scrape.log`
+
+### 2. Training (`train.py`)
+Handles data aggregation, validation, and model training (from scratch or incremental).
+
+```bash
+# Default training (Lepidoptera, Version 1)
+python train.py
+
+# Train a specific version (e.g., experimental run)
+python train.py -v v2 --max-epochs 50
+
+# Resume training automatically (detects latest checkpoint)
+python train.py -v v2
+
+# Advanced: Skip data processing steps for faster startup
+python train.py -v v2 --skip-aggregate --skip-validate
+
+# Train on a different model type
+python train.py -m odonata
+```
+
+**Logs**: `logs/train.{model_name}.{version}.log`
+
+### 3. Evaluation (`test.py`)
+Evaluates trained models on test datasets. Supports wildcards for batch testing.
+
+```bash
+# Test the latest checkpoint (auto-detected)
+python test.py
+
+# Test specific version and epoch
+python test.py -v v2 -e 20
+
+# Test on multiple directories (supports wildcards)
+python test.py --test-dirs insect-dataset/src/test*/lepidoptera
+
+# Detailed output (show predictions per image)
+python test.py --print-preds --top-k 1 3 5
+```
+
+**Logs**: `logs/test.{model_name}.{version}.log`
+
 ## 🛠️ Python Library Usage (`mynnlib`)
 
 The project includes custom wrapper libraries `mynnlib` and `mynnlibv2` for easy training and inference.

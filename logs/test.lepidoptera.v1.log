@@ -1,0 +1,80 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-14 18:25:35
+# COMMAND: test.py -m lepidoptera -v v1 --test-dirs insect-dataset/src/test*/lepidoptera --print-no-match --top-k 3
+################################################################################
+
+[INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v1.i01.e20.pth
+
+============================================================
+[INFO] Testing on: insect-dataset/src\test\lepidoptera
+============================================================
+amata-spp                : amata-cyssea(0.702)  amata-bicincta(0.297)  amata-passalis(0.001)  
+amyna-axis               : ariolica-lineolata(0.415)  nolinae-genera-spp(0.229)  amyna-spp(0.118)  
+neptis-spp-2             : neptis-soma(0.845)  neptis-clinia(0.117)  neptis-neptis-spp(0.029)  
+neptis-spp               : neptis-clinia(0.705)  neptis-harita(0.157)  neptis-nata(0.094)  
+papilio-demoleus-2       : graphium-arycles(0.461)  caprona-agama(0.135)  graphium-agamemnon(0.122)  
+unidentified-buttrefly-1 : zizeeria-karsandra(0.740)  freyeria-trochylus(0.128)  chilades-parrhasius(0.052)  
+unidentified-larva-1     : papilio-polymnestor(0.289)  hippotion-rosetta-early(0.205)  hippotion-rosetta(0.098)  
+unidentified-moth-2      : orgyia-postica-early(0.978)  asura-conferta(0.005)  olene-mendosa(0.005)  
+unidentified-moth-3a     : pyralis-manihotalis(0.271)  marasmia-poeyalis(0.200)  herminiinae-genera-spp(0.092)  
+unidentified-moth-3b     : pyralis-manihotalis(0.601)  locastra-muscosalis(0.156)  aporodes-floralis(0.144)  
+unidentified-moth-4a     : cleora-injectaria(0.456)  catoria-sublavaria(0.153)  cleora-alienaria(0.134)  
+unidentified-moth-4b     : cleora-injectaria(0.426)  boarmiini-genera-spp(0.126)  hypomecis-transcissa(0.118)  
+unidentified-moth-5      : spodoptera-mauritia(0.558)  laelia-exclamationis(0.269)  dichagyris-flammatra(0.045)  
+vindula-spp              : cirrochroa-tyche(0.996)  cirrochroa-thais(0.002)  vindula-erota(0.001)  
+Top   1 accuracy: 41/55 -> 74.55%, genus matched: 50/55 -> 90.91%
+Top   3 accuracy: 49/55 -> 89.09%, genus matched: 54/55 -> 98.18%
+
+============================================================
+[INFO] Testing on: insect-dataset/src\test_chinu\lepidoptera
+============================================================
+unidentified-moth-1  : hasora-badra(0.682)  hasora-chromus(0.254)  hasora-anura(0.046)  
+unidentified-moth-2  : pandesma-spp(0.932)  achaea-serva(0.045)  ophiusa-olista(0.009)  
+zizina-otis-2        : freyeria-putli(0.488)  zizeeria-karsandra(0.387)  freyeria-trochylus(0.083)  
+Top   1 accuracy: 7/11 -> 63.64%, genus matched: 8/11 -> 72.73%
+Top   3 accuracy: 10/11 -> 90.91%, genus matched: 10/11 -> 90.91%
+
+============================================================
+[INFO] Testing on: insect-dataset/src\test_ig\lepidoptera
+============================================================
+oriens-spp           : oriens-concinna(0.945)  oriens-gola(0.046)  oriens-goloides(0.006)  
+Top   1 accuracy: 15/17 -> 88.24%, genus matched: 17/17 -> 100.00%
+Top   3 accuracy: 16/17 -> 94.12%, genus matched: 17/17 -> 100.00%
+
+============================================================
+[INFO] Testing on: insect-dataset/src\test_random\lepidoptera
+============================================================
+apona-caschmirensis        : clanidopsis-exusta(0.726)  eupterote-undata(0.224)  palirisa-cervina(0.015)  
+arnetta-mercara-2          : aeromachus-dubius(0.400)  arnetta-vindhiana(0.118)  iambrix-salsala(0.117)  
+arnetta-mercara            : astictopterus-jama(0.973)  arnetta-vindhiana(0.013)  notocrypta-curvifascia(0.005)  
+caltoris-aurociliata-2     : caltoris-kumara(0.963)  caltoris-cormasa(0.033)  caltoris-philippina(0.001)  
+caltoris-aurociliata       : caltoris-cormasa(1.000)  ancistroides-nigrita(0.000)  caltoris-kumara(0.000)  
+chrysopera-combinans       : bastilla-fulvotaenia(0.654)  hyblaea-firmamentum(0.215)  hyblaea-puera(0.027)  
+conogethes-sahyadriensis   : conogethes-punctiferalis(0.994)  herpetogramma-cynaralis(0.004)  conogethes-spp(0.001)  
+corcobara-angulipennis     : loepa-katinka(0.888)  loepa-schintlmeisteri(0.043)  loepa-spp(0.019)  
+fascellina-inornata        : fascellina-plagiata(0.463)  agathia-hemithearia(0.405)  carriola-thyridophora(0.034)  
+herona-marathus-4          : libythea-lepita(0.195)  symbrenthia-lilaea(0.164)  neptis-ananta(0.162)  
+herona-marathus-early      : eupanacra-mydon-early(0.221)  chadisra-bipars-early(0.218)  macroglossum-gyrans-early(0.190)  
+nacaduba-pavana-2          : nacaduba-sinhala(0.416)  nacaduba-kurava(0.230)  prosotas-aluta(0.159)  
+nacaduba-pavana            : nacaduba-kurava(0.342)  prosotas-aluta(0.295)  azanus-ubaldus(0.083)  
+neopheosia-fasciata        : xenotrachea-albidisca(0.992)  checupa-fortissima(0.007)  trachea-auriplena(0.001)  
+neptis-nata-2              : neptis-clinia(0.756)  neptis-neptis-spp(0.208)  neptis-soma(0.027)  
+potanthus-trachala-2       : potanthus-ganda(0.637)  ampittia-dioscorides(0.323)  conogethes-punctiferalis(0.013)  
+potanthus-trachala-5       : potanthus-pseudomaesa(0.491)  potanthus-ganda(0.257)  potanthus-pava(0.190)  
+potanthus-trachala         : potanthus-pseudomaesa(0.634)  potanthus-serina(0.234)  potanthus-rectifasciata(0.038)  
+tajuria-yajna-2            : rapala-damona(0.337)  rapala-nissa(0.325)  rapala-nissa-early(0.073)  
+tajuria-yajna-3            : tajuria-cippus(0.805)  creon-cleobis(0.114)  tajuria-jehana(0.064)  
+tajuria-yajna-4            : rapala-damona(0.405)  remelana-jangala(0.404)  rapala-suffusa(0.049)  
+tarucus-balkanica-5        : tarucus-theophrastus(0.848)  tarucus-nara(0.129)  tarucus-callinara(0.011)  
+tarucus-venosus            : tarucus-nara(0.800)  tarucus-indica(0.100)  tarucus-balkanica(0.069)  
+ypthima-baldus-5           : ypthima-huebneri(0.994)  ypthima-nareda(0.003)  ypthima-tabella(0.001)  
+Top   1 accuracy: 247/308 -> 80.19%, genus matched: 289/308 -> 93.83%
+Top   3 accuracy: 284/308 -> 92.21%, genus matched: 300/308 -> 97.40%
+
+============================================================
+[INFO] Combined Statistics
+============================================================
+Top   1 accuracy: 310/391 -> 79.28%, genus matched: 364/391 -> 93.09%
+Top   3 accuracy: 359/391 -> 91.82%, genus matched: 381/391 -> 97.44%
+----------

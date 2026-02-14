@@ -11,7 +11,7 @@ Usage examples:
      python test.py
 
   2. Evaluate on multiple test directories with detailed output:
-     python test.py --test-dirs insect-dataset/lepidoptera/test insect-dataset/src/test/lepidoptera --print-no-match
+     python test.py --test-dirs insect-dataset/lepidoptera/test insect-dataset/src/test*/lepidoptera --print-no-match
 
   3. Evaluate with specific top-K values:
      python test.py --top-k 3 5 10 --print-preds
@@ -23,7 +23,7 @@ Usage examples:
      python test.py -i 1 -e 20
 
   6. Test a different model (e.g. odonata):
-      python test.py -m odonata
+     python test.py -m odonata
 """
 
 import os
@@ -31,6 +31,7 @@ import sys
 import re
 import argparse
 import datetime
+import glob
 
 
 def _import_libs():
@@ -42,7 +43,7 @@ def _import_libs():
     test_top_k = _test_top_k
 
 
-LOG_FILE = "logs/test.log"
+
 
 
 class TeeLogger:
@@ -57,8 +58,9 @@ class TeeLogger:
 
     def write(self, message):
         self.stream.write(message)
-        self.log_file.write(self._ANSI_RE.sub("", message))
-        self.log_file.flush()
+        if '\r' not in message:
+            self.log_file.write(self._ANSI_RE.sub("", message))
+            self.log_file.flush()
 
     def flush(self):
         self.stream.flush()
@@ -68,10 +70,12 @@ class TeeLogger:
         return self.stream.isatty()
 
 
-def setup_logging():
-    """Tee stdout and stderr to LOG_FILE (append mode)."""
-    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-    log_fh = open(LOG_FILE, "a", encoding="utf-8")
+def setup_logging(log_suffix="lepidoptera", replace=False):
+    """Tee stdout and stderr to logs/test.{log_suffix}.log (append mode or replace)."""
+    log_file = f"logs/test.{log_suffix}.log"
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    mode = "w" if replace else "a"
+    log_fh = open(log_file, mode, encoding="utf-8")
     
     sys.stdout = TeeLogger(sys.__stdout__, log_fh)
     sys.stderr = TeeLogger(sys.__stderr__, log_fh)
@@ -133,9 +137,10 @@ def find_latest_checkpoint(dataset_dir, model_name, version, iteration=None, epo
     return None
 
 
-def test(args):
+def test(args, checkpoint_path=None):
     """Evaluate a checkpoint on one or more test directories."""
-    checkpoint_path = find_latest_checkpoint(args.dataset_dir, args.model_name, args.version, args.iteration, args.epoch)
+    if not checkpoint_path:
+        checkpoint_path = find_latest_checkpoint(args.dataset_dir, args.model_name, args.version, args.iteration, args.epoch)
         
     if not checkpoint_path:
         msg = f"[ERROR] No checkpoint found in {args.dataset_dir} for model '{args.model_name}' (version {args.version})"
@@ -149,9 +154,19 @@ def test(args):
     print(f"[INFO] Loading checkpoint: {checkpoint_path}")
     model_data = torch.load(checkpoint_path, weights_only=False)
 
-    test_dirs = args.test_dirs
+    test_dirs = []
+    if args.test_dirs:
+        for t in args.test_dirs:
+            matches = glob.glob(t)
+            if matches:
+                test_dirs.extend(matches)
+            else:
+                test_dirs.append(t)
+    
     if not test_dirs:
         test_dirs = [f"{args.dataset_dir}/test"]
+
+    aggregated_stats = {}
 
     for test_dir in test_dirs:
         if not os.path.exists(test_dir):
@@ -162,14 +177,48 @@ def test(args):
         print(f"[INFO] Testing on: {test_dir}")
         print(f"{'='*60}")
         for k in args.top_k:
-            test_top_k(
+            stats = test_top_k(
                 model_data,
                 test_dir,
                 k,
                 print_preds=args.print_preds,
+
+                # print_accuracy=True (default), so per-folder stats are printed
                 print_top1_accuracy=(k == args.top_k[0]),
                 print_no_match=args.print_no_match,
             )
+            
+            if k not in aggregated_stats:
+                aggregated_stats[k] = {
+                    'total_cnt': 0,
+                    'top1_success_cnt': 0,
+                    'success_cnt': 0,
+                    'genus_success_cnt': 0,
+                    'top1_genus_success_cnt': 0
+                }
+            
+            s = aggregated_stats[k]
+            s['total_cnt'] += stats['total_cnt']
+            s['top1_success_cnt'] += stats['top1_success_cnt']
+            s['success_cnt'] += stats['success_cnt']
+            s['genus_success_cnt'] += stats['genus_success_cnt']
+            s['top1_genus_success_cnt'] += stats['top1_genus_success_cnt']
+
+    print(f"\n{'='*60}")
+    print("[INFO] Combined Statistics")
+    print(f"{'='*60}")
+    for k in args.top_k:
+        if k not in aggregated_stats:
+            continue
+        s = aggregated_stats[k]
+        total = s['total_cnt']
+        if total == 0:
+            print(f"Top {k}: No samples.")
+            continue
+            
+        print(f"Top   1 accuracy: {s['top1_success_cnt']}/{total} -> {100*s['top1_success_cnt']/total:.2f}%, genus matched: {s['top1_genus_success_cnt']}/{total} -> {100*s['top1_genus_success_cnt']/total:.2f}%")
+        print(f"Top {k:3} accuracy: {s['success_cnt']}/{total} -> {100*s['success_cnt']/total:.2f}%, genus matched: {s['genus_success_cnt']}/{total} -> {100*s['genus_success_cnt']/total:.2f}%")
+        print("-" * 10)
 
 
 def build_parser():
@@ -214,6 +263,7 @@ def build_parser():
     )
     parser.add_argument("--print-preds", action="store_true", help="Print per-image predictions")
     parser.add_argument("--print-no-match", action="store_true", help="Print details for non-matching predictions")
+    parser.add_argument("--log-replace", action="store_true", help="Replace log file instead of appending")
 
     return parser
 
@@ -225,12 +275,19 @@ if __name__ == "__main__":
     # Derive paths from model name
     args.model_name = args.model_name.lower()
     args.dataset_dir = f"insect-dataset/{args.model_name}"
+    
+    # Find checkpoint early to determine log name
+    ckpt_path = find_latest_checkpoint(args.dataset_dir, args.model_name, args.version, args.iteration, args.epoch)
+    
+    # Use model name and version for logging
+    log_suffix = f"{args.model_name}.{args.version}"
 
     _import_libs()
-    log_fh = setup_logging()
+    
+    log_fh = setup_logging(log_suffix, replace=args.log_replace)
 
     try:
-        test(args)
+        test(args, checkpoint_path=ckpt_path)
     finally:
         # Restore sys.stdout/stderr before closing log file to avoid error during shutdown/exception printing
         sys.stdout = sys.__stdout__

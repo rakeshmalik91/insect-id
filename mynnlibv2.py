@@ -95,18 +95,30 @@ def __validate_images(phase, phase_dir):
         class_path = f"{phase_dir}/{class_dir}"
         images = os.listdir(class_path)
         if not images:
-            print(f"[WARNING] No images in: {class_path}")
+            print(f"[WARNING] No images in: {class_path} — removing directory")
+            try:
+                os.rmdir(class_path)
+            except OSError as e:
+                print(f"[ERROR] Could not remove {class_path}: {e}")
             continue
         for img_name in images:
-            num_images += 1
             img_path = os.path.join(class_path, img_name)
             try:
                 img = Image.open(img_path)
                 img.verify()
                 if img.size[0] == 0 or img.size[1] == 0:
-                    print("[WARNING] Zero size:", img_path)
+                    print("[WARNING] Zero size:", img_path, "— deleting")
+                    os.remove(img_path)
+                    continue
             except Exception as e:
-                print("[WARNING] Corrupt:", img_path, e)
+                print("[WARNING] Corrupt:", img_path, e, "— deleting")
+                try:
+                    os.remove(img_path)
+                except OSError:
+                    pass
+                continue
+            
+            num_images += 1
     print(f"[INFO] {phase} set: {num_images} images")
 
 def __validate_images_for_all_phase(train_dir, val_dir):
@@ -233,13 +245,18 @@ def __init_epoch_progress_bar(phase, model_data, dataloader):
     data_cnt = len(dataloader)
     data_idx = 0
     
+    progress_data = {
+        'epoch_start_time': epoch_start_time,
+        'data_idx': data_idx,
+        'data_cnt': data_cnt,
+        'has_widgets': False,
+        'phase': phase,
+        'iteration': model_data.get('iteration', 0),
+        'epoch': model_data.get('epoch', 0)
+    }
+
     if not HAS_WIDGETS:
-        return {
-            'epoch_start_time': epoch_start_time,
-            'data_idx': data_idx,
-            'data_cnt': data_cnt,
-            'has_widgets': False
-        }
+        return progress_data
 
     progress = widgets.IntProgress(
         value=0, min=0, max=data_cnt, 
@@ -265,6 +282,14 @@ def __update_epoch_progress_bar(progress_data, total_loss, total_correct, total_
     progress_data['data_idx'] += 1
     
     if not progress_data.get('has_widgets', False):
+        elapsed = time.time() - progress_data['epoch_start_time']
+        remaining = 0
+        if progress_data['data_idx'] > 0:
+             remaining = (elapsed / progress_data['data_idx']) * (progress_data['data_cnt'] - progress_data['data_idx'])
+        
+        p_name = progress_data['phase'].replace('_', ' ').capitalize()
+        msg = f"\rIteration {progress_data['iteration']:02} | Epoch {progress_data['epoch']:02} | {p_name:10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}"
+        print(msg, end='', flush=True)
         return
 
     elapsed = time.time() - progress_data['epoch_start_time']
@@ -276,7 +301,7 @@ def __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, to
     if progress_data.get('has_widgets', False):
         progress_data['box'].close()
     elapsed = time.time() - progress_data['epoch_start_time']
-    print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace('_', ' ').capitalize():10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3} | Acc: {total_correct / total_samples:.3}")
+    print(f"\r[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace('_', ' ').capitalize():10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}")
 
 
 def __extract_dataloader_subset(dataloader, dataset_subset_ratio):
@@ -468,6 +493,14 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
             print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
         else:
             print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%")
+
+    return {
+        'total_cnt': total_cnt,
+        'top1_success_cnt': top1_success_cnt,
+        'success_cnt': success_cnt,
+        'genus_success_cnt': genus_success_cnt,
+        'top1_genus_success_cnt': top1_genus_success_cnt
+    }
 
 
 def clamp(value, min_value, max_value):

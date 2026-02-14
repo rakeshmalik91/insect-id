@@ -40,7 +40,7 @@ import time
 from datetime import datetime
 
 
-LOG_FILE = "logs/scrape.log"
+
 
 
 class TeeLogger:
@@ -68,16 +68,19 @@ class TeeLogger:
         return self.stream.isatty()
 
 
-def setup_logging():
-    """Tee stdout and stderr to LOG_FILE (append mode)."""
-    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-    log_fh = open(LOG_FILE, "a", encoding="utf-8")
-    log_fh.write(f"\n{'='*60}\n")
-    log_fh.write(f"Session started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-    log_fh.write(f"Command: {' '.join(sys.argv)}\n")
-    log_fh.write(f"{'='*60}\n")
+def setup_logging(type_name="general"):
+    """Tee stdout and stderr to logs/scrape.{type_name}.log (append mode)."""
+    log_file = f"logs/scrape.{type_name}.log"
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    log_fh = open(log_file, "a", encoding="utf-8")
     sys.stdout = TeeLogger(sys.__stdout__, log_fh)
     sys.stderr = TeeLogger(sys.__stderr__, log_fh)
+    
+    print(f"\n{'#'*80}")
+    print(f"# SESSION STARTED: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"# COMMAND: {' '.join(sys.argv)}")
+    print(f"{'#'*80}\n")
+    
     return log_fh
 
 def _import_libs():
@@ -527,7 +530,7 @@ def main():
     
     args = parser.parse_args()
 
-    log_fh = setup_logging()
+
     print(f"Script started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     _import_libs()
 
@@ -556,81 +559,88 @@ def main():
     }
 
     for insect_type in args.types:
-        print(f"Processing type: {insect_type}")
+        log_fh = setup_logging(insect_type)
+        try:
+            print(f"Processing type: {insect_type}")
         
-        # Resolve species list dynamically
-        current_species_list = []
-        family = ""
-        group_name = ""
+            # Resolve species list dynamically
+            current_species_list = []
+            family = ""
+            group_name = ""
         
-        if insect_type == "moth":
-            family = 'lepidoptera'
-            group_name = 'Moths'
-        elif insect_type == "butterfly":
-             family = 'lepidoptera'
-             group_name = 'Butterflies'
-        elif insect_type == "odonata":
-             family = 'odonata'
-             group_name = 'All'
-        elif insect_type == "cicada":
-             family = 'hemiptera'
-             group_name = 'Cicada'
+            if insect_type == "moth":
+                family = 'lepidoptera'
+                group_name = 'Moths'
+            elif insect_type == "butterfly":
+                 family = 'lepidoptera'
+                 group_name = 'Butterflies'
+            elif insect_type == "odonata":
+                 family = 'odonata'
+                 group_name = 'All'
+            elif insect_type == "cicada":
+                 family = 'hemiptera'
+                 group_name = 'Cicada'
         
-        if family and group_name:
-             current_species_list = get_species_list(species_json, family, group_name)
+            if family and group_name:
+                 current_species_list = get_species_list(species_json, family, group_name)
 
-        if not current_species_list:
-            print(f"Warning: No species list found for type '{insect_type}' (Family: {family}, Group: {group_name}). Skipping.")
-            continue
+            if not current_species_list:
+                print(f"Warning: No species list found for type '{insect_type}' (Family: {family}, Group: {group_name}). Skipping.")
+                continue
 
-        # Get intended sources for this type
-        sources = SOURCE_MAP.get(insect_type, [])
+            # Get intended sources for this type
+            sources = SOURCE_MAP.get(insect_type, [])
         
-        # 1. Fetch new species (Only for moth currently supported/requested)
-        if insect_type == "moth" and "mothsofindia.org" in sources and "mothsofindia.org" not in IGNORED_SOURCES:
-             scraper = scrapers.get("mothsofindia.org")
-             if scraper:
-                found = scraper.fetch_missing_species()
-                if found:
-                    initial_set = set(current_species_list)
-                    found_set = set(found)
-                    really_new = found_set - initial_set
+            # 1. Fetch new species (Only for moth currently supported/requested)
+            if insect_type == "moth" and "mothsofindia.org" in sources and "mothsofindia.org" not in IGNORED_SOURCES:
+                 scraper = scrapers.get("mothsofindia.org")
+                 if scraper:
+                    found = scraper.fetch_missing_species()
+                    if found:
+                        initial_set = set(current_species_list)
+                        found_set = set(found)
+                        really_new = found_set - initial_set
                     
-                    if really_new:
-                        updated_list = sorted(list(initial_set.union(found_set)))
+                        if really_new:
+                            updated_list = sorted(list(initial_set.union(found_set)))
                         
-                        # Update JSON safely
-                        if 'lepidoptera' in species_json:
-                            for group in species_json['lepidoptera']['species']:
-                                if group.get('group') == 'Moths':
-                                    group['names'] = updated_list
-                                    dump_json("species.json", species_json)
-                                    current_species_list = updated_list
-                                    print(f"Added {len(really_new)} new species to species.json: {list(really_new)}")
-                                    break
-                    else:
-                        print(f"No NEW species added to species.json (Found {len(found)} missing from disk, but they were already in JSON).")
+                            # Update JSON safely
+                            if 'lepidoptera' in species_json:
+                                for group in species_json['lepidoptera']['species']:
+                                    if group.get('group') == 'Moths':
+                                        group['names'] = updated_list
+                                        dump_json("species.json", species_json)
+                                        current_species_list = updated_list
+                                        print(f"Added {len(really_new)} new species to species.json: {list(really_new)}")
+                                        break
+                        else:
+                            print(f"No NEW species added to species.json (Found {len(found)} missing from disk, but they were already in JSON).")
         
-        # 2. Iterate through sources
-        for source in sources:
-            if source in IGNORED_SOURCES:
-                continue
+            # 2. Iterate through sources
+            for source in sources:
+                if source in IGNORED_SOURCES:
+                    continue
 
-            scraper = scrapers.get(source)
-            if not scraper:
-                # print(f"Scraper for {source} is not implemented yet. Skipping.")
-                continue
+                scraper = scrapers.get(source)
+                if not scraper:
+                    # print(f"Scraper for {source} is not implemented yet. Skipping.")
+                    continue
 
-            print(f"Scraping {source} for {insect_type}...")
+                print(f"Scraping {source} for {insect_type}...")
             
-            if source == "inaturalist.org":
-                scraper.scrape_multithread(current_species_list, batch_size=1, skip_existing_dir=args.new_species)
-            else:
-                 for species in current_species_list:
-                    if args.new_species and os.path.exists(f"{scraper.dataset_dir}/{species}"):
-                         continue
-                    species_url = f"{scraper.website_url}/{species}"
-                    scraper.scrape_images(species_url, f"{scraper.dataset_dir}/{species}", skip_existing_dir=args.new_species)
+                if source == "inaturalist.org":
+                    scraper.scrape_multithread(current_species_list, batch_size=1, skip_existing_dir=args.new_species)
+                else:
+                     for species in current_species_list:
+                        if args.new_species and os.path.exists(f"{scraper.dataset_dir}/{species}"):
+                             continue
+                        species_url = f"{scraper.website_url}/{species}"
+                        scraper.scrape_images(species_url, f"{scraper.dataset_dir}/{species}", skip_existing_dir=args.new_species)
+        
+        finally:
+            sys.stdout = sys.__stdout__
+            sys.stderr = sys.__stderr__
+            log_fh.close()
 
 if __name__ == "__main__":
     main()
