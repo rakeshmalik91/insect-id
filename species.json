@@ -5434,7 +5434,28 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "acrida-exaltata",
+                    "aiolopus-simulatrix",
+                    "burrinia-burri",
+                    "chitaura-indica",
+                    "conocephalus-maculatus",
+                    "diabolocatantops-innotabilis",
+                    "ducetia-japonica",
+                    "euconocephalus-indicus",
+                    "euconocephalus-pallidus",
+                    "gryllus-bimaculatus",
+                    "hieroglyphus-banian",
+                    "hieroglyphus-nigrorepletus",
+                    "letana-gracilis",
+                    "mecopoda-elongata",
+                    "oxya-hyla",
+                    "phaneroptera-gracilis",
+                    "spathosternum-prasiniferum",
+                    "teleogryllus-mitratus",
+                    "trilophidia-annulata",
+                    "xenocatantops-humilis"
+                ]
             }
         ]
     },
@@ -5443,7 +5464,24 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "blatta-orientalis",
+                    "blattella-germanica",
+                    "coptotermes-gestroi",
+                    "coptotermes-heimi",
+                    "globitermes-sulphureus",
+                    "heterotermes-indicola",
+                    "macrotermes-gilvus",
+                    "neostylopyga-rhombifolia",
+                    "periplaneta-americana",
+                    "periplaneta-australasiae",
+                    "periplaneta-fuliginosa",
+                    "psammotermes-rajathanicus",
+                    "pycnoscelus-surinamensis",
+                    "shelfordella-lateralis",
+                    "supella-longipalpa",
+                    "therea-petiveriana"
+                ]
             }
         ]
     },
@@ -5452,7 +5490,26 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "aedes-aegypti",
+                    "anopheles-stephensi",
+                    "bactrocera-dorsalis",
+                    "cephalops-flavocinctus",
+                    "cephalops-kashmerensis",
+                    "chaoborus-indicus",
+                    "chrysomya-megacephala",
+                    "claraeola-suranganiensis",
+                    "culex-quinquefasciatus",
+                    "lathyrophthalmus-aeneus",
+                    "leucopis-formosana",
+                    "leucopis-simlai",
+                    "mesembrius-tuberculatus",
+                    "musca-domestica",
+                    "orthonevra-indica",
+                    "sphegina-asciiformis",
+                    "sphegina-tricoloripes",
+                    "verrallia-plumbella"
+                ]
             }
         ]
     },
@@ -5461,7 +5518,23 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "apis-dorsata",
+                    "apis-florea",
+                    "camponotus-compressus",
+                    "delta-dimidiatum",
+                    "eumenes-macrops",
+                    "megachile-bicolor",
+                    "oecophylla-smaragdina",
+                    "polistes-adustus",
+                    "polistes-rubellus",
+                    "sceliphron-madraspatanum",
+                    "solenopsis-geminata",
+                    "vespa-tropica",
+                    "vespa-velutina",
+                    "vespula-germanica",
+                    "xylocopa-pubescence"
+                ]
             }
         ]
     },
@@ -5470,7 +5543,20 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "anthia-sexguttata",
+                    "aulacophora-foveicollis",
+                    "batocera-rufomaculata",
+                    "cheilomenes-sexmaculata",
+                    "coccinella-septempunctata",
+                    "heliocopris-dominus",
+                    "heterorrhina-elegans",
+                    "hycleus-pustulatus",
+                    "luciola-cajang",
+                    "onthophagus-dama",
+                    "oryctes-rhinoceros",
+                    "protaetia-aurichalcea"
+                ]
             }
         ]
     },
@@ -5479,7 +5565,180 @@
         "species": [
             {
                 "group": "All",
-                "names": []
+                "names": [
+                    "creobroter-pictipennis",
+                    "didymocorypha-lanceolata",
+                    "dysaules-himalayanus",
+                    "dysaules-longicollis",
+                    "gongylus-gongylodes",
+                    "hierodula-membranacea",
+                    "humbertiella-cylonica",
+                    "iris-orientalis",
+                    "metallyticus-splendidus",
+                    "pyrgocotis-gracilipes"
+                ]
+            }
+        ]
+    },
+    "phasmatodea": {
+        "name": "Stick & Leaf Insects",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "asceles-annandalei",
+                    "asceles-elongatus",
+                    "calvisia-hilaris",
+                    "carausius-abdominalis",
+                    "carausius-morosus",
+                    "carausius-scabrosus",
+                    "lonchodes-brevipes",
+                    "lopaphus-bootanicus",
+                    "marmessoidea-rosea",
+                    "necroscia-manicata",
+                    "ramulus-artemis"
+                ]
+            }
+        ]
+    },
+    "neuroptera": {
+        "name": "Lacewings & Antlions",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "chrysopa-pallens",
+                    "chrysoperla-zastrowi",
+                    "distoleon-tetragrammicus",
+                    "glenurus-indicus",
+                    "micromus-timidus",
+                    "myrmeleon-formicarius",
+                    "palpares-pardus"
+                ]
+            }
+        ]
+    },
+    "dermaptera": {
+        "name": "Earwigs",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "diplatys-gladiator",
+                    "echinosoma-parvulum",
+                    "euborellia-annulipes",
+                    "euborellia-stali",
+                    "forficula-auricularia",
+                    "labidura-riparia",
+                    "nala-lividipes"
+                ]
+            }
+        ]
+    },
+    "ephemeroptera": {
+        "name": "Mayflies",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "baetis-himalayana",
+                    "caenis-nigropunctata",
+                    "choroterpes-piktuli",
+                    "cloeon-marginale",
+                    "ephemera-supposita"
+                ]
+            }
+        ]
+    },
+    "trichoptera": {
+        "name": "Caddisflies",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "hydropsyche-rakshak",
+                    "lepidostoma-indicum",
+                    "oecetis-scutulata",
+                    "rhyacophila-himalayana",
+                    "setodes-argentatus"
+                ]
+            }
+        ]
+    },
+    "plecoptera": {
+        "name": "Stoneflies",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "amphinemura-luteipes",
+                    "kamimuria-atrocephala",
+                    "nemoura-punjabensis",
+                    "operculoperla-khasiana",
+                    "perla-schmidi"
+                ]
+            }
+        ]
+    },
+    "thysanoptera": {
+        "name": "Thrips",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "frankliniella-schultzei",
+                    "haplothrips-ganglbaueri",
+                    "scirtothrips-dorsalis",
+                    "stenchaetothrips-biformis",
+                    "thrips-palmi",
+                    "thrips-tabaci"
+                ]
+            }
+        ]
+    },
+    "psocodea": {
+        "name": "Barklice, Booklice & Parasitic Lice",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "hemipsocus-menoni",
+                    "hemipsocus-mockfordi",
+                    "lachesilla-pedicularia",
+                    "liposcelis-bostrychophila",
+                    "soa-papanasam"
+                ]
+            }
+        ]
+    },
+    "zygentoma": {
+        "name": "Silverfish & Firebrats",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "acrotelsa-collaris",
+                    "acrotelsella-jhargramensis",
+                    "ctenolepisma-longicaudatum",
+                    "lepisma-saccharinum",
+                    "thermobia-domestica"
+                ]
+            }
+        ]
+    },
+    "megaloptera": {
+        "name": "Dobsonflies & Alderflies",
+        "species": [
+            {
+                "group": "All",
+                "names": [
+                    "acanthacorydalis-orientalis",
+                    "neoneuromus-fenestralis",
+                    "nevromus-austroindicus",
+                    "protohermes-costalis",
+                    "protohermes-montanus",
+                    "protohermes-sublunatus"
+                ]
             }
         ]
     }
