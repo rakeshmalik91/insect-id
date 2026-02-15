@@ -1,0 +1,101 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 22:27:32
+# COMMAND: .\train.py --model-name non_lepidoptera --create-dataset
+################################################################################
+
+[INFO] Creating/Verifying dataset for model: non_lepidoptera
+[INFO] Aggregating data for model 'non_lepidoptera' (types: ['odonata', 'cicada', 'orthoptera', 'coleoptera', 'diptera', 'blattodea', 'hymenoptera', 'mantodea', 'phasmatodea', 'neuroptera', 'dermaptera', 'ephemeroptera', 'trichoptera', 'plecoptera', 'thysanoptera', 'psocodea', 'zygentoma', 'megaloptera'])...
+[INFO] Loaded 963 valid species (aggregated for 'non_lepidoptera')
+  - Processing source: inaturalist.org (odonata)
+  - Processing source: inaturalist.org (cicada)
+  - Processing source: inaturalist.org (orthoptera)
+  - Processing source: inaturalist.org (coleoptera)
+  - Processing source: inaturalist.org (diptera)
+  - Processing source: inaturalist.org (blattodea)
+  - Processing source: inaturalist.org (hymenoptera)
+  - Processing source: inaturalist.org (mantodea)
+  - Processing source: inaturalist.org (phasmatodea)
+  - Processing source: inaturalist.org (neuroptera)
+  - Processing source: inaturalist.org (dermaptera)
+  - Processing source: inaturalist.org (ephemeroptera)
+  - Processing source: inaturalist.org (trichoptera)
+  - Processing source: inaturalist.org (plecoptera)
+  - Processing source: inaturalist.org (thysanoptera)
+  - Processing source: inaturalist.org (psocodea)
+  - Processing source: inaturalist.org (zygentoma)
+  - Processing source: inaturalist.org (megaloptera)
+[INFO] No new images found in sources.
+
+========================================
+Dataset Statistics: insect-dataset/non_lepidoptera
+========================================
+Train Classes: 571
+Train Images:  45991
+--------------------
+Val Classes:   571
+Val Images:    1104
+========================================
+
+[INFO] Dataset creation complete. Exiting.
+
+################################################################################
+# SESSION STARTED: 2026-02-15 22:29:47
+# COMMAND: train.py -m non_lepidoptera -v v1 --max-epochs 25 --batch-size 64 --num-workers 16 --skip-aggregate --skip-validate --cool-down 1
+################################################################################
+
+[INFO] Skipping data aggregation...
+[INFO] Skipping dataset validation...
+[INFO] No checkpoint found. Starting fresh training (Iteration 1)...
+[INFO] classes: 571
+[INFO] Training started at 2026-02-15 22:29:49
+[INFO] Iteration 01 | Epoch 01 | Train      --> 719/719 batches | Elapsed time: 00:04:49 | Loss: 2.816 | Acc: 0.406
+[INFO] Iteration 01 | Epoch 01 | Val        --> 18/18 batches | Elapsed time: 00:00:58 | Loss: 3.302 | Acc: 0.409
+[INFO] Iteration 01 | Epoch 02 | Train      --> 719/719 batches | Elapsed time: 00:04:31 | Loss: 1.027 | Acc: 0.719
+[INFO] Iteration 01 | Epoch 02 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 1.762 | Acc: 0.581
+[INFO] Iteration 01 | Epoch 03 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.583 | Acc: 0.824
+[INFO] Iteration 01 | Epoch 03 | Val        --> 18/18 batches | Elapsed time: 00:00:44 | Loss: 0.881 | Acc: 0.772
+[INFO] Iteration 01 | Epoch 04 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.386 | Acc: 0.878
+[INFO] Iteration 01 | Epoch 04 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.477 | Acc: 0.852
+[INFO] Iteration 01 | Epoch 05 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 1.490 | Acc: 0.628
+[INFO] Iteration 01 | Epoch 05 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.694 | Acc: 0.782
+[INFO] Iteration 01 | Epoch 06 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 1.212 | Acc: 0.690
+[INFO] Iteration 01 | Epoch 06 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.513 | Acc: 0.831
+[INFO] Iteration 01 | Epoch 07 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 1.082 | Acc: 0.719
+[INFO] Iteration 01 | Epoch 07 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.380 | Acc: 0.882
+[INFO] Iteration 01 | Epoch 08 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 1.016 | Acc: 0.734
+[INFO] Iteration 01 | Epoch 08 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.322 | Acc: 0.908
+[INFO] Iteration 01 | Epoch 09 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.953 | Acc: 0.751
+[INFO] Iteration 01 | Epoch 09 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.234 | Acc: 0.919
+[INFO] Iteration 01 | Epoch 10 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.908 | Acc: 0.760
+[INFO] Iteration 01 | Epoch 10 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.263 | Acc: 0.916
+[INFO] Iteration 01 | Epoch 11 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.864 | Acc: 0.772
+[INFO] Iteration 01 | Epoch 11 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.202 | Acc: 0.930
+[INFO] Iteration 01 | Epoch 12 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.836 | Acc: 0.778
+[INFO] Iteration 01 | Epoch 12 | Val        --> 18/18 batches | Elapsed time: 00:00:44 | Loss: 0.166 | Acc: 0.940
+[INFO] Iteration 01 | Epoch 13 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.798 | Acc: 0.788
+[INFO] Iteration 01 | Epoch 13 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.169 | Acc: 0.946
+[INFO] Iteration 01 | Epoch 14 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.775 | Acc: 0.794
+[INFO] Iteration 01 | Epoch 14 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.145 | Acc: 0.949
+[INFO] Iteration 01 | Epoch 15 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.745 | Acc: 0.802
+[INFO] Iteration 01 | Epoch 15 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.149 | Acc: 0.949
+[INFO] Iteration 01 | Epoch 16 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.730 | Acc: 0.804
+[INFO] Iteration 01 | Epoch 16 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.139 | Acc: 0.944
+[INFO] Iteration 01 | Epoch 17 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.706 | Acc: 0.811
+[INFO] Iteration 01 | Epoch 17 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.130 | Acc: 0.951
+[INFO] Iteration 01 | Epoch 18 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.691 | Acc: 0.816
+[INFO] Iteration 01 | Epoch 18 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.107 | Acc: 0.955
+[INFO] Iteration 01 | Epoch 19 | Train      --> 719/719 batches | Elapsed time: 00:04:29 | Loss: 0.666 | Acc: 0.822
+[INFO] Iteration 01 | Epoch 19 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.130 | Acc: 0.953
+[INFO] Iteration 01 | Epoch 20 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.648 | Acc: 0.824
+[INFO] Iteration 01 | Epoch 20 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.116 | Acc: 0.953
+[INFO] Iteration 01 | Epoch 21 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.639 | Acc: 0.830
+[INFO] Iteration 01 | Epoch 21 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.109 | Acc: 0.960
+[INFO] Iteration 01 | Epoch 22 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.629 | Acc: 0.829
+[INFO] Iteration 01 | Epoch 22 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.085 | Acc: 0.964
+[INFO] Iteration 01 | Epoch 23 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.594 | Acc: 0.839
+[INFO] Iteration 01 | Epoch 23 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.087 | Acc: 0.967
+[INFO] Iteration 01 | Epoch 24 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.586 | Acc: 0.840
+[INFO] Iteration 01 | Epoch 24 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.088 | Acc: 0.965
+[INFO] Iteration 01 | Epoch 25 | Train      --> 719/719 batches | Elapsed time: 00:04:28 | Loss: 0.586 | Acc: 0.841
+[INFO] Iteration 01 | Epoch 25 | Val        --> 18/18 batches | Elapsed time: 00:00:43 | Loss: 0.080 | Acc: 0.967

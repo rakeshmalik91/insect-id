@@ -69,13 +69,36 @@ MODEL_TYPE_MAP = {
     "lepidoptera": ["moth", "butterfly"],
     "odonata": ["odonata"],
     "cicada": ["cicada"],
+    "non_lepidoptera": [
+        "odonata", "cicada", "orthoptera", "coleoptera", "diptera",
+        "blattodea", "hymenoptera", "mantodea", "phasmatodea",
+        "neuroptera", "dermaptera", "ephemeroptera", "trichoptera",
+        "plecoptera", "thysanoptera", "psocodea", "zygentoma",
+        "megaloptera"
+    ],
 }
 
 SOURCE_MAP = {
     "moth": ['inaturalist.org', 'mothsofindia.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
     "butterfly": ['ifoundbutterflies.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
     "odonata": ['indianodonata.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
-    "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org']
+    "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
+    "orthoptera": ['inaturalist.org'],
+    "coleoptera": ['inaturalist.org'],
+    "diptera": ['inaturalist.org'],
+    "blattodea": ['inaturalist.org'],
+    "hymenoptera": ['inaturalist.org'],
+    "mantodea": ['inaturalist.org'],
+    "phasmatodea": ['inaturalist.org'],
+    "neuroptera": ['inaturalist.org'],
+    "dermaptera": ['inaturalist.org'],
+    "ephemeroptera": ['inaturalist.org'],
+    "trichoptera": ['inaturalist.org'],
+    "plecoptera": ['inaturalist.org'],
+    "thysanoptera": ['inaturalist.org'],
+    "psocodea": ['inaturalist.org'],
+    "zygentoma": ['inaturalist.org'],
+    "megaloptera": ['inaturalist.org'],
 }
 
 IGNORED_SOURCES = ["insecta.pro", "wikipedia.org", "indianbiodiversity.org"]
@@ -165,18 +188,39 @@ def load_valid_species(model_name):
         with open("species.json", "r", encoding="utf-8") as f:
             data = json.load(f)
             
-        if model_name not in data:
-            print(f"[WARNING] Model '{model_name}' not found in species.json.")
-            return None
-            
         valid_set = set()
-        for group in data[model_name].get("species", []):
-            for name in group.get("names", []):
-                valid_set.add(name)
         
-        if valid_set:
-            print(f"[INFO] Loaded {len(valid_set)} valid species from species.json")
-        return valid_set
+        # 1. Direct match (e.g. lepidoptera)
+        if model_name in data:
+             for group in data[model_name].get("species", []):
+                for name in group.get("names", []):
+                    valid_set.add(name)
+             print(f"[INFO] Loaded {len(valid_set)} valid species directly from '{model_name}'")
+             return valid_set
+
+        # 2. Composite model (e.g. non_lepidoptera)
+        if model_name in MODEL_TYPE_MAP:
+            sub_types = MODEL_TYPE_MAP[model_name]
+            
+            for sub_type in sub_types:
+                if sub_type == "cicada":
+                    # Special handling for cicada (part of hemiptera)
+                    if "hemiptera" in data:
+                        for group in data["hemiptera"].get("species", []):
+                            if group.get("group") == "Cicada":
+                                for name in group.get("names", []):
+                                    valid_set.add(name)
+                elif sub_type in data:
+                     for group in data[sub_type].get("species", []):
+                        for name in group.get("names", []):
+                            valid_set.add(name)
+            
+            if valid_set:
+                 print(f"[INFO] Loaded {len(valid_set)} valid species (aggregated for '{model_name}')")
+            return valid_set
+            
+        print(f"[WARNING] Model '{model_name}' not found in species.json or MODEL_TYPE_MAP.")
+        return None
     except Exception as e:
         print(f"[ERROR] Failed to load species.json: {e}")
         return None
@@ -399,7 +443,40 @@ def build_parser():
     parser.add_argument("--skip-aggregate", action="store_true", help="Skip data aggregation from sources")
     parser.add_argument("--skip-validate", action="store_true", help="Skip dataset validation (corrupt check)")
 
+    parser.add_argument("--create-dataset", action="store_true", help="Create/verify dataset, aggregate data, normalize, print stats, and exit without training")
+
     return parser
+
+
+def print_dataset_stats(dataset_dir):
+    """Print total stats of classes and images in train/val."""
+    train_dir = os.path.join(dataset_dir, "data")
+    val_dir = os.path.join(dataset_dir, "val")
+    
+    train_classes = os.listdir(train_dir) if os.path.exists(train_dir) else []
+    val_classes = os.listdir(val_dir) if os.path.exists(val_dir) else []
+    
+    train_img_count = 0
+    for c in train_classes:
+        class_path = os.path.join(train_dir, c)
+        if os.path.isdir(class_path):
+             train_img_count += len(os.listdir(class_path))
+
+    val_img_count = 0
+    for c in val_classes:
+        class_path = os.path.join(val_dir, c)
+        if os.path.isdir(class_path):
+            val_img_count += len(os.listdir(class_path))
+    
+    print("\n" + "="*40)
+    print(f"Dataset Statistics: {dataset_dir}")
+    print("="*40)
+    print(f"Train Classes: {len(train_classes)}")
+    print(f"Train Images:  {train_img_count}")
+    print("-" * 20)
+    print(f"Val Classes:   {len(val_classes)}")
+    print(f"Val Images:    {val_img_count}")
+    print("="*40 + "\n")
 
 
 if __name__ == "__main__":
@@ -411,10 +488,21 @@ if __name__ == "__main__":
     args.dataset_dir = f"insect-dataset/{args.model_name}"
     args.checkpoint_path = f"insect-dataset/{args.model_name}/checkpoint.{args.model_name}.{args.version}"
 
+    # Import heavy libs
     _import_libs()
+    
+    # Setup logging
     log_fh = setup_logging(args.model_name, args.version)
 
     try:
+        if args.create_dataset:
+            print(f"[INFO] Creating/Verifying dataset for model: {args.model_name}")
+            aggregate_data(args.model_name, args.dataset_dir)
+            normalize_data(args.dataset_dir)
+            print_dataset_stats(args.dataset_dir)
+            print("[INFO] Dataset creation complete. Exiting.")
+            sys.exit(0)
+
         train(args)
     finally:
         # Restore sys.stdout/stderr before closing log file
