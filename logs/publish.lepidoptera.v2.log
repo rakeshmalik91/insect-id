@@ -1,0 +1,24 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 16:15:21
+# COMMAND: publish.py -m lepidoptera -v v2 --task all --overwrite --output-model-name lepidoptera.v2alpha --output-image-archive-name lepidoptera
+################################################################################
+
+[INFO] Generating class details for lepidoptera.v2alpha (from lepidoptera)...
+[INFO] Saved class details to models/class_details.lepidoptera.v2alpha.json
+[INFO] Generating image archive for lepidoptera (from lepidoptera)...
+[INFO] Consolidating images from: ['insect-dataset/src/inaturalist.org', 'insect-dataset/src/mothsofindia.org', 'insect-dataset/lepidoptera/data', 'insect-dataset/moth/data', 'insect-dataset/butterfly/data']
+[INFO] Removing existing archive models/images.lepidoptera.zip due to --overwrite.
+[INFO] Added 6314 new species to archive.
+[INFO] Created archive: models/images.lepidoptera.zip
+[INFO] Converting model lepidoptera to lepidoptera.v2alpha...
+[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e20.pth
+[INFO] Using checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e20.pth
+[INFO] Saved classes to models/classes.lepidoptera.v2alpha.json
+[INFO] Saved TorchScript model to models/m.checkpoint.lepidoptera.v2alpha.pt
+[INFO] Updating stats for lepidoptera.v2alpha (archive: lepidoptera)...
+[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e20.pth
+[INFO] Validating accuracy using insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e20.pth on insect-dataset/lepidoptera/val...
+Top 1 Accuracy: 93.51%
+Top 3 Accuracy: 97.99%
+[INFO] Updated metadata at insect-id-app/metadata.json

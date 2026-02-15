@@ -16,9 +16,9 @@
     "lepidoptera.v2alpha": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v2alpha.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1VjmwqvPpis6wjElGZuz0GoF4kw-OMjO9&export=download&confirm=t&uuid=13016f6f-e921-4cf2-878b-2549b368df3d",
-        "model_url": "https://drive.usercontent.google.com/download?id=1ChFdtWUz8fJxVb2-V7o8Rmqudjbec4OW&export=download&confirm=t&uuid=9cd6a75e-1415-4391-88ca-40298caf221d",
-        "version": 11,
+        "images_url": "https://drive.usercontent.google.com/download?id=1lZN5mELWDMM5I4z56bsxoB3HqPtGKGql&export=download&confirm=t&uuid=502b765c-b879-40e5-aae6-5115fd526532",
+        "model_url": "https://drive.usercontent.google.com/download?id=16h8GG1BhPjhYl20kqV3Eg_qE-O_LfGP1&export=download&confirm=t&uuid=b8490abf-0025-4ee9-83c0-25f8d1a2ae4d",
+        "version": 12,
         "min_accepted_logit": -200,
         "min_accepted_softmax": 0.01,
         "accepted_classes": [
@@ -27,12 +27,12 @@
         ],
         "min_accepted_softmax_to_override_root_classifier": 0.95,
         "stats": {
-            "class_count": 5615,
-            "species_count": 4140,
-            "spp_class_count": 446,
+            "class_count": 5663,
+            "species_count": 4326,
+            "spp_class_count": 308,
             "early_stage_class_count": 1029,
-            "data_count": 325920,
-            "model_arch": "Resnet-152 (modified for incremental training)",
+            "data_count": 317453,
+            "model_arch": "Resnet-152",
             "data_sources": [
                 "ifoundbutterflies.org",
                 "mothsofindia.org",
@@ -42,15 +42,15 @@
                 "insecta.pro"
             ],
             "last_updated_date": "25-03-2025",
-            "accuracy": "96.04%",
-            "accuracy_top3": "99.38%"
+            "accuracy": "93.51%",
+            "accuracy_top3": "97.99%"
         },
-        "size": 635815018
+        "size": 697011898
     },
     "lepidoptera": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1sUasHdjIYpUHebUjmnT1SDSllHAMxKva&export=download&confirm=t&uuid=6828b117-2339-4eba-9462-39fd1338d13a",
+        "images_url": "https://drive.usercontent.google.com/download?id=1lZN5mELWDMM5I4z56bsxoB3HqPtGKGql&export=download&confirm=t&uuid=502b765c-b879-40e5-aae6-5115fd526532",
         "model_url": "https://drive.usercontent.google.com/download?id=1FVknmAgmeP88Qfs4rUfVurWG1LFRKYvZ&export=download&confirm=t&uuid=e436eb0f-c415-4e1b-b0d5-7484ee7751a3",
         "version": 11,
         "min_accepted_logit": -60,
