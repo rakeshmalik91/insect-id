@@ -1,7 +1,7 @@
 
 ################################################################################
 # SESSION STARTED: 2026-02-14 09:52:55
-# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 1
+# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 10
 ################################################################################
 
 [INFO] Aggregating data for model 'lepidoptera' (types: ['moth', 'butterfly'])...
@@ -12,698 +12,8 @@
 [INFO] Added 168252 new images to insect-dataset/lepidoptera/data
 [WARNING] class abraxas-spp in val not present in data — removed
 [WARNING] class abraxas-spp-early in val not present in data — removed
-[WARNING] class acantholipes-spp in val not present in data — removed
-[WARNING] class achrosis-spp in val not present in data — removed
-[WARNING] class aciagrion-approximans in val not present in data — removed
-[WARNING] class aciagrion-hisopa in val not present in data — removed
-[WARNING] class aciagrion-occidentale in val not present in data — removed
-[WARNING] class aciagrion-olympicum in val not present in data — removed
-[WARNING] class aciagrion-pallidum in val not present in data — removed
-[WARNING] class aciagrion-tillyardi in val not present in data — removed
-[WARNING] class acisoma-panorpoides in val not present in data — removed
-[WARNING] class acontia-spp in val not present in data — removed
-[WARNING] class acria-spp in val not present in data — removed
-[WARNING] class acrocercops-spp in val not present in data — removed
-[WARNING] class acrogomphus-fraseri in val not present in data — removed
-[WARNING] class adisura-spp in val not present in data — removed
-[WARNING] class adoxophyes-spp in val not present in data — removed
-[WARNING] class adoxophyes-spp-early in val not present in data — removed
-[WARNING] class aeshna-juncea in val not present in data — removed
-[WARNING] class aeshna-mixta in val not present in data — removed
-[WARNING] class aeshna-petalura in val not present in data — removed
-[WARNING] class agriocnemis-clauseni in val not present in data — removed
-[WARNING] class agriocnemis-corbeti in val not present in data — removed
-[WARNING] class agriocnemis-femina in val not present in data — removed
-[WARNING] class agriocnemis-kalinga in val not present in data — removed
-[WARNING] class agriocnemis-keralensis in val not present in data — removed
-[WARNING] class agriocnemis-lacteola in val not present in data — removed
-[WARNING] class agriocnemis-nana in val not present in data — removed
-[WARNING] class agriocnemis-pieris in val not present in data — removed
-[WARNING] class agriocnemis-pygmaea in val not present in data — removed
-[WARNING] class agriocnemis-splendidissima in val not present in data — removed
-[WARNING] class agrionoptera-insignis in val not present in data — removed
-[WARNING] class aloa-neoaloa-spp in val not present in data — removed
-[WARNING] class alucitidae-genera-spp in val not present in data — removed
-[WARNING] class ambragaeana-stellata in val not present in data — removed
-[WARNING] class amerila-spp in val not present in data — removed
-[WARNING] class amphiallagma-parvum in val not present in data — removed
-[WARNING] class amphithemis-curvistyla in val not present in data — removed
-[WARNING] class amphithemis-vacillans in val not present in data — removed
-[WARNING] class amyna-spp in val not present in data — removed
-[WARNING] class anaciaeschna-jaspidea in val not present in data — removed
-[WARNING] class anaciaeschna-martini in val not present in data — removed
-[WARNING] class anax-ephippiger in val not present in data — removed
-[WARNING] class anax-guttatus in val not present in data — removed
-[WARNING] class anax-immaculifrons in val not present in data — removed
-[WARNING] class anax-imperator in val not present in data — removed
-[WARNING] class anax-imperator-early in val not present in data — removed
-[WARNING] class anax-indicus in val not present in data — removed
-[WARNING] class anax-nigrolineatus in val not present in data — removed
-[WARNING] class anax-panybeus in val not present in data — removed
-[WARNING] class anax-parthenope in val not present in data — removed
-[WARNING] class angamiana-aetherea in val not present in data — removed
-[WARNING] class anisogomphus-bivittatus in val not present in data — removed
-[WARNING] class anisogomphus-caudalis in val not present in data — removed
-[WARNING] class anisogomphus-occipitalis in val not present in data — removed
-[WARNING] class anisopleura-comes in val not present in data — removed
-[WARNING] class anisopleura-lestoides in val not present in data — removed
-[WARNING] class anisopleura-subplatystyla in val not present in data — removed
-[WARNING] class anormogomphus-heteropterus in val not present in data — removed
-[WARNING] class anormogomphus-kiritschenkoi in val not present in data — removed
-[WARNING] class anotogaster-basalis in val not present in data — removed
-[WARNING] class anotogaster-nipalensis in val not present in data — removed
-[WARNING] class apharitis-acamas in val not present in data — removed
-[WARNING] class apharitis-lilacinus in val not present in data — removed
-[WARNING] class archibasis-oscillans in val not present in data — removed
-[WARNING] class archips-spp in val not present in data — removed
-[WARNING] class arctornis-spp in val not present in data — removed
-[WARNING] class arctornis-spp-early in val not present in data — removed
-[WARNING] class argiocnemis-rubescens in val not present in data — removed
-[WARNING] class aristocypha-cuneata in val not present in data — removed
-[WARNING] class aristocypha-fenestrella in val not present in data — removed
-[WARNING] class aristocypha-hilaryae in val not present in data — removed
-[WARNING] class aristocypha-quadrimaculata in val not present in data — removed
-[WARNING] class aristocypha-spuria in val not present in data — removed
-[WARNING] class aristocypha-trifasciata in val not present in data — removed
-[WARNING] class aroa-spp in val not present in data — removed
-[WARNING] class asiagomphus-nilgiricus in val not present in data — removed
-[WARNING] class asura-miltochrista-group-spp in val not present in data — removed
-[WARNING] class athetis-spp in val not present in data — removed
-[WARNING] class balinta-tenebricosa in val not present in data — removed
-[WARNING] class banisia-spp in val not present in data — removed
-[WARNING] class barsine-genera-group-spp in val not present in data — removed
-[WARNING] class barsine-group-spp in val not present in data — removed
-[WARNING] class basa-singularis in val not present in data — removed
-[WARNING] class bayadera-hyalina in val not present in data — removed
-[WARNING] class bayadera-indica in val not present in data — removed
-[WARNING] class birrima-varians in val not present in data — removed
-[WARNING] class blastobasis-spp in val not present in data — removed
-[WARNING] class boarmiini-genera-spp in val not present in data — removed
-[WARNING] class bombycinae-genera-spp in val not present in data — removed
-[WARNING] class brachydiplax-chalybea in val not present in data — removed
-[WARNING] class brachydiplax-farinosa in val not present in data — removed
-[WARNING] class brachydiplax-sobrina in val not present in data — removed
-[WARNING] class brachythemis-contaminata in val not present in data — removed
-[WARNING] class bradina-spp in val not present in data — removed
-[WARNING] class bradinopyga-geminata in val not present in data — removed
-[WARNING] class bradinopyga-konkanensis in val not present in data — removed
-[WARNING] class burmagomphus-cauvericus in val not present in data — removed
-[WARNING] class burmagomphus-chaukulensis in val not present in data — removed
-[WARNING] class burmagomphus-divaricatus in val not present in data — removed
-[WARNING] class burmagomphus-laidlawi in val not present in data — removed
-[WARNING] class burmagomphus-sivalikensis in val not present in data — removed
-[WARNING] class caconeura-ramburi in val not present in data — removed
-[WARNING] class caconeura-risi in val not present in data — removed
-[WARNING] class caconeura-t-coerulea in val not present in data — removed
-[WARNING] class calamotropha-spp in val not present in data — removed
-[WARNING] class calicnemia-carminea in val not present in data — removed
-[WARNING] class calicnemia-doonensis in val not present in data — removed
-[WARNING] class calicnemia-erythromelas in val not present in data — removed
-[WARNING] class calicnemia-eximia in val not present in data — removed
-[WARNING] class calicnemia-imitans in val not present in data — removed
-[WARNING] class calicnemia-miles in val not present in data — removed
-[WARNING] class calicnemia-miniata in val not present in data — removed
-[WARNING] class calicnemia-mortoni in val not present in data — removed
-[WARNING] class calicnemia-nipalica in val not present in data — removed
-[WARNING] class calicnemia-pulverulans in val not present in data — removed
-[WARNING] class calicnemia-sudhaae in val not present in data — removed
-[WARNING] class caliphaea-confusa in val not present in data — removed
-[WARNING] class callogaeana-festiva in val not present in data — removed
-[WARNING] class callopistria-spp in val not present in data — removed
-[WARNING] class calocypha-laidlawi in val not present in data — removed
-[WARNING] class camacinia-gigantea in val not present in data — removed
-[WARNING] class camacinia-harterti in val not present in data — removed
-[WARNING] class cephalaeschna-acutifrons in val not present in data — removed
-[WARNING] class cephalaeschna-orbifrons in val not present in data — removed
-[WARNING] class cephalaeschna-patrai in val not present in data — removed
-[WARNING] class ceriagrion-auranticum in val not present in data — removed
-[WARNING] class ceriagrion-azureum in val not present in data — removed
-[WARNING] class ceriagrion-calamineum in val not present in data — removed
-[WARNING] class ceriagrion-cerinorubellum in val not present in data — removed
-[WARNING] class ceriagrion-chromothorax in val not present in data — removed
-[WARNING] class ceriagrion-coeruleum in val not present in data — removed
-[WARNING] class ceriagrion-coromandelianum in val not present in data — removed
-[WARNING] class ceriagrion-fallax in val not present in data — removed
-[WARNING] class ceriagrion-olivaceum in val not present in data — removed
-[WARNING] class ceriagrion-rubiae in val not present in data — removed
-[WARNING] class chadisra-spp in val not present in data — removed
-[WARNING] class champaka-abdulla in val not present in data — removed
-[WARNING] class champaka-spinosa in val not present in data — removed
-[WARNING] class changa-sita in val not present in data — removed
-[WARNING] class chiasmia-spp in val not present in data — removed
-[WARNING] class chlorogomphus-brevistigma in val not present in data — removed
-[WARNING] class chlorogomphus-campioni in val not present in data — removed
-[WARNING] class chlorogomphus-mortoni in val not present in data — removed
-[WARNING] class chlorogomphus-preciosus in val not present in data — removed
-[WARNING] class chlorogomphus-xanthoptera in val not present in data — removed
-[WARNING] class chloropetalia-selysi in val not present in data — removed
-[WARNING] class chremistica-bimaculata in val not present in data — removed
-[WARNING] class chremistica-mixta in val not present in data — removed
-[WARNING] class chremistica-nigra in val not present in data — removed
-[WARNING] class chremistica-ochracea in val not present in data — removed
-[WARNING] class chremistica-ribhoi in val not present in data — removed
-[WARNING] class chremistica-tridentigera in val not present in data — removed
-[WARNING] class chrysodeixis-spp in val not present in data — removed
-[WARNING] class cicada-orni in val not present in data — removed
-[WARNING] class cicadatra-xantes in val not present in data — removed
-[WARNING] class cidariini-genera-spp in val not present in data — removed
-[WARNING] class cleora-spp in val not present in data — removed
-[WARNING] class coeliccia-bimaculata in val not present in data — removed
-[WARNING] class coeliccia-didyma in val not present in data — removed
-[WARNING] class coeliccia-fraseri in val not present in data — removed
-[WARNING] class coeliccia-renifera in val not present in data — removed
-[WARNING] class coeliccia-schmidti in val not present in data — removed
-[WARNING] class comibaena-spp in val not present in data — removed
-[WARNING] class comibaenini-genera-spp in val not present in data — removed
-[WARNING] class condica-spp in val not present in data — removed
-[WARNING] class conogethes-spp in val not present in data — removed
-[WARNING] class copera-marginipes in val not present in data — removed
-[WARNING] class copera-vittata in val not present in data — removed
-[WARNING] class cordulegaster-brevistigma in val not present in data — removed
-[WARNING] class cordulegaster-parvistigma in val not present in data — removed
-[WARNING] class crambidae-genera-spp in val not present in data — removed
-[WARNING] class crambinae-genera-spp in val not present in data — removed
-[WARNING] class cratilla-lineata in val not present in data — removed
-[WARNING] class crithote-spp in val not present in data — removed
-[WARNING] class crocidolomia-spp in val not present in data — removed
-[WARNING] class crocothemis-erythraea in val not present in data — removed
-[WARNING] class crocothemis-servilia in val not present in data — removed
-[WARNING] class cryptotympana-acuta in val not present in data — removed
-[WARNING] class cryptotympana-aquila in val not present in data — removed
-[WARNING] class cryptotympana-atrata in val not present in data — removed
-[WARNING] class cryptotympana-corvus in val not present in data — removed
-[WARNING] class cryptotympana-edwardsi in val not present in data — removed
-[WARNING] class cryptotympana-exalbida in val not present in data — removed
-[WARNING] class cryptotympana-facialis in val not present in data — removed
-[WARNING] class cryptotympana-holsti in val not present in data — removed
-[WARNING] class cryptotympana-intermedia in val not present in data — removed
-[WARNING] class cryptotympana-mandarina in val not present in data — removed
-[WARNING] class cryptotympana-recta in val not present in data — removed
-[WARNING] class cryptotympana-takasagona in val not present in data — removed
-[WARNING] class cryptotympana-timorica in val not present in data — removed
-[WARNING] class cryptotympana-varicolor in val not present in data — removed
-[WARNING] class culladia-spp in val not present in data — removed
-[WARNING] class cyana-spp in val not present in data — removed
-[WARNING] class cyclogomphus-flavoannulatus in val not present in data — removed
-[WARNING] class cyclogomphus-heterostylus in val not present in data — removed
-[WARNING] class cyclogomphus-vesiculosus in val not present in data — removed
-[WARNING] class cyclogomphus-ypsilon in val not present in data — removed
-[WARNING] class davidioides-martini in val not present in data — removed
-[WARNING] class davidius-aberrans in val not present in data — removed
-[WARNING] class diceroprocta-semicincta in val not present in data — removed
-[WARNING] class diduga-spp in val not present in data — removed
-[WARNING] class diplacodes-lefebvrii in val not present in data — removed
-[WARNING] class diplacodes-nebulosa in val not present in data — removed
-[WARNING] class diplacodes-trivialis in val not present in data — removed
-[WARNING] class disparoneura-apicalis in val not present in data — removed
-[WARNING] class disparoneura-quadrimaculata in val not present in data — removed
-[WARNING] class distantalna-splendida in val not present in data — removed
-[WARNING] class drepanosticta-carmichaeli in val not present in data — removed
-[WARNING] class drepanosticta-polychromatica in val not present in data — removed
-[WARNING] class dundubia-annandalei in val not present in data — removed
-[WARNING] class dundubia-emanatura in val not present in data — removed
-[WARNING] class dundubia-feae in val not present in data — removed
-[WARNING] class dundubia-hastata in val not present in data — removed
-[WARNING] class dundubia-laterocurvata in val not present in data — removed
-[WARNING] class dundubia-nagarasingna in val not present in data — removed
-[WARNING] class dundubia-oopaga in val not present in data — removed
-[WARNING] class dundubia-rufivena in val not present in data — removed
-[WARNING] class dundubia-terpsichore in val not present in data — removed
-[WARNING] class dundubia-vaginata in val not present in data — removed
-[WARNING] class dysphaea-ethela in val not present in data — removed
-[WARNING] class dysphaea-gloriosa in val not present in data — removed
-[WARNING] class earias-spp in val not present in data — removed
-[WARNING] class echo-margarita in val not present in data — removed
-[WARNING] class ecpyrrhorrhoe-spp in val not present in data — removed
-[WARNING] class edosa-spp in val not present in data — removed
-[WARNING] class elattoneura-atkinsoni in val not present in data — removed
-[WARNING] class elattoneura-campioni in val not present in data — removed
-[WARNING] class elattoneura-campioni-early in val not present in data — removed
-[WARNING] class elattoneura-coomansi in val not present in data — removed
-[WARNING] class elattoneura-nigerrima in val not present in data — removed
-[WARNING] class elattoneura-souteri in val not present in data — removed
-[WARNING] class elattoneura-tetrica in val not present in data — removed
-[WARNING] class elophila-spp in val not present in data — removed
-[WARNING] class enallagma-cyathigerum in val not present in data — removed
-[WARNING] class enallagma-insula in val not present in data — removed
-[WARNING] class enallagma-risi in val not present in data — removed
-[WARNING] class endotricha-spp in val not present in data — removed
-[WARNING] class eoophyla-spp in val not present in data — removed
-[WARNING] class eopycna-repanda in val not present in data — removed
-[WARNING] class epicrocis-spp in val not present in data — removed
-[WARNING] class epiophlebia-laidlawi in val not present in data — removed
-[WARNING] class epipaschiinae-genera-spp in val not present in data — removed
-[WARNING] class epipleminae-genera-spp in val not present in data — removed
-[WARNING] class epithemis-mariae in val not present in data — removed
-[WARNING] class epophthalmia-vittata in val not present in data — removed
-[WARNING] class epophthalmia-vittigera in val not present in data — removed
-[WARNING] class eriocottidae-genera-spp in val not present in data — removed
-[WARNING] class esme-cyaneovittata in val not present in data — removed
-[WARNING] class esme-longistyla in val not present in data — removed
-[WARNING] class esme-mudiensis in val not present in data — removed
-[WARNING] class ethmia-spp in val not present in data — removed
-[WARNING] class eublemma-spp in val not present in data — removed
-[WARNING] class euclasta-spp in val not present in data — removed
-[WARNING] class euphaea-cardinalis in val not present in data — removed
-[WARNING] class euphaea-dispar in val not present in data — removed
-[WARNING] class euphaea-fraseri in val not present in data — removed
-[WARNING] class euphaea-masoni in val not present in data — removed
-[WARNING] class euphaea-ochracea in val not present in data — removed
-[WARNING] class euphaea-pseudodispar in val not present in data — removed
-[WARNING] class euphaea-thosegharensis in val not present in data — removed
-[WARNING] class eupitheciini-genera-spp in val not present in data — removed
-[WARNING] class eupterote-spp in val not present in data — removed
-[WARNING] class euterpnosia-crowfooti in val not present in data — removed
-[WARNING] class euterpnosia-madhava in val not present in data — removed
-[WARNING] class formotosena-montivaga in val not present in data — removed
-[WARNING] class gaeana-atkinsoni in val not present in data — removed
-[WARNING] class gaeana-maculata in val not present in data — removed
-[WARNING] class ganisa-spp in val not present in data — removed
-[WARNING] class gastropacha-spp in val not present in data — removed
-[WARNING] class gerontha-spp in val not present in data — removed
-[WARNING] class gomphidia-kodaguensis in val not present in data — removed
-[WARNING] class gomphidia-t-nigrum in val not present in data — removed
-[WARNING] class graptotettix-guttatus in val not present in data — removed
-[WARNING] class gynacantha-anandmati in val not present in data — removed
-[WARNING] class gynacantha-arnaudi in val not present in data — removed
-[WARNING] class gynacantha-bainbriggei in val not present in data — removed
-[WARNING] class gynacantha-bayadera in val not present in data — removed
-[WARNING] class gynacantha-chaplini in val not present in data — removed
-[WARNING] class gynacantha-dravida in val not present in data — removed
-[WARNING] class gynacantha-khasiaca in val not present in data — removed
-[WARNING] class gynacantha-millardi in val not present in data — removed
-[WARNING] class gynacantha-subinterrupta in val not present in data — removed
-[WARNING] class gynacanthaeschna-sikkima in val not present in data — removed
-[WARNING] class hamza-ciliaris in val not present in data — removed
-[WARNING] class haphsa-bindusara in val not present in data — removed
-[WARNING] class haphsa-durga in val not present in data — removed
-[WARNING] class haphsa-karenensis in val not present in data — removed
-[WARNING] class haphsa-nicomache in val not present in data — removed
-[WARNING] class haphsa-scitula in val not present in data — removed
-[WARNING] class haphsa-stellata in val not present in data — removed
-[WARNING] class heliocypha-biforata in val not present in data — removed
-[WARNING] class heliocypha-bisignata in val not present in data — removed
-[WARNING] class heliocypha-perforata in val not present in data — removed
-[WARNING] class heliogomphus-kalarensis in val not present in data — removed
-[WARNING] class heliogomphus-promelas in val not present in data — removed
-[WARNING] class heliogomphus-selysi in val not present in data — removed
-[WARNING] class hemicordulia-asiatica in val not present in data — removed
-[WARNING] class herpetogramma-spp in val not present in data — removed
-[WARNING] class heterostegane-spp in val not present in data — removed
-[WARNING] class hippotion-spp in val not present in data — removed
-[WARNING] class huechys-beata in val not present in data — removed
-[WARNING] class huechys-incarnata in val not present in data — removed
-[WARNING] class huechys-phaenicura in val not present in data — removed
-[WARNING] class huechys-sanguinea in val not present in data — removed
-[WARNING] class huechys-thoracica in val not present in data — removed
-[WARNING] class hyalessa-expansa in val not present in data — removed
-[WARNING] class hyalessa-obnubila in val not present in data — removed
-[WARNING] class hyalessa-stratoria in val not present in data — removed
-[WARNING] class hydrillodes-spp in val not present in data — removed
-[WARNING] class hydrobasileus-croceus in val not present in data — removed
-[WARNING] class hylaeothemis-apicalis in val not present in data — removed
-[WARNING] class hypeninae-genera-spp in val not present in data — removed
-[WARNING] class hyposidra-spp in val not present in data — removed
-[WARNING] class hypsopygia-spp in val not present in data — removed
-[WARNING] class ictinogomphus-decoratus in val not present in data — removed
-[WARNING] class ictinogomphus-distinctus in val not present in data — removed
-[WARNING] class ictinogomphus-kishori in val not present in data — removed
-[WARNING] class ictinogomphus-pertinax in val not present in data — removed
-[WARNING] class ictinogomphus-rapax in val not present in data — removed
-[WARNING] class idaea-spp in val not present in data — removed
-[WARNING] class idionyx-gomantakensis in val not present in data — removed
-[WARNING] class idionyx-optata in val not present in data — removed
-[WARNING] class idionyx-saffronata in val not present in data — removed
-[WARNING] class idionyx-travancorensis in val not present in data — removed
-[WARNING] class indocnemis-orang in val not present in data — removed
-[WARNING] class indocypha-vittata in val not present in data — removed
-[WARNING] class indolestes-cyaneus in val not present in data — removed
-[WARNING] class indolestes-gracilis in val not present in data — removed
-[WARNING] class indolestes-indicus in val not present in data — removed
-[WARNING] class indosticta-deccanensis in val not present in data — removed
-[WARNING] class indothemis-carnatica in val not present in data — removed
-[WARNING] class ischnura-elegans in val not present in data — removed
-[WARNING] class ischnura-forcipata in val not present in data — removed
-[WARNING] class ischnura-inarmata in val not present in data — removed
-[WARNING] class ischnura-mildredae in val not present in data — removed
-[WARNING] class ischnura-nursei in val not present in data — removed
-[WARNING] class ischnura-rubilio in val not present in data — removed
-[WARNING] class ischnura-rufostigma in val not present in data — removed
-[WARNING] class ischnura-senegalensis in val not present in data — removed
-[WARNING] class isturgia-spp in val not present in data — removed
-[WARNING] class karenia-ravida in val not present in data — removed
-[WARNING] class khimbya-diminuta in val not present in data — removed
-[WARNING] class labdia-spp in val not present in data — removed
-[WARNING] class lahugada-dohertyi in val not present in data — removed
-[WARNING] class lamelligomphus-biforceps in val not present in data — removed
-[WARNING] class lamelligomphus-nilgiriensis in val not present in data — removed
-[WARNING] class lamelligomphus-risi in val not present in data — removed
-[WARNING] class lamprosema-spp in val not present in data — removed
-[WARNING] class lathrecista-asiatica in val not present in data — removed
-[WARNING] class lecithoceridae-genera-spp in val not present in data — removed
-[WARNING] class lemuriana-apicalis in val not present in data — removed
-[WARNING] class leptopsaltria-samia in val not present in data — removed
-[WARNING] class leptopsaltria-tuberosa in val not present in data — removed
-[WARNING] class lestes-barbarus in val not present in data — removed
-[WARNING] class lestes-concinnus in val not present in data — removed
-[WARNING] class lestes-dorothea in val not present in data — removed
-[WARNING] class lestes-elatus in val not present in data — removed
-[WARNING] class lestes-garoensis in val not present in data — removed
-[WARNING] class lestes-malabaricus in val not present in data — removed
-[WARNING] class lestes-nigriceps in val not present in data — removed
-[WARNING] class lestes-nodalis in val not present in data — removed
-[WARNING] class lestes-patricia in val not present in data — removed
-[WARNING] class lestes-praemorsus in val not present in data — removed
-[WARNING] class lestes-thoracicus in val not present in data — removed
-[WARNING] class lestes-viridulus in val not present in data — removed
-[WARNING] class lethama-locusta in val not present in data — removed
-[WARNING] class leucania-spp in val not present in data — removed
-[WARNING] class libellago-andamanensis in val not present in data — removed
-[WARNING] class libellago-indica in val not present in data — removed
-[WARNING] class libellago-indica-early in val not present in data — removed
-[WARNING] class libellago-lineata in val not present in data — removed
-[WARNING] class libellula-quadrimaculata in val not present in data — removed
-[WARNING] class lithosiini-genera-spp in val not present in data — removed
-[WARNING] class lobesia-spp in val not present in data — removed
-[WARNING] class loboschiza-spp in val not present in data — removed
-[WARNING] class lophoptera-spp in val not present in data — removed
-[WARNING] class lygniodes-spp in val not present in data — removed
-[WARNING] class lymantria-spp in val not present in data — removed
-[WARNING] class lyriothemis-acigastra in val not present in data — removed
-[WARNING] class lyriothemis-bivittata in val not present in data — removed
-[WARNING] class lyriothemis-cleis in val not present in data — removed
-[WARNING] class lyriothemis-mortoni in val not present in data — removed
-[WARNING] class lyriothemis-tricolor in val not present in data — removed
-[WARNING] class macariini-genera-spp in val not present in data — removed
-[WARNING] class macrodiplax-cora in val not present in data — removed
-[WARNING] class macrogomphus-montanus in val not present in data — removed
-[WARNING] class macrogomphus-wynaadicus in val not present in data — removed
-[WARNING] class macromia-bellicosa in val not present in data — removed
-[WARNING] class macromia-cingulata in val not present in data — removed
-[WARNING] class macromia-ellisoni in val not present in data — removed
-[WARNING] class macromia-flavicincta in val not present in data — removed
-[WARNING] class macromia-flavocolorata in val not present in data — removed
-[WARNING] class macromia-indica in val not present in data — removed
-[WARNING] class macromia-irata in val not present in data — removed
-[WARNING] class macromia-moorei in val not present in data — removed
-[WARNING] class macromidia-donaldi in val not present in data — removed
-[WARNING] class macrosemia-assamensis in val not present in data — removed
-[WARNING] class macrosemia-saturata in val not present in data — removed
-[WARNING] class macrosemia-tonkiniana in val not present in data — removed
-[WARNING] class macrosemia-umbrata in val not present in data — removed
-[WARNING] class mata-kama in val not present in data — removed
-[WARNING] class mata-rama in val not present in data — removed
-[WARNING] class matrona-basilaris in val not present in data — removed
-[WARNING] class matrona-nigripectus in val not present in data — removed
-[WARNING] class maua-quadrituberculata in val not present in data — removed
-[WARNING] class megalestes-gyalsey in val not present in data — removed
-[WARNING] class megalestes-irma in val not present in data — removed
-[WARNING] class megalestes-major in val not present in data — removed
-[WARNING] class megalestes-micans in val not present in data — removed
-[WARNING] class megalogomphus-flavicolor in val not present in data — removed
-[WARNING] class megalogomphus-hannyngtoni in val not present in data — removed
-[WARNING] class megalogomphus-smithii in val not present in data — removed
-[WARNING] class megalogomphus-superbus in val not present in data — removed
-[WARNING] class megapomponia-imperatoria in val not present in data — removed
-[WARNING] class megapomponia-intermedia in val not present in data — removed
-[WARNING] class meimuna-duffelsi in val not present in data — removed
-[WARNING] class meimuna-gamameda in val not present in data — removed
-[WARNING] class meimuna-microdon in val not present in data — removed
-[WARNING] class meimuna-silhetana in val not present in data — removed
-[WARNING] class meimuna-tavoyana in val not present in data — removed
-[WARNING] class meimuna-tripurasura in val not present in data — removed
-[WARNING] class melanoneura-bilineata in val not present in data — removed
-[WARNING] class melligomphus-acinaces in val not present in data — removed
-[WARNING] class merogomphus-aryanadensis in val not present in data — removed
-[WARNING] class merogomphus-longistigma in val not present in data — removed
-[WARNING] class merogomphus-tamaracherriensis in val not present in data — removed
-[WARNING] class metanastria-spp in val not present in data — removed
-[WARNING] class metarbelidae-genera-spp in val not present in data — removed
-[WARNING] class micraloa-spp in val not present in data — removed
-[WARNING] class microgomphus-souteri in val not present in data — removed
-[WARNING] class microgomphus-torquatus in val not present in data — removed
-[WARNING] class micromelalopha-spp in val not present in data — removed
-[WARNING] class miltochrista-spp in val not present in data — removed
-[WARNING] class miresa-spp in val not present in data — removed
-[WARNING] class mogannia-conica in val not present in data — removed
-[WARNING] class mogannia-cyanea in val not present in data — removed
-[WARNING] class mogannia-effecta in val not present in data — removed
-[WARNING] class mogannia-hebes in val not present in data — removed
-[WARNING] class mogannia-nasalis in val not present in data — removed
-[WARNING] class mogannia-viridis in val not present in data — removed
-[WARNING] class mortonagrion-aborense in val not present in data — removed
-[WARNING] class mortonagrion-varralli in val not present in data — removed
-[WARNING] class naarda-spp in val not present in data — removed
-[WARNING] class nabalua-mascula in val not present in data — removed
-[WARNING] class nannophya-pygmaea in val not present in data — removed
-[WARNING] class nannophyopsis-clara in val not present in data — removed
-[WARNING] class neallogaster-hermionae in val not present in data — removed
-[WARNING] class neallogaster-ornata in val not present in data — removed
-[WARNING] class nepogomphus-modestus in val not present in data — removed
-[WARNING] class nepogomphus-walli in val not present in data — removed
-[WARNING] class nesoxenia-lineata in val not present in data — removed
-[WARNING] class neurobasis-chinensis in val not present in data — removed
-[WARNING] class neurothemis-fluctuans in val not present in data — removed
-[WARNING] class neurothemis-fulvia in val not present in data — removed
-[WARNING] class neurothemis-intermedia in val not present in data — removed
-[WARNING] class neurothemis-tullia in val not present in data — removed
-[WARNING] class noctuinae-genera-spp in val not present in data — removed
-[WARNING] class nola-spp in val not present in data — removed
-[WARNING] class nolinae-genera-spp in val not present in data — removed
-[WARNING] class noorda-spp in val not present in data — removed
-[WARNING] class nosophora-spp in val not present in data — removed
-[WARNING] class nososticta-nicobarica in val not present in data — removed
-[WARNING] class notodontidae-genera-spp in val not present in data — removed
-[WARNING] class nychogomphus-duaricus in val not present in data — removed
-[WARNING] class nychogomphus-saundersii in val not present in data — removed
-[WARNING] class nychogomphus-striatus in val not present in data — removed
-[WARNING] class nygmiini-genera-spp in val not present in data — removed
-[WARNING] class onychargia-atrocyana in val not present in data — removed
-[WARNING] class onychogomphus-thienemanni in val not present in data — removed
-[WARNING] class ophiogomphus-reductus in val not present in data — removed
-[WARNING] class orgyiini-genera-spp in val not present in data — removed
-[WARNING] class orientogomphus-indicus in val not present in data — removed
-[WARNING] class orientopsaltria-fangrayae in val not present in data — removed
-[WARNING] class orthetrum-andamanicum in val not present in data — removed
-[WARNING] class orthetrum-brunneum in val not present in data — removed
-[WARNING] class orthetrum-cancellatum in val not present in data — removed
-[WARNING] class orthetrum-chrysis in val not present in data — removed
-[WARNING] class orthetrum-glaucum in val not present in data — removed
-[WARNING] class orthetrum-internum in val not present in data — removed
-[WARNING] class orthetrum-luzonicum in val not present in data — removed
-[WARNING] class orthetrum-pruinosum in val not present in data — removed
-[WARNING] class orthetrum-sabina in val not present in data — removed
-[WARNING] class orthetrum-taeniolatum in val not present in data — removed
-[WARNING] class orthetrum-triangulare in val not present in data — removed
-[WARNING] class ourapteryx-spp in val not present in data — removed
-[WARNING] class ozarba-spp in val not present in data — removed
-[WARNING] class paharia-lacteipennis in val not present in data — removed
-[WARNING] class palpita-spp in val not present in data — removed
-[WARNING] class palpopleura-sexmaculata in val not present in data — removed
-[WARNING] class pantala-flavescens in val not present in data — removed
-[WARNING] class paracercion-calamorum in val not present in data — removed
-[WARNING] class paracercion-melanotum in val not present in data — removed
-[WARNING] class paracypha-unimaculata in val not present in data — removed
-[WARNING] class paragomphus-capricornis in val not present in data — removed
-[WARNING] class paragomphus-echinoccipitalis in val not present in data — removed
-[WARNING] class paragomphus-lineatus in val not present in data — removed
-[WARNING] class parotis-spp in val not present in data — removed
-[WARNING] class patissa-spp in val not present in data — removed
-[WARNING] class pelagodes-thalassodes-spp in val not present in data — removed
-[WARNING] class periaeschna-flinti in val not present in data — removed
-[WARNING] class periaeschna-unifasciata in val not present in data — removed
-[WARNING] class pericyma-spp in val not present in data — removed
-[WARNING] class perissogomphus-stevensi in val not present in data — removed
-[WARNING] class philoganga-montana in val not present in data — removed
-[WARNING] class phycitinae-genera-spp in val not present in data — removed
-[WARNING] class phylloneura-westermanni in val not present in data — removed
-[WARNING] class phyllothemis-eltoni in val not present in data — removed
-[WARNING] class pingasa-spp in val not present in data — removed
-[WARNING] class platygomphus-dolabratus in val not present in data — removed
-[WARNING] class platylestes-kirani in val not present in data — removed
-[WARNING] class platylestes-platystylus in val not present in data — removed
-[WARNING] class platylomia-amicta in val not present in data — removed
-[WARNING] class platylomia-brevis in val not present in data — removed
-[WARNING] class platylomia-insignis in val not present in data — removed
-[WARNING] class platylomia-larus in val not present in data — removed
-[WARNING] class platylomia-operculata in val not present in data — removed
-[WARNING] class platylomia-radha in val not present in data — removed
-[WARNING] class platylomia-vibrans in val not present in data — removed
-[WARNING] class platypleura-andamana in val not present in data — removed
-[WARNING] class platypleura-assamensis in val not present in data — removed
-[WARNING] class platypleura-badia in val not present in data — removed
-[WARNING] class platypleura-basialba in val not present in data — removed
-[WARNING] class platypleura-basiviridis in val not present in data — removed
-[WARNING] class platypleura-capitata in val not present in data — removed
-[WARNING] class platypleura-hampsoni in val not present in data — removed
-[WARNING] class platypleura-mackinnoni in val not present in data — removed
-[WARNING] class platypleura-nobilis in val not present in data — removed
-[WARNING] class platypleura-octoguttata in val not present in data — removed
-[WARNING] class platypleura-polita in val not present in data — removed
-[WARNING] class platypleura-poorvachala in val not present in data — removed
-[WARNING] class platypleura-stridula in val not present in data — removed
-[WARNING] class platypleura-takasagona in val not present in data — removed
-[WARNING] class platypleura-westwoodi in val not present in data — removed
-[WARNING] class plecoptera-spp in val not present in data — removed
-[WARNING] class plusiinae-genera-spp in val not present in data — removed
-[WARNING] class polyneura-ducalis in val not present in data — removed
-[WARNING] class polyneura-laevigata in val not present in data — removed
-[WARNING] class pomponia-cinctimanus in val not present in data — removed
-[WARNING] class pomponia-cyanea in val not present in data — removed
-[WARNING] class pomponia-linearis in val not present in data — removed
-[WARNING] class pomponia-picta in val not present in data — removed
-[WARNING] class pomponia-secreta in val not present in data — removed
-[WARNING] class pomponia-zebra in val not present in data — removed
-[WARNING] class potamarcha-congener in val not present in data — removed
-[WARNING] class proarna-hilaris in val not present in data — removed
-[WARNING] class prodasineura-autumnalis in val not present in data — removed
-[WARNING] class prodasineura-verticalis in val not present in data — removed
-[WARNING] class promalactis-spp in val not present in data — removed
-[WARNING] class protosticta-davenporti in val not present in data — removed
-[WARNING] class protosticta-gravelyi in val not present in data — removed
-[WARNING] class protosticta-hearseyi in val not present in data — removed
-[WARNING] class protosticta-himalaica in val not present in data — removed
-[WARNING] class protosticta-mortoni in val not present in data — removed
-[WARNING] class protosticta-myristicaensis in val not present in data — removed
-[WARNING] class protosticta-ponmudiensis in val not present in data — removed
-[WARNING] class protosticta-sanguinostigma in val not present in data — removed
-[WARNING] class protosticta-sholai in val not present in data — removed
-[WARNING] class psalmocharias-querula in val not present in data — removed
-[WARNING] class pseudagrion-australasiae in val not present in data — removed
-[WARNING] class pseudagrion-decorum in val not present in data — removed
-[WARNING] class pseudagrion-hypermelas in val not present in data — removed
-[WARNING] class pseudagrion-indicum in val not present in data — removed
-[WARNING] class pseudagrion-malabaricum in val not present in data — removed
-[WARNING] class pseudagrion-pilidorsum in val not present in data — removed
-[WARNING] class pseudagrion-rubriceps in val not present in data — removed
-[WARNING] class pseudagrion-spencei in val not present in data — removed
-[WARNING] class pseudocopera-ciliata in val not present in data — removed
-[WARNING] class pseudothemis-zonata in val not present in data — removed
-[WARNING] class pterophoridae-genera-spp in val not present in data — removed
-[WARNING] class ptychopseustis-spp in val not present in data — removed
-[WARNING] class purana-guttularis in val not present in data — removed
-[WARNING] class purana-morrisi in val not present in data — removed
-[WARNING] class purana-tigrina in val not present in data — removed
-[WARNING] class pyralidae-genera-spp in val not present in data — removed
-[WARNING] class pyrausta-spp in val not present in data — removed
-[WARNING] class rhinocypha-trimaculata in val not present in data — removed
-[WARNING] class rhodostrophia-spp in val not present in data — removed
-[WARNING] class rhodothemis-rufa in val not present in data — removed
-[WARNING] class rhodothemis-rufa-early in val not present in data — removed
-[WARNING] class rhynchina-spp in val not present in data — removed
-[WARNING] class rhyothemis-plutonia in val not present in data — removed
-[WARNING] class rhyothemis-triangularis in val not present in data — removed
-[WARNING] class rhyothemis-variegata in val not present in data — removed
-[WARNING] class rusicada-spp in val not present in data — removed
-[WARNING] class rustia-dentivitta in val not present in data — removed
-[WARNING] class rustia-maculata in val not present in data — removed
-[WARNING] class rustia-minuta in val not present in data — removed
-[WARNING] class rustia-tigrina in val not present in data — removed
-[WARNING] class ruttellerona-spp in val not present in data — removed
-[WARNING] class sacada-spp in val not present in data — removed
-[WARNING] class sarasaeschna-khasiana in val not present in data — removed
-[WARNING] class scalmogomphus-bistrigatus in val not present in data — removed
-[WARNING] class scalmogomphus-schmidti in val not present in data — removed
-[WARNING] class schistophleps-spp in val not present in data — removed
-[WARNING] class scieroptera-crocea in val not present in data — removed
-[WARNING] class scieroptera-formosana in val not present in data — removed
-[WARNING] class scieroptera-splendidula in val not present in data — removed
-[WARNING] class scirpophaga-spp in val not present in data — removed
-[WARNING] class scopula-spp in val not present in data — removed
-[WARNING] class selepa-spp in val not present in data — removed
-[WARNING] class selysiothemis-nigra in val not present in data — removed
-[WARNING] class siccia-spp in val not present in data — removed
-[WARNING] class simplicia-spp in val not present in data — removed
-[WARNING] class somatochlora-daviesi in val not present in data — removed
-[WARNING] class sphrageidus-spp in val not present in data — removed
-[WARNING] class spilarctia-spp in val not present in data — removed
-[WARNING] class spilarctia-spp-early in val not present in data — removed
-[WARNING] class spindasis-abnormis in val not present in data — removed
-[WARNING] class spindasis-ictis in val not present in data — removed
-[WARNING] class spindasis-nipalicus in val not present in data — removed
-[WARNING] class spindasis-rukma in val not present in data — removed
-[WARNING] class spindasis-rukmini in val not present in data — removed
-[WARNING] class spindasis-schistacea in val not present in data — removed
-[WARNING] class spindasis-syama in val not present in data — removed
-[WARNING] class spindasis-zhengweilie in val not present in data — removed
-[WARNING] class spirama-spp in val not present in data — removed
-[WARNING] class stathmopoda-spp in val not present in data — removed
-[WARNING] class sterrhinae-genera-spp in val not present in data — removed
-[WARNING] class striglina-spp in val not present in data — removed
-[WARNING] class stylogomphus-inglisi in val not present in data — removed
-[WARNING] class sufetula-spp in val not present in data — removed
-[WARNING] class sulphogaeana-sulphurea in val not present in data — removed
-[WARNING] class sympecma-paedisca in val not present in data — removed
-[WARNING] class sympetrum-commixtum in val not present in data — removed
-[WARNING] class sympetrum-fonscolombii in val not present in data — removed
-[WARNING] class sympetrum-hypomelas in val not present in data — removed
-[WARNING] class sympetrum-orientale in val not present in data — removed
-[WARNING] class sympetrum-speciosum in val not present in data — removed
-[WARNING] class sympetrum-vulgatum in val not present in data — removed
-[WARNING] class tacua-speciosa in val not present in data — removed
-[WARNING] class talainga-binghami in val not present in data — removed
-[WARNING] class tanna-chekiangensis in val not present in data — removed
-[WARNING] class tanna-japonensis in val not present in data — removed
-[WARNING] class teinoptila-spp in val not present in data — removed
-[WARNING] class teldenia-spp in val not present in data — removed
-[WARNING] class terpnosia-andersoni in val not present in data — removed
-[WARNING] class terpnosia-clio in val not present in data — removed
-[WARNING] class terpnosia-ganesa in val not present in data — removed
-[WARNING] class terpnosia-lactea in val not present in data — removed
-[WARNING] class terpnosia-maculipes in val not present in data — removed
-[WARNING] class terpnosia-psecas in val not present in data — removed
-[WARNING] class tetracanthagyna-waterhousei in val not present in data — removed
-[WARNING] class tetrathemis-platyptera in val not present in data — removed
-[WARNING] class tholymis-tillarga in val not present in data — removed
-[WARNING] class thosea-spp in val not present in data — removed
-[WARNING] class tibeta-zenobia in val not present in data — removed
-[WARNING] class timandra-spp in val not present in data — removed
-[WARNING] class tisis-spp in val not present in data — removed
-[WARNING] class tortricidae-genera-spp in val not present in data — removed
-[WARNING] class tosena-albata in val not present in data — removed
-[WARNING] class tosena-dives in val not present in data — removed
-[WARNING] class tosena-mearesiana in val not present in data — removed
-[WARNING] class tosena-melanoptera in val not present in data — removed
-[WARNING] class tramea-eurybia in val not present in data — removed
-[WARNING] class tramea-limbata in val not present in data — removed
-[WARNING] class tramea-transmarina in val not present in data — removed
-[WARNING] class tramea-virginia in val not present in data — removed
-[WARNING] class triphosa-spp in val not present in data — removed
-[WARNING] class trithemis-aurora in val not present in data — removed
-[WARNING] class trithemis-festiva in val not present in data — removed
-[WARNING] class trithemis-pallidinervis in val not present in data — removed
-[WARNING] class trithemis-pallidinervis-early in val not present in data — removed
-[WARNING] class turnaca-spp in val not present in data — removed
-[WARNING] class tyspanodes-spp in val not present in data — removed
-[WARNING] class urothemis-signata in val not present in data — removed
-[WARNING] class utetheisa-spp in val not present in data — removed
-[WARNING] class utetheisa-spp-early in val not present in data — removed
-[WARNING] class vestalaria-smaragdina in val not present in data — removed
-[WARNING] class vestalis-apicalis in val not present in data — removed
-[WARNING] class vestalis-gracilis in val not present in data — removed
-[WARNING] class vestalis-submontana in val not present in data — removed
-[WARNING] class watanabeopetalia-atkinsoni in val not present in data — removed
-[WARNING] class zygonyx-iris in val not present in data — removed
-[WARNING] class zyxomma-breviventre in val not present in data — removed
-[WARNING] class zyxomma-obtusum in val not present in data — removed
-[WARNING] class zyxomma-petiolatum in val not present in data — removed
-[WARNING] Corrupt: insect-dataset/lepidoptera/data/asota-caricae\Asota%20caricae_1693314811_268043.jpg cannot identify image file 'insect-dataset/lepidoptera/data/asota-caricae\\Asota%20caricae_1693314811_268043.jpg'
-[WARNING] Corrupt: insect-dataset/lepidoptera/data/asota-caricae\Asota%20caricae_1693314812_268044.jpg cannot identify image file 'insect-dataset/lepidoptera/data/asota-caricae\\Asota%20caricae_1693314812_268044.jpg'
-[WARNING] Corrupt: insect-dataset/lepidoptera/data/calonola-argyria\Calonola%20argyria_1700264414_276888.jpg cannot identify image file 'insect-dataset/lepidoptera/data/calonola-argyria\\Calonola%20argyria_1700264414_276888.jpg'
-[WARNING] No images in: insect-dataset/lepidoptera/data/mothsodindia.org
-[INFO] train set: 317456 images
-[WARNING] No images in: insect-dataset/lepidoptera/val/mothsodindia.org
-[INFO] val set: 11196 images
-[INFO] No checkpoint found. Starting fresh training (Iteration 1)...
-[INFO] classes: 5664
-[INFO] Training started at 2026-02-14 10:23:52
-
-################################################################################
-# SESSION STARTED: 2026-02-14 10:46:15
-# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 1 --skip-aggregate
-################################################################################
-
-[INFO] Skipping data aggregation...
+[WARNING] Corrupt: insect-dataset/lepidoptera/data/asota-caricae\Asota%20caricae_1693314811_268043.jpg cannot identify image file 'insect-dataset/lepidoptera/data/asota-caricae\\Asota%20caricae_1693314811_268043.jpg' — deleting
+[WARNING] Corrupt: insect-dataset/lepidoptera/data/asota-caricae\Asota%20caricae_1693314812_268044.jpg cannot identify image file 'insect-dataset/lepidoptera/data/asota-caricae\\Asota%20caricae_1693314812_268044.jpg' — deleting
 [WARNING] Corrupt: insect-dataset/lepidoptera/data/calonola-argyria\Calonola%20argyria_1700264414_276888.jpg cannot identify image file 'insect-dataset/lepidoptera/data/calonola-argyria\\Calonola%20argyria_1700264414_276888.jpg' — deleting
 [WARNING] No images in: insect-dataset/lepidoptera/data/mothsodindia.org — removing directory
 [INFO] train set: 317453 images
@@ -714,40 +24,74 @@
 [INFO] Training started at 2026-02-14 10:46:54
 [INFO] Iteration 01 | Epoch 01 | Train      --> 9921/9921 batches | Elapsed time: 01:41:13 | Loss: 2.46 | Acc: 0.559
 [INFO] Iteration 01 | Epoch 01 | Val        --> 350/350 batches | Elapsed time: 00:02:42 | Loss: 2.25 | Acc: 0.607
-
-################################################################################
-# SESSION STARTED: 2026-02-14 12:50:57
-# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 3 --skip-aggregate
-################################################################################
-
-[INFO] Skipping data aggregation...
-
-################################################################################
-# SESSION STARTED: 2026-02-14 12:55:31
-# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 3 --skip-aggregate --skip-validate
-################################################################################
-
-[INFO] Skipping data aggregation...
-[INFO] Skipping dataset validation...
-[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e01.pth
-[INFO] Resuming from checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e01.pth
-[INFO] No new data. Resuming current iteration (i1)...
 [INFO] Iteration 01 | Epoch 02 | Train      --> 9921/9921 batches | Elapsed time: 01:48:52 | Loss: 0.791 | Acc: 0.793
 [INFO] Iteration 01 | Epoch 02 | Val        --> 350/350 batches | Elapsed time: 00:02:38 | Loss: 0.949 | Acc: 0.797
 [INFO] Iteration 01 | Epoch 03 | Train      --> 9921/9921 batches | Elapsed time: 01:48:24 | Loss: 0.512 | Acc: 0.85
 [INFO] Iteration 01 | Epoch 03 | Val        --> 350/350 batches | Elapsed time: 00:02:53 | Loss: 0.608 | Acc: 0.865
 [INFO] Iteration 01 | Epoch 04 | Train      --> 9921/9921 batches | Elapsed time: 01:53:43 | Loss: 0.388 | Acc: 0.877
 [INFO] Iteration 01 | Epoch 04 | Val        --> 350/350 batches | Elapsed time: 00:02:49 | Loss: 0.486 | Acc: 0.9
+[INFO] Iteration 01 | Epoch 05 | Train      --> 9921/9921 batches | Elapsed time: 01:56:20 | Loss: 1.33 | Acc: 0.702
+[INFO] Iteration 01 | Epoch 05 | Val        --> 350/350 batches | Elapsed time: 00:02:38 | Loss: 0.524 | Acc: 0.875
+[INFO] Iteration 01 | Epoch 06 | Train      --> 9921/9921 batches | Elapsed time: 01:53:49 | Loss: 1.12 | Acc: 0.742
+[INFO] Iteration 01 | Epoch 06 | Val        --> 350/350 batches | Elapsed time: 00:02:55 | Loss: 0.469 | Acc: 0.889
+[INFO] Iteration 01 | Epoch 07 | Train      --> 9921/9921 batches | Elapsed time: 02:00:22 | Loss: 1.041 | Acc: 0.758
+[INFO] Iteration 01 | Epoch 07 | Val        --> 350/350 batches | Elapsed time: 00:02:41 | Loss: 0.491 | Acc: 0.895
+[INFO] Iteration 01 | Epoch 08 | Train      --> 9921/9921 batches | Elapsed time: 01:52:17 | Loss: 0.976 | Acc: 0.772
+[INFO] Iteration 01 | Epoch 08 | Val        --> 350/350 batches | Elapsed time: 00:02:41 | Loss: 0.437 | Acc: 0.903
+[INFO] Iteration 01 | Epoch 09 | Train      --> 9921/9921 batches | Elapsed time: 01:52:33 | Loss: 0.924 | Acc: 0.783
+[INFO] Iteration 01 | Epoch 09 | Val        --> 350/350 batches | Elapsed time: 00:02:41 | Loss: 0.426 | Acc: 0.909
+[INFO] Iteration 01 | Epoch 10 | Train      --> 9921/9921 batches | Elapsed time: 01:53:37 | Loss: 0.889 | Acc: 0.789
+[INFO] Iteration 01 | Epoch 10 | Val        --> 350/350 batches | Elapsed time: 00:03:03 | Loss: 0.404 | Acc: 0.915
 
 ################################################################################
-# SESSION STARTED: 2026-02-14 18:47:06
-# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 5 --skip-aggregate --skip-validate
+# SESSION STARTED: 2026-02-15 06:41:49
+# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 10 --skip-aggregate --skip-validate --cool-down 5
 ################################################################################
 
 [INFO] Skipping data aggregation...
 [INFO] Skipping dataset validation...
-[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e04.pth
-[INFO] Resuming from checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e04.pth
+[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e10.pth
+[INFO] Resuming from checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e10.pth
 [INFO] No new data. Resuming current iteration (i1)...
-[INFO] Iteration 01 | Epoch 05 | Train      --> 9921/9921 batches | Elapsed time: 01:56:20 | Loss: 1.33 | Acc: 0.702
-[INFO] Iteration 01 | Epoch 05 | Val        --> 350/350 batches | Elapsed time: 00:02:38 | Loss: 0.524 | Acc: 0.875
+[INFO] Iteration 01 | Epoch 11 | Train      --> 9921/9921 batches | Elapsed time: 01:55:29 | Loss: 0.862 | Acc: 0.796
+[INFO] Iteration 01 | Epoch 11 | Val        --> 350/350 batches | Elapsed time: 00:02:46 | Loss: 0.418 | Acc: 0.915
+[INFO] Iteration 01 | Epoch 12 | Train      --> 9921/9921 batches | Elapsed time: 01:53:23 | Loss: 0.830 | Acc: 0.802
+[INFO] Iteration 01 | Epoch 12 | Val        --> 350/350 batches | Elapsed time: 00:02:43 | Loss: 0.435 | Acc: 0.919
+
+################################################################################
+# SESSION STARTED: 2026-02-15 11:31:33
+# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 8 --num-workers 8 --skip-aggregate --skip-validate --cool-down 2
+################################################################################
+
+[INFO] Skipping data aggregation...
+[INFO] Skipping dataset validation...
+[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e12.pth
+[INFO] Resuming from checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e12.pth
+[INFO] No new data. Resuming current iteration (i1)...
+[INFO] Iteration 01 | Epoch 13 | Train      --> 9921/9921 batches | Elapsed time: 00:52:07 | Loss: 0.806 | Acc: 0.808
+[INFO] Iteration 01 | Epoch 13 | Val        --> 350/350 batches | Elapsed time: 00:01:04 | Loss: 0.421 | Acc: 0.919
+
+################################################################################
+# SESSION STARTED: 2026-02-15 12:29:08
+# COMMAND: train.py -m lepidoptera -v v2 --max-epochs 7 --batch-size 64 --num-workers 8 --skip-aggregate --skip-validate --cool-down 2
+################################################################################
+
+[INFO] Skipping data aggregation...
+[INFO] Skipping dataset validation...
+[INFO] Auto-detected latest checkpoint: checkpoint.lepidoptera.v2.i01.e13.pth
+[INFO] Resuming from checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e13.pth
+[INFO] No new data. Resuming current iteration (i1)...
+[INFO] Iteration 01 | Epoch 14 | Train      --> 4961/4961 batches | Elapsed time: 00:27:15 | Loss: 0.694 | Acc: 0.832
+[INFO] Iteration 01 | Epoch 14 | Val        --> 175/175 batches | Elapsed time: 00:00:51 | Loss: 0.387 | Acc: 0.930
+[INFO] Iteration 01 | Epoch 15 | Train      --> 4961/4961 batches | Elapsed time: 00:27:13 | Loss: 0.677 | Acc: 0.836
+[INFO] Iteration 01 | Epoch 15 | Val        --> 175/175 batches | Elapsed time: 00:00:51 | Loss: 0.386 | Acc: 0.930
+[INFO] Iteration 01 | Epoch 16 | Train      --> 4961/4961 batches | Elapsed time: 00:27:14 | Loss: 0.658 | Acc: 0.840
+[INFO] Iteration 01 | Epoch 16 | Val        --> 175/175 batches | Elapsed time: 00:00:51 | Loss: 0.387 | Acc: 0.931
+[INFO] Iteration 01 | Epoch 17 | Train      --> 4961/4961 batches | Elapsed time: 00:27:13 | Loss: 0.643 | Acc: 0.844
+[INFO] Iteration 01 | Epoch 17 | Val        --> 175/175 batches | Elapsed time: 00:00:51 | Loss: 0.384 | Acc: 0.931
+[INFO] Iteration 01 | Epoch 18 | Train      --> 4961/4961 batches | Elapsed time: 00:27:15 | Loss: 0.634 | Acc: 0.846
+[INFO] Iteration 01 | Epoch 18 | Val        --> 175/175 batches | Elapsed time: 00:00:51 | Loss: 0.410 | Acc: 0.929
+[INFO] Iteration 01 | Epoch 19 | Train      --> 4961/4961 batches | Elapsed time: 00:27:30 | Loss: 0.619 | Acc: 0.849
+[INFO] Iteration 01 | Epoch 19 | Val        --> 175/175 batches | Elapsed time: 00:00:58 | Loss: 0.365 | Acc: 0.937
+[INFO] Iteration 01 | Epoch 20 | Train      --> 4961/4961 batches | Elapsed time: 00:27:12 | Loss: 0.609 | Acc: 0.850
+[INFO] Iteration 01 | Epoch 20 | Val        --> 175/175 batches | Elapsed time: 00:00:50 | Loss: 0.359 | Acc: 0.935

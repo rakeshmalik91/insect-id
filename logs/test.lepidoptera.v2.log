@@ -1,100 +1,94 @@
 
 ################################################################################
-# SESSION STARTED: 2026-02-14 18:38:18
+# SESSION STARTED: 2026-02-15 16:14:16
 # COMMAND: test.py -m lepidoptera -v v2 --test-dirs insect-dataset/src/test*/lepidoptera --print-no-match --top-k 3 --log-replace
 ################################################################################
 
-[INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e04.pth
+[INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v2.i01.e20.pth
 
 ============================================================
 [INFO] Testing on: insect-dataset/src\test\lepidoptera
 ============================================================
-amata-spp                : amata-cyssea(0.859)  amata-bicincta(0.112)  amata-passalis(0.028)  
-eupterote-undata-2       : ophiusa-tirhaca(0.543)  hamodes-pendleburyi(0.072)  hamodes-propitia(0.068)  
-melanitis-leda-3         : melanitis-zitenius(0.821)  melanitis-phedima(0.096)  amblychia-angeronaria(0.010)  
-neptis-spp-2             : neptis-soma(0.770)  neptis-nata(0.104)  neptis-clinia(0.071)  
-neptis-spp               : neptis-nata(0.605)  neptis-clinia(0.164)  neptis-harita(0.147)  
-papilio-bianor           : papilio-polyctor(0.857)  papilio-paris(0.116)  papilio-buddha(0.009)  
-unidentified-buttrefly-1 : freyeria-trochylus(0.223)  zizina-otis(0.145)  zizula-hylax(0.145)  
-unidentified-larva-1     : syntomoides-imaon(0.130)  hippotion-rosetta-early(0.070)  theretra-oldenlandiae-early(0.066)  
-unidentified-moth-2      : orgyia-postica-early(0.491)  orgyia-postica(0.284)  locharna-strigipennis(0.107)  
-unidentified-moth-3a     : cangetta-rectilinea(0.284)  pyralis-manihotalis(0.159)  rhodophaea-actiosella(0.100)  
-unidentified-moth-3b     : locastra-muscosalis(0.917)  pyralis-manihotalis(0.040)  polydesma-boarmoides(0.010)  
-unidentified-moth-4a     : hypomecis-cineracea(0.666)  hypomecis-transcissa(0.218)  cusiala-boarmoides(0.040)  
-unidentified-moth-4b     : cleora-injectaria(0.459)  hypomecis-cineracea(0.323)  hypomecis-transcissa(0.070)  
-unidentified-moth-5      : athetis-thoracica(0.203)  eugoa-basipuncta(0.160)  dichagyris-flammatra(0.149)  
-vindula-spp              : cirrochroa-tyche(0.481)  vindula-erota(0.473)  telicota-bambusae(0.013)  
-Top   1 accuracy: 40/55 -> 72.73%, genus matched: 51/55 -> 92.73%
+amata-spp                : amata-cyssea(0.991)  amata-bicincta(0.005)  amata-passalis(0.003)  
+eupterote-undata-2       : hamodes-pendleburyi(0.541)  hamodes-propitia(0.310)  achaea-serva(0.118)  
+melanitis-leda-2         : melanitis-phedima(0.781)  melanitis-zitenius(0.143)  telinga-oculus(0.067)  
+melanitis-leda-3         : melanitis-zitenius(0.947)  melanitis-phedima(0.051)  mycalesis-perseus(0.001)  
+neptis-spp-2             : neptis-soma(0.632)  neptis-clinia(0.250)  neptis-neptis-spp(0.085)  
+neptis-spp               : neptis-nata(0.611)  neptis-harita(0.121)  neptis-hylas(0.090)  
+unidentified-buttrefly-1 : tarucus-callinara(0.323)  nacaduba-beroe(0.170)  tarucus-ananda(0.149)  
+unidentified-larva-1     : papilio-agenor(0.125)  charaxes-eudamippus(0.086)  psilogramma-increta-early(0.062)  
+unidentified-moth-2      : orgyia-postica-early(0.897)  orgyia-postica(0.072)  asura-conferta(0.009)  
+unidentified-moth-3a     : marasmia-poeyalis(0.430)  cnaphalocrocis-trebiusalis(0.144)  locastra-muscosalis(0.113)  
+unidentified-moth-3b     : polydesma-boarmoides(0.927)  pericyma-cruegeri(0.028)  gasterocome-pannosaria(0.023)  
+unidentified-moth-4a     : cleora-injectaria(0.891)  cleora-fraterna(0.064)  pingasa-lariaria(0.018)  
+unidentified-moth-4b     : cleora-injectaria(0.868)  hypomecis-transcissa(0.048)  cusiala-boarmoides(0.026)  
+unidentified-moth-5      : laelia-exclamationis(0.639)  athetis-bremusa(0.169)  pantydia-metaspila(0.047)  
+vindula-spp              : cirrochroa-tyche(0.557)  vindula-erota(0.433)  cirrochroa-thais(0.008)  
+Top   1 accuracy: 37/55 -> 67.27%, genus matched: 37/55 -> 67.27%
 Top   3 accuracy: 49/55 -> 89.09%, genus matched: 54/55 -> 98.18%
 
 ============================================================
 [INFO] Testing on: insect-dataset/src\test_chinu\lepidoptera
 ============================================================
-unidentified-moth-1  : hasora-chromus(0.522)  hasora-taminatus(0.165)  bibasis-sena(0.137)  
-unidentified-moth-2  : speiredonia-mutabilis(0.188)  progonia-kurosawai(0.156)  dysallacta-negatalis(0.097)  
-zizina-otis-2        : freyeria-putli(0.498)  freyeria-trochylus(0.442)  zizeeria-karsandra(0.022)  
-zizina-otis-3        : freyeria-trochylus(0.405)  chilades-lajus(0.193)  azanus-jesous(0.115)  
-Top   1 accuracy: 8/11 -> 72.73%, genus matched: 8/11 -> 72.73%
-Top   3 accuracy: 9/11 -> 81.82%, genus matched: 9/11 -> 81.82%
+unidentified-moth-1  : hasora-chromus(0.924)  hasora-taminatus(0.041)  lyssa-zampa(0.026)  
+unidentified-moth-2  : ericeia-inangulata(0.851)  pandesma-spp(0.071)  ericeia-pertendens(0.038)  
+zizina-otis-1        : freyeria-trochylus(0.323)  azanus-jesous(0.249)  zizeeria-karsandra(0.216)  
+zizina-otis-2        : zizeeria-karsandra(0.371)  freyeria-trochylus(0.326)  mycalesis-perseus(0.114)  
+zizina-otis-3        : freyeria-trochylus(0.572)  zizeeria-karsandra(0.355)  pseudozizeeria-maha(0.023)  
+Top   1 accuracy: 6/11 -> 54.55%, genus matched: 6/11 -> 54.55%
+Top   3 accuracy: 8/11 -> 72.73%, genus matched: 8/11 -> 72.73%
 
 ============================================================
 [INFO] Testing on: insect-dataset/src\test_ig\lepidoptera
 ============================================================
-chersonesia-risa     : chersonesia-intermedia(0.992)  pseudergolis-wedah(0.002)  thinopteryx-crocoptera(0.001)  
-oriens-spp           : telicota-ohara(0.652)  oriens-concinna(0.182)  oriens-goloides(0.100)  
-Top   1 accuracy: 11/17 -> 64.71%, genus matched: 16/17 -> 94.12%
-Top   3 accuracy: 15/17 -> 88.24%, genus matched: 17/17 -> 100.00%
+oriens-spp           : telicota-ohara(0.785)  oriens-goloides(0.088)  potanthus-palnia(0.061)  
+ticherra-acte        : rapala-suffusa(0.490)  rapala-dieneces(0.247)  rapala-manea(0.146)  
+Top   1 accuracy: 12/17 -> 70.59%, genus matched: 12/17 -> 70.59%
+Top   3 accuracy: 15/17 -> 88.24%, genus matched: 16/17 -> 94.12%
 
 ============================================================
 [INFO] Testing on: insect-dataset/src\test_random\lepidoptera
 ============================================================
-alcanola-speideli          : alcanola-tympanistis(0.999)  manoba-lativittata(0.000)  manoba-adriennae(0.000)  
-apona-caschmirensis-2      : sacada-pallescens(0.515)  polyptychus-dentatus(0.098)  polyptychus-trilineatus(0.062)  
-apona-caschmirensis        : apona-shevaroyensis(0.773)  ganisa-similis(0.062)  clanidopsis-exusta(0.032)  
-arnetta-mercara-2          : aeromachus-dubius(0.393)  arnetta-atkinsoni(0.203)  astictopterus-jama(0.091)  
-caltoris-aurociliata-2     : caltoris-kumara(0.990)  polytremis-lubricans(0.003)  caltoris-philippina(0.002)  
-caltoris-aurociliata       : caltoris-cormasa(0.987)  caltoris-sirius(0.004)  caltoris-cahira(0.002)  
-charaxes-bernardus-2       : cethosia-cyane(0.995)  cupha-erymanthis(0.003)  hypolimnas-misippus(0.002)  
-corcobara-angulipennis     : loepa-schintlmeisteri(0.352)  dysphania-militaris(0.115)  dysphania-militaris-early(0.114)  
-doleschallia-bisaltide-3   : kallima-inachus(0.268)  kallima-horsfieldii(0.171)  charaxes-bernardus(0.097)  
-fascellina-inornata        : agathia-hemithearia(0.464)  chloromianta-ferruginata(0.259)  comibaena-attenuata(0.075)  
-herdonia-gigantea          : herdonia-osacesalis(0.477)  hypolamprus-emblicalis(0.169)  herdonia-thaiensis(0.156)  
-herona-marathus-4          : neptis-radha(0.514)  sephisa-dichroa(0.209)  symbrenthia-lilaea(0.123)  
-herona-marathus-early      : psilogramma-increta-early(0.180)  eupanacra-mydon-early(0.136)  theretra-pallicosta-early(0.124)  
-hypolycaena-erylus-3       : rapala-manea(0.740)  tajuria-jehana(0.050)  rapala-varuna(0.027)  
-hypolycaena-erylus         : rapala-manea(0.740)  tajuria-jehana(0.050)  rapala-varuna(0.027)  
-hypolycaena-othona-2       : celatoxia-marginata(0.249)  chliaria-othona(0.222)  tajuria-diaeus(0.080)  
-lethe-mekara               : lethe-chandica(0.874)  lethe-vindhya(0.087)  lethe-kansa(0.010)  
-macroglossum-gyrans        : macroglossum-sitiene(0.141)  macroglossum-affictitia(0.131)  pachliopta-aristolochiae(0.122)  
-nacaduba-sinhala-2         : prosotas-dubiosa(0.444)  nacaduba-nacaduba-spp(0.161)  nacaduba-calauria(0.119)  
-nacaduba-sinhala           : prosotas-dubiosa(0.406)  nacaduba-kurava(0.301)  prosotas-aluta(0.078)  
-neopheosia-fasciata        : xenotrachea-albidisca(0.971)  checupa-fortissima(0.019)  herochroma-ochreipicta(0.003)  
-neptis-nata-2              : neptis-clinia(0.623)  neptis-soma(0.205)  neptis-sappho(0.086)  
-neptis-zaida-2             : neptis-ananta(0.395)  neptis-radha(0.278)  neptis-miah(0.173)  
-olene-mendosa-2            : cyana-puella(0.179)  cyana-peregrina(0.176)  metanastria-hyrtaca(0.150)  
-omiza-miliaria-2           : pseudopanthera-himaleyica(0.380)  raparna-ochreipennis(0.252)  purpurata-iopasalis(0.175)  
-omiza-miliaria             : oreta-fuscopurpurea(0.303)  oreta-extensa(0.215)  dalima-vulpinaria(0.182)  
-papilio-bianor             : papilio-polyctor(0.867)  papilio-paris(0.116)  papilio-arcturus(0.011)  
-potanthus-trachala-2       : taractrocera-ceramas(0.275)  potanthus-juno(0.260)  ampittia-dioscorides(0.219)  
-potanthus-trachala-5       : potanthus-pseudomaesa(0.368)  ampittia-maroides(0.131)  potanthus-pava(0.105)  
-potanthus-trachala         : potanthus-pseudomaesa(0.460)  ampittia-maroides(0.300)  potanthus-ganda(0.055)  
-rapala-varuna              : rapala-manea(0.354)  flos-fulgida(0.246)  arhopala-anthelus(0.110)  
-sebastonyma-dolopia-2      : thoressa-masoni(0.347)  potanthus-palnia(0.216)  potanthus-pallida(0.143)  
-sebastonyma-dolopia-3      : thoressa-cerata(0.869)  polytremis-discreta(0.047)  polytremis-lubricans(0.035)  
-sinthusa-chandrana-2       : hypolycaena-kina(0.491)  hypolycaena-nilgirica(0.375)  ancema-ctesia(0.022)  
-sinthusa-chandrana-4       : flos-diardi(0.454)  arhopala-abseus(0.193)  flos-fulgida(0.076)  
-tajuria-yajna-2            : rapala-damona(0.596)  rapala-dieneces(0.256)  remelana-jangala(0.082)  
-tajuria-yajna-3            : tajuria-cippus(0.855)  creon-cleobis(0.086)  ancema-blanka(0.034)  
-tajuria-yajna-4            : remelana-jangala(0.919)  tajuria-melastigma(0.025)  rapala-damona(0.011)  
-tajuria-yajna              : remelana-jangala(0.309)  horaga-albimacula(0.189)  rapala-dieneces(0.141)  
-tarucus-venosus            : tarucus-indica(0.441)  tarucus-nara(0.245)  tarucus-balkanica(0.237)  
-ypthima-baldus-6           : ypthima-ceylonica(0.975)  ypthima-huebneri(0.021)  ypthima-lisandra(0.001)  
-Top   1 accuracy: 224/308 -> 72.73%, genus matched: 267/308 -> 86.69%
-Top   3 accuracy: 267/308 -> 86.69%, genus matched: 288/308 -> 93.51%
+apona-caschmirensis-2      : taviodes-fulvescens(0.733)  polyptychus-dentatus(0.149)  palirisa-cervina(0.038)  
+apona-caschmirensis        : clanidopsis-exusta(0.893)  apona-shevaroyensis(0.043)  eupterote-undata(0.030)  
+arnetta-mercara-2          : arnetta-atkinsoni(0.612)  caltoris-cormasa(0.379)  astictopterus-jama(0.004)  
+caltoris-aurociliata-2     : caltoris-kumara(0.736)  caltoris-cormasa(0.201)  caltoris-philippina(0.050)  
+caltoris-aurociliata       : caltoris-cormasa(1.000)  caltoris-philippina(0.000)  baoris-farri(0.000)  
+conogethes-sahyadriensis   : conogethes-punctiferalis(0.993)  antipercnia-belluaria(0.004)  herpetogramma-cynaralis(0.001)  
+corcobara-angulipennis     : loepa-schintlmeisteri(0.298)  antheraea-paphia(0.241)  loepa-spp(0.222)  
+fascellina-inornata        : fascellina-plagiata(0.728)  leptomiza-calcearia(0.132)  prionodonta-amethystina(0.080)  
+herdonia-gigantea          : herdonia-thaiensis(0.672)  herdonia-osacesalis(0.306)  attacus-atlas(0.008)  
+herona-marathus-2          : dysphania-subrepleta(0.322)  symbrenthia-lilaea(0.149)  sephisa-dichroa(0.085)  
+herona-marathus-4          : athyma-cama(0.365)  symbrenthia-lilaea(0.303)  dodona-eugenes(0.095)  
+herona-marathus-early      : polyptychus-dentatus-early(0.267)  chadisra-bipars-early(0.115)  eupanacra-mydon-early(0.105)  
+lethe-mekara               : lethe-vindhya(0.771)  lethe-kansa(0.166)  lethe-chandica(0.040)  
+macroglossum-gyrans        : macroglossum-stellatarum(0.706)  macroglossum-belis(0.196)  macroglossum-sitiene(0.045)  
+nacaduba-pavana-2          : prosotas-aluta(0.318)  nacaduba-kurava(0.207)  nacaduba-sinhala(0.167)  
+neopheosia-fasciata        : xenotrachea-albidisca(0.998)  trachea-auriplena(0.001)  herochroma-ochreipicta(0.000)  
+neptis-nata-2              : neptis-soma(0.736)  neptis-neptis-spp(0.184)  neptis-clinia(0.073)  
+olene-mendosa-2            : lopharthrum-comprimens(0.428)  netria-viridescens(0.322)  saturnia-simla(0.028)  
+papilio-bianor             : papilio-arcturus(0.371)  papilio-paris(0.321)  papilio-polyctor(0.229)  
+potanthus-trachala-2       : potanthus-ganda(0.807)  taractrocera-ceramas(0.108)  telicota-ohara(0.042)  
+potanthus-trachala-5       : potanthus-pseudomaesa(0.358)  potanthus-ganda(0.216)  potanthus-pava(0.198)  
+potanthus-trachala         : potanthus-pseudomaesa(0.787)  potanthus-ganda(0.146)  telicota-linna(0.022)  
+sebastonyma-dolopia-3      : thoressa-cerata(0.991)  polytremis-discreta(0.004)  scobura-parawoolletti(0.003)  
+sinthusa-chandrana-2       : hypolycaena-nilgirica(0.553)  hypolycaena-kina(0.364)  hypolycaena-kina-early(0.081)  
+sinthusa-chandrana-4       : artipe-eryx(0.449)  arhopala-paramuta(0.153)  arhopala-birmana(0.151)  
+tajuria-yajna-2            : rapala-nissa(0.485)  rapala-spp(0.149)  rapala-dieneces(0.142)  
+tajuria-yajna-3            : tajuria-cippus(0.424)  horaga-onyx(0.208)  creon-cleobis(0.148)  
+tajuria-yajna-4            : remelana-jangala(0.891)  heliophorus-epicles(0.031)  rapala-dieneces(0.024)  
+tarucus-venosus            : tarucus-nara(0.724)  tarucus-indica(0.246)  tarucus-balkanica(0.020)  
+theretra-alecto            : theretra-tibetiana(0.916)  theretra-clotho(0.064)  theretra-pallicosta(0.010)  
+ypthima-baldus-2           : ypthima-ceylonica(0.809)  ypthima-philomela(0.140)  ypthima-huebneri(0.027)  
+ypthima-baldus-3           : ypthima-ceylonica(0.764)  ypthima-huebneri(0.080)  ypthima-philomela(0.054)  
+ypthima-baldus-5           : ypthima-huebneri(0.956)  ypthima-tabella(0.022)  ypthima-kasmira(0.006)  
+ypthima-baldus-6           : ypthima-ceylonica(0.988)  ypthima-huebneri(0.011)  ypthima-lisandra(0.000)  
+Top   1 accuracy: 229/308 -> 74.35%, genus matched: 229/308 -> 74.35%
+Top   3 accuracy: 274/308 -> 88.96%, genus matched: 296/308 -> 96.10%
 
 ============================================================
 [INFO] Combined Statistics
 ============================================================
-Top   1 accuracy: 283/391 -> 72.38%, genus matched: 342/391 -> 87.47%
-Top   3 accuracy: 340/391 -> 86.96%, genus matched: 368/391 -> 94.12%
+Top   1 accuracy: 284/391 -> 72.63%, genus matched: 284/391 -> 72.63%
+Top   3 accuracy: 346/391 -> 88.49%, genus matched: 374/391 -> 95.65%
 ----------

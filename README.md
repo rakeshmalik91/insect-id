@@ -84,7 +84,7 @@ python scrape.py --types moth butterfly
 python scrape.py --new-species
 ```
 
-**Logs**: `logs/scrape.log`
+**Logs**: `logs/scrape.{type}.log`
 
 ### 2. Training (`train.py`)
 Handles data aggregation, validation, and model training (from scratch or incremental).
@@ -126,6 +126,23 @@ python test.py --print-preds --top-k 1 3 5
 ```
 
 **Logs**: `logs/test.{model_name}.{version}.log`
+
+### 4. Asset Publishing (`publish.py`)
+Generates production assets (TorchScript models, image archives, metadata) from trained checkpoints.
+
+```bash
+# Publish all assets for a model
+python publish.py -m lepidoptera -v v2
+
+# Publish specific assets
+python publish.py -m odonata --task images
+python publish.py -m cicada --task model
+
+# Publish ExecutionTorch model
+python publish.py -m lepidoptera -v v2 --task model --executorch
+```
+
+**Logs**: `logs/publish.{model_name}.{version}.log`
 
 ## 🛠️ Python Library Usage (`mynnlib`)
 

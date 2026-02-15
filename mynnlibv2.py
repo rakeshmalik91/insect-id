@@ -163,15 +163,17 @@ def __init_teacher_model(model_data):
             p.requires_grad = False
     return model_data
 
-def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4, validate=True):
+def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4, validate=True, num_workers=0):
     model_data = { 
         'version': 'v2', 
         'iteration': 1, 
         'epoch': 0,
         'batch_size': batch_size,
         'image_size': image_size,
+        'image_size': image_size,
         'train_dir': train_dir,
-        'val_dir': val_dir
+        'val_dir': val_dir,
+        'num_workers': num_workers
     }
 
     model_data = __init_classes(model_data, train_dir)
@@ -183,11 +185,13 @@ def init_model(train_dir, val_dir, batch_size=32, image_size=224, lr=1e-4, valid
 
     return model_data
 
-def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
+def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True, num_workers=None):
     model_data['iteration'] += 1
     model_data['epoch'] = 0
     del model_data['train_start_time']
     model_data['train_dir'], model_data['val_dir'] = train_dir, val_dir
+    if num_workers is not None:
+        model_data['num_workers'] = num_workers
 
     model_data = __init_classes(model_data, train_dir)
     if validate:
@@ -208,6 +212,7 @@ def init_iteration(model_data, train_dir, val_dir, lr=1e-4, validate=True):
 def __init_dataloaders(model_data, robustness=0.3):
     train_dir, val_dir = model_data['train_dir'], model_data['val_dir']
     batch_size, image_size = model_data['batch_size'], model_data['image_size']
+    num_workers = model_data.get('num_workers', 0)
 
     if 'dataloaders' not in model_data:
         model_data['transform'], model_data['datasets'], model_data['dataloaders'] = {}, {}, {}
@@ -231,7 +236,7 @@ def __init_dataloaders(model_data, robustness=0.3):
             labels = [ img[1] for img in image_data],
             transform = model_data['transform'][phase]
         )
-        model_data['dataloaders'][phase] = DataLoader(model_data['datasets'][phase], batch_size=batch_size, shuffle=True)
+        model_data['dataloaders'][phase] = DataLoader(model_data['datasets'][phase], batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True)
 
     return model_data
 
@@ -281,15 +286,28 @@ def __init_epoch_progress_bar(phase, model_data, dataloader):
 def __update_epoch_progress_bar(progress_data, total_loss, total_correct, total_samples):
     progress_data['data_idx'] += 1
     
+    # Pause check (Windows only)
+    force_print = False
+    if os.name == 'nt':
+        import msvcrt
+        if msvcrt.kbhit() and msvcrt.getch().lower() == b'p':
+            print(f"\r[PAUSED] Press 'p' to resume...{' '*50}", end='', flush=True)
+            pause_start = time.time()
+            while True:
+                if msvcrt.kbhit() and msvcrt.getch().lower() == b'p':
+                    break
+                time.sleep(0.1)
+            pause_duration = time.time() - pause_start
+            progress_data['epoch_start_time'] += pause_duration
+            force_print = True
+    
     if not progress_data.get('has_widgets', False):
-        elapsed = time.time() - progress_data['epoch_start_time']
-        remaining = 0
-        if progress_data['data_idx'] > 0:
-             remaining = (elapsed / progress_data['data_idx']) * (progress_data['data_cnt'] - progress_data['data_idx'])
-        
-        p_name = progress_data['phase'].replace('_', ' ').capitalize()
-        msg = f"\rIteration {progress_data['iteration']:02} | Epoch {progress_data['epoch']:02} | {p_name:10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}"
-        print(msg, end='', flush=True)
+        # Print only every 5 batches, on the last batch, or if forced (e.g. after pause)
+        if force_print or progress_data['data_idx'] % 5 == 0 or progress_data['data_idx'] == progress_data['data_cnt']:
+            elapsed = time.time() - progress_data['epoch_start_time']
+            p_name = progress_data['phase'].replace('_', ' ').capitalize()
+            msg = f"\r[INFO] Iteration {progress_data['iteration']:02} | Epoch {progress_data['epoch']:02} | {p_name:10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}"
+            print(msg, end='', flush=True)
         return
 
     elapsed = time.time() - progress_data['epoch_start_time']
@@ -301,7 +319,8 @@ def __remove_epoch_progress_bar(phase, model_data, progress_data, total_loss, to
     if progress_data.get('has_widgets', False):
         progress_data['box'].close()
     elapsed = time.time() - progress_data['epoch_start_time']
-    print(f"\r[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace('_', ' ').capitalize():10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}")
+    print(f"\r", end="")
+    print(f"[INFO] Iteration {model_data['iteration']:02} | Epoch {model_data['epoch']:02} | {phase.replace('_', ' ').capitalize():10} --> {progress_data['data_idx']}/{progress_data['data_cnt']} batches | Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(elapsed))} | Loss: {total_loss / total_samples:.3f} | Acc: {total_correct / total_samples:.3f}")
 
 
 def __extract_dataloader_subset(dataloader, dataset_subset_ratio):
@@ -322,6 +341,10 @@ def __merge_dataloaders(loader1, loader2):
 def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0, replay_ratio=0.0):
     model_data['model'].train() if phase == 'train' else model_data['model'].eval()
     total_loss, total_correct, total_samples = 0.0, 0, 0
+    
+    # Initialize scaler for mixed precision
+    if 'scaler' not in model_data and phase == 'train':
+        model_data['scaler'] = torch.amp.GradScaler('cuda')
 
     # merge replay data
     dataloader = model_data['dataloaders'][phase]
@@ -338,19 +361,29 @@ def __run_epoch(phase, model_data, distill_lambda=1.0, temperature=2.0, replay_r
         imgs, labels = imgs.to(model_data['device']), labels.to(model_data['device'])
 
         model_data['optimizer'].zero_grad()
+        
+        # Mixed Precision Training
         with torch.set_grad_enabled(phase == 'train'):
-            outputs = model_data['model'](imgs)
-            loss = model_data['criterion'](outputs, labels)
-
-            # Add distillation loss if teacher is given
-            if 'teacher_model' in model_data and phase == 'train':
-                with torch.no_grad():
-                    teacher_outputs = model_data['teacher_model'](imgs)
-                loss += distill_lambda * __distillation_loss(outputs, teacher_outputs, temperature)
-
             if phase == 'train':
-                loss.backward()
-                model_data['optimizer'].step()
+                with torch.amp.autocast('cuda'):
+                    outputs = model_data['model'](imgs)
+                    loss = model_data['criterion'](outputs, labels)
+
+                    # Add distillation loss if teacher is given
+                    if 'teacher_model' in model_data:
+                        with torch.no_grad():
+                            teacher_outputs = model_data['teacher_model'](imgs)
+                        loss += distill_lambda * __distillation_loss(outputs, teacher_outputs, temperature)
+                
+                # Backward pass with scaler
+                model_data['scaler'].scale(loss).backward()
+                model_data['scaler'].step(model_data['optimizer'])
+                model_data['scaler'].update()
+            else:
+                # Validation (no scaler needed/used, but autocast helps speed)
+                with torch.amp.autocast('cuda'):
+                    outputs = model_data['model'](imgs)
+                    loss = model_data['criterion'](outputs, labels)
 
         total_loss += loss.item() * imgs.size(0)
         _, preds = torch.max(outputs, 1)
@@ -371,7 +404,7 @@ def run_epoch(model_data, output_path, robustness_lambda=0.05, replay_ratio=0):
     if 'train_start_time' not in model_data:
         model_data['train_start_time'] = time.time()
         model_data['elapsed_time'] = 0
-        print(f"[INFO] Training started at {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}")
+        print(f"[INFO] Training started at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     start_time = time.time()
     model_data['epoch'] += 1
     result = { 'model_data': model_data, 'epoch': model_data['epoch'], 'iteration': model_data['iteration'] }
@@ -443,57 +476,122 @@ def test_top_k(model_data, test_dir, k, print_preds=True, print_accuracy=True, p
     success_cnt = 0
     genus_success_cnt = 0
     total_cnt = 0
-    max_file_name_length = max([ len(file.name.split('.')[0]) for file in Path(test_dir).iterdir() ])
-    for file in Path(test_dir).iterdir():
+    
+    # Collect files and determine ground truth source
+    test_path = Path(test_dir)
+    items = [] # list of (file_path, ground_truth_label, is_valid_sample)
+    
+    # Check structure
+    try:
+        has_subdirs = any(p.is_dir() for p in test_path.iterdir())
+    except Exception:
+        has_subdirs = False
+        
+    if has_subdirs:
+        # Directory structure: Class/Image.jpg
+        for class_dir in test_path.iterdir():
+            if class_dir.is_dir():
+                ground_truth = class_dir.name
+                for f in class_dir.iterdir():
+                    if f.is_file() and not f.name.startswith('.'):
+                        items.append((f, ground_truth, True))
+    else:
+        # Flat structure: Image_Species.jpg
+        for f in test_path.iterdir():
+            if f.is_file() and not f.name.startswith('.'):
+                is_valid = 'unidentified' not in f.name
+                items.append((f, f.name, is_valid))
+
+    max_name_len = max([len(f.name.split('.')[0]) for f, _, _ in items]) if items else 0
+
+    for file, ground_truth, is_valid in items:
         if print_preds:
-            print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
-        if not 'unidentified' in file.name:
-            total_cnt = total_cnt + 1
+            print(f"{file.name.split('.')[0]:{max_name_len+1}}:", end=' ')
+            
+        if is_valid:
+            total_cnt += 1
+            
         probs = predict_top_k(file, model_data, k)
-        genus_matched = False
+        if probs is None: continue # Skip if error opening image
+
         species_matched = False
+        genus_matched = False
+        
+        # probs is ordered Top-1 to Top-K (assuming OrderedDict or Py3.7+ dict)
+        top1_pred = list(probs.keys())[0] if probs else None
+        
         for pred, prob in probs.items():
             if not match_filter or prob >= match_filter:
-                if pred in file.name:
+                # Check Match
+                is_match = False
+                if has_subdirs:
+                     if pred == ground_truth: is_match = True
+                else:
+                     if pred in ground_truth: is_match = True
+                     
+                if is_match and is_valid:
                     species_matched = True
-                    success_cnt = success_cnt + 1
-                if pred.split('-')[0] in file.name:
-                    genus_matched = True
-                if print_preds and pred in file.name:
-                    print(f"\033[32m{pred}\033[0m({prob:.3f}) ", end=' ')
-                elif print_preds:
-                    print(f"{pred}({prob:.3f}) ", end=' ')
-        if genus_matched:
-            genus_success_cnt = genus_success_cnt + 1
-        if [pred for pred, prob in probs.items()][0] in file.name:
-            top1_success_cnt = top1_success_cnt + 1
-        if [pred.split('-')[0] for pred, prob in probs.items()][0] in file.name:
-            top1_genus_success_cnt = top1_genus_success_cnt + 1
+                    success_cnt += 1 # Count if ANY matches
+
+                # Genus Logic
+                if is_valid and pred.split('-')[0] in ground_truth:
+                   genus_matched = True
+                   
+                if print_preds:
+                    color = "\033[32m" if ((has_subdirs and pred == ground_truth) or (not has_subdirs and pred in ground_truth)) else ""
+                    reset = "\033[0m"
+                    print(f"{color}{pred}{reset}({prob:.3f}) ", end=' ')
+
         if print_preds:
-            print()
+             print() # Newline
+
         if not print_preds and print_no_match and not species_matched:
-            print(f"{file.name.split('.')[0]:{max_file_name_length+1}}:", end=' ')
-            i = 0
-            for pred, prob in probs.items():
-                # if i % 4 == 0:
-                #     print("\n\t", end=' ')
-                if not match_filter or prob >= match_filter:
-                    print(f"\033[{'33' if genus_matched else '31'}m{pred}\033[0m({prob:.3f}) ", end=' ')
-                i += 1
-            print()
-    if print_accuracy:
+             print(f"{file.name.split('.')[0]:{max_name_len+1}}:", end=' ')
+             for pred, prob in probs.items():
+                 if not match_filter or prob >= match_filter:
+                     # Color logic same as above
+                     color = "\033[32m" if ((has_subdirs and pred == ground_truth) or (not has_subdirs and pred in ground_truth)) else "\033[31m" 
+                     # Wait, if not species_matched, then NO match occurred (unless loose match logic differs?)
+                     # species_matched is set if ANY top-k matches ground_truth.
+                     # So if we are here, none matched.
+                     # But maybe genus matched?
+                     is_genus_match = pred.split('-')[0] in ground_truth
+                     color = "\033[33m" if is_genus_match else "\033[31m"
+                     
+                     reset = "\033[0m"
+                     print(f"{color}{pred}{reset}({prob:.3f}) ", end=' ')
+             print()
+
+        if genus_matched and is_valid:
+             genus_success_cnt += 1
+             
+        # Top-1 Check
+        if is_valid and top1_pred:
+             is_top1_match = False
+             if has_subdirs:
+                  if top1_pred == ground_truth: is_top1_match = True
+             else:
+                  if top1_pred in ground_truth: is_top1_match = True
+             
+             if is_top1_match:
+                  top1_success_cnt += 1
+                  if top1_pred.split('-')[0] in ground_truth:
+                       top1_genus_success_cnt += 1
+
+    if print_accuracy and total_cnt > 0:
         if print_preds:
             print("-"*10)
         if print_top1_accuracy:
+            p_str = f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%"
             if print_genus_match:
-                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%, genus matched: {top1_genus_success_cnt}/{total_cnt} -> {100*top1_genus_success_cnt/total_cnt:.2f}%")
-            else:
-                print(f"Top   1 accuracy: {top1_success_cnt}/{total_cnt} -> {100*top1_success_cnt/total_cnt:.2f}%")
+                 p_str += f", genus matched: {top1_genus_success_cnt}/{total_cnt} -> {100*top1_genus_success_cnt/total_cnt:.2f}%"
+            print(p_str)
+            
+        p_str = f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%"
         if print_genus_match:
-            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%, genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%")
-        else:
-            print(f"Top {k:3} accuracy: {success_cnt}/{total_cnt} -> {100*success_cnt/total_cnt:.2f}%")
-
+             p_str += f", genus matched: {genus_success_cnt}/{total_cnt} -> {100*genus_success_cnt/total_cnt:.2f}%"
+        print(p_str)
+             
     return {
         'total_cnt': total_cnt,
         'top1_success_cnt': top1_success_cnt,

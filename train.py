@@ -309,7 +309,8 @@ def train(args):
                 model_data, 
                 f"{dataset_dir}/data", 
                 f"{dataset_dir}/val", 
-                lr=args.lr
+                lr=args.lr,
+                num_workers=args.num_workers
             )
         else:
             print(f"[INFO] No new data. Resuming current iteration (i{model_data['iteration']})...")
@@ -323,9 +324,12 @@ def train(args):
             image_size=args.image_size,
             lr=args.lr,
             validate=False,
+            num_workers=args.num_workers,
         )
 
     # 4. Run training loop
+    model_data['num_workers'] = args.num_workers
+    model_data['batch_size'] = args.batch_size
     if args.auto_stop:
         run_epochs(
             model_data,
@@ -346,7 +350,7 @@ def train(args):
                 replay_ratio=args.replay_ratio,
             )
             if args.cool_down > 0:
-                print(f"[INFO] Cooling down for {args.cool_down} minutes...")
+                sys.__stdout__.write(f"[INFO] Cooling down for {args.cool_down} minutes...\n")
                 time.sleep(args.cool_down * 60)
 
 
@@ -370,6 +374,7 @@ def build_parser():
 
     parser.add_argument("--batch-size", type=int, default=32, help="Batch size (default: 32)")
     parser.add_argument("--image-size", type=int, default=224, help="Image size (default: 224)")
+    parser.add_argument("--num-workers", type=int, default=4, help="Number of data loading workers (default: 4)")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate (default: 1e-4)")
     parser.add_argument("--max-epochs", type=int, default=15, help="Maximum number of epochs (default: 15)")
     parser.add_argument(

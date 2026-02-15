@@ -1,7 +1,7 @@
 
 ################################################################################
-# SESSION STARTED: 2026-02-14 18:25:35
-# COMMAND: test.py -m lepidoptera -v v1 --test-dirs insect-dataset/src/test*/lepidoptera --print-no-match --top-k 3
+# SESSION STARTED: 2026-02-15 15:14:05
+# COMMAND: test.py -m lepidoptera -v v1 --test-dirs insect-dataset/src/test*/lepidoptera --print-no-match --top-k 3 --log-replace
 ################################################################################
 
 [INFO] Loading checkpoint: insect-dataset/lepidoptera\checkpoint.lepidoptera.v1.i01.e20.pth
@@ -23,7 +23,7 @@ unidentified-moth-4a     : cleora-injectaria(0.456)  catoria-sublavaria(0.153)  
 unidentified-moth-4b     : cleora-injectaria(0.426)  boarmiini-genera-spp(0.126)  hypomecis-transcissa(0.118)  
 unidentified-moth-5      : spodoptera-mauritia(0.558)  laelia-exclamationis(0.269)  dichagyris-flammatra(0.045)  
 vindula-spp              : cirrochroa-tyche(0.996)  cirrochroa-thais(0.002)  vindula-erota(0.001)  
-Top   1 accuracy: 41/55 -> 74.55%, genus matched: 50/55 -> 90.91%
+Top   1 accuracy: 41/55 -> 74.55%, genus matched: 41/55 -> 74.55%
 Top   3 accuracy: 49/55 -> 89.09%, genus matched: 54/55 -> 98.18%
 
 ============================================================
@@ -32,14 +32,14 @@ Top   3 accuracy: 49/55 -> 89.09%, genus matched: 54/55 -> 98.18%
 unidentified-moth-1  : hasora-badra(0.682)  hasora-chromus(0.254)  hasora-anura(0.046)  
 unidentified-moth-2  : pandesma-spp(0.932)  achaea-serva(0.045)  ophiusa-olista(0.009)  
 zizina-otis-2        : freyeria-putli(0.488)  zizeeria-karsandra(0.387)  freyeria-trochylus(0.083)  
-Top   1 accuracy: 7/11 -> 63.64%, genus matched: 8/11 -> 72.73%
+Top   1 accuracy: 7/11 -> 63.64%, genus matched: 7/11 -> 63.64%
 Top   3 accuracy: 10/11 -> 90.91%, genus matched: 10/11 -> 90.91%
 
 ============================================================
 [INFO] Testing on: insect-dataset/src\test_ig\lepidoptera
 ============================================================
 oriens-spp           : oriens-concinna(0.945)  oriens-gola(0.046)  oriens-goloides(0.006)  
-Top   1 accuracy: 15/17 -> 88.24%, genus matched: 17/17 -> 100.00%
+Top   1 accuracy: 15/17 -> 88.24%, genus matched: 15/17 -> 88.24%
 Top   3 accuracy: 16/17 -> 94.12%, genus matched: 17/17 -> 100.00%
 
 ============================================================
@@ -69,12 +69,12 @@ tajuria-yajna-4            : rapala-damona(0.405)  remelana-jangala(0.404)  rapa
 tarucus-balkanica-5        : tarucus-theophrastus(0.848)  tarucus-nara(0.129)  tarucus-callinara(0.011)  
 tarucus-venosus            : tarucus-nara(0.800)  tarucus-indica(0.100)  tarucus-balkanica(0.069)  
 ypthima-baldus-5           : ypthima-huebneri(0.994)  ypthima-nareda(0.003)  ypthima-tabella(0.001)  
-Top   1 accuracy: 247/308 -> 80.19%, genus matched: 289/308 -> 93.83%
+Top   1 accuracy: 247/308 -> 80.19%, genus matched: 247/308 -> 80.19%
 Top   3 accuracy: 284/308 -> 92.21%, genus matched: 300/308 -> 97.40%
 
 ============================================================
 [INFO] Combined Statistics
 ============================================================
-Top   1 accuracy: 310/391 -> 79.28%, genus matched: 364/391 -> 93.09%
+Top   1 accuracy: 310/391 -> 79.28%, genus matched: 310/391 -> 79.28%
 Top   3 accuracy: 359/391 -> 91.82%, genus matched: 381/391 -> 97.44%
 ----------
