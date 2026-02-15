@@ -1,0 +1,33 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 21:58:27
+# COMMAND: .\scrape.py --types misc
+################################################################################
+
+Processing type: misc
+Scraping inaturalist.org for misc...
+[ MainThread               ]  Starting iNaturalist scraping...
+[ ThreadPoolExecutor-0_3   ]  Processed frankliniella-schultzei | taxon_id:330693
+[ ThreadPoolExecutor-0_3   ]  SUCCESS:     6 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_4   ]  Processed thrips-tabaci | taxon_id:271262
+[ ThreadPoolExecutor-0_4   ]  SUCCESS:    20 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_24  ]  Processed neoneuromus-fenestralis | taxon_id:738337
+[ ThreadPoolExecutor-0_24  ]  SUCCESS:    36 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_23  ]  Processed polistes-adustus | taxon_id:810922
+[ ThreadPoolExecutor-0_23  ]  SUCCESS:    44 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_12  ]  Processed acrotelsa-collaris | taxon_id:296176
+[ ThreadPoolExecutor-0_12  ]  SUCCESS:    46 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_32  ]  Processed nevromus-austroindicus | taxon_id:1097931
+[ ThreadPoolExecutor-0_32  ]  SUCCESS:    63 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_39  ]  Processed metallyticus-splendidus | taxon_id:473901
+[ ThreadPoolExecutor-0_39  ]  SUCCESS:   128 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_40  ]  Processed protohermes-costalis | taxon_id:732936
+[ ThreadPoolExecutor-0_40  ]  SUCCESS:   168 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_45  ]  Processed thermobia-domestica | taxon_id:261301
+[ ThreadPoolExecutor-0_45  ]  SUCCESS:   176 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_46  ]  Processed distoleon-tetragrammicus | taxon_id:119248
+[ ThreadPoolExecutor-0_46  ]  SUCCESS:   211 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_29  ]  Processed vespula-germanica | taxon_id:126155
+[ ThreadPoolExecutor-0_29  ]  SUCCESS:   224 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_42  ]  Processed scirtothrips-dorsalis | taxon_id:688846
+[ ThreadPoolExecutor-0_42  ]  SUCCESS:   339 | FAILURE:     0 | EXISTS:     0

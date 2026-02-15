@@ -1,0 +1,29 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 21:58:18
+# COMMAND: .\scrape.py --types coleoptera
+################################################################################
+
+Processing type: coleoptera
+Scraping inaturalist.org for coleoptera...
+[ MainThread               ]  Starting iNaturalist scraping...
+[ ThreadPoolExecutor-0_9   ]  Processed onthophagus-dama | taxon_id:120363
+[ ThreadPoolExecutor-0_9   ]  SUCCESS:     1 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_2   ]  Processed batocera-rufomaculata | taxon_id:1535749
+[ ThreadPoolExecutor-0_2   ]  SUCCESS:     1 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_1   ]  Processed aulacophora-foveicollis | taxon_id:550892
+[ ThreadPoolExecutor-0_1   ]  SUCCESS:    14 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_0   ]  Processed anthia-sexguttata | taxon_id:1630759
+[ ThreadPoolExecutor-0_0   ]  SUCCESS:    16 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_5   ]  Processed heliocopris-dominus | taxon_id:120362
+[ ThreadPoolExecutor-0_5   ]  SUCCESS:    99 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_4   ]  Processed coccinella-septempunctata | taxon_id:318485
+[ ThreadPoolExecutor-0_4   ]  SUCCESS:   137 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_6   ]  Processed heterorrhina-elegans | taxon_id:714336
+[ ThreadPoolExecutor-0_6   ]  SUCCESS:   199 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_11  ]  Processed protaetia-aurichalcea | taxon_id:462138
+[ ThreadPoolExecutor-0_11  ]  SUCCESS:   215 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_3   ]  Processed cheilomenes-sexmaculata | taxon_id:319910
+[ ThreadPoolExecutor-0_3   ]  SUCCESS:   224 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_10  ]  Processed oryctes-rhinoceros | taxon_id:320058
+[ ThreadPoolExecutor-0_10  ]  SUCCESS:   247 | FAILURE:     0 | EXISTS:     0

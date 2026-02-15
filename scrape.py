@@ -540,7 +540,23 @@ def main():
         "moth": ['inaturalist.org', 'mothsofindia.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "butterfly": ['ifoundbutterflies.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "odonata": ['indianodonata.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
-        "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org']
+        "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
+        "orthoptera": ['inaturalist.org'],
+        "diptera": ['inaturalist.org'],
+        "coleoptera": ['inaturalist.org'],
+        "blattodea": ['inaturalist.org'],
+        "hymenoptera": ['inaturalist.org'],
+        "mantodea": ['inaturalist.org'],
+        "phasmatodea": ['inaturalist.org'],
+        "neuroptera": ['inaturalist.org'],
+        "dermaptera": ['inaturalist.org'],
+        "ephemeroptera": ['inaturalist.org'],
+        "trichoptera": ['inaturalist.org'],
+        "plecoptera": ['inaturalist.org'],
+        "thysanoptera": ['inaturalist.org'],
+        "psocodea": ['inaturalist.org'],
+        "zygentoma": ['inaturalist.org'],
+        "megaloptera": ['inaturalist.org']
     }
 
     IGNORED_SOURCES = ["insecta.pro", "wikipedia.org", "indianbiodiversity.org"]
@@ -574,12 +590,14 @@ def main():
             elif insect_type == "butterfly":
                  family = 'lepidoptera'
                  group_name = 'Butterflies'
-            elif insect_type == "odonata":
-                 family = 'odonata'
-                 group_name = 'All'
             elif insect_type == "cicada":
                  family = 'hemiptera'
                  group_name = 'Cicada'
+            else:
+                 # Default behavior: family name matches insect_type, group is 'All'
+                 # (This covers odonata, orthoptera, diptera, coleoptera, and all the previous "misc" families)
+                 family = insect_type
+                 group_name = 'All'
         
             if family and group_name:
                  current_species_list = get_species_list(species_json, family, group_name)

@@ -1,0 +1,56 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 21:56:50
+# COMMAND: .\scrape.py --types orthoptera
+################################################################################
+
+Processing type: orthoptera
+Scraping inaturalist.org for orthoptera...
+[ MainThread               ]  Starting iNaturalist scraping...
+[ ThreadPoolExecutor-0_1   ]  Processed aiolopus-simulatrix | taxon_id:1051601
+[ ThreadPoolExecutor-0_1   ]  SUCCESS:     8 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_8   ]  Processed euconocephalus-pallidus | taxon_id:538725
+[ ThreadPoolExecutor-0_8   ]  SUCCESS:    24 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_0   ]  Processed acrida-exaltata | taxon_id:628044
+[ ThreadPoolExecutor-0_0   ]  SUCCESS:    31 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_7   ]  Processed euconocephalus-indicus | taxon_id:1544225
+[ ThreadPoolExecutor-0_7   ]  SUCCESS:    34 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_11  ]  Processed hieroglyphus-nigrorepletus | taxon_id:758405
+[ ThreadPoolExecutor-0_11  ]  SUCCESS:    81 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_4   ]  Processed conocephalus-maculatus | taxon_id:349060
+[ ThreadPoolExecutor-0_4   ]  SUCCESS:   140 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_17  ]  Processed teleogryllus-mitratus | taxon_id:491961
+[ ThreadPoolExecutor-0_17  ]  SUCCESS:   144 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_6   ]  Processed ducetia-japonica | taxon_id:1564168
+[ ThreadPoolExecutor-0_6   ]  SUCCESS:   158 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_19  ]  Processed xenocatantops-humilis | taxon_id:756398
+[ ThreadPoolExecutor-0_19  ]  SUCCESS:   147 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_15  ]  Processed phaneroptera-gracilis | taxon_id:227690
+[ ThreadPoolExecutor-0_15  ]  SUCCESS:   165 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_5   ]  Processed diabolocatantops-innotabilis | taxon_id:550685
+[ ThreadPoolExecutor-0_5   ]  SUCCESS:   156 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_3   ]  Processed chitaura-indica | taxon_id:759498
+[ ThreadPoolExecutor-0_3   ]  SUCCESS:   157 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_2   ]  Processed burrinia-burri | taxon_id:760399
+[ ThreadPoolExecutor-0_2   ]  SUCCESS:   164 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_9   ]  Processed gryllus-bimaculatus | taxon_id:71247
+[ ThreadPoolExecutor-0_9   ]  SUCCESS:   168 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_13  ]  Processed mecopoda-elongata | taxon_id:1415014
+[ ThreadPoolExecutor-0_13  ]  SUCCESS:   170 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_10  ]  Processed hieroglyphus-banian | taxon_id:470579
+[ ThreadPoolExecutor-0_10  ]  SUCCESS:   173 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_14  ]  Processed oxya-hyla | taxon_id:759399
+[ ThreadPoolExecutor-0_14  ]  SUCCESS:   180 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_16  ]  Processed spathosternum-prasiniferum | taxon_id:510841
+[ ThreadPoolExecutor-0_16  ]  SUCCESS:   199 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_18  ]  Processed trilophidia-annulata | taxon_id:348919
+[ ThreadPoolExecutor-0_18  ]  SUCCESS:   198 | FAILURE:     0 | EXISTS:     0
+
+################################################################################
+# SESSION STARTED: 2026-02-15 22:09:43
+# COMMAND: .\scrape.py --types orthoptera --new-species
+################################################################################
+
+Processing type: orthoptera
+Scraping inaturalist.org for orthoptera...
+[ MainThread               ]  Starting iNaturalist scraping...

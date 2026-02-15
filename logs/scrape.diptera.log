@@ -1,0 +1,23 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-15 21:58:00
+# COMMAND: .\scrape.py --types diptera
+################################################################################
+
+Processing type: diptera
+Scraping inaturalist.org for diptera...
+[ MainThread               ]  Starting iNaturalist scraping...
+[ ThreadPoolExecutor-0_1   ]  Processed anopheles-stephensi | taxon_id:311612
+[ ThreadPoolExecutor-0_1   ]  SUCCESS:     3 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_10  ]  Processed leucopis-formosana | taxon_id:1655944
+[ ThreadPoolExecutor-0_10  ]  SUCCESS:     6 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_13  ]  Processed musca-domestica | taxon_id:1054837
+[ ThreadPoolExecutor-0_13  ]  SUCCESS:    31 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_6   ]  Processed chrysomya-megacephala | taxon_id:329781
+[ ThreadPoolExecutor-0_6   ]  SUCCESS:   184 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_0   ]  Processed aedes-aegypti | taxon_id:155453
+[ ThreadPoolExecutor-0_0   ]  SUCCESS:   199 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_2   ]  Processed bactrocera-dorsalis | taxon_id:358125
+[ ThreadPoolExecutor-0_2   ]  SUCCESS:   189 | FAILURE:     0 | EXISTS:     0
+[ ThreadPoolExecutor-0_8   ]  Processed culex-quinquefasciatus | taxon_id:1096295
+[ ThreadPoolExecutor-0_8   ]  SUCCESS:   255 | FAILURE:     0 | EXISTS:     0
