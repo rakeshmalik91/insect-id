@@ -53,12 +53,14 @@ except ImportError:
         "lepidoptera": ["moth", "butterfly"],
         "odonata": ["odonata"],
         "cicada": ["cicada"],
+        "non_lepidoptera": ["odonata", "cicada", "misc"],
     }
     SOURCE_MAP = {
         "moth": ['inaturalist.org', 'mothsofindia.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "butterfly": ['ifoundbutterflies.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "odonata": ['indianodonata.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
         "cicada": ['indiancicadas.org', 'inaturalist.org', 'insecta.pro', 'wikipedia.org', 'indianbiodiversity.org'],
+        "misc": ['inaturalist.org'],
         "root-classifier": []
     }
     IGNORED_SOURCES = ["insecta.pro", "wikipedia.org", "indianbiodiversity.org"]

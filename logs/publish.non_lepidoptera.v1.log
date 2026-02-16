@@ -1,0 +1,23 @@
+
+################################################################################
+# SESSION STARTED: 2026-02-16 17:05:01
+# COMMAND: publish.py -m non_lepidoptera --task all --overwrite
+################################################################################
+
+[INFO] Generating class details for non_lepidoptera (from non_lepidoptera)...
+[INFO] Saved class details to models/class_details.non_lepidoptera.json
+[INFO] Generating image archive for non_lepidoptera (from non_lepidoptera)...
+[INFO] Consolidating images from: ['insect-dataset/src/inaturalist.org', 'insect-dataset/non_lepidoptera/data', 'insect-dataset/odonata/data', 'insect-dataset/cicada/data']
+[INFO] Added 5033 new species to archive.
+[INFO] Created archive: models/images.non_lepidoptera.zip
+[INFO] Converting model non_lepidoptera to non_lepidoptera...
+[INFO] Auto-detected latest checkpoint: checkpoint.non_lepidoptera.v1.i01.e25.pth
+[INFO] Using checkpoint: insect-dataset/non_lepidoptera\checkpoint.non_lepidoptera.v1.i01.e25.pth
+[INFO] Saved classes to models/classes.non_lepidoptera.json
+[INFO] Saved TorchScript model to models/m.checkpoint.non_lepidoptera.pt
+[INFO] Updating stats for non_lepidoptera (archive: non_lepidoptera)...
+[INFO] Auto-detected latest checkpoint: checkpoint.non_lepidoptera.v1.i01.e25.pth
+[INFO] Validating accuracy using insect-dataset/non_lepidoptera\checkpoint.non_lepidoptera.v1.i01.e25.pth on insect-dataset/non_lepidoptera/val...
+Top 1 Accuracy: 96.74%
+Top 3 Accuracy: 99.91%
+[INFO] Updated metadata at insect-id-app/metadata.json

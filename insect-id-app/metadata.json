@@ -16,9 +16,9 @@
     "lepidoptera.v2alpha": {
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v2alpha.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1lZN5mELWDMM5I4z56bsxoB3HqPtGKGql&export=download&confirm=t&uuid=502b765c-b879-40e5-aae6-5115fd526532",
-        "model_url": "https://drive.usercontent.google.com/download?id=16h8GG1BhPjhYl20kqV3Eg_qE-O_LfGP1&export=download&confirm=t&uuid=b8490abf-0025-4ee9-83c0-25f8d1a2ae4d",
-        "version": 12,
+        "images_url": "https://drive.usercontent.google.com/download?id=1QuDThH6EAGdpoN51uPSYcCClJpwXRtG4&export=download&confirm=t&uuid=d6f92d91-aacb-4a9b-ae7a-260f049b5a01",
+        "model_url": "https://drive.usercontent.google.com/download?id=1Z7RJQL2XCt8AbB7X4k8IO7wG8qa42vps&export=download&confirm=t&uuid=b0d810d4-0fe5-4a5f-a240-381f1461a914",
+        "version": 13,
         "min_accepted_logit": -200,
         "min_accepted_softmax": 0.01,
         "accepted_classes": [
@@ -202,5 +202,37 @@
             "accuracy_top3": "70.60%"
         },
         "size": 246856885
+    },
+    "non_lepidoptera": {
+        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.non_lepidoptera.json",
+        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.non_lepidoptera.json",
+        "images_url": "https://drive.usercontent.google.com/download?id=1u3L5YqXCnxilYR0I294aiQaZMwGfiAyV&export=download&confirm=t&uuid=30c4aecb-07f5-4df0-b0c5-00d2f41d9cd6",
+        "model_url": "https://drive.usercontent.google.com/download?id=1OmTL8v6S7Gr3POCMJ3f0Y5Mi9BhHso5u&export=download&confirm=t&uuid=dcb80997-7b64-4873-a116-33d712febfde",
+        "version": 1,
+        "min_accepted_logit": -200,
+        "min_accepted_softmax": 0.01,
+        "accepted_classes": [
+            "odonata",
+            "cicada",
+            "other-insect"
+        ],
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 571,
+            "species_count": 566,
+            "spp_class_count": 0,
+            "early_stage_class_count": 5,
+            "data_count": 45991,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "indiancicadas.org",
+                "indianodonata.org",
+                "inaturalist.org"
+            ],
+            "last_updated_date": "25-03-2025",
+            "accuracy": "96.74%",
+            "accuracy_top3": "99.91%"
+        },
+        "size": 543216904
     }
 }
