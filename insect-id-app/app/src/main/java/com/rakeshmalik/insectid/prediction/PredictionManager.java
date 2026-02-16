@@ -164,6 +164,8 @@ public class PredictionManager {
             if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
                 if(predictedRootClasses.size() == 1 && predictedRootClasses.contains(ROOT_CLASS_OTHER)) {
                     return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
+                } else if(modelType.equals(ModelType.NON_LEPIDOPTERA)) {
+                    return "No match found!<br><font color='#777777'>Please try other category models<br>or crop to fit the insect for better results</font>";
                 } else {
                     return "No match found!<br><font color='#777777'>Possibly not a " + modelType.getIdentificationTypeDisplayName() + "<br>Crop to fit the insect for better results</font>";
                 }

@@ -28,8 +28,11 @@ insect-dataset/src/*
 
 models/images.*
 
-insect-id-app/opencv
+insect-id-app/opencv/*
+!insect-id-app/opencv/build.gradle
+
 insect-id-app/pytorch
+
 insect-id-app/tools
 insect-id-app/app-release.apks
 insect-id-app/app/release

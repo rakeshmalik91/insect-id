@@ -1,1 +1,1339 @@
-{}
+{
+    "dundubia-annandalei": {
+        "name": "Comb Scraper"
+    },
+    "dundubia-hastata": {
+        "name": "Bell Cicada"
+    },
+    "mata-lenonia": {
+        "name": "Small Green Spotted-back cicada"
+    },
+    "mata-meghalayana": {
+        "name": "Meghalayan Spotted-back cicada"
+    },
+    "mata-ruffordii": {
+        "name": "Rufford's Spotted-back cicada"
+    },
+    "meimuna-duffelsi": {
+        "name": "Sand Cicada"
+    },
+    "abroma-bengalensis": {},
+    "abroma-maculicollis": {},
+    "abroma-nubifurca": {},
+    "ambragaeana-stellata": {},
+    "angamiana-aetherea": {},
+    "balinta-delinenda": {},
+    "balinta-octonotata": {},
+    "balinta-tenebricosa": {},
+    "basa-singularis": {},
+    "bijaurana-sita": {},
+    "bijaurana-typica": {},
+    "calcagninus-picturatus": {},
+    "callogaeana-festiva": {},
+    "changa-sita": {},
+    "chremistica-ribhoi": {},
+    "chremistica-seminiger": {},
+    "cicadatra-acberi": {},
+    "cicadatra-inconspicua": {},
+    "cicadatra-sankara": {},
+    "cicadatra-xantes": {},
+    "cryptotympana-acuta": {},
+    "cryptotympana-corvus": {},
+    "cryptotympana-exalbida": {},
+    "cryptotympana-insularis": {},
+    "cryptotympana-intermedia": {},
+    "cryptotympana-limborgi": {},
+    "cryptotympana-recta": {},
+    "cryptotympana-vesta": {},
+    "distantalna-splendida": {},
+    "dundubia-emanatura": {},
+    "dundubia-feae": {},
+    "dundubia-nagarasingna": {},
+    "dundubia-oopaga": {},
+    "dundubia-rufivena": {},
+    "dundubia-terpsichore": {},
+    "eopycna-repanda": {},
+    "euterpnosia-crowfooti": {},
+    "euterpnosia-madhava": {},
+    "formotosena-montivaga": {},
+    "gaeana-atkinsoni": {},
+    "gaeana-maculata": {},
+    "graptotettix-guttatus": {},
+    "graptotettix-thoracicus": {},
+    "haphsa-durga": {},
+    "haphsa-nicomache": {},
+    "haphsa-scitula": {},
+    "huechys-incarnata": {},
+    "huechys-sanguinea": {},
+    "hyalessa-expansa": {},
+    "hyalessa-mahoni": {},
+    "hyalessa-mahoni-0": {},
+    "hyalessa-obnubila": {},
+    "hyalessa-obnubila-0": {},
+    "khimbya-diminuta": {},
+    "khimbya-evanescens": {},
+    "khimbya-immsi": {},
+    "lahugada-dohertyi": {},
+    "lemuriana-apicalis": {},
+    "leptopsaltria-andamanensis": {},
+    "leptopsaltria-samia": {},
+    "leptopsaltria-tuberosa": {},
+    "lethama-locusta": {},
+    "lycurgus-subvittus": {},
+    "macrosemia-assamensis": {},
+    "macrosemia-saturata": {},
+    "macrosemia-umbrata": {},
+    "mata-kama": {},
+    "megapomponia-intermedia": {},
+    "meimuna-cassandra": {},
+    "meimuna-microdon": {},
+    "meimuna-silhetana": {},
+    "meimuna-tripurasura": {},
+    "melampsalta-literata": {},
+    "mogannia-cyanea": {},
+    "mogannia-effecta": {},
+    "mogannia-funebris": {},
+    "mogannia-obliqua": {},
+    "mosaica-irregularis": {},
+    "orientopsaltria-fangrayae": {},
+    "oxypleura-atkinsoni": {},
+    "paharia-lacteipennis": {},
+    "pauropsalta-exaequata": {},
+    "platylomia-amicta": {},
+    "platylomia-brevis": {},
+    "platylomia-ficulnea": {},
+    "platylomia-insignis": {},
+    "platylomia-larus": {},
+    "platylomia-operculata": {},
+    "platylomia-radha": {},
+    "platylomia-vibrans": {},
+    "platypleura-affinis": {},
+    "platypleura-andamana": {},
+    "platypleura-assamensis": {},
+    "platypleura-badia": {},
+    "platypleura-basialba": {},
+    "platypleura-basiviridis": {},
+    "platypleura-bufo": {},
+    "platypleura-capitata": {},
+    "platypleura-cervina": {},
+    "platypleura-coelebs": {},
+    "platypleura-hampsoni": {},
+    "platypleura-insignis": {},
+    "platypleura-mackinnoni": {},
+    "platypleura-nobilis": {},
+    "platypleura-octoguttata": {},
+    "platypleura-polita": {},
+    "platypleura-poorvachala": {},
+    "platypleura-sphinx": {},
+    "platypleura-watsoni": {},
+    "polyneura-ducalis": {},
+    "pomponia-cinctimanus": {},
+    "pomponia-cyanea": {},
+    "pomponia-linearis": {},
+    "pomponia-ramifera": {},
+    "pomponia-solitaria": {},
+    "pomponia-sp": {},
+    "pomponia-surya": {},
+    "pomponia-urania": {},
+    "psalmocharias-rugipennis": {},
+    "purana-campanula": {},
+    "purana-guttularis": {},
+    "purana-morrisi": {},
+    "purana-tigrina": {},
+    "quintilia-pomponia": {},
+    "rustia-apicata": {},
+    "rustia-dentivitta": {},
+    "rustia-kodagura": {},
+    "rustia-maculata": {},
+    "rustia-marginatus": {},
+    "rustia-minuta": {},
+    "rustia-tigrina": {},
+    "scieroptera-fumigata": {},
+    "scieroptera-splendidula": {},
+    "sulphogaeana-sulphurea": {},
+    "talainga-binghami": {},
+    "tanna-bhutanensis": {},
+    "tanna-tigroides": {},
+    "terpnosia-andersoni": {},
+    "terpnosia-clio": {},
+    "terpnosia-collina": {},
+    "terpnosia-confusa": {},
+    "terpnosia-ganesa": {},
+    "terpnosia-jenkinsi": {},
+    "terpnosia-maculipes": {},
+    "terpnosia-oberthuri": {},
+    "terpnosia-ransonneti": {},
+    "terpnosia-ridens": {},
+    "terpnosia-stipata": {},
+    "terpnosia-versicolor": {},
+    "tibeta-zenobia": {},
+    "tibicina-casyapae": {},
+    "tibicina-reticulata": {},
+    "tosena-albata": {},
+    "tosena-dives": {},
+    "tosena-mearesiana": {},
+    "tosena-melanoptera": {},
+    "becquartina-goera": {
+        "name": "Balpakram Butterfly Cicada"
+    },
+    "abricta-brunnea": {},
+    "abricta-pusilla": {},
+    "abroma-apicalis": {},
+    "balinta-pulchella": {},
+    "balinta-sanguiniventris": {},
+    "birrima-varians": {},
+    "calcagninus-divaricatus": {},
+    "calcagninus-nilgirensis": {},
+    "callogaeana-annamensis": {},
+    "champaka-abdulla": {},
+    "champaka-spinosa": {},
+    "chremistica-bimaculata": {},
+    "chremistica-germana": {},
+    "chremistica-mixta": {},
+    "chremistica-nigra": {},
+    "chremistica-ochracea": {},
+    "chremistica-tridentigera": {},
+    "chremistica-viridis": {},
+    "cicada-complex": {},
+    "cicada-conspurcata": {},
+    "cicada-olivierana": {},
+    "cicada-orni": {},
+    "cicadatra-anoea": {},
+    "cicadatra-gingat": {},
+    "cicadatra-intermedia": {},
+    "cicadatra-karachiensis": {},
+    "cicadatra-minuta": {},
+    "cicadatra-raja": {},
+    "cicadatra-walkeri": {},
+    "cicadetta-inglisi": {},
+    "cicadetta-intermedia": {},
+    "cicadetta-minuta": {},
+    "cryptotympana-aquila": {},
+    "cryptotympana-atrata": {},
+    "cryptotympana-auropilosa": {},
+    "cryptotympana-edwardsi": {},
+    "cryptotympana-facialis": {},
+    "cryptotympana-holsti": {},
+    "cryptotympana-mandarina": {},
+    "cryptotympana-takasagona": {},
+    "cryptotympana-timorica": {},
+    "cryptotympana-varicolor": {},
+    "diceroprocta-semicincta": {},
+    "dundubia-ensifera": {},
+    "dundubia-laterocurvata": {},
+    "dundubia-myitkyinensis": {},
+    "dundubia-vaginata": {},
+    "emathia-aegrota": {},
+    "emathia-dup-aegrota": {},
+    "eopycna-himalayana": {},
+    "eopycna-minor": {},
+    "eopycna-montana": {},
+    "eopycna-spp": {},
+    "eopycna-verna": {},
+    "gaeana-consors": {},
+    "hamza-ciliaris": {},
+    "haphsa-bindusara": {},
+    "haphsa-karenensis": {},
+    "haphsa-stellata": {},
+    "huechys-beata": {},
+    "huechys-haematica": {},
+    "huechys-phaenicura": {},
+    "huechys-thoracica": {},
+    "hyalessa-expansa-0": {},
+    "hyalessa-melanoptera": {},
+    "hyalessa-melanoptera-0": {},
+    "hyalessa-stratoria": {},
+    "hyalessa-stratoria-0": {},
+    "hyalessa-virescens": {},
+    "karenia-ravida": {},
+    "khimbya-cuneata": {},
+    "kumanga-sandaracata": {},
+    "linguacicada-continuata": {},
+    "macrosemia-tonkiniana": {},
+    "mata-rama": {},
+    "maua-quadrituberculata": {},
+    "megapomponia-imperatoria": {},
+    "meimuna-gamameda": {},
+    "meimuna-pallida": {},
+    "meimuna-tavoyana": {},
+    "meimuna-velitaris": {},
+    "melampsalta-mogannia": {},
+    "mogannia-aurea": {},
+    "mogannia-conica": {},
+    "mogannia-hebes": {},
+    "mogannia-nasalis": {},
+    "mogannia-spurcata": {},
+    "mogannia-venutissima": {},
+    "mogannia-viridis": {},
+    "nabalua-mascula": {},
+    "neotanna-thalia": {},
+    "orientopsaltria-beaudouini": {},
+    "panka-simulata": {},
+    "paratanna-parata": {},
+    "platylomia-juno": {},
+    "platylomia-lemoultii": {},
+    "platylomia-malickyi": {},
+    "platypleura-inglisi": {},
+    "platypleura-intermedia": {},
+    "platypleura-nigrosignata": {},
+    "platypleura-stridula": {},
+    "platypleura-takasagona": {},
+    "platypleura-testacea": {},
+    "platypleura-westwoodi": {},
+    "polyneura-laevigata": {},
+    "pomponia-adusta": {},
+    "pomponia-picta": {},
+    "pomponia-secreta": {},
+    "pomponia-zebra": {},
+    "proarna-hilaris": {},
+    "proarna-shaoshia": {},
+    "psalmocharias-balochii": {},
+    "psalmocharias-chitralensis": {},
+    "psalmocharias-gizarensis": {},
+    "psalmocharias-japokensis": {},
+    "psalmocharias-paliur": {},
+    "psalmocharias-querula": {},
+    "scieroptera-crocea": {},
+    "scieroptera-formosana": {},
+    "scieroptera-montana": {},
+    "scieroptera-sumatrana": {},
+    "shaoshia-zhangi": {},
+    "subtibicina-tigris": {},
+    "tacua-speciosa": {},
+    "talainga-japrona": {},
+    "talainga-naga": {},
+    "tanna-chekiangensis": {},
+    "tanna-japonensis": {},
+    "tanna-minor": {},
+    "taungia-abnormis": {},
+    "terpnosia-abdullah": {},
+    "terpnosia-elegans": {},
+    "terpnosia-lactea": {},
+    "terpnosia-polei": {},
+    "terpnosia-psecas": {},
+    "tettigetta-musiva": {},
+    "unduncus-connexa": {},
+    "zouga-fornicata": {},
+    "aciagrion-approximans": {
+        "name": "Indian Violet Dartlet"
+    },
+    "aciagrion-occidentale": {
+        "name": "Green-striped Slender Dartlet"
+    },
+    "aciagrion-pallidum": {
+        "name": "Pale Slender Dartlet"
+    },
+    "acisoma-panorpoides": {
+        "name": "Trumpet-Tail"
+    },
+    "aeshna-juncea": {
+        "name": "Common Hawker"
+    },
+    "aeshna-mixta": {
+        "name": "Migrant Hawker"
+    },
+    "aeshna-petalura": {
+        "name": "NA"
+    },
+    "aethriamanta-brevipennis": {
+        "name": "Scarlet Marsh Hawk"
+    },
+    "agriocnemis-femina": {
+        "name": "Pruinosed Dartlet"
+    },
+    "agriocnemis-kalinga": {
+        "name": "Indian Hooded Dartlet"
+    },
+    "agriocnemis-keralensis": {
+        "name": "Kerala Dartlet"
+    },
+    "agriocnemis-lacteola": {
+        "name": "Milky Dartlet"
+    },
+    "agriocnemis-pieris": {
+        "name": "Indian White Dartlet"
+    },
+    "agriocnemis-pygmaea": {
+        "name": "Pygmy Dartlet"
+    },
+    "agriocnemis-splendidissima": {
+        "name": "Splendid Dartlet"
+    },
+    "agrionoptera-insignis": {
+        "name": "Red Swampdragon"
+    },
+    "amphiallagma-parvum": {
+        "name": "Azure Dartlet"
+    },
+    "anaciaeschna-jaspidea": {
+        "name": "Rusty Darner"
+    },
+    "anaciaeschna-martini": {
+        "name": "Azure-striped Duskhawker"
+    },
+    "anax-ephippiger": {
+        "name": "Vagrant Emperor"
+    },
+    "anax-guttatus": {
+        "name": "Lesser Green Emperor"
+    },
+    "anax-immaculifrons": {
+        "name": "Magnificent Emperor"
+    },
+    "anax-indicus": {
+        "name": "Elephant Emperor"
+    },
+    "anax-nigrolineatus": {
+        "name": "Blue-spotted Emperor"
+    },
+    "anax-parthenope": {
+        "name": "Lesser Emperor"
+    },
+    "anisogomphus-occipitalis": {
+        "name": "Shivalik Clubtail"
+    },
+    "archibasis-oscillans": {
+        "name": "Long-banded Bluetail"
+    },
+    "argiocnemis-rubescens": {
+        "name": "Variable Sprite"
+    },
+    "aristocypha-trifasciata": {
+        "name": "Three-banded Emerald Jewel"
+    },
+    "brachydiplax-chalybea": {
+        "name": "Rufous-Backed Marsh Hawk"
+    },
+    "brachydiplax-farinosa": {
+        "name": "Black-Tailed Dasher"
+    },
+    "brachydiplax-sobrina": {
+        "name": "Little Blue Marsh Hawk"
+    },
+    "brachythemis-contaminata": {
+        "name": "Ditch Jewel"
+    },
+    "bradinopyga-geminata": {
+        "name": "Granite Ghost"
+    },
+    "bradinopyga-konkanensis": {
+        "name": "Konkan Rockdweller"
+    },
+    "burmagomphus-cauvericus": {
+        "name": "Cauvery Horntail"
+    },
+    "burmagomphus-chaukulensis": {
+        "name": "Spiny Horntail"
+    },
+    "burmagomphus-pyramidalis": {
+        "name": "Sinuate Clubtail"
+    },
+    "caconeura-ramburi": {
+        "name": "Indian Blue Bambootail"
+    },
+    "calocypha-laidlawi": {
+        "name": "Myristica Sapphire"
+    },
+    "camacinia-gigantea": {
+        "name": "Giant Forest Skimmer"
+    },
+    "cephalaeschna-patrai": {
+        "name": "Patra's Montane Darner"
+    },
+    "ceriagrion-azureum": {
+        "name": "Azure Marsh Dart"
+    },
+    "ceriagrion-cerinorubellum": {
+        "name": "Orange-tailed Marsh Dart"
+    },
+    "ceriagrion-chromothorax": {
+        "name": "Sindhudurg Marsh Dart"
+    },
+    "ceriagrion-coromandelianum": {
+        "name": "Coromandel Marsh Dart"
+    },
+    "ceriagrion-fallax": {
+        "name": "Black-tailed Marsh Dart"
+    },
+    "ceriagrion-olivaceum": {
+        "name": "Rusty Marsh Dart"
+    },
+    "ceriagrion-rubiae": {
+        "name": "Orange Marsh Dart"
+    },
+    "ceriagrion-spp": {
+        "name": "Marsh Darts"
+    },
+    "chlorogomphus-campioni": {
+        "name": "Nilgiri Mountain Hawk"
+    },
+    "coeliccia-didyma": {
+        "name": "Twin-spotted Sylvan"
+    },
+    "coeliccia-spp": {
+        "name": "Sylvans"
+    },
+    "copera-marginipes": {
+        "name": "Yellow Bush Dart"
+    },
+    "copera-spp": {
+        "name": "Bush Darts"
+    },
+    "copera-vittata": {
+        "name": "Blue Bush Dart"
+    },
+    "cratilla-lineata": {
+        "name": "Emerald-Banded Skimmer"
+    },
+    "crocothemis-erythraea": {
+        "name": "Broad Scarlet"
+    },
+    "crocothemis-servilia": {
+        "name": "Scarlet Skimmer"
+    },
+    "devadatta-adii": {
+        "name": "Golden Grisette"
+    },
+    "diplacodes-lefebvrii": {
+        "name": "Black Ground Skimmer"
+    },
+    "diplacodes-nebulosa": {
+        "name": "Black-tipped Grounnd Skimmer"
+    },
+    "diplacodes-trivialis": {
+        "name": "Blue Ground Skimmer"
+    },
+    "disparoneura-apicalis": {
+        "name": "Black-tipped Bambootail"
+    },
+    "disparoneura-quadrimaculata": {
+        "name": "Black-winged Bambootail"
+    },
+    "drepanosticta-carmichaeli": {
+        "name": "Indo-Chinese Blue Reedtail"
+    },
+    "dysphaea-ethela": {
+        "name": "Black Torrent Dart"
+    },
+    "dysphaea-walli": {
+        "name": "Sapphire Torrent Dart"
+    },
+    "echo-margarita": {
+        "name": "NA"
+    },
+    "echo-perornata": {
+        "name": "Banded Echo"
+    },
+    "elattoneura-atkinsoni": {
+        "name": "Meghalaya Threadtail"
+    },
+    "elattoneura-nigerrima": {
+        "name": "Dakhan Threadtail"
+    },
+    "enallagma-cyathigerum": {
+        "name": "Common Bluet"
+    },
+    "epithemis-mariae": {
+        "name": "Ruby Hawklet"
+    },
+    "epophthalmia-vittata": {
+        "name": "Common Torrent Hawk"
+    },
+    "esme-mudiensis": {
+        "name": "Travancore Bambootail"
+    },
+    "esme-spp": {
+        "name": "Bambootails"
+    },
+    "euphaea-cardinalis": {
+        "name": "Travancore Torrent Dart"
+    },
+    "euphaea-dispar": {
+        "name": "Nilgiri Torrent Dart"
+    },
+    "euphaea-fraseri": {
+        "name": "Malabar Torrent Dart"
+    },
+    "euphaea-pseudodispar": {
+        "name": "Satara Torrent Dart"
+    },
+    "euphaea-thosegharensis": {
+        "name": "Thoseghar Torrent Dart"
+    },
+    "gomphidia-kodaguensis": {
+        "name": "Kodagu Tiger"
+    },
+    "gynacantha-bayadera": {
+        "name": "Parakeet Darner"
+    },
+    "gynacantha-chaplini": {
+        "name": "Moustached Duskhawker"
+    },
+    "gynacantha-dravida": {
+        "name": "Brown Duskhawker"
+    },
+    "gynacantha-khasiaca": {
+        "name": "Long-tailed Duskhawker"
+    },
+    "gynacantha-millardi": {
+        "name": "Khaki Duskhawker"
+    },
+    "gynacantha-spp": {
+        "name": "Duskhawkers"
+    },
+    "gynacantha-subinterrupta": {
+        "name": "Dingy Duskhawker"
+    },
+    "heliocypha-bisignata": {
+        "name": "Stream Ruby"
+    },
+    "heliocypha-perforata": {
+        "name": "Stream Sapphire"
+    },
+    "heliogomphus-promelas": {
+        "name": "Indian Lyretail"
+    },
+    "hemicordulia-asiatica": {
+        "name": "Asian Emerald"
+    },
+    "hydrobasileus-croceus": {
+        "name": "Amber-Winged Marsh Glider"
+    },
+    "hylaeothemis-apicalis": {
+        "name": "Blue Hawklet"
+    },
+    "ictinogomphus-decoratus": {
+        "name": "Common Flangetail"
+    },
+    "ictinogomphus-rapax": {
+        "name": "Indian Common Clubtail"
+    },
+    "idionyx-gomantakensis": {
+        "name": "Goan Shadow Dancer"
+    },
+    "idionyx-spp": {
+        "name": "Shadow Dancers"
+    },
+    "indolestes-cyaneus": {
+        "name": "Blue Reedling"
+    },
+    "indolestes-gracilis": {
+        "name": "Mountain Reedling"
+    },
+    "indolestes-indicus": {
+        "name": "Khasi Reedling"
+    },
+    "indosticta-deccanensis": {
+        "name": "Saffron Reedtail"
+    },
+    "indothemis-carnatica": {
+        "name": "Light-tipped Demon"
+    },
+    "indothemis-limbata": {
+        "name": "Restless Demon"
+    },
+    "ischnura-forcipata": {
+        "name": "Forcipate Dartlet"
+    },
+    "ischnura-nursei": {
+        "name": "Pixie Dartlet"
+    },
+    "ischnura-rubilio": {
+        "name": "Western Golden Dartlet"
+    },
+    "ischnura-senegalensis": {
+        "name": "Senegal Golden Dartlet"
+    },
+    "lamelligomphus-nilgiriensis": {
+        "name": "Nilgiri Clawtail"
+    },
+    "lathrecista-asiatica": {
+        "name": "Asiatic Blood-Tail"
+    },
+    "lestes-barbarus": {
+        "name": "Migrant Spreadwing"
+    },
+    "lestes-concinnus": {
+        "name": "Dusky Spreadwing"
+    },
+    "lestes-dorothea": {
+        "name": "Black-tailed Spreadwing"
+    },
+    "lestes-elatus": {
+        "name": "Emerald Spreadwing"
+    },
+    "lestes-garoensis": {
+        "name": "Garo Spreadwing"
+    },
+    "lestes-malabaricus": {
+        "name": "Malabar Spreadwing"
+    },
+    "lestes-nigriceps": {
+        "name": "Dark-striped Spreadwing"
+    },
+    "lestes-nodalis": {
+        "name": "Wandering Spreadwing"
+    },
+    "lestes-praemorsus": {
+        "name": "Scalloped Spreadwing"
+    },
+    "lestes-viridulus": {
+        "name": "Emerald-striped Spreadwing"
+    },
+    "libellago-andamanensis": {
+        "name": "Andaman Heliodor"
+    },
+    "libellago-indica": {
+        "name": "Southern Heliodor"
+    },
+    "libellago-lineata": {
+        "name": "River Heliodor"
+    },
+    "libellula-quadrimaculata": {
+        "name": "Four-spotted Chaser"
+    },
+    "macrodiplax-cora": {
+        "name": "Estuarine Skimmer"
+    },
+    "macrogomphus-wynaadicus": {
+        "name": "Wayanad Forktail"
+    },
+    "macromia-kannharaiensis": {
+        "name": "Tilari Cruiser"
+    },
+    "megalestes-major": {
+        "name": "Giant Green Spreadwing"
+    },
+    "merogomphus-aryanadensis": {
+        "name": "Dainty Longleg"
+    },
+    "merogomphus-flavoreductus": {
+        "name": "Dark Longleg"
+    },
+    "nannophya-pygmaea": {
+        "name": "Northern Pygmyfly"
+    },
+    "nannophyopsis-clara": {
+        "name": "Emerald Dwarf"
+    },
+    "neurobasis-chinensis": {
+        "name": "Stream Glory"
+    },
+    "neurothemis-fluctuans": {
+        "name": "Grasshawk Skimmer"
+    },
+    "neurothemis-fulvia": {
+        "name": "Fulvous Forest Skimmer"
+    },
+    "neurothemis-tullia": {
+        "name": "Pied Paddy Skimmer"
+    },
+    "nososticta-nancowra": {
+        "name": "Nancowry Threadtail"
+    },
+    "nososticta-nicobarica": {
+        "name": "Great Nicobar Threadtail"
+    },
+    "onychargia-atrocyana": {
+        "name": "Black Marsh Dart"
+    },
+    "onychothemis-testacea": {
+        "name": "Riverhawker"
+    },
+    "orthetrum-andamanicum": {
+        "name": "Andaman Marsh Hawk"
+    },
+    "orthetrum-chrysis": {
+        "name": "Brown-Backed Marsh Hawk"
+    },
+    "orthetrum-erythronigrum": {
+        "name": "Nicobar Forest Hawk"
+    },
+    "orthetrum-glaucum": {
+        "name": "Blue Marsh Hawk"
+    },
+    "orthetrum-luzonicum": {
+        "name": "Tri-coloured Marsh Hawk"
+    },
+    "orthetrum-pruinosum": {
+        "name": "Crimson-tailed Marsh Hawk"
+    },
+    "orthetrum-sabina": {
+        "name": "Green Marsh Hawk"
+    },
+    "orthetrum-spp": {
+        "name": "Marsh Hawks"
+    },
+    "orthetrum-taeniolatum": {
+        "name": "Small Skimmer"
+    },
+    "orthetrum-triangulare": {
+        "name": "Blue-Tailed Forest Hawk"
+    },
+    "palpopleura-sexmaculata": {
+        "name": "Blue-tailed Yellow Skimmer"
+    },
+    "pantala-flavescens": {
+        "name": "Wandering Glider"
+    },
+    "paracercion-calamorum": {
+        "name": "Dusky Lilly-squatter"
+    },
+    "paracercion-melanotum": {
+        "name": "Eastern Lillysquatter"
+    },
+    "paracypha-unimaculata": {
+        "name": "Emerald Jewel"
+    },
+    "paragomphus-capricornis": {
+        "name": "Yellow-banded Hooktail"
+    },
+    "paragomphus-lineatus": {
+        "name": "Lined Hooktail"
+    },
+    "phylloneura-westermanni": {
+        "name": "Myristica Bambootail"
+    },
+    "platylestes-kirani": {
+        "name": "Kiran's Spreadwing"
+    },
+    "potamarcha-congener": {
+        "name": "Yellow-tailed Ashy Skimmer"
+    },
+    "prodasineura-autumnalis": {
+        "name": "Black Threadtail"
+    },
+    "prodasineura-verticalis": {
+        "name": "Red-striped Black Threadtail"
+    },
+    "protosticta-cyanofemora": {
+        "name": "Blue-legged Reedtail"
+    },
+    "protosticta-davenporti": {
+        "name": "Anamalai Reedtail"
+    },
+    "protosticta-gravelyi": {
+        "name": "Pied Shadowdamsel"
+    },
+    "protosticta-myristicaensis": {
+        "name": "Myristica Reedtail"
+    },
+    "protosticta-ponmudiensis": {
+        "name": "Travancore Reedtail"
+    },
+    "protosticta-sanguinostigma": {
+        "name": "Red-Spot Reedtail"
+    },
+    "protosticta-sholai": {
+        "name": "Shola Reedtail"
+    },
+    "pseudagrion-australasiae": {
+        "name": "Look-alike Sprite"
+    },
+    "pseudagrion-decorum": {
+        "name": "Three-lined Sprite"
+    },
+    "pseudagrion-hypermelas": {
+        "name": "Lavender Sprite"
+    },
+    "pseudagrion-indicum": {
+        "name": "Yellow-striped Sprite"
+    },
+    "pseudagrion-malabaricum": {
+        "name": "Malabar Sprite"
+    },
+    "pseudagrion-microcephalum": {
+        "name": "Blue Sprite"
+    },
+    "pseudagrion-rubriceps": {
+        "name": "Saffron-faced Blue Sprite"
+    },
+    "pseudagrion-spencei": {
+        "name": "Brook Sprite"
+    },
+    "pseudagrion-spp": {
+        "name": "Sprites"
+    },
+    "pseudocopera-ciliata": {
+        "name": "Pied Bush Dart"
+    },
+    "pseudothemis-zonata": {
+        "name": "Pied Skimmer"
+    },
+    "rhodothemis-rufa": {
+        "name": "Rufous Marsh Glider"
+    },
+    "rhyothemis-plutonia": {
+        "name": "Greater Blue-Wing"
+    },
+    "rhyothemis-triangularis": {
+        "name": "Lesser Blue-Wing"
+    },
+    "rhyothemis-variegata": {
+        "name": "Common Picturewing"
+    },
+    "sympecma-paedisca": {
+        "name": "Siberian Winter Damsel"
+    },
+    "sympetrum-commixtum": {
+        "name": "Mountain Meadowhawk"
+    },
+    "sympetrum-fonscolombii": {
+        "name": "Red-Veined Darter"
+    },
+    "tetrathemis-platyptera": {
+        "name": "Pigmy Skimmer"
+    },
+    "tholymis-tillarga": {
+        "name": "Coral-Tailed Cloudwing"
+    },
+    "tramea-basilaris": {
+        "name": "Red Marsh Trotter"
+    },
+    "tramea-limbata": {
+        "name": "Black Marsh Trotter"
+    },
+    "trithemis-aurora": {
+        "name": "Crimson Marsh Glider"
+    },
+    "trithemis-festiva": {
+        "name": "Black Stream Glider"
+    },
+    "trithemis-kirbyi": {
+        "name": "Scarlet Rock Glider"
+    },
+    "trithemis-pallidinervis": {
+        "name": "Long-Legged Marsh Glider"
+    },
+    "urothemis-signata": {
+        "name": "Greater Crimson Glider"
+    },
+    "vestalis-apicalis": {
+        "name": "Black-tipped Forest Glory"
+    },
+    "vestalis-gracilis": {
+        "name": "Clear-winged Forest Glory"
+    },
+    "yunnanosticta-siangi": {
+        "name": "Siang Shadowdamsel"
+    },
+    "zygonyx-iris": {
+        "name": "Emerald Cascader"
+    },
+    "zyxomma-petiolatum": {
+        "name": "Brown Dusk Hawk"
+    },
+    "aciagrion-spp": {},
+    "acrogomphus-fraseri": {},
+    "aeshna-spp": {},
+    "agriocnemis-clauseni": {},
+    "agriocnemis-spp": {},
+    "amphithemis-vacillans": {},
+    "anisogomphus-bivittatus": {},
+    "anisogomphus-caudalis": {},
+    "anisopleura-comes": {},
+    "anisopleura-lestoides": {},
+    "anisopleura-subplatystyla": {},
+    "anisopleura-vallei": {},
+    "anotogaster-basalis": {},
+    "anotogaster-nipalensis": {},
+    "aristocypha-cuneata": {},
+    "aristocypha-fenestrella": {},
+    "aristocypha-hilaryae": {},
+    "aristocypha-quadrimaculata": {},
+    "aristocypha-spp": {},
+    "aristocypha-spuria": {},
+    "asiagomphus-nilgiricus": {},
+    "asiagomphus-odoneli": {},
+    "bayadera-hyalina": {},
+    "bayadera-indica": {},
+    "bayadera-spp": {},
+    "burmagomphus-divaricatus": {},
+    "burmagomphus-hasimaricus": {},
+    "burmagomphus-laidlawi": {},
+    "burmagomphus-sivalikensis": {},
+    "caconeura-risi": {},
+    "caconeura-spp": {},
+    "caconeura-t-coerulea": {},
+    "calicnemia-carminea": {},
+    "calicnemia-erythromelas": {},
+    "calicnemia-eximia": {},
+    "calicnemia-imitans": {},
+    "calicnemia-miles": {},
+    "calicnemia-miniata": {},
+    "calicnemia-mortoni": {},
+    "calicnemia-nipalica": {},
+    "calicnemia-pulverulans": {},
+    "calicnemia-spp": {},
+    "caliphaea-confusa": {},
+    "camacinia-harterti": {},
+    "cephalaeschna-acanthifrons": {},
+    "cephalaeschna-triadica": {},
+    "cephalaeschna-viridifrons": {},
+    "ceriagrion-calamineum": {},
+    "chlorogomphus-fraseri": {},
+    "chlorogomphus-mortoni": {},
+    "chlorogomphus-preciosus": {},
+    "chlorogomphus-xanthoptera": {},
+    "coeliccia-bimaculata": {},
+    "coeliccia-renifera": {},
+    "coeliccia-schmidti": {},
+    "coeliccia-svihleri": {},
+    "cordulegaster-brevistigma": {},
+    "crocothemis-spp": {},
+    "cyclogomphus-flavoannulatus": {},
+    "cyclogomphus-heterostylus": {},
+    "cyclogomphus-spp": {},
+    "cyclogomphus-wilkinsi": {},
+    "cyclogomphus-ypsilon": {},
+    "davidioides-martini": {},
+    "davidius-aberrans": {},
+    "davidius-davidi": {},
+    "davidius-davidii": {},
+    "dubitogomphus-bidentatus": {},
+    "dysphaea-gloriosa": {},
+    "elattoneura-campioni": {},
+    "elattoneura-coomansi": {},
+    "elattoneura-tetrica": {},
+    "epophthalmia-frontalis": {},
+    "esme-cyaneovittata": {},
+    "esme-longistyla": {},
+    "euphaea-masoni": {},
+    "euphaea-ochracea": {},
+    "euthygomphus-martini": {},
+    "gomphidia-podhigai": {},
+    "gomphidia-t-nigrum": {},
+    "gynacanthaeschna-sikkima": {},
+    "heliocypha-biforata": {},
+    "heliogomphus-spirillus": {},
+    "hylaeothemis-gardeneri": {},
+    "ictinogomphus-angulosus": {},
+    "ictinogomphus-distinctus": {},
+    "ictinogomphus-spp": {},
+    "idionyx-corona": {},
+    "idionyx-saffronata": {},
+    "idionyx-stevensi": {},
+    "idionyx-travancorensis": {},
+    "indocnemis-orang": {},
+    "ischnura-inarmata": {},
+    "ischnura-mildredae": {},
+    "ischnura-rufostigma": {},
+    "ischnura-spp": {},
+    "lamelligomphus-biforceps": {},
+    "lamelligomphus-risi": {},
+    "lestes-patricia": {},
+    "lestes-spp": {},
+    "lestes-thoracicus": {},
+    "libellago-balus": {},
+    "libellago-blanda": {},
+    "lyriothemis-acigastra": {},
+    "lyriothemis-bivittata": {},
+    "lyriothemis-mortoni": {},
+    "lyriothemis-spp": {},
+    "lyriothemis-tricolor": {},
+    "macrogomphus-annulatus": {},
+    "macrogomphus-montanus": {},
+    "macrogomphus-seductus": {},
+    "macromia-bellicosa": {},
+    "macromia-cingulata": {},
+    "macromia-ellisoni": {},
+    "macromia-flavicincta": {},
+    "macromia-flavocolorata": {},
+    "macromia-indica": {},
+    "macromia-irata": {},
+    "macromia-moorei": {},
+    "macromidia-donaldi": {},
+    "matrona-basilaris": {},
+    "matrona-nigripectus": {},
+    "megalestes-gyalsey": {},
+    "megalestes-irma": {},
+    "megalestes-micans": {},
+    "megalogomphus-flavicolor": {},
+    "megalogomphus-hannyngtoni": {},
+    "megalogomphus-smithii": {},
+    "megalogomphus-superbus": {},
+    "melanoneura-bilineata": {},
+    "melligomphus-acinaces": {},
+    "merogomphus-longistigma": {},
+    "merogomphus-tamaracherriensis": {},
+    "microgomphus-souteri": {},
+    "microgomphus-torquatus": {},
+    "mortonagrion-aborense": {},
+    "mortonagrion-varralli": {},
+    "neallogaster-hermionae": {},
+    "nepogomphus-modestus": {},
+    "nepogomphus-walli": {},
+    "neurothemis-intermedia": {},
+    "nychogomphus-duaricus": {},
+    "ophiogomphus-reductus": {},
+    "orientogomphus-indicus": {},
+    "orthetrum-internum": {},
+    "paragomphus-echinoccipitalis": {},
+    "periaeschna-unifasciata": {},
+    "perissogomphus-stevensi": {},
+    "phaenandrogomphus-aureus": {},
+    "philoganga-montana": {},
+    "phyllothemis-eltoni": {},
+    "planaeschna-poumai": {},
+    "planaeschna-spp": {},
+    "platygomphus-dolabratus": {},
+    "platylestes-platystylus": {},
+    "polycanthagyna-erythromelas": {},
+    "protosticta-fraseri": {},
+    "protosticta-hearseyi": {},
+    "protosticta-himalaica": {},
+    "protosticta-mortoni": {},
+    "protosticta-spp": {},
+    "pseudagrion-pilidorsum": {},
+    "sarasaeschna-khasiana": {},
+    "scalmogomphus-bistrigatus": {},
+    "scalmogomphus-schmidti": {},
+    "scalmogomphus-spp": {},
+    "schmidtiphaea-chittaranjani": {},
+    "somatochlora-daviesi": {},
+    "stylogomphus-inglisi": {},
+    "sympetrum-orientale": {},
+    "sympetrum-speciosum": {},
+    "sympetrum-spp": {},
+    "tetracanthagyna-waterhousei": {},
+    "tramea-transmarina": {},
+    "tramea-virginia": {},
+    "vestalaria-smaragdina": {},
+    "zyxomma-breviventre": {},
+    "aciagrion-hisopa": {
+        "name": "Violet-striped Slender Dartlet"
+    },
+    "aeshna-donaldi": {
+        "name": "Darner"
+    },
+    "anax-imperator": {
+        "name": "Blue Emperor"
+    },
+    "nesoxenia-lineata": {
+        "name": "Striped Grenadier"
+    },
+    "orthetrum-brunneum": {
+        "name": "Southern Skimmer"
+    },
+    "orthetrum-cancellatum": {
+        "name": "Black-Tailed Skimmer"
+    },
+    "pseudagrion-andamanicum": {
+        "name": "Andaman Sprite"
+    },
+    "pseudagrion-pruinosum": {
+        "name": "Grey Sprite"
+    },
+    "selysiothemis-nigra": {
+        "name": "Black Pennant"
+    },
+    "sympetrum-meridionale": {
+        "name": "Southern Darter"
+    },
+    "sympetrum-vulgatum": {
+        "name": "Vagrant Darter"
+    },
+    "zygonyx-torrida": {
+        "name": "Ringed Cascader"
+    },
+    "zyxomma-obtusum": {
+        "name": "White Duskdarter"
+    },
+    "aciagrion-azureum": {},
+    "aciagrion-olympicum": {},
+    "aciagrion-tillyardi": {},
+    "acrogomphus-mohani": {},
+    "agriocnemis-corbeti": {},
+    "agriocnemis-dabreui": {},
+    "agriocnemis-nana": {},
+    "agrionoptera-dorothea": {},
+    "amphithemis-curvistyla": {},
+    "anax-panybeus": {},
+    "anisogomphus-orites": {},
+    "anormogomphus-heteropterus": {},
+    "anormogomphus-kiritschenkoi": {},
+    "aristocypha-immaculata": {},
+    "asiagomphus-personatus": {},
+    "bayadera-kali": {},
+    "bayadera-longicauda": {},
+    "burmargiolestes-laidlawi": {},
+    "caconeura-gomphoides": {},
+    "caconeura-obscura": {},
+    "calicnemia-doonensis": {},
+    "calicnemia-mukherjeei": {},
+    "calicnemia-pyrrhosoma": {},
+    "calicnemia-sudhaae": {},
+    "cephalaeschna-acutifrons": {},
+    "cephalaeschna-klapperichi": {},
+    "cephalaeschna-masoni": {},
+    "cephalaeschna-orbifrons": {},
+    "ceriagrion-auranticum": {},
+    "ceriagrion-coeruleum": {},
+    "chlorogomphus-brevistigma": {},
+    "chlorogomphus-schmidti": {},
+    "chloropetalia-olympicus": {},
+    "chloropetalia-selysi": {},
+    "coeliccia-dorothea": {},
+    "coeliccia-fraseri": {},
+    "coeliccia-prakritiae": {},
+    "coeliccia-rossi": {},
+    "coeliccia-sarbottama": {},
+    "coeliccia-vacca": {},
+    "cordulegaster-parvistigma": {},
+    "cyclogomphus-vesiculosus": {},
+    "davidius-kumaonensis": {},
+    "davidius-malloryi": {},
+    "davidius-zallorensis": {},
+    "drepanosticta-annandalei": {},
+    "drepanosticta-polychromatica": {},
+    "elattoneura-nihari": {},
+    "elattoneura-souteri": {},
+    "enallagma-immsi": {},
+    "enallagma-insula": {},
+    "enallagma-risi": {},
+    "epallage-fatime": {},
+    "epiophlebia-laidlawi": {},
+    "epophthalmia-vittigera": {},
+    "gynacantha-albistyla": {},
+    "gynacantha-anandmati": {},
+    "gynacantha-andamanae": {},
+    "gynacantha-apicalis": {},
+    "gynacantha-arnaudi": {},
+    "gynacantha-bainbriggei": {},
+    "gynacantha-biharica": {},
+    "gynacantha-odoneli": {},
+    "gynacantha-pallampurica": {},
+    "gynacantha-rammohani": {},
+    "gynacantha-rotundata": {},
+    "heliogomphus-kalarensis": {},
+    "heliogomphus-selysi": {},
+    "himalagrion-exclamatione": {},
+    "ictinogomphus-atrox": {},
+    "ictinogomphus-kishori": {},
+    "ictinogomphus-pertinax": {},
+    "idionyx-galeata": {},
+    "idionyx-imbricata": {},
+    "idionyx-intricata": {},
+    "idionyx-minima": {},
+    "idionyx-nadganiensis": {},
+    "idionyx-nilgiriensis": {},
+    "idionyx-optata": {},
+    "idionyx-periyashola": {},
+    "idionyx-rhinoceroides": {},
+    "indocypha-vittata": {},
+    "ischnura-elegans": {},
+    "ischnura-null": {},
+    "libellago-aurantiaca": {},
+    "lyriothemis-cleis": {},
+    "macrogomphus-spp": {},
+    "macromia-annaimalaiensis": {},
+    "macromia-cupricincta": {},
+    "macromia-flavovittata": {},
+    "macromia-ida": {},
+    "macromia-pallida": {},
+    "macromia-whitei": {},
+    "macromidia-spp": {},
+    "megalogomphus-bicornutus": {},
+    "microgomphus-chelifer": {},
+    "microgomphus-verticalis": {},
+    "neallogaster-annandalei": {},
+    "neallogaster-latifrons": {},
+    "neallogaster-ornata": {},
+    "neallogaster-schmidti": {},
+    "neurothemis-ramburi": {},
+    "nychogomphus-saundersii": {},
+    "nychogomphus-striatus": {},
+    "oligoaeschna-andamani": {},
+    "onychargia-indica": {},
+    "onychogomphus-cacharicus": {},
+    "onychogomphus-grammicus": {},
+    "onychogomphus-malabarensis": {},
+    "onychogomphus-meghalayanus": {},
+    "onychogomphus-thienemanni": {},
+    "ophiogomphus-cerastis": {},
+    "orthetrum-anceps": {},
+    "orthetrum-martensi": {},
+    "orthetrum-testaceaum": {},
+    "paragomphus-lindgreni": {},
+    "periaeschna-flinti": {},
+    "periaeschna-lebasi": {},
+    "periaeschna-magdalena": {},
+    "periaeschna-nocturnalis": {},
+    "petaliaeschna-fletcheri": {},
+    "planaeschna-intersedens": {},
+    "platycnemis-dealbata": {},
+    "polycanthagyna-ornithocephala": {},
+    "prodasineura-odoneli": {},
+    "protosticta-rufostigma": {},
+    "pseudagrion-bidentatum": {},
+    "pseudagrion-laidlawi": {},
+    "pseudocopera-superplatypes": {},
+    "pseudotramea-prateri": {},
+    "rhinocypha-ignipennis": {},
+    "rhinocypha-immaculata": {},
+    "rhinocypha-trimaculata": {},
+    "rhinocypha-vitrinella": {},
+    "rhyothemis-obsolescens": {},
+    "sarasaeschna-martini": {},
+    "sarasaeschna-speciosa": {},
+    "schmidtiphaea-schmidi": {},
+    "sympetrum-durum": {},
+    "sympetrum-himalayanum": {},
+    "sympetrum-hypomelas": {},
+    "tramea-eurybia": {},
+    "vestalis-submontana": {},
+    "watanabeopetalia-atkinsoni": {},
+    "acrida-exaltata": {},
+    "acrotelsa-collaris": {},
+    "aedes-aegypti": {},
+    "aiolopus-simulatrix": {},
+    "anax-imperator-early": {},
+    "anopheles-stephensi": {},
+    "anthia-sexguttata": {},
+    "aulacophora-foveicollis": {},
+    "bactrocera-dorsalis": {},
+    "batocera-rufomaculata": {},
+    "burrinia-burri": {},
+    "cheilomenes-sexmaculata": {},
+    "chitaura-indica": {},
+    "chrysomya-megacephala": {},
+    "coccinella-septempunctata": {},
+    "conocephalus-maculatus": {},
+    "culex-quinquefasciatus": {},
+    "diabolocatantops-innotabilis": {},
+    "distoleon-tetragrammicus": {},
+    "ducetia-japonica": {},
+    "elattoneura-campioni-early": {},
+    "euconocephalus-indicus": {},
+    "euconocephalus-pallidus": {},
+    "frankliniella-schultzei": {},
+    "gryllus-bimaculatus": {},
+    "heliocopris-dominus": {},
+    "heterorrhina-elegans": {},
+    "hieroglyphus-banian": {},
+    "hieroglyphus-nigrorepletus": {},
+    "leucopis-formosana": {},
+    "libellago-indica-early": {},
+    "mecopoda-elongata": {},
+    "metallyticus-splendidus": {},
+    "musca-domestica": {},
+    "neoneuromus-fenestralis": {},
+    "nevromus-austroindicus": {},
+    "onthophagus-dama": {},
+    "oryctes-rhinoceros": {},
+    "oxya-hyla": {},
+    "phaneroptera-gracilis": {},
+    "polistes-adustus": {},
+    "protaetia-aurichalcea": {},
+    "protohermes-costalis": {},
+    "rhodothemis-rufa-early": {},
+    "scirtothrips-dorsalis": {},
+    "spathosternum-prasiniferum": {},
+    "teleogryllus-mitratus": {},
+    "thermobia-domestica": {},
+    "thrips-tabaci": {},
+    "trilophidia-annulata": {},
+    "trithemis-pallidinervis-early": {},
+    "vespula-germanica": {},
+    "xenocatantops-humilis": {}
+}

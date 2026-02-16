@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace = "com.rakeshmalik.insectid"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rakeshmalik.insectid"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 10
-        versionName = "1.0"
+        targetSdk = 36
+        versionCode = 11
+        versionName = "v0.0.7 alpha"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

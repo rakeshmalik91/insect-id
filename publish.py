@@ -212,8 +212,10 @@ def generate_class_details(model_name, output_model_name=None):
             "insect-dataset/src/class_details.ifoundbutterflies.org.json": "Butterfly"
         }
     
-    combined_data = {}
-    
+    output_path = f"{OUTPUT_DIR}/class_details.{output_model_name}.json"
+    combined_data = load_json(output_path) if os.path.exists(output_path) else {}
+    print(f"[INFO] Loaded {len(combined_data)} existing entries from {output_path}")
+
     for src, suffix in input_files.items():
         if not os.path.exists(src):
             print(f"[WARNING] Source file not found: {src}")
@@ -228,10 +230,21 @@ def generate_class_details(model_name, output_model_name=None):
             # Remove image URLs (as per notebook)
             if 'images' in value:
                 del value['images']
-                
-            combined_data[key] = value
 
-    output_path = f"{OUTPUT_DIR}/class_details.{output_model_name}.json"
+            # Merge with existing data
+            if key in combined_data:
+                # If existing entry has a name, preserve it (don't overwrite with source name)
+                if 'name' in combined_data[key] and combined_data[key]['name']:
+                    value['name'] = combined_data[key]['name']
+                
+                extracted_name = value.get('name', '')
+                combined_data[key].update(value)
+                # Ensure name isn't lost if update somehow cleared it (though explicit assignment above prevents this)
+                if extracted_name and ('name' not in combined_data[key] or not combined_data[key]['name']):
+                     combined_data[key]['name'] = extracted_name
+            else:
+                combined_data[key] = value
+
     dump_json(output_path, combined_data)
     print(f"[INFO] Saved class details to {output_path}")
 
