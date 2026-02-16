@@ -89,7 +89,7 @@ public class MetadataManager {
     }
 
     public long getModelSize(String modelName) {
-        return getMetadata(modelName).optLong(FIELD_SIZE);
+        return InsectModel.fromJson(modelName, getMetadata(modelName)).getSize();
     }
     
     public List<InsectModel> getAvailableModels() {
@@ -102,11 +102,11 @@ public class MetadataManager {
                 if (key.startsWith("::")) continue; 
                 
                 JSONObject modelJson = metadata.optJSONObject(key);
-                if (modelJson != null && !Constants.ROOT_CLASSIFIER.equals(key)) {
-                    if (modelJson.optBoolean(Constants.FIELD_IS_ROOT, false)) {
-                        continue;
-                    }
+                if (modelJson != null) {
                     InsectModel model = InsectModel.fromJson(key, modelJson);
+                    if (model.isRootClassifier()) {
+                        continue; // Skip root classifiers
+                    }
                     if (model.isEnabled()) {
                         models.add(model);
                     }

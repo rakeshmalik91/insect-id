@@ -65,7 +65,7 @@ public class ModelDownloader {
 
     public boolean isModelToBeUpdated(InsectModel model) {
         int currentVersion = prefs.getInt(modelVersionPrefName(model.getModelName()), 0);
-        int latestVersion = metadataManager.getMetadata(model.getModelName()).optInt(FIELD_VERSION, 0);
+        int latestVersion = model.getVersion();
         Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", model.getModelName(), currentVersion, latestVersion));
         return currentVersion < latestVersion;
     }
@@ -77,7 +77,7 @@ public class ModelDownloader {
     private boolean isRootClassifierDownloadRequired() {
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
-        int latestVersion = metadataManager.getMetadata(ROOT_CLASSIFIER).optInt(FIELD_VERSION, 0);
+        int latestVersion = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER)).getVersion();
         Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", ROOT_CLASSIFIER, currentVersion, latestVersion));
         return !isFileAlreadyDownloaded(modelFileName) || currentVersion < latestVersion;
     }
@@ -86,7 +86,7 @@ public class ModelDownloader {
         Log.d(LOG_TAG, "Inside ModelDownloader.downloadRootClassifier()");
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         if(isRootClassifierDownloadRequired()) {
-            String fileUrl = metadataManager.getMetadata(ROOT_CLASSIFIER).optString(FIELD_MODEL_URL, null);
+            String fileUrl = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER)).getModelUrl();
             downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, forceUpdate,
                     1, 5, modelDownloadSeq, totalModelDownloads);
         } else {
@@ -108,10 +108,10 @@ public class ModelDownloader {
             final String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
             final String imagesFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, model.getModelName());
 
-            final String classesFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_CLASSES_URL, null);
-            final String classDetailsFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_CLASS_DETAILS_URL, null);
-            final String imagesFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_IMAGES_URL, null);
-            final String modelFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_MODEL_URL, null);
+            final String classesFileUrl = model.getClassesUrl();
+            final String classDetailsFileUrl = model.getClassDetailsUrl();
+            final String imagesFileUrl = model.getImagesUrl();
+            final String modelFileUrl = model.getModelUrl();
 
             Runnable downloadModelData = () -> {
                 final boolean updateRequired;
@@ -184,16 +184,30 @@ public class ModelDownloader {
 
     @SuppressLint("DefaultLocale")
     private String getModelUpToDateMessage(InsectModel model, int currentVersion) {
-        long speciesCount = metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optLong("species_count", 0);
-        long dataCount = metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optLong("data_count", 0);
-        String msg = String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %dk",
-                model.getDisplayName(), currentVersion, speciesCount, dataCount/1000);
-        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("accuracy", null))
-                .map((accuracy) -> String.format("\nOverall accuracy: %s", accuracy)).orElse("");
-        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("accuracy_top3", null))
-                .map((accuracyTop3) -> String.format("\nTop-3 accuracy: %s", accuracyTop3)).orElse("");
-        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("last_updated_date", null))
-                .map((lastUpdatedDate) -> String.format("\nLast updated on: %s", lastUpdatedDate)).orElse("");
+        long speciesCount = 0;
+        long dataCount = 0;
+        if (model.getStats() != null) {
+            speciesCount = model.getStats().getSpeciesCount();
+            dataCount = model.getStats().getDataCount();
+        }
+        
+        String msg = String.format("Model already up to date\nModel name: %s\nVersion: %d\n",
+                model.getDisplayName(), currentVersion);
+        
+        if (model.getDescription() != null && !model.getDescription().isEmpty()) {
+            msg += "\nDescription: " + model.getDescription() + "\n";
+        }
+        
+        msg += String.format("\nModel info:\nSpecies count: %d\nData count: %dk", speciesCount, dataCount/1000);
+        
+        if (model.getStats() != null) {
+            msg += Optional.ofNullable(model.getStats().getAccuracy())
+                    .map((accuracy) -> String.format("\nOverall accuracy: %s", accuracy)).orElse("");
+            msg += Optional.ofNullable(model.getStats().getAccuracyTop3())
+                    .map((accuracyTop3) -> String.format("\nTop-3 accuracy: %s", accuracyTop3)).orElse("");
+            msg += Optional.ofNullable(model.getStats().getLastUpdatedDate())
+                    .map((lastUpdatedDate) -> String.format("\nLast updated on: %s", lastUpdatedDate)).orElse("");
+        }
         return msg;
     }
 

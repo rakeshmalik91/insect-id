@@ -1,6 +1,8 @@
 {
     "root-classifier": {
         "is_root": true,
+        "name": "Root Classifier",
+        "description": "Classifies insects into major orders (Lepidoptera, Odonata, Cicada, etc.) to select the appropriate specialized model.",
         "model_url": "https://drive.usercontent.google.com/download?id=19SUYxg8UmXJqK9wC39k78Wzn3lasz4O6&export=download&confirm=t&uuid=03231612-b556-4112-b8fa-a5c656107a2d",
         "classes": [
             "butterfly",
@@ -16,6 +18,7 @@
     },
     "lepidoptera.v2alpha": {
         "name": "Butterfly/Moth",
+        "description": "Identifies 4300+ species of butterflies and moths.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
@@ -53,6 +56,7 @@
     },
     "odonata": {
         "name": "Odonata",
+        "description": "Identifies 400+ species of dragonflies and damselflies.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
@@ -85,6 +89,7 @@
     },
     "cicada": {
         "name": "Cicada",
+        "description": "Identifies various cicada species.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
@@ -117,6 +122,7 @@
     },
     "lepidoptera": {
         "name": "Butterfly/Moth",
+        "description": "Legacy model to identify various butterfly and moth species.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
@@ -154,6 +160,7 @@
     },
     "butterfly": {
         "name": "Butterfly",
+        "description": "Identifies various butterfly species.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
@@ -189,6 +196,7 @@
     },
     "moth": {
         "name": "Moth",
+        "description": "Identifies various moth species.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
@@ -224,6 +232,7 @@
     },
     "non_lepidoptera": {
         "name": "Common Insect",
+        "description": "Identifies various common insect species other than moths and butterflies.",
         "legacy": false,
         "prototype": true,
         "enabled": true,

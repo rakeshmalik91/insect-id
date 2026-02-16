@@ -80,8 +80,10 @@ public class PredictionManager {
         Tensor outputTensor = modelForward(modelPath, rootModel, inputTensor);
         float[] logitScores = outputTensor.getDataAsFloatArray();
         float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
-        List<String> classLabels = CommonUtils.toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
-        double minAcceptedSoftmax = metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
+        
+        InsectModel rootClassifierModel = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER));
+        List<String> classLabels = rootClassifierModel.getClasses();
+        double minAcceptedSoftmax = rootClassifierModel.getMinAcceptedSoftmax();
 
         // sort by top score and filter using min accepted softmax
         Integer[] predictedClassIdx = CommonUtils.getSortedIndices(softMaxScores);
@@ -124,7 +126,7 @@ public class PredictionManager {
 
             // run through root classifier model
             List<String> predictedRootClasses = predictRootClasses(model, inputTensor);
-            Set<String> acceptedRootClasses = new HashSet<>(CommonUtils.toList(metadataManager.getMetadata(model.getModelName()).optJSONArray(FIELD_ACCEPTED_CLASSES)));
+            Set<String> acceptedRootClasses = new HashSet<>(model.getAcceptedClasses());
 
             // run through selected model
             Tensor outputTensor = modelForward(modelPath, tensorModel, inputTensor);
@@ -138,8 +140,8 @@ public class PredictionManager {
             Integer[] predictedClassIndices = CommonUtils.getTopKIndices(softMaxScores, k);
             Log.d(LOG_TAG, "Top " + k + " scores: " + Arrays.stream(predictedClassIndices).map(c -> logitScores[c]).collect(Collectors.toList()));
             Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClassIndices).map(c -> softMaxScores[c]).collect(Collectors.toList()));
-            final double minAcceptedSoftmax = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
-            final double minAcceptedLogit = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_LOGIT);
+            final double minAcceptedSoftmax = model.getMinAcceptedSoftmax();
+            final double minAcceptedLogit = model.getMinAcceptedLogit();
             Log.d(LOG_TAG, "minAcceptedSoftmax: " + minAcceptedSoftmax);
             Log.d(LOG_TAG, "minAcceptedLogit: " + minAcceptedLogit);
             List<String> predictions = Arrays.stream(predictedClassIndices).map(classLabels::get).collect(Collectors.toList());
@@ -156,7 +158,7 @@ public class PredictionManager {
                     .collect(Collectors.toList());
 
             // if model is confident enough then override root classifier
-            double minAcceptedSoftmaxToOverrideRootClassifier = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER);
+            double minAcceptedSoftmaxToOverrideRootClassifier = model.getMinAcceptedSoftmaxToOverrideRootClassifier();
             Log.d(LOG_TAG, "minAcceptedSoftmaxToOverrideRootClassifier: " + minAcceptedSoftmaxToOverrideRootClassifier);
             boolean confident = softMaxScores[predictedClassIndices[0]] > minAcceptedSoftmaxToOverrideRootClassifier;
 

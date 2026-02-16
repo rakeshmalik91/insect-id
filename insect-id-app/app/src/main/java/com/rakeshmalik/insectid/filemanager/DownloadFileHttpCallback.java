@@ -1,6 +1,5 @@
 package com.rakeshmalik.insectid.filemanager;
 
-import static com.rakeshmalik.insectid.constants.Constants.FIELD_VERSION;
 import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
 import static com.rakeshmalik.insectid.constants.Constants.WAKE_LOCK_NAME;
 import static com.rakeshmalik.insectid.constants.Constants.WAKE_LOCK_TIME;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.rakeshmalik.insectid.R;
+import com.rakeshmalik.insectid.pojo.InsectModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -148,7 +148,7 @@ class DownloadFileHttpCallback implements Callback {
     private String getDownloadInProgressMessage(long eta, int progress, long downloadedBytes, long totalBytes) {
         String msg;
         if(updateRequired) {
-            int latestVersion = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+            int latestVersion = InsectModel.fromJson(modelName, metadataManager.getMetadata(modelName)).getVersion();
             int currentVersion = prefs.getInt(ModelDownloader.modelVersionPrefName(modelName), 0);
             msg = String.format("Updating %s...\n" +
                             "%d min %d sec remaining\n" +
@@ -176,7 +176,7 @@ class DownloadFileHttpCallback implements Callback {
     private void updatePrefs() {
         prefs.edit().putBoolean(ModelDownloader.fileDownloadedPrefName(fileName), true).apply();
         if(downloadName.contains("model")) {
-            int version = metadataManager.getMetadata(modelName).optInt(FIELD_VERSION, 0);
+            int version = InsectModel.fromJson(modelName, metadataManager.getMetadata(modelName)).getVersion();
             prefs.edit().putInt(ModelDownloader.modelVersionPrefName(modelName), version).apply();
         }
     }

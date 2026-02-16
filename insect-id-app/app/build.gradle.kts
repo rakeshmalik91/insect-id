@@ -10,8 +10,8 @@ android {
         applicationId = "com.rakeshmalik.insectid"
         minSdk = 24
         targetSdk = 36
-        versionCode = 11
-        versionName = "v0.0.7 alpha"
+        versionCode = 13
+        versionName = "v0.0.8 alpha"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
