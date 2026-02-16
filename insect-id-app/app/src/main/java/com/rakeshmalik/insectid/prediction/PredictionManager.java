@@ -19,7 +19,7 @@ import com.rakeshmalik.insectid.MainActivity;
 import com.rakeshmalik.insectid.enums.Operation;
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
-import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.pojo.InsectModel;
 import com.rakeshmalik.insectid.utils.CVImageUtils;
 import com.rakeshmalik.insectid.utils.CommonUtils;
 
@@ -71,13 +71,13 @@ public class PredictionManager {
         }
     }
 
-    private List<String> predictRootClasses(ModelType modelType, Tensor inputTensor) {
+    private List<String> predictRootClasses(InsectModel model, Tensor inputTensor) {
         // run through root classifier model
         String modelName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         String modelPath = modelLoader.loadFile(context, modelName);
         Log.d(LOG_TAG, modelPath);
-        Module model = loadModel(modelPath);
-        Tensor outputTensor = modelForward(modelPath, model, inputTensor);
+        Module rootModel = loadModel(modelPath);
+        Tensor outputTensor = modelForward(modelPath, rootModel, inputTensor);
         float[] logitScores = outputTensor.getDataAsFloatArray();
         float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
         List<String> classLabels = CommonUtils.toList(metadataManager.getMetadata().optJSONObject(ROOT_CLASSIFIER).optJSONArray(FIELD_CLASSES));
@@ -93,16 +93,16 @@ public class PredictionManager {
         return predictedClass;
     }
 
-    public String predict(ModelType modelType, Uri photoUri) {
-        Log.d(LOG_TAG, "inside PredictionManager.predict(" + modelType + ", " + photoUri + ")");
+    public String predict(InsectModel model, Uri photoUri) {
+        Log.d(LOG_TAG, "inside PredictionManager.predict(" + model + ", " + photoUri + ")");
 
-        String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
-        String classListName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
-        String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
+        String classListName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
+        String classDetailsName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
 
         try {
             String modelPath = modelLoader.loadFile(context, modelFileName);
-            Module model = loadModel(modelPath);
+            Module tensorModel = loadModel(modelPath);
             List<String> classLabels = modelLoader.getClassLabels(context, classListName);
             Map<String, Map<String, Object>> classDetails = modelLoader.getClassDetails(context, classDetailsName);
 
@@ -123,11 +123,11 @@ public class PredictionManager {
                     new float[]{0.229f, 0.224f, 0.225f});
 
             // run through root classifier model
-            List<String> predictedRootClasses = predictRootClasses(modelType, inputTensor);
-            Set<String> acceptedRootClasses = new HashSet<>(CommonUtils.toList(metadataManager.getMetadata(modelType).optJSONArray(FIELD_ACCEPTED_CLASSES)));
+            List<String> predictedRootClasses = predictRootClasses(model, inputTensor);
+            Set<String> acceptedRootClasses = new HashSet<>(CommonUtils.toList(metadataManager.getMetadata(model.getModelName()).optJSONArray(FIELD_ACCEPTED_CLASSES)));
 
             // run through selected model
-            Tensor outputTensor = modelForward(modelPath, model, inputTensor);
+            Tensor outputTensor = modelForward(modelPath, tensorModel, inputTensor);
             float[] logitScores = outputTensor.getDataAsFloatArray();
             Log.d(LOG_TAG, "scores: " + Arrays.toString(logitScores));
             float[] softMaxScores = CommonUtils.toSoftMax(logitScores.clone());
@@ -138,8 +138,8 @@ public class PredictionManager {
             Integer[] predictedClassIndices = CommonUtils.getTopKIndices(softMaxScores, k);
             Log.d(LOG_TAG, "Top " + k + " scores: " + Arrays.stream(predictedClassIndices).map(c -> logitScores[c]).collect(Collectors.toList()));
             Log.d(LOG_TAG, "Top " + k + " softMaxScores: " + Arrays.stream(predictedClassIndices).map(c -> softMaxScores[c]).collect(Collectors.toList()));
-            final double minAcceptedSoftmax = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
-            final double minAcceptedLogit = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_LOGIT);
+            final double minAcceptedSoftmax = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX);
+            final double minAcceptedLogit = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_LOGIT);
             Log.d(LOG_TAG, "minAcceptedSoftmax: " + minAcceptedSoftmax);
             Log.d(LOG_TAG, "minAcceptedLogit: " + minAcceptedLogit);
             List<String> predictions = Arrays.stream(predictedClassIndices).map(classLabels::get).collect(Collectors.toList());
@@ -152,11 +152,11 @@ public class PredictionManager {
             filteredPredictionsIndex = filterPossibleDuplicateSpeciesNames(filteredPredictionsIndex, classLabels, softMaxScores);
             List<String> filteredPredictionsHtml = filteredPredictionsIndex.stream()
                     .peek(classIndex -> Log.d(LOG_TAG, String.format("Predicted class index: %d, class: %s, logit: %f, softMax: %f", classIndex, classLabels.get(classIndex), logitScores[classIndex], softMaxScores[classIndex])))
-                    .map(classIndex -> getPredictionHtml(modelType, classIndex, classLabels, classDetails, softMaxScores))
+                    .map(classIndex -> getPredictionHtml(model, classIndex, classLabels, classDetails, softMaxScores))
                     .collect(Collectors.toList());
 
             // if model is confident enough then override root classifier
-            double minAcceptedSoftmaxToOverrideRootClassifier = metadataManager.getMetadata(modelType).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER);
+            double minAcceptedSoftmaxToOverrideRootClassifier = metadataManager.getMetadata(model.getModelName()).optDouble(FIELD_MIN_ACCEPTED_SOFTMAX_TO_OVERRIDE_ROOT_CLASSIFIER);
             Log.d(LOG_TAG, "minAcceptedSoftmaxToOverrideRootClassifier: " + minAcceptedSoftmaxToOverrideRootClassifier);
             boolean confident = softMaxScores[predictedClassIndices[0]] > minAcceptedSoftmaxToOverrideRootClassifier;
 
@@ -164,10 +164,10 @@ public class PredictionManager {
             if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
                 if(predictedRootClasses.size() == 1 && predictedRootClasses.contains(ROOT_CLASS_OTHER)) {
                     return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
-                } else if(modelType.equals(ModelType.NON_LEPIDOPTERA)) {
+                } else if("non_lepidoptera".equals(model.getModelName())) {
                     return "No match found!<br><font color='#777777'>Please try other category models<br>or crop to fit the insect for better results</font>";
                 } else {
-                    return "No match found!<br><font color='#777777'>Possibly not a " + modelType.getIdentificationTypeDisplayName() + "<br>Crop to fit the insect for better results</font>";
+                    return "No match found!<br><font color='#777777'>Possibly not a " + model.getRawDisplayName() + "<br>Crop to fit the insect for better results</font>";
                 }
             } else if(filteredPredictionsHtml.isEmpty()) {
                 return "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>";
@@ -222,11 +222,11 @@ public class PredictionManager {
     }
 
     @NonNull
-    private String getPredictionHtml(ModelType modelType, Integer classIndex, List<String> classLabels, Map<String, Map<String, Object>> classDetails, float[] softMaxScores) {
+    private String getPredictionHtml(InsectModel model, Integer classIndex, List<String> classLabels, Map<String, Map<String, Object>> classDetails, float[] softMaxScores) {
         return getScientificNameHtml(classLabels.get(classIndex))
                 + getSpeciesNameHtml(classLabels.get(classIndex), classDetails)
                 + getScoreHtml(softMaxScores[classIndex])
-                + getSpeciesImageList(modelType.modelName, classLabels.get(classIndex));
+                + getSpeciesImageList(model.getModelName(), classLabels.get(classIndex));
     }
 
     private String getScientificName(String className) {

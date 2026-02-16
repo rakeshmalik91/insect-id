@@ -10,11 +10,12 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.pojo.InsectModel;
 
 import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 import okhttp3.*;
 
@@ -47,30 +48,30 @@ public class ModelDownloader {
         this.metadataManager = metadataManager;
     }
 
-    public boolean isModelDownloadOrUpdateRequired(ModelType modelType) {
-        return !isModelAlreadyDownloaded(modelType) || isModelToBeUpdated(modelType);
+    public boolean isModelDownloadOrUpdateRequired(InsectModel model) {
+        return !isModelAlreadyDownloaded(model) || isModelToBeUpdated(model);
     }
 
-    public boolean isModelAlreadyDownloaded(ModelType modelType) {
-        String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
-        String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
-        String imagesArchiveFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelType.modelName);
-        String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
+    public boolean isModelAlreadyDownloaded(InsectModel model) {
+        String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
+        String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
+        String imagesArchiveFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, model.getModelName());
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
         return isFileAlreadyDownloaded(classesFileName)
                 && isFileAlreadyDownloaded(classDetailsFileName)
                 && isFileAlreadyDownloaded(imagesArchiveFileName)
                 && isFileAlreadyDownloaded(modelFileName);
     }
 
-    public boolean isModelToBeUpdated(ModelType modelType) {
-        int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
-        int latestVersion = metadataManager.getMetadata(modelType).optInt(FIELD_VERSION, 0);
-        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", modelType.modelName, currentVersion, latestVersion));
+    public boolean isModelToBeUpdated(InsectModel model) {
+        int currentVersion = prefs.getInt(modelVersionPrefName(model.getModelName()), 0);
+        int latestVersion = metadataManager.getMetadata(model.getModelName()).optInt(FIELD_VERSION, 0);
+        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", model.getModelName(), currentVersion, latestVersion));
         return currentVersion < latestVersion;
     }
 
-    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, int modelDownloadSeq, int totalModelDownloads) {
-        downloadModel(modelType, onSuccess, onFailure, false, modelDownloadSeq, totalModelDownloads);
+    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, int modelDownloadSeq, int totalModelDownloads) {
+        downloadModel(model, onSuccess, onFailure, false, modelDownloadSeq, totalModelDownloads);
     }
 
     private boolean isRootClassifierDownloadRequired() {
@@ -94,7 +95,7 @@ public class ModelDownloader {
         }
     }
 
-    public void downloadModel(ModelType modelType, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
         Log.d(LOG_TAG, "Inside ModelDownloader.downloadModel()");
         try {
 
@@ -102,56 +103,56 @@ public class ModelDownloader {
                 metadataManager.getMetadata(true);
             }
 
-            final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, modelType.modelName);
-            final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, modelType.modelName);
-            final String modelFileName = String.format(MODEL_FILE_NAME_FMT, modelType.modelName);
-            final String imagesFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelType.modelName);
+            final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
+            final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
+            final String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
+            final String imagesFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, model.getModelName());
 
-            final String classesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASSES_URL, null);
-            final String classDetailsFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_CLASS_DETAILS_URL, null);
-            final String imagesFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_IMAGES_URL, null);
-            final String modelFileUrl = metadataManager.getMetadata(modelType).optString(FIELD_MODEL_URL, null);
+            final String classesFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_CLASSES_URL, null);
+            final String classDetailsFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_CLASS_DETAILS_URL, null);
+            final String imagesFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_IMAGES_URL, null);
+            final String modelFileUrl = metadataManager.getMetadata(model.getModelName()).optString(FIELD_MODEL_URL, null);
 
             Runnable downloadModelData = () -> {
                 final boolean updateRequired;
-                if (isModelAlreadyDownloaded(modelType)) {
-                    updateRequired = forceUpdate && isModelToBeUpdated(modelType);
+                if (isModelAlreadyDownloaded(model)) {
+                    updateRequired = forceUpdate && isModelToBeUpdated(model);
                     if(updateRequired) {
-                        Log.d(LOG_TAG, "Going to update " + modelType.modelName + " model");
+                        Log.d(LOG_TAG, "Going to update " + model.getModelName() + " model");
                     } else {
                         if(forceUpdate) {
-                            int currentVersion = prefs.getInt(modelVersionPrefName(modelType.modelName), 0);
-                            mainHandler.post(() -> outputText.setText(getModelUpToDateMessage(modelType, currentVersion)));
+                            int currentVersion = prefs.getInt(modelVersionPrefName(model.getModelName()), 0);
+                            mainHandler.post(() -> outputText.setText(getModelUpToDateMessage(model, currentVersion)));
                         }
-                        Log.d(LOG_TAG, "Model " + modelType.modelName + " already downloaded.");
+                        Log.d(LOG_TAG, "Model " + model.getModelName() + " already downloaded.");
                         onSuccess.run();
                         return;
                     }
                 } else {
                     updateRequired = false;
-                    Log.d(LOG_TAG, "Going to download " + modelType.modelName + " model");
+                    Log.d(LOG_TAG, "Going to download " + model.getModelName() + " model");
                 }
 
                 Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, onSuccess, onFailure,
-                        modelType.getModelDisplayName() + " model", modelType.modelName, updateRequired,
+                        model.getDisplayName() + " model", model.getModelName(), updateRequired,
                         5, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, onFailure,
-                        modelType.getModelDisplayName() + " images", modelType.modelName, updateRequired,
+                        model.getDisplayName() + " images", model.getModelName(), updateRequired,
                         4, 5, modelDownloadSeq, totalModelDownloads);
 
                 Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, onFailure,
-                        modelType.getModelDisplayName() + " metadata", modelType.modelName, updateRequired,
+                        model.getDisplayName() + " metadata", model.getModelName(), updateRequired,
                         3, 5, modelDownloadSeq, totalModelDownloads);
 
                 downloadFile(classesFileName, classesFileUrl, downloadClassDetails, onFailure,
-                        modelType.getModelDisplayName() + " classes", modelType.modelName, updateRequired,
+                        model.getDisplayName() + " classes", model.getModelName(), updateRequired,
                         2, 5, modelDownloadSeq, totalModelDownloads);
             };
 
             downloadRootClassifier(downloadModelData, onFailure, forceUpdate, modelDownloadSeq, totalModelDownloads);
         } catch(Exception ex) {
-            Log.e(LOG_TAG, "Exception downloading model " + modelType, ex);
+            Log.e(LOG_TAG, "Exception downloading model " + model, ex);
             if(onFailure != null) {
                 onFailure.run();
             }
@@ -182,16 +183,16 @@ public class ModelDownloader {
     }
 
     @SuppressLint("DefaultLocale")
-    private String getModelUpToDateMessage(ModelType modelType, int currentVersion) {
-        long speciesCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("species_count", 0);
-        long dataCount = metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optLong("data_count", 0);
+    private String getModelUpToDateMessage(InsectModel model, int currentVersion) {
+        long speciesCount = metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optLong("species_count", 0);
+        long dataCount = metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optLong("data_count", 0);
         String msg = String.format("Model already up to date\nModel name: %s\nVersion: %d\n\nModel info:\nSpecies count: %d\nData count: %dk",
-                modelType.getModelDisplayName(), currentVersion, speciesCount, dataCount/1000);
-        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy", null))
+                model.getDisplayName(), currentVersion, speciesCount, dataCount/1000);
+        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("accuracy", null))
                 .map((accuracy) -> String.format("\nOverall accuracy: %s", accuracy)).orElse("");
-        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("accuracy_top3", null))
+        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("accuracy_top3", null))
                 .map((accuracyTop3) -> String.format("\nTop-3 accuracy: %s", accuracyTop3)).orElse("");
-        msg += Optional.ofNullable(metadataManager.getMetadata(modelType).optJSONObject(FIELD_STATS).optString("last_updated_date", null))
+        msg += Optional.ofNullable(metadataManager.getMetadata(model.getModelName()).optJSONObject(FIELD_STATS).optString("last_updated_date", null))
                 .map((lastUpdatedDate) -> String.format("\nLast updated on: %s", lastUpdatedDate)).orElse("");
         return msg;
     }
@@ -204,13 +205,13 @@ public class ModelDownloader {
         return PREF_MODEL_VERSION + "::" + modelName;
     }
 
-    public long getModelDownloadSizeInMB(ModelType modelType) {
+    public long getModelDownloadSizeInMB(InsectModel model) {
         long size = 0;
         if(isRootClassifierDownloadRequired()) {
             size += metadataManager.getModelSize(ROOT_CLASSIFIER);
         }
-        if(isModelDownloadOrUpdateRequired(modelType)) {
-            size += metadataManager.getModelSize(modelType.modelName);
+        if(isModelDownloadOrUpdateRequired(model)) {
+            size += metadataManager.getModelSize(model.getModelName());
         }
         return size / 1000 / 1000;
     }
@@ -222,9 +223,10 @@ public class ModelDownloader {
             if(size <= 0) return 0;
             totalSize += size;
         }
-        for(ModelType modelType: ModelType.values()) {
-            if ((!onlyNonLegacy || !modelType.legacy) && isModelDownloadOrUpdateRequired(modelType)) {
-                long size = metadataManager.getModelSize(modelType.modelName);
+        List<InsectModel> availableModels = metadataManager.getAvailableModels();
+        for(InsectModel model: availableModels) {
+            if ((!onlyNonLegacy || !model.isLegacy()) && isModelDownloadOrUpdateRequired(model)) {
+                long size = metadataManager.getModelSize(model.getModelName());
                 if(size <= 0) return 0;
                 totalSize += size;
             }

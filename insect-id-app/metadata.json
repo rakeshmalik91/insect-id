@@ -1,5 +1,6 @@
 {
     "root-classifier": {
+        "is_root": true,
         "model_url": "https://drive.usercontent.google.com/download?id=19SUYxg8UmXJqK9wC39k78Wzn3lasz4O6&export=download&confirm=t&uuid=03231612-b556-4112-b8fa-a5c656107a2d",
         "classes": [
             "butterfly",
@@ -14,6 +15,9 @@
         "size": 233592706
     },
     "lepidoptera.v2alpha": {
+        "name": "Butterfly/Moth",
+        "legacy": false,
+        "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v2alpha.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1QuDThH6EAGdpoN51uPSYcCClJpwXRtG4&export=download&confirm=t&uuid=d6f92d91-aacb-4a9b-ae7a-260f049b5a01",
@@ -47,7 +51,74 @@
         },
         "size": 697011898
     },
+    "odonata": {
+        "name": "Odonata",
+        "legacy": false,
+        "enabled": true,
+        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
+        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
+        "images_url": "https://drive.usercontent.google.com/download?id=1824VAebNTz2KX1laoBuOYJWS110_MoOc&export=download&confirm=t&uuid=cd4d27c2-8298-4176-877a-80ee7fbcd21f",
+        "model_url": "https://drive.usercontent.google.com/download?id=15h98TW9upNsRUFbla3qjSmIaDQolh2bC&export=download&confirm=t&uuid=4f1bcc3a-4757-41b5-af6b-4a35c9bca77e",
+        "version": 11,
+        "min_accepted_logit": -50,
+        "min_accepted_softmax": 0.05,
+        "accepted_classes": [
+            "odonata"
+        ],
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 437,
+            "species_count": 410,
+            "spp_class_count": 27,
+            "early_stage_class_count": 0,
+            "data_count": 44288,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "indianodonata.org",
+                "inaturalist.org"
+            ],
+            "last_updated_date": "24-03-2025",
+            "accuracy": "83.25%",
+            "accuracy_top3": "93.42%"
+        },
+        "size": 268564866
+    },
+    "cicada": {
+        "name": "Cicada",
+        "legacy": false,
+        "enabled": true,
+        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
+        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
+        "images_url": "https://drive.usercontent.google.com/download?id=1BbUS15PMajfikdXmY5kPkM3e0uW8vZ6V&export=download",
+        "model_url": "https://drive.usercontent.google.com/download?id=1xLBQjaRWm9iJqUJen1hx41lePGqUDUgf&export=download&confirm=t&uuid=0a03f119-7ac8-4e62-a9f6-6fa091ca1e36",
+        "version": 7,
+        "min_accepted_logit": -50,
+        "min_accepted_softmax": 0.05,
+        "accepted_classes": [
+            "cicada"
+        ],
+        "min_accepted_softmax_to_override_root_classifier": 0.95,
+        "stats": {
+            "class_count": 217,
+            "species_count": 217,
+            "spp_class_count": 0,
+            "early_stage_class_count": 0,
+            "data_count": 7798,
+            "model_arch": "Resnet-152",
+            "data_sources": [
+                "indiancicadas.org",
+                "inaturalist.org"
+            ],
+            "last_updated_date": "24-03-2025",
+            "accuracy": "62.36%",
+            "accuracy_top3": "70.60%"
+        },
+        "size": 246856885
+    },
     "lepidoptera": {
+        "name": "Butterfly/Moth",
+        "legacy": true,
+        "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1lZN5mELWDMM5I4z56bsxoB3HqPtGKGql&export=download&confirm=t&uuid=502b765c-b879-40e5-aae6-5115fd526532",
@@ -82,6 +153,9 @@
         "size": 635270339
     },
     "butterfly": {
+        "name": "Butterfly",
+        "legacy": true,
+        "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1WU6ZkXS3GIEEBGYYQqnK89COcICNOlS2&export=download&confirm=t&uuid=245993aa-c947-4842-ad5b-58d87dd44c77",
@@ -114,6 +188,9 @@
         "size": 359190623
     },
     "moth": {
+        "name": "Moth",
+        "legacy": true,
+        "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1bxyECThiTs-GYS5Bp2-lLP5GoEBFVQjN&export=download&confirm=t&uuid=9e829992-d08c-4684-a54c-462c78e92df8",
@@ -145,65 +222,11 @@
         },
         "size": 501321075
     },
-    "odonata": {
-        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
-        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.odonata.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1824VAebNTz2KX1laoBuOYJWS110_MoOc&export=download&confirm=t&uuid=cd4d27c2-8298-4176-877a-80ee7fbcd21f",
-        "model_url": "https://drive.usercontent.google.com/download?id=15h98TW9upNsRUFbla3qjSmIaDQolh2bC&export=download&confirm=t&uuid=4f1bcc3a-4757-41b5-af6b-4a35c9bca77e",
-        "version": 11,
-        "min_accepted_logit": -50,
-        "min_accepted_softmax": 0.05,
-        "accepted_classes": [
-            "odonata"
-        ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95,
-        "stats": {
-            "class_count": 437,
-            "species_count": 410,
-            "spp_class_count": 27,
-            "early_stage_class_count": 0,
-            "data_count": 44288,
-            "model_arch": "Resnet-152",
-            "data_sources": [
-                "indianodonata.org",
-                "inaturalist.org"
-            ],
-            "last_updated_date": "24-03-2025",
-            "accuracy": "83.25%",
-            "accuracy_top3": "93.42%"
-        },
-        "size": 268564866
-    },
-    "cicada": {
-        "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
-        "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.cicada.json",
-        "images_url": "https://drive.usercontent.google.com/download?id=1BbUS15PMajfikdXmY5kPkM3e0uW8vZ6V&export=download",
-        "model_url": "https://drive.usercontent.google.com/download?id=1xLBQjaRWm9iJqUJen1hx41lePGqUDUgf&export=download&confirm=t&uuid=0a03f119-7ac8-4e62-a9f6-6fa091ca1e36",
-        "version": 7,
-        "min_accepted_logit": -50,
-        "min_accepted_softmax": 0.05,
-        "accepted_classes": [
-            "cicada"
-        ],
-        "min_accepted_softmax_to_override_root_classifier": 0.95,
-        "stats": {
-            "class_count": 217,
-            "species_count": 217,
-            "spp_class_count": 0,
-            "early_stage_class_count": 0,
-            "data_count": 7798,
-            "model_arch": "Resnet-152",
-            "data_sources": [
-                "indiancicadas.org",
-                "inaturalist.org"
-            ],
-            "last_updated_date": "24-03-2025",
-            "accuracy": "62.36%",
-            "accuracy_top3": "70.60%"
-        },
-        "size": 246856885
-    },
     "non_lepidoptera": {
+        "name": "Common Insect",
+        "legacy": false,
+        "prototype": true,
+        "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.non_lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.non_lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1u3L5YqXCnxilYR0I294aiQaZMwGfiAyV&export=download&confirm=t&uuid=30c4aecb-07f5-4df0-b0c5-00d2f41d9cd6",
@@ -230,8 +253,8 @@
                 "inaturalist.org"
             ],
             "last_updated_date": "25-03-2025",
-            "accuracy": "(model incomplete)",
-            "accuracy_top3": "(model incomplete)"
+            "accuracy": "(prototype model)",
+            "accuracy_top3": "(prototype model)"
         },
         "size": 543216904
     }

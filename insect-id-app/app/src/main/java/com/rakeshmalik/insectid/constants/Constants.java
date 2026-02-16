@@ -34,6 +34,11 @@ public class Constants {
     public static final String FIELD_CLASSES = "classes";
     public static final String FIELD_ACCEPTED_CLASSES = "accepted_classes";
     public static final String FIELD_STATS = "stats";
+    public static final String FIELD_ENABLED = "enabled";
+    public static final String FIELD_NAME = "name";
+    public static final String FIELD_LEGACY = "legacy";
+    public static final String FIELD_IS_ROOT = "is_root";
+    public static final String FIELD_PROTOTYPE = "prototype";
 
     public static final String ROOT_CLASSIFIER = "root-classifier";
     public static final String ROOT_CLASS_OTHER = "other";

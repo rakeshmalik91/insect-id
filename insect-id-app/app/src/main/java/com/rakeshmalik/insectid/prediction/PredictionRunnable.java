@@ -40,7 +40,7 @@ public class PredictionRunnable implements Runnable {
         Log.d(LOG_TAG, "Inside PredictionRunnable.run()");
         try {
             mainActivity.lockUI();
-            modelDownloader.downloadModel(mainActivity.getSelectedModelType(), this::runPrediction, mainActivity::unlockUI, 1, 1);
+            modelDownloader.downloadModel(mainActivity.getSelectedModel(), this::runPrediction, mainActivity::unlockUI, 1, 1);
         } catch(Exception ex) {
             mainActivity.unlockUI();
         }
@@ -50,7 +50,7 @@ public class PredictionRunnable implements Runnable {
         Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction()");
         try {
             mainActivity.runOnUiThread(() -> outputText.setText(R.string.predicting));
-            String predictions = predictionManager.predict(mainActivity.getSelectedModelType(), mainActivity.getPhotoUri());
+            String predictions = predictionManager.predict(mainActivity.getSelectedModel(), mainActivity.getPhotoUri());
 
             Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction(): Going to render");
             // set html with alt text while loading images

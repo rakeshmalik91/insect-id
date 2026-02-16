@@ -31,7 +31,7 @@ import com.getkeepsafe.relinker.ReLinker;
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelDownloader;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
-import com.rakeshmalik.insectid.enums.ModelType;
+import com.rakeshmalik.insectid.pojo.InsectModel;
 import com.rakeshmalik.insectid.prediction.PredictionRunnable;
 import com.rakeshmalik.insectid.prediction.PredictionManager;
 import com.yalantis.ucrop.UCrop;
@@ -57,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView outputText;
     private Uri photoUri;
     private Spinner modelTypeSpinner;
-    private ModelType selectedModelType;
+    private InsectModel selectedModel;
     private ModelLoader modelLoader;
+    private MetadataManager metadataManager;
     private ModelDownloader modelDownloader;
     private PredictionManager predictionManager;
     private ImageButton buttonUpdateModel;
@@ -79,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
             this.buttonPickImage.setOnClickListener(v -> showImagePickerDialog());
             this.outputText = findViewById(R.id.outputText);
             this.modelTypeSpinner = findViewById(R.id.modelTypeSpinner);
-            createModelTypeSpinner();
-
-            MetadataManager metadataManager = new MetadataManager(this, outputText);
+            
+            this.metadataManager = new MetadataManager(this, outputText);
             this.modelLoader = new ModelLoader(this);
             this.modelDownloader = new ModelDownloader(this, outputText, metadataManager);
             this.predictionManager = new PredictionManager(this, metadataManager, modelLoader);
+
 
             this.buttonUpdateModel = findViewById(R.id.buttonUpdateModel);
             this.buttonUpdateModel.setOnClickListener(v -> showDownloadOrUpdateModelDialog());
@@ -92,15 +93,18 @@ public class MainActivity extends AppCompatActivity {
             //System.loadLibrary("opencv_java4");
             ReLinker.loadLibrary(this, "opencv_java4");
 
-            new Thread(metadataManager::getMetadata).start();
+            new Thread(() -> {
+                metadataManager.getMetadata();
+                runOnUiThread(this::createModelTypeSpinner);
+            }).start();
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception in MainActivity.onCreate()", ex);
             throw ex;
         }
     }
 
-    public ModelType getSelectedModelType() {
-        return selectedModelType;
+    public InsectModel getSelectedModel() {
+        return selectedModel;
     }
 
     public Uri getPhotoUri() {
@@ -117,15 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void createModelTypeSpinner() {
         try {
-            // Convert enum values to a string array for the Spinner
-            ModelType[] modelTypes = ModelType.values();
-            String[] modelTypeNames = new String[modelTypes.length];
-            for (int i = 0; i < modelTypes.length; i++) {
-                modelTypeNames[i] = modelTypes[i].getModelDisplayName();
-            }
-
+            // Get available models from metadata
+            List<InsectModel> availableModels = metadataManager.getAvailableModels();
+            
             // Create and set adapter for the Spinner
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, modelTypeNames);
+            ArrayAdapter<InsectModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, availableModels);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             modelTypeSpinner.setAdapter(adapter);
 
@@ -141,25 +141,25 @@ public class MainActivity extends AppCompatActivity {
                     }
                     try {
                         runOnUiThread(() -> outputText.setText(""));
-                        selectedModelType = modelTypes[position];
+                        selectedModel = availableModels.get(position);
                         previousSelection = position;
                         if(photoUri != null) {
                             downloadModelAndRunPredictionAsync();
                         }
                     } catch (Exception ex) {
                         Log.e(LOG_TAG, "Exception during model type spinner item selection", ex);
-                        throw ex;
+                        // throw ex; // or handle gracefully
                     }
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     Log.d(LOG_TAG, "nothing selected on model type spinner");
-                    selectedModelType = null;
+                    selectedModel = null;
                 }
             });
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception during spinner creation", ex);
-            throw ex;
+            // throw ex;
         }
     }
 
@@ -364,15 +364,15 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     private void showDownloadOrUpdateModelDialog() {
-        if(uiLocked) {
+        if(uiLocked || selectedModel == null) {
             return;
         }
         try {
-            long modelSize = modelDownloader.getModelDownloadSizeInMB(selectedModelType);
+            long modelSize = modelDownloader.getModelDownloadSizeInMB(selectedModel);
             long totalNonLegacyModelSize = modelDownloader.getTotalModelDownloadSizeInMB(true);
             long totalModelSize = modelDownloader.getTotalModelDownloadSizeInMB(false);
             String[] options = {
-                    selectedModelType.getModelDisplayName() + " " + (modelSize > 0 ? String.format("(%d MB)", modelSize) : "(Up to date)"),
+                    selectedModel.getDisplayName() + " " + (modelSize > 0 ? String.format("(%d MB)", modelSize) : "(Up to date)"),
                     "All Non-legacy Models " + (totalNonLegacyModelSize > 0 ? String.format("(%d MB)", totalNonLegacyModelSize) : "(Up to date)"),
                     "All Models " + (totalModelSize > 0 ? String.format("(%d MB)", totalModelSize) : "(Up to date)")
             };
@@ -396,26 +396,27 @@ public class MainActivity extends AppCompatActivity {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
-        executorService.submit(() -> modelDownloader.downloadModel(selectedModelType, this::unlockUI, this::unlockUI, true, 1, 1));
+        executorService.submit(() -> modelDownloader.downloadModel(selectedModel, this::unlockUI, this::unlockUI, true, 1, 1));
     }
 
     private void downloadOrUpdateAllModels(boolean onlyNonLegacy) {
         lockUI();
         imageView.setImageURI(null);
         photoUri = null;
-        List<ModelType> modelsToDownload = Arrays.stream(ModelType.values())
-                .filter(m -> (!onlyNonLegacy || !m.legacy) && modelDownloader.isModelDownloadOrUpdateRequired(m))
+        List<InsectModel> modelsToDownload = metadataManager.getAvailableModels().stream()
+                .filter(m -> (!onlyNonLegacy || !m.isLegacy()) && modelDownloader.isModelDownloadOrUpdateRequired(m))
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
         int modelDownloadSeq = modelsToDownload.size();
         Runnable runnable = () -> {
-            runOnUiThread(() -> outputText.setText("All " + ModelType.values().length + " models are now up to date"));
+            int availableCount = metadataManager.getAvailableModels().size();
+            runOnUiThread(() -> outputText.setText("All " + availableCount + " models are now up to date"));
             unlockUI();
         };
-        for(ModelType modelType : modelsToDownload) {
+        for(InsectModel model : modelsToDownload) {
             Runnable onSuccess = runnable;
             final int modelDownloadSeqFinal = modelDownloadSeq;
-            runnable = () -> modelDownloader.downloadModel(modelType, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, modelsToDownload.size());
+            runnable = () -> modelDownloader.downloadModel(model, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, modelsToDownload.size());
             modelDownloadSeq--;
         }
         executorService.submit(runnable);
