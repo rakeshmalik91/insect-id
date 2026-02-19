@@ -16,16 +16,16 @@
         "min_accepted_softmax": 0.3,
         "size": 233592706
     },
-    "lepidoptera.v2alpha": {
+    "lepidoptera": {
         "name": "Butterfly/Moth",
-        "description": "Identifies 4300+ species of butterflies and moths.",
+        "description": "Identifies butterflies and moths.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.v2alpha.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.v2alpha.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1QuDThH6EAGdpoN51uPSYcCClJpwXRtG4&export=download&confirm=t&uuid=d6f92d91-aacb-4a9b-ae7a-260f049b5a01",
         "model_url": "https://drive.usercontent.google.com/download?id=1Z7RJQL2XCt8AbB7X4k8IO7wG8qa42vps&export=download&confirm=t&uuid=b0d810d4-0fe5-4a5f-a240-381f1461a914",
-        "version": 13,
+        "version": 12,
         "min_accepted_logit": -200,
         "min_accepted_softmax": 0.01,
         "accepted_classes": [
@@ -56,7 +56,7 @@
     },
     "odonata": {
         "name": "Odonata",
-        "description": "Identifies 400+ species of dragonflies and damselflies.",
+        "description": "Identifies dragonflies and damselflies.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.odonata.json",
@@ -89,7 +89,7 @@
     },
     "cicada": {
         "name": "Cicada",
-        "description": "Identifies various cicada species.",
+        "description": "Identifies cicada species.",
         "legacy": false,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.cicada.json",
@@ -120,16 +120,16 @@
         },
         "size": 246856885
     },
-    "lepidoptera": {
+    "lepidoptera_legacy": {
         "name": "Butterfly/Moth",
-        "description": "Legacy model to identify various butterfly and moth species.",
+        "description": "Legacy model to identify butterflies and moths.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.lepidoptera.json",
         "class_details_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/class_details.lepidoptera.json",
         "images_url": "https://drive.usercontent.google.com/download?id=1lZN5mELWDMM5I4z56bsxoB3HqPtGKGql&export=download&confirm=t&uuid=502b765c-b879-40e5-aae6-5115fd526532",
         "model_url": "https://drive.usercontent.google.com/download?id=1FVknmAgmeP88Qfs4rUfVurWG1LFRKYvZ&export=download&confirm=t&uuid=e436eb0f-c415-4e1b-b0d5-7484ee7751a3",
-        "version": 11,
+        "version": 14,
         "min_accepted_logit": -60,
         "min_accepted_softmax": 0.05,
         "accepted_classes": [
@@ -160,7 +160,7 @@
     },
     "butterfly": {
         "name": "Butterfly",
-        "description": "Identifies various butterfly species.",
+        "description": "Identifies butterflies.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.butterfly.json",
@@ -196,7 +196,7 @@
     },
     "moth": {
         "name": "Moth",
-        "description": "Identifies various moth species.",
+        "description": "Identifies moths.",
         "legacy": true,
         "enabled": true,
         "classes_url": "https://raw.githubusercontent.com/rakeshmalik91/insect-id/refs/heads/main/models/classes.moth.json",
@@ -232,7 +232,7 @@
     },
     "non_lepidoptera": {
         "name": "Common Insect",
-        "description": "Identifies various common insect species other than moths and butterflies.",
+        "description": "A prototype model that identifies few common insects (except butterflies and moths).",
         "legacy": false,
         "prototype": true,
         "enabled": true,
