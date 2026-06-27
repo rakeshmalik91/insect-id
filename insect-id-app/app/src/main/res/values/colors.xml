@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Nature Tech Theme Colors -->
+    <color name="primaryGreen">#2E7D32</color>
+    <color name="onPrimaryGreen">#FFFFFF</color>
+    <color name="secondaryTeal">#00695C</color>
+    <color name="onSecondaryTeal">#FFFFFF</color>
+    <color name="backgroundLight">#FAFAFA</color>
+    <color name="surfaceLight">#F1F8E9</color>
 </resources>

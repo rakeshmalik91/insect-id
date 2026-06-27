@@ -2,7 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.InsectID" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorOnPrimary">@color/onPrimaryGreen</item>
+        <item name="colorSecondary">@color/secondaryTeal</item>
+        <item name="colorOnSecondary">@color/onSecondaryTeal</item>
+        <item name="android:windowBackground">@color/backgroundLight</item>
+        <item name="colorSurface">@color/surfaceLight</item>
     </style>
 
     <style name="Theme.InsectID" parent="Base.Theme.InsectID" />
