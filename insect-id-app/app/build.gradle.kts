@@ -38,6 +38,7 @@ android {
         jniLibs {
             // conflicts between opencv and pytorch
             pickFirsts.add("lib/**/libc++_shared.so")
+            useLegacyPackaging = true
         }
     }
 }
@@ -59,8 +60,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.pytorch.android)
-    implementation(libs.pytorch.android.torchvision)
+    // 16KB-aligned PyTorch local AARs
+    implementation(files("libs/pytorch_android-patched.aar"))
+    implementation(files("libs/pytorch_android_torchvision-patched.aar"))
+    implementation("com.facebook.fbjni:fbjni-java-only:0.2.2")
+    implementation("com.facebook.soloader:nativeloader:0.10.5")
     implementation(libs.gson)
     implementation(libs.ucrop)
     implementation(libs.okhttp)
