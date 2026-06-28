@@ -8,6 +8,7 @@ import static com.rakeshmalik.insectid.utils.CommonUtils.isEarlyStage;
 import static com.rakeshmalik.insectid.utils.CommonUtils.isPossibleDuplicate;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -95,7 +96,7 @@ public class PredictionManager {
         return predictedClass;
     }
 
-    public String predict(InsectModel model, Uri photoUri) {
+    public PredictionResponse predict(InsectModel model, Uri photoUri) {
         Log.d(LOG_TAG, "inside PredictionManager.predict(" + model + ", " + photoUri + ")");
 
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
@@ -113,7 +114,9 @@ public class PredictionManager {
 
             // preprocess image
             bitmap = CVImageUtils.removeBlackBorders(bitmap, 10, Operation.MEDIAN);
-            if(CVImageUtils.isScreenCapture(bitmap, 0.25)) {
+            SharedPreferences prefs = context.getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE);
+            boolean applyBlur = prefs.getBoolean("apply_blur_screen_captures", true);
+            if(applyBlur && CVImageUtils.isScreenCapture(bitmap, 0.25)) {
                 bitmap = CVImageUtils.applyGaussianBlur(bitmap, 0.005);
             }
             previewPreprocessedImage(bitmap);
@@ -152,9 +155,9 @@ public class PredictionManager {
                     .filter(classIndex -> isUniquePrediction(classIndex, classLabels, predictions, predictedGenus))
                     .collect(Collectors.toList());
             filteredPredictionsIndex = filterPossibleDuplicateSpeciesNames(filteredPredictionsIndex, classLabels, softMaxScores);
-            List<String> filteredPredictionsHtml = filteredPredictionsIndex.stream()
+            List<PredictionResult> filteredPredictions = filteredPredictionsIndex.stream()
                     .peek(classIndex -> Log.d(LOG_TAG, String.format("Predicted class index: %d, class: %s, logit: %f, softMax: %f", classIndex, classLabels.get(classIndex), logitScores[classIndex], softMaxScores[classIndex])))
-                    .map(classIndex -> getPredictionHtml(model, classIndex, classLabels, classDetails, softMaxScores))
+                    .map(classIndex -> getPredictionResult(model, classIndex, classLabels, classDetails, softMaxScores))
                     .collect(Collectors.toList());
 
             // if model is confident enough then override root classifier
@@ -165,21 +168,21 @@ public class PredictionManager {
             // decide result based on root classifier and model predictions
             if(!confident && predictedRootClasses.stream().noneMatch(acceptedRootClasses::contains)) {
                 if(predictedRootClasses.size() == 1 && predictedRootClasses.contains(ROOT_CLASS_OTHER)) {
-                    return "No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>";
+                    return new PredictionResponse("No match found!<br><font color='#777777'>Possibly not an Insect<br>Crop to fit the insect for better results</font>");
                 } else if("non_lepidoptera".equals(model.getModelName())) {
-                    return "No match found!<br><font color='#777777'>Please try other category models<br>or crop to fit the insect for better results</font>";
+                    return new PredictionResponse("No match found!<br><font color='#777777'>Please try other category models<br>or crop to fit the insect for better results</font>");
                 } else {
-                    return "No match found!<br><font color='#777777'>Possibly not a " + model.getRawDisplayName() + "<br>Crop to fit the insect for better results</font>";
+                    return new PredictionResponse("No match found!<br><font color='#777777'>Possibly not a " + model.getRawDisplayName() + "<br>Crop to fit the insect for better results</font>");
                 }
-            } else if(filteredPredictionsHtml.isEmpty()) {
-                return "No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>";
+            } else if(filteredPredictions.isEmpty()) {
+                return new PredictionResponse("No match found!<br><font color='#777777'>Crop to fit the insect for better results</font>");
             } else {
-                return String.join("<br/><br/>", filteredPredictionsHtml);
+                return new PredictionResponse(filteredPredictions);
             }
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception during prediction", ex);
         }
-        return "Failed to predict!!!";
+        return new PredictionResponse("Failed to predict!!!");
     }
 
     @NonNull
@@ -224,23 +227,27 @@ public class PredictionManager {
     }
 
     @NonNull
-    private String getPredictionHtml(InsectModel model, Integer classIndex, List<String> classLabels, Map<String, Map<String, Object>> classDetails, float[] softMaxScores) {
-        return getScientificNameHtml(classLabels.get(classIndex))
-                + getSpeciesNameHtml(classLabels.get(classIndex), classDetails)
-                + getScoreHtml(softMaxScores[classIndex])
-                + getSpeciesImageList(model.getModelName(), classLabels.get(classIndex));
+    private PredictionResult getPredictionResult(InsectModel model, Integer classIndex, List<String> classLabels, Map<String, Map<String, Object>> classDetails, float[] softMaxScores) {
+        String className = classLabels.get(classIndex);
+        String sciName = getScientificName(className);
+        String commonName = getSpeciesName(className, classDetails);
+        String searchUrl = "https://www.google.com/search?q=" + sciName.replace(" ", "+") + "+insect";
+        
+        return new PredictionResult(
+            sciName, 
+            commonName, 
+            softMaxScores[classIndex], 
+            searchUrl,
+            model.getModelName(),
+            className
+        );
     }
 
     private String getScientificName(String className) {
         return className.replaceAll(EARLY_STAGE_CLASS_SUFFIX + "$", "").replaceFirst("-", " ");
     }
 
-    private String getScientificNameHtml(String className) {
-        String sciName = getScientificName(className);
-        return "<font color='#FF7755'><i>" + sciName + "</i></font><br>";
-    }
-
-    private String getSpeciesNameHtml(String className, Map<String, Map<String, Object>> classDetails) {
+    private String getSpeciesName(String className, Map<String, Map<String, Object>> classDetails) {
         String speciesName = "";
         try {
             boolean isEarlyStage = className.endsWith(EARLY_STAGE_CLASS_SUFFIX);
@@ -262,15 +269,7 @@ public class PredictionManager {
             Log.e(LOG_TAG, "Exception during species name extraction", ex);
             speciesName = className;
         }
-        return "<font color='#FFFFFF'>" + speciesName + "</font><br>";
-    }
-
-    private String getScoreHtml(Float score) {
-        return String.format(Locale.getDefault(), "<font color='#777777'>~%.2f%% match</font><br><br>", score * 100);
-    }
-
-    private String getSpeciesImageList(String modelName, String className) {
-        return "<img src='" + modelName + "/" + className + "'/>";
+        return speciesName;
     }
 
     private void previewPreprocessedImage(final Bitmap bitmap) {

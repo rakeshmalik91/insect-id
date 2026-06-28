@@ -18,6 +18,7 @@
     },
     "lepidoptera": {
         "name": "Butterfly/Moth",
+        "icon": "ic_butterfly",
         "description": "Identifies butterflies and moths.",
         "legacy": false,
         "enabled": true,
@@ -55,7 +56,8 @@
         "size": 697011898
     },
     "odonata": {
-        "name": "Odonata",
+        "name": "Dragonfly",
+        "icon": "ic_dragonfly",
         "description": "Identifies dragonflies and damselflies.",
         "legacy": false,
         "enabled": true,
@@ -89,6 +91,7 @@
     },
     "cicada": {
         "name": "Cicada",
+        "icon": "ic_cicada",
         "description": "Identifies cicada species.",
         "legacy": false,
         "enabled": true,
@@ -122,6 +125,7 @@
     },
     "lepidoptera_legacy": {
         "name": "Butterfly/Moth",
+        "icon": "ic_butterfly",
         "description": "Legacy model to identify butterflies and moths.",
         "legacy": true,
         "enabled": true,
@@ -160,6 +164,7 @@
     },
     "butterfly": {
         "name": "Butterfly",
+        "icon": "ic_butterfly",
         "description": "Identifies butterflies.",
         "legacy": true,
         "enabled": true,
@@ -196,6 +201,7 @@
     },
     "moth": {
         "name": "Moth",
+        "icon": "ic_butterfly",
         "description": "Identifies moths.",
         "legacy": true,
         "enabled": true,
@@ -232,6 +238,7 @@
     },
     "non_lepidoptera": {
         "name": "Common Insect",
+        "icon": "ic_insect",
         "description": "A prototype model that identifies few common insects (except butterflies and moths).",
         "legacy": false,
         "prototype": true,

@@ -7,7 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.TextView;
+
+import com.rakeshmalik.insectid.ui.UIController;
 
 import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.constants.Constants;
@@ -33,13 +34,13 @@ public class MetadataManager {
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private JSONObject metadata;
-    private final TextView outputText;
+    private final UIController uiController;
     private final Context context;
     private final SharedPreferences prefs;
 
-    public MetadataManager(Context context, TextView outputText) {
+    public MetadataManager(Context context, UIController uiController) {
         this.context = context;
-        this.outputText = outputText;
+        this.uiController = uiController;
         this.prefs = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
     }
 
@@ -56,7 +57,7 @@ public class MetadataManager {
 
     public JSONObject getMetadata(boolean forceRefresh) {
         if(metadata == null || forceRefresh) {
-            mainHandler.post(() -> outputText.setText(R.string.fetching_metadata));
+            mainHandler.post(() -> uiController.showMessage(context.getString(R.string.fetching_metadata)));
             Log.d(Constants.LOG_TAG, "Fetching metadata");
             try {
                 // Try to fetch from network

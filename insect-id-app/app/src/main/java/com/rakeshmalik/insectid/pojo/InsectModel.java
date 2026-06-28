@@ -100,7 +100,7 @@ public class InsectModel implements Comparable<InsectModel> {
     }
 
     public String getDisplayName() {
-        return displayName + (legacy ? " (legacy)" : "") + (prototype ? " (prototype)" : "");
+        return displayName;
     }
     
     public String getRawDisplayName() {
@@ -194,11 +194,19 @@ public class InsectModel implements Comparable<InsectModel> {
         return getDisplayName();
     }
 
+    private int getSortPriority() {
+        if (prototype) return 3;
+        if (legacy) return 2;
+        return 1;
+    }
+
     @Override
     public int compareTo(InsectModel o) {
-        // Sort non-legacy first, then by name
-        if (this.legacy && !o.legacy) return 1;
-        if (!this.legacy && o.legacy) return -1;
+        int p1 = this.getSortPriority();
+        int p2 = o.getSortPriority();
+        if (p1 != p2) {
+            return Integer.compare(p1, p2);
+        }
         return this.displayName.compareToIgnoreCase(o.displayName);
     }
 

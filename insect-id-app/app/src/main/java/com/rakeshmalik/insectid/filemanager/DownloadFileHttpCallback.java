@@ -10,12 +10,12 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.pojo.InsectModel;
+import com.rakeshmalik.insectid.ui.UIController;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,7 +30,7 @@ import okhttp3.Response;
 class DownloadFileHttpCallback implements Callback {
 
     private Context context;
-    private TextView outputText;
+    private UIController uiController;
     private MetadataManager metadataManager;
     private Handler mainHandler;
     private SharedPreferences prefs;
@@ -50,7 +50,7 @@ class DownloadFileHttpCallback implements Callback {
 
     private DownloadFileHttpCallback() {}
 
-    public DownloadFileHttpCallback(Context context, TextView outputText, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
+    public DownloadFileHttpCallback(Context context, UIController uiController, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
                                     String fileName, Runnable onSuccess, Runnable onFailure,
                                     String downloadName, String modelName, boolean updateRequired,
                                     int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads) {
@@ -65,7 +65,7 @@ class DownloadFileHttpCallback implements Callback {
         this.modelDownloadSeq = modelDownloadSeq;
         this.totalModelDownloads = totalModelDownloads;
         this.context = context;
-        this.outputText = outputText;
+        this.uiController = uiController;
         this.metadataManager = metadataManager;
         this.mainHandler = mainHandler;
         this.prefs = prefs;
@@ -79,7 +79,7 @@ class DownloadFileHttpCallback implements Callback {
     @Override
     public void onFailure(@NonNull Call call, IOException e) {
         Log.e(LOG_TAG, "Download " + downloadName + " failed: " + e.getMessage());
-        mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
+        mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
         if(onFailure != null) {
             onFailure.run();
         }
@@ -92,7 +92,7 @@ class DownloadFileHttpCallback implements Callback {
     public void onResponse(@NonNull Call call, Response response) throws IOException {
         if (!response.isSuccessful()) {
             Log.e(LOG_TAG, "Server error: " + response.code());
-            mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
+            mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
             return;
         }
         File filesDir = context.getFilesDir();
@@ -111,10 +111,9 @@ class DownloadFileHttpCallback implements Callback {
                 long elapsedTime = System.currentTimeMillis() - startTime;
                 long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
                 final long finalDownloadedBytes = downloadedBytes;
-                mainHandler.post(() -> outputText.setText(getDownloadInProgressMessage(eta, progress, finalDownloadedBytes, totalBytes)));
+                mainHandler.post(() -> reportDownloadProgress(eta, progress, finalDownloadedBytes, totalBytes));
             }
             Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
-            mainHandler.post(() -> outputText.setText(getDownloadCompletedMessage()));
             updatePrefs();
             if(onSuccess != null) {
                 onSuccess.run();
@@ -122,9 +121,9 @@ class DownloadFileHttpCallback implements Callback {
         } catch (Exception e) {
             Log.e(LOG_TAG, "Download " + downloadName + " failed: ", e);
             if(Objects.equals(e.getMessage(), "Software caused connection abort")) {
-                mainHandler.post(() -> outputText.setText(context.getString(R.string.download_connection_aborted, downloadName)));
+                mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_connection_aborted, downloadName)));
             } else {
-                mainHandler.post(() -> outputText.setText(context.getString(R.string.download_failed, downloadName)));
+                mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
             }
             if(onFailure != null) {
                 onFailure.run();
@@ -136,41 +135,29 @@ class DownloadFileHttpCallback implements Callback {
         }
     }
 
-    @SuppressLint("DefaultLocale")
-    private String getDownloadCompletedMessage() {
-        return String.format("Downloaded %s successfully\n" +
-                        "Downloads: %d/%d",
-                downloadName,
-                totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
-    }
+
 
     @SuppressLint("DefaultLocale")
-    private String getDownloadInProgressMessage(long eta, int progress, long downloadedBytes, long totalBytes) {
-        String msg;
+    private void reportDownloadProgress(long eta, int progress, long downloadedBytes, long totalBytes) {
+        String title;
+        String sizeInfo = String.format("%d/%d MB", downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024);
+        String etaInfo = String.format("%d min %d sec remaining", eta / 60000, (eta % 60000) / 1000);
+        String countInfo = String.format("File %d of %d", 
+                totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
+
         if(updateRequired) {
             int latestVersion = InsectModel.fromJson(modelName, metadataManager.getMetadata(modelName)).getVersion();
             int currentVersion = prefs.getInt(ModelDownloader.modelVersionPrefName(modelName), 0);
-            msg = String.format("Updating %s...\n" +
-                            "%d min %d sec remaining\n" +
-                            "%d%% (%d/%d MB)\n" +
-                            "Version: %d -> %d\n" +
-                            "Downloads: %d/%d",
-                    downloadName,
-                    eta / 60000, (eta % 60000) / 1000,
-                    progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
-                    currentVersion, latestVersion,
-                    totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
+            if (currentVersion == 0) {
+                title = String.format("Updating %s...\n(Unknown version \u2192 v%d)", downloadName, latestVersion);
+            } else {
+                title = String.format("Updating %s...\n(v%d \u2192 v%d)", downloadName, currentVersion, latestVersion);
+            }
+            uiController.showDownloadProgress(title, progress, etaInfo, sizeInfo, countInfo, modelName, downloadName);
         } else {
-            msg = String.format("Downloading %s...\n" +
-                            "%d min %d sec remaining\n" +
-                            "%d%% (%d/%d MB)\n" +
-                            "Downloads: %d/%d",
-                    downloadName,
-                    eta / 60000, (eta % 60000) / 1000,
-                    progress, downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024,
-                    totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);
+            title = String.format("Downloading %s...", downloadName);
+            uiController.showDownloadProgress(title, progress, etaInfo, sizeInfo, countInfo, modelName, downloadName);
         }
-        return msg;
     }
 
     private void updatePrefs() {

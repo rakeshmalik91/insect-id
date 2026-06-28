@@ -200,7 +200,7 @@ for epoch in range(15):
 - [ ] **Lifecycle Handling**: Better classification for Larvae, Pupae, and Eggs.
 - [ ] **App Improvements**:
     - Better screen capture handling.
-    - User-controlled model downloading (move away from Google Drive).
+    - move away from Google Drive.
 - [ ] **Data Cleanup**: Resolve taxonomic synonyms and typos in source data.
 - [ ] **Root Classifier**: Hierarchical model to first identify Order/Family before Species.
 
