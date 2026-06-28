@@ -277,8 +277,8 @@
                 "inaturalist.org"
             ],
             "last_updated_date": "25-03-2025",
-            "accuracy": "(experimental model)",
-            "accuracy_top3": "(experimental model)"
+            "accuracy": "Not measured",
+            "accuracy_top3": "Not measured"
         },
         "size": 543216904
     }

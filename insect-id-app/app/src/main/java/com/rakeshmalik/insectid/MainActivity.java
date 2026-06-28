@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
                 executorService.submit(() -> modelSelectorHelper.populateModelSpinner());
             }).start();
             
-            this.manageModelsAdapter = new ManageModelsAdapter(new ArrayList<>(), modelDownloader, getSharedPreferences(Constants.PREF, Context.MODE_PRIVATE), this::downloadOrUpdateModel);
+            this.manageModelsAdapter = new ManageModelsAdapter(new ArrayList<>(), modelDownloader, getSharedPreferences(Constants.PREF, Context.MODE_PRIVATE), this::downloadOrUpdateModel, this::offloadModel);
             this.manageModelsRecyclerView.setAdapter(this.manageModelsAdapter);
             
             executorService.submit(this::refreshManageModelsList);
@@ -391,36 +391,76 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
 
     private void downloadOrUpdateModel(InsectModel model) {
-        showDownloadProgressContainer();
+        if (modelDownloader.isDownloading()) {
+            showMessage("Please wait for the current download to finish.");
+            return;
+        }
+
+        uiStateManager.lockUI();
+        
+        if(!runningTasks.isEmpty()) {
+            Log.d(LOG_TAG, "Previous tasks still running. Going to try killing them.");
+            showMessage(getString(R.string.please_wait));
+        }
+        
+        while(!runningTasks.isEmpty()) {
+            Future<?> future = runningTasks.poll();
+            if(future != null) {
+                future.cancel(true);
+                Log.d(LOG_TAG, "Task " + future + " killed");
+            }
+        }
         
         Runnable onSuccess = () -> {
             runOnUiThread(() -> {
-                refreshManageModelsList();
+                uiStateManager.unlockUI();
                 if (!modelDownloader.isDownloading()) {
                     hideDownloadProgress();
                     showMessage("Downloads completed");
                 } else {
                     refreshActiveDownloadsPlan();
                 }
+                refreshManageModelsList();
+                modelSelectorHelper.populateModelSpinner(); // Update the models available in the spinner
             });
         };
         
         Runnable onFailure = () -> {
             runOnUiThread(() -> {
-                refreshManageModelsList();
+                uiStateManager.unlockUI();
                 if (!modelDownloader.isDownloading()) {
                     hideDownloadProgress();
                 } else {
                     refreshActiveDownloadsPlan();
                 }
+                refreshManageModelsList();
             });
         };
-        
+
         modelDownloader.downloadModel(model, onSuccess, onFailure, true, 1, 1);
         runOnUiThread(() -> {
+            showDownloadProgressContainer();
             refreshActiveDownloadsPlan();
             refreshManageModelsList();
         });
+    }
+
+    private void offloadModel(InsectModel model) {
+        if (modelDownloader.isDownloading()) {
+            showMessage("Please wait for downloads to finish before offloading.");
+            return;
+        }
+        
+        new android.app.AlertDialog.Builder(this)
+            .setTitle("Offload Model")
+            .setMessage("Are you sure you want to offload the " + model.getDisplayName() + " model?")
+            .setPositiveButton("Offload", (dialog, which) -> {
+                modelDownloader.offloadModel(model);
+                refreshManageModelsList();
+                modelSelectorHelper.populateModelSpinner(); // Remove from spinner if currently shown
+            })
+            .setNegativeButton("Cancel", null)
+            .show();
     }
 
     private void refreshActiveDownloadsPlan() {

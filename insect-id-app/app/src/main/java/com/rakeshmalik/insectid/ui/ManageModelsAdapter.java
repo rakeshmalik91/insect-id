@@ -23,17 +23,24 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
         void onDownloadClick(InsectModel model);
     }
 
+    public interface OnModelOffloadClickListener {
+        void onOffloadClick(InsectModel model);
+    }
+
     private List<InsectModel> models;
     private final ModelDownloader modelDownloader;
     private final SharedPreferences prefs;
-    private final OnModelDownloadClickListener clickListener;
+    private final OnModelDownloadClickListener downloadClickListener;
+    private final OnModelOffloadClickListener offloadClickListener;
     private final Set<Integer> expandedPositions = new HashSet<>();
 
-    public ManageModelsAdapter(List<InsectModel> models, ModelDownloader modelDownloader, SharedPreferences prefs, OnModelDownloadClickListener clickListener) {
+    public ManageModelsAdapter(List<InsectModel> models, ModelDownloader modelDownloader, SharedPreferences prefs, 
+                               OnModelDownloadClickListener downloadClickListener, OnModelOffloadClickListener offloadClickListener) {
         this.models = models;
         this.modelDownloader = modelDownloader;
         this.prefs = prefs;
-        this.clickListener = clickListener;
+        this.downloadClickListener = downloadClickListener;
+        this.offloadClickListener = offloadClickListener;
     }
 
     public void updateModels(List<InsectModel> models) {
@@ -51,7 +58,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         InsectModel model = models.get(position);
-        holder.bind(model, modelDownloader, prefs, clickListener);
+        holder.bind(model, modelDownloader, prefs, downloadClickListener, offloadClickListener);
     }
 
     @Override
@@ -68,6 +75,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
         ImageView iconLegacy;
         ImageView iconExperimental;
         MaterialButton btnDownload;
+        MaterialButton btnOffload;
         
         View expandableInfoContainer;
         TextView infoDescription;
@@ -86,6 +94,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             iconLegacy = itemView.findViewById(R.id.iconLegacy);
             iconExperimental = itemView.findViewById(R.id.iconExperimental);
             btnDownload = itemView.findViewById(R.id.btnDownload);
+            btnOffload = itemView.findViewById(R.id.btnOffload);
             
             expandableInfoContainer = itemView.findViewById(R.id.expandableInfoContainer);
             infoDescription = itemView.findViewById(R.id.infoDescription);
@@ -95,7 +104,8 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             infoDataSources = itemView.findViewById(R.id.infoDataSources);
         }
 
-        void bind(InsectModel model, ModelDownloader modelDownloader, SharedPreferences prefs, OnModelDownloadClickListener clickListener) {
+        void bind(InsectModel model, ModelDownloader modelDownloader, SharedPreferences prefs, 
+                  OnModelDownloadClickListener downloadClickListener, OnModelOffloadClickListener offloadClickListener) {
             modelName.setText(model.getDisplayName());
             
             iconLegacy.setVisibility(model.isLegacy() ? View.VISIBLE : View.GONE);
@@ -125,6 +135,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
                 btnDownload.setText("Downloading");
                 btnDownload.setEnabled(false);
                 btnDownload.setVisibility(View.VISIBLE);
+                btnOffload.setVisibility(View.GONE);
             } else if (isDownloaded) {
                 if (currentVersion < latestVersion) {
                     statusIcon.setImageResource(R.drawable.ic_download);
@@ -133,11 +144,13 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
                     btnDownload.setText("Update");
                     btnDownload.setEnabled(true);
                     btnDownload.setVisibility(View.VISIBLE);
+                    btnOffload.setVisibility(View.VISIBLE);
                 } else {
                     statusIcon.setImageResource(R.drawable.ic_check_circle);
                     statusIcon.setColorFilter(ContextCompat.getColor(itemView.getContext(), R.color.primaryGreen));
                     modelStatus.setText("Downloaded (v" + currentVersion + ")");
                     btnDownload.setVisibility(View.GONE);
+                    btnOffload.setVisibility(View.VISIBLE);
                 }
             } else {
                 statusIcon.setImageResource(R.drawable.ic_download);
@@ -146,11 +159,18 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
                 btnDownload.setText("Download");
                 btnDownload.setEnabled(true);
                 btnDownload.setVisibility(View.VISIBLE);
+                btnOffload.setVisibility(View.GONE);
             }
             
             btnDownload.setOnClickListener(v -> {
-                if (clickListener != null) {
-                    clickListener.onDownloadClick(model);
+                if (downloadClickListener != null) {
+                    downloadClickListener.onDownloadClick(model);
+                }
+            });
+
+            btnOffload.setOnClickListener(v -> {
+                if (offloadClickListener != null) {
+                    offloadClickListener.onOffloadClick(model);
                 }
             });
             

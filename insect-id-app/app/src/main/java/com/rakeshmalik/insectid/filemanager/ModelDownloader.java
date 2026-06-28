@@ -252,10 +252,53 @@ public class ModelDownloader {
 
                 downloadRootClassifier(downloadModelData, wrappedOnFailure, forceUpdate, modelDownloadSeq, totalModelDownloads);
             } catch(Exception ex) {
-                Log.e(LOG_TAG, "Exception downloading model " + model, ex);
+                Log.e(LOG_TAG, "Exception downloading model", ex);
                 wrappedOnFailure.run();
             }
         }).start();
+    }
+
+    public void offloadModel(InsectModel model) {
+        String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
+        String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
+        String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
+        String imagesFileName = Constants.getImagesArchiveFileName(context, model.getModelName(), model.getImagesUrl());
+
+        // 1. Delete model specific files
+        deleteFileAndPref(classesFileName);
+        deleteFileAndPref(classDetailsFileName);
+        deleteFileAndPref(modelFileName);
+
+        // 2. Delete images archive only if no other downloaded model uses it
+        boolean isImagesUsed = false;
+        for (InsectModel otherModel : metadataManager.getAvailableModels()) {
+            if (otherModel.getModelName().equals(model.getModelName())) continue;
+            
+            if (isModelAlreadyDownloaded(otherModel)) {
+                String otherImagesFileName = Constants.getImagesArchiveFileName(context, otherModel.getModelName(), otherModel.getImagesUrl());
+                if (imagesFileName.equals(otherImagesFileName)) {
+                    isImagesUsed = true;
+                    Log.d(LOG_TAG, "Images archive " + imagesFileName + " is shared with " + otherModel.getModelName() + " and will not be deleted.");
+                    break;
+                }
+            }
+        }
+        
+        if (!isImagesUsed) {
+            deleteFileAndPref(imagesFileName);
+        }
+        
+        // 3. Remove version info
+        prefs.edit().remove(modelVersionPrefName(model.getModelName())).apply();
+    }
+
+    private void deleteFileAndPref(String fileName) {
+        File file = new File(context.getFilesDir(), fileName);
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            Log.d(LOG_TAG, "Deleted file: " + fileName + " success: " + deleted);
+        }
+        prefs.edit().remove(fileDownloadedPrefName(fileName)).apply();
     }
 
     private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,

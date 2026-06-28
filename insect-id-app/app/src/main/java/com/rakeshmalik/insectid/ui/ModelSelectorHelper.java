@@ -94,10 +94,9 @@ public class ModelSelectorHelper {
     public void populateModelSpinner() {
         List<InsectModel> availableModels = getVisibleModels();
         activity.runOnUiThread(() -> {
-            modelSelectorContainer.removeAllViews();
-
             // Use post to ensure the container has been measured
             modelSelectorContainer.post(() -> {
+                modelSelectorContainer.removeAllViews();
                 View scrollParent = (View) modelSelectorContainer.getParent();
                 int availableWidth = scrollParent.getWidth() - scrollParent.getPaddingLeft() - scrollParent.getPaddingRight();
                 float density = activity.getResources().getDisplayMetrics().density;
