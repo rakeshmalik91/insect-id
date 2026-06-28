@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid.adapters;
+package com.rakeshmalik.insectid.ui;
 
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;

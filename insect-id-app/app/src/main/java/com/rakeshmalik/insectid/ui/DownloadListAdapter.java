@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid.adapters;
+package com.rakeshmalik.insectid.ui;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
