@@ -1,8 +1,6 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.adapters;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
-import com.rakeshmalik.insectid.constants.Constants;
+import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.filemanager.ModelDownloader;
 import com.rakeshmalik.insectid.pojo.InsectModel;
 import java.util.HashSet;
@@ -68,7 +66,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
         TextView modelLatestVersion;
         TextView modelWarning;
         ImageView iconLegacy;
-        ImageView iconPrototype;
+        ImageView iconExperimental;
         MaterialButton btnDownload;
         
         View expandableInfoContainer;
@@ -86,7 +84,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             modelLatestVersion = itemView.findViewById(R.id.modelLatestVersion);
             modelWarning = itemView.findViewById(R.id.modelWarning);
             iconLegacy = itemView.findViewById(R.id.iconLegacy);
-            iconPrototype = itemView.findViewById(R.id.iconPrototype);
+            iconExperimental = itemView.findViewById(R.id.iconExperimental);
             btnDownload = itemView.findViewById(R.id.btnDownload);
             
             expandableInfoContainer = itemView.findViewById(R.id.expandableInfoContainer);
@@ -101,30 +99,39 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             modelName.setText(model.getDisplayName());
             
             iconLegacy.setVisibility(model.isLegacy() ? View.VISIBLE : View.GONE);
-            iconPrototype.setVisibility(model.isPrototype() ? View.VISIBLE : View.GONE);
+            iconExperimental.setVisibility(model.isExperimental() ? View.VISIBLE : View.GONE);
             
             if (model.isLegacy()) {
-                modelWarning.setText("This is a legacy model, may not contain up to the mark.");
+                modelWarning.setText("This is a legacy model, may not perform up to the mark.");
                 modelWarning.setVisibility(View.VISIBLE);
-            } else if (model.isPrototype()) {
-                modelWarning.setText("This is an experimental model, may not contain up to the mark.");
+            } else if (model.isExperimental()) {
+                modelWarning.setText("This is an experimental model, may not perform up to the mark.");
                 modelWarning.setVisibility(View.VISIBLE);
             } else {
                 modelWarning.setVisibility(View.GONE);
             }
             
+            boolean isQueuedOrDownloading = modelDownloader.isModelQueuedOrDownloading(model);
             boolean isDownloaded = modelDownloader.isModelAlreadyDownloaded(model);
             int currentVersion = prefs.getInt(ModelDownloader.modelVersionPrefName(model.getModelName()), 0);
             int latestVersion = model.getVersion();
             
             modelLatestVersion.setText("Latest version: v" + latestVersion);
             
-            if (isDownloaded) {
+            if (isQueuedOrDownloading) {
+                statusIcon.setImageResource(R.drawable.ic_download);
+                statusIcon.clearColorFilter();
+                modelStatus.setText("Downloading / Queued");
+                btnDownload.setText("Downloading");
+                btnDownload.setEnabled(false);
+                btnDownload.setVisibility(View.VISIBLE);
+            } else if (isDownloaded) {
                 if (currentVersion < latestVersion) {
                     statusIcon.setImageResource(R.drawable.ic_download);
                     statusIcon.clearColorFilter();
                     modelStatus.setText("Downloaded (v" + currentVersion + ") - Update available");
                     btnDownload.setText("Update");
+                    btnDownload.setEnabled(true);
                     btnDownload.setVisibility(View.VISIBLE);
                 } else {
                     statusIcon.setImageResource(R.drawable.ic_check_circle);
@@ -137,6 +144,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
                 statusIcon.clearColorFilter();
                 modelStatus.setText("Not downloaded");
                 btnDownload.setText("Download");
+                btnDownload.setEnabled(true);
                 btnDownload.setVisibility(View.VISIBLE);
             }
             

@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.pojo.InsectModel;
 import java.util.List;
 
@@ -38,11 +40,11 @@ public class ModelSpinnerAdapter extends ArrayAdapter<InsectModel> {
         if (model != null) {
             TextView modelName = convertView.findViewById(R.id.modelName);
             ImageView iconLegacy = convertView.findViewById(R.id.iconLegacy);
-            ImageView iconPrototype = convertView.findViewById(R.id.iconPrototype);
+            ImageView iconExperimental = convertView.findViewById(R.id.iconExperimental);
 
             modelName.setText(model.getDisplayName());
             iconLegacy.setVisibility(model.isLegacy() ? View.VISIBLE : View.GONE);
-            iconPrototype.setVisibility(model.isPrototype() ? View.VISIBLE : View.GONE);
+            iconExperimental.setVisibility(model.isExperimental() ? View.VISIBLE : View.GONE);
         }
 
         return convertView;

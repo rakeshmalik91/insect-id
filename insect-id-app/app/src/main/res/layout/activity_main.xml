@@ -58,7 +58,9 @@
                 android:id="@+id/modelSelectorCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginHorizontal="2dp"
+                app:useCompatPadding="true"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,121 +71,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:clipChildren="false"
                     android:padding="8dp">
 
+                    <!-- Model Selector -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="4dp">
+                        
+                        <LinearLayout
+                            android:id="@+id/modelSelectorContainer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical" />
+                    </HorizontalScrollView>
+
+
+                    <!-- Selected Model Name -->
                     <TextView
-                        android:id="@+id/useModelLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/use_model"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textStyle="bold" />
-
-                    <!-- Normal Models Chip Group -->
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chipGroupNormal"
+                        android:id="@+id/selectedModelName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:singleSelection="true"
-                        app:selectionRequired="true" />
-
-                    <!-- Legacy Models Section -->
-                    <LinearLayout
-                        android:id="@+id/legacySectionContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:id="@+id/legacyHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingVertical="4dp"
-                            android:paddingHorizontal="8dp">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:src="@drawable/ic_legacy"
-                                android:contentDescription="Legacy" />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="6dp"
-                                android:text="Legacy Models"
-                                android:textAppearance="?attr/textAppearanceLabelMedium"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-
-                            <ImageView
-                                android:id="@+id/legacyExpandIcon"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_expand_more"
-                                android:contentDescription="Expand" />
-                        </LinearLayout>
-
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/chipGroupLegacy"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:singleSelection="true" />
-                    </LinearLayout>
-
-                    <!-- Prototype Models Section -->
-                    <LinearLayout
-                        android:id="@+id/prototypeSectionContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:id="@+id/prototypeHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingVertical="4dp"
-                            android:paddingHorizontal="8dp">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:src="@drawable/ic_prototype"
-                                android:contentDescription="Prototype" />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="6dp"
-                                android:text="Experimental Models"
-                                android:textAppearance="?attr/textAppearanceLabelMedium"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-
-                            <ImageView
-                                android:id="@+id/prototypeExpandIcon"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_expand_more"
-                                android:contentDescription="Expand" />
-                        </LinearLayout>
-
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/chipGroupPrototype"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:singleSelection="true" />
-                    </LinearLayout>
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="Selected Model"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="?attr/colorOnSurface" />
 
                     <!-- Warning Text -->
                     <TextView
@@ -209,9 +128,11 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@+id/buttonPickImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/modelSelectorCard">
 
@@ -238,14 +159,14 @@
                 android:id="@+id/buttonPickImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
                 android:text="@string/select_image"
                 app:cornerRadius="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageContainer" />
+                app:layout_constraintStart_toEndOf="@id/imageContainer"
+                app:layout_constraintTop_toTopOf="@id/imageContainer"
+                app:layout_constraintBottom_toBottomOf="@id/imageContainer" />
 
             <!-- Output Console -->
             <com.google.android.material.card.MaterialCardView
@@ -261,7 +182,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonPickImage">
+                app:layout_constraintTop_toBottomOf="@id/imageContainer">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -364,16 +285,6 @@
                 app:icon="@drawable/ic_download"
                 app:layout_constraintTop_toBottomOf="@id/modelsHeadingLayout" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDownloadNonLegacy"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Download Only Core Models"
-                app:icon="@drawable/ic_download"
-                app:layout_constraintTop_toBottomOf="@id/btnDownloadAll" />
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -382,7 +293,7 @@
                 app:cardElevation="0dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="?attr/colorOutlineVariant"
-                app:layout_constraintTop_toBottomOf="@id/btnDownloadNonLegacy"
+                app:layout_constraintTop_toBottomOf="@id/btnDownloadAll"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.core.widget.NestedScrollView
@@ -446,6 +357,15 @@
                                     android:textAppearance="?attr/textAppearanceBodyMedium"
                                     android:textColor="?android:attr/textColorSecondary" />
                             </RelativeLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCancelDownload"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="12dp"
+                                android:text="Cancel Download" />
 
                             <TextView
                                 android:id="@+id/downloadCount"
@@ -538,7 +458,7 @@
                     app:layout_constraintTop_toBottomOf="@id/headingText" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchShowPrototype"
+                    android:id="@+id/switchShowExperimental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -553,7 +473,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Apply blur to screen captures"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
-                    app:layout_constraintTop_toBottomOf="@id/switchShowPrototype" />
+                    app:layout_constraintTop_toBottomOf="@id/switchShowExperimental" />
 
             <TextView
                 android:id="@+id/version_text"

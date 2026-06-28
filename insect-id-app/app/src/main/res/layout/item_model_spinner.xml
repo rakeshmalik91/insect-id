@@ -27,13 +27,13 @@
         tools:visibility="visible" />
 
     <ImageView
-        android:id="@+id/iconPrototype"
+        android:id="@+id/iconExperimental"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginStart="8dp"
-        android:src="@drawable/ic_prototype"
+        android:src="@drawable/ic_experimental"
         android:visibility="gone"
-        android:contentDescription="Prototype"
+        android:contentDescription="Experimental"
         tools:visibility="visible" />
 
 </LinearLayout>

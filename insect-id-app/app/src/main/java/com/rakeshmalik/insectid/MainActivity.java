@@ -1,10 +1,12 @@
 package com.rakeshmalik.insectid;
 
 import static com.rakeshmalik.insectid.constants.Constants.LOG_TAG;
+
+import com.rakeshmalik.insectid.adapters.DownloadListAdapter;
+import com.rakeshmalik.insectid.adapters.ManageModelsAdapter;
 import com.rakeshmalik.insectid.constants.Constants;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +19,6 @@ import android.view.View;
 
 
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import android.text.Html;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +41,6 @@ import com.rakeshmalik.insectid.filemanager.ModelDownloader;
 import com.rakeshmalik.insectid.filemanager.DownloadItem;
 import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.pojo.InsectModel;
-import com.rakeshmalik.insectid.prediction.PredictionResult;
 import com.rakeshmalik.insectid.prediction.PredictionRunnable;
 import com.rakeshmalik.insectid.prediction.PredictionManager;
 import com.rakeshmalik.insectid.ui.PredictionAdapter;
@@ -49,11 +50,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -79,17 +80,14 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private DownloadListAdapter downloadListAdapter;
     private RecyclerView predictionsRecyclerView;
     private PredictionAdapter predictionAdapter;
+    
+    private final Map<String, com.rakeshmalik.insectid.prediction.PredictionResponse> predictionCache = new HashMap<>();
     private RecyclerView manageModelsRecyclerView;
     private ManageModelsAdapter manageModelsAdapter;
     private Uri photoUri;
-    private com.google.android.material.chip.ChipGroup chipGroupNormal;
-    private com.google.android.material.chip.ChipGroup chipGroupLegacy;
-    private com.google.android.material.chip.ChipGroup chipGroupPrototype;
-    private View legacySectionContainer;
-    private View prototypeSectionContainer;
-    private ImageView legacyExpandIcon;
-    private ImageView prototypeExpandIcon;
+    private android.widget.LinearLayout modelSelectorContainer;
     private TextView identifyModelWarning;
+    private TextView selectedModelName;
     private InsectModel selectedModel;
     private ModelLoader modelLoader;
     private MetadataManager metadataManager;
@@ -101,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private View tabSettings;
     private BottomNavigationView bottomNavigation;
     private MaterialButton btnDownloadAll;
-    private MaterialButton btnDownloadNonLegacy;
+    private MaterialButton btnCancelDownload;
     
     private com.google.android.material.switchmaterial.SwitchMaterial switchShowLegacy;
-    private com.google.android.material.switchmaterial.SwitchMaterial switchShowPrototype;
+    private com.google.android.material.switchmaterial.SwitchMaterial switchShowExperimental;
     private com.google.android.material.switchmaterial.SwitchMaterial switchApplyBlur;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -134,28 +132,11 @@ public class MainActivity extends AppCompatActivity implements UIController {
             this.downloadCount = findViewById(R.id.downloadCount);
             this.downloadListRecyclerView = findViewById(R.id.downloadListRecyclerView);
             this.predictionsRecyclerView = findViewById(R.id.predictionsRecyclerView);
-            this.chipGroupNormal = findViewById(R.id.chipGroupNormal);
-            this.chipGroupLegacy = findViewById(R.id.chipGroupLegacy);
-            this.chipGroupPrototype = findViewById(R.id.chipGroupPrototype);
-            this.legacySectionContainer = findViewById(R.id.legacySectionContainer);
-            this.prototypeSectionContainer = findViewById(R.id.prototypeSectionContainer);
-            this.legacyExpandIcon = findViewById(R.id.legacyExpandIcon);
-            this.prototypeExpandIcon = findViewById(R.id.prototypeExpandIcon);
+            this.modelSelectorContainer = findViewById(R.id.modelSelectorContainer);
             this.identifyModelWarning = findViewById(R.id.identifyModelWarning);
+            this.selectedModelName = findViewById(R.id.selectedModelName);
             
-            // Set up collapsible legacy section
-            findViewById(R.id.legacyHeader).setOnClickListener(v -> {
-                boolean isVisible = chipGroupLegacy.getVisibility() == View.VISIBLE;
-                chipGroupLegacy.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-                legacyExpandIcon.setImageResource(isVisible ? R.drawable.ic_expand_more : R.drawable.ic_expand_less);
-            });
-            
-            // Set up collapsible prototype section
-            findViewById(R.id.prototypeHeader).setOnClickListener(v -> {
-                boolean isVisible = chipGroupPrototype.getVisibility() == View.VISIBLE;
-                chipGroupPrototype.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-                prototypeExpandIcon.setImageResource(isVisible ? R.drawable.ic_expand_more : R.drawable.ic_expand_less);
-            });
+            // No headers to collapse/expand anymore, legacy section is toggled by the card
             
             this.manageModelsRecyclerView = findViewById(R.id.manageModelsRecyclerView);
             this.manageModelsRecyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
@@ -176,6 +157,9 @@ public class MainActivity extends AppCompatActivity implements UIController {
                     tabIdentify.setVisibility(View.VISIBLE);
                     tabModels.setVisibility(View.GONE);
                     tabSettings.setVisibility(View.GONE);
+                    if (modelDownloader != null && modelDownloader.isDownloading()) {
+                        showMessage("Identify is temporarily disabled during downloads.");
+                    }
                     return true;
                 } else if (itemId == R.id.navigation_models) {
                     tabIdentify.setVisibility(View.GONE);
@@ -192,26 +176,33 @@ public class MainActivity extends AppCompatActivity implements UIController {
             });
             
             this.btnDownloadAll = findViewById(R.id.btnDownloadAll);
-            this.btnDownloadAll.setOnClickListener(v -> downloadOrUpdateAllModels(false));
+            this.btnDownloadAll.setOnClickListener(v -> downloadOrUpdateAllModels());
             
-            this.btnDownloadNonLegacy = findViewById(R.id.btnDownloadNonLegacy);
-            this.btnDownloadNonLegacy.setOnClickListener(v -> downloadOrUpdateAllModels(true));
+            this.btnCancelDownload = findViewById(R.id.btnCancelDownload);
+            if (this.btnCancelDownload != null) {
+                this.btnCancelDownload.setOnClickListener(v -> {
+                    modelDownloader.cancelDownload();
+                    hideDownloadProgress();
+                    unlockUI();
+                    refreshManageModelsList();
+                });
+            }
             
             this.switchShowLegacy = findViewById(R.id.switchShowLegacy);
-            this.switchShowPrototype = findViewById(R.id.switchShowPrototype);
+            this.switchShowExperimental = findViewById(R.id.switchShowExperimental);
             this.switchApplyBlur = findViewById(R.id.switchApplyBlur);
             
             SharedPreferences prefs = getSharedPreferences(PREF, Context.MODE_PRIVATE);
-            switchShowLegacy.setChecked(prefs.getBoolean("show_legacy_models", true));
-            switchShowPrototype.setChecked(prefs.getBoolean("show_prototype_models", false));
+            switchShowLegacy.setChecked(prefs.getBoolean("show_legacy_models", false));
+            switchShowExperimental.setChecked(prefs.getBoolean("show_experimental_models", true));
             switchApplyBlur.setChecked(prefs.getBoolean("apply_blur_screen_captures", true));
             
             android.widget.CompoundButton.OnCheckedChangeListener switchListener = (buttonView, isChecked) -> {
                 SharedPreferences.Editor editor = prefs.edit();
                 if (buttonView.getId() == R.id.switchShowLegacy) {
                     editor.putBoolean("show_legacy_models", isChecked);
-                } else if (buttonView.getId() == R.id.switchShowPrototype) {
-                    editor.putBoolean("show_prototype_models", isChecked);
+                } else if (buttonView.getId() == R.id.switchShowExperimental) {
+                    editor.putBoolean("show_experimental_models", isChecked);
                 } else if (buttonView.getId() == R.id.switchApplyBlur) {
                     editor.putBoolean("apply_blur_screen_captures", isChecked);
                 }
@@ -223,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
             };
             
             switchShowLegacy.setOnCheckedChangeListener(switchListener);
-            switchShowPrototype.setOnCheckedChangeListener(switchListener);
+            switchShowExperimental.setOnCheckedChangeListener(switchListener);
             switchApplyBlur.setOnCheckedChangeListener(switchListener);
 
             //System.loadLibrary("opencv_java4");
@@ -275,18 +266,94 @@ public class MainActivity extends AppCompatActivity implements UIController {
     public void showDownloadProgressContainer() {
         runOnUiThread(() -> {
             downloadProgressContainer.setVisibility(View.VISIBLE);
+            startDownloadIconAnimation();
         });
+    }
+    
+    private android.animation.ObjectAnimator downloadIconAnimator;
+    private android.animation.ObjectAnimator identifyIconAnimator;
+    
+    private void startDownloadIconAnimation() {
+        try {
+            com.google.android.material.badge.BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.navigation_models);
+            badge.setVisible(true);
+            badge.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50"));
+            badge.clearNumber();
+            
+            View modelsTab = bottomNavigation.findViewById(R.id.navigation_models);
+            if (modelsTab != null && downloadIconAnimator == null) {
+                downloadIconAnimator = android.animation.ObjectAnimator.ofFloat(modelsTab, "alpha", 1f, 0.4f);
+                downloadIconAnimator.setDuration(600);
+                downloadIconAnimator.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+                downloadIconAnimator.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+                downloadIconAnimator.start();
+            }
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, "Exception animating download icon", ex);
+        }
+    }
+    
+    private void stopDownloadIconAnimation() {
+        try {
+            bottomNavigation.removeBadge(R.id.navigation_models);
+            if (downloadIconAnimator != null) {
+                downloadIconAnimator.cancel();
+                downloadIconAnimator = null;
+            }
+            View modelsTab = bottomNavigation.findViewById(R.id.navigation_models);
+            if (modelsTab != null) {
+                modelsTab.setAlpha(1f);
+            }
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, "Exception stopping download icon animation", ex);
+        }
+    }
+    
+    private void startIdentifyIconAnimation() {
+        try {
+            com.google.android.material.badge.BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.navigation_identify);
+            badge.setVisible(true);
+            badge.setBackgroundColor(android.graphics.Color.parseColor("#FF9800"));
+            badge.clearNumber();
+            
+            View identifyTab = bottomNavigation.findViewById(R.id.navigation_identify);
+            if (identifyTab != null && identifyIconAnimator == null) {
+                identifyIconAnimator = android.animation.ObjectAnimator.ofFloat(identifyTab, "alpha", 1f, 0.4f);
+                identifyIconAnimator.setDuration(600);
+                identifyIconAnimator.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+                identifyIconAnimator.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+                identifyIconAnimator.start();
+            }
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, "Exception animating identify icon", ex);
+        }
+    }
+    
+    private void stopIdentifyIconAnimation() {
+        try {
+            bottomNavigation.removeBadge(R.id.navigation_identify);
+            if (identifyIconAnimator != null) {
+                identifyIconAnimator.cancel();
+                identifyIconAnimator = null;
+            }
+            View identifyTab = bottomNavigation.findViewById(R.id.navigation_identify);
+            if (identifyTab != null) {
+                identifyTab.setAlpha(1f);
+            }
+        } catch (Exception ex) {
+            Log.e(LOG_TAG, "Exception stopping identify icon animation", ex);
+        }
     }
     
     private List<InsectModel> getVisibleModels() {
         SharedPreferences prefs = getSharedPreferences(PREF, Context.MODE_PRIVATE);
-        boolean showLegacy = prefs.getBoolean("show_legacy_models", true);
-        boolean showPrototype = prefs.getBoolean("show_prototype_models", false);
+        boolean showLegacy = prefs.getBoolean("show_legacy_models", false);
+        boolean showExperimental = prefs.getBoolean("show_experimental_models", true);
         
         return metadataManager.getAvailableModels().stream()
                 .filter(m -> {
                     if (m.isLegacy() && !showLegacy) return false;
-                    if (m.isPrototype() && !showPrototype) return false;
+                    if (m.isExperimental() && !showExperimental) return false;
                     return true;
                 })
                 .collect(Collectors.toList());
@@ -325,69 +392,81 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private void populateModelSpinner() {
         List<InsectModel> availableModels = getVisibleModels();
         runOnUiThread(() -> {
-            chipGroupNormal.removeAllViews();
-            chipGroupLegacy.removeAllViews();
-            chipGroupPrototype.removeAllViews();
-            
-            List<InsectModel> normalModels = new ArrayList<>();
-            List<InsectModel> legacyModels = new ArrayList<>();
-            List<InsectModel> prototypeModels = new ArrayList<>();
-            
-            for (InsectModel model : availableModels) {
-                if (model.isLegacy()) {
-                    legacyModels.add(model);
-                } else if (model.isPrototype()) {
-                    prototypeModels.add(model);
-                } else {
-                    normalModels.add(model);
+            modelSelectorContainer.removeAllViews();
+
+            // Use post to ensure the container has been measured
+            modelSelectorContainer.post(() -> {
+                // Get the HorizontalScrollView's content width (accounts for all outer padding already)
+                View scrollParent = (View) modelSelectorContainer.getParent();
+                int availableWidth = scrollParent.getWidth() - scrollParent.getPaddingLeft() - scrollParent.getPaddingRight();
+                // Each card from item_model_selector.xml has: marginStart=4dp + marginEnd=12dp = 16dp
+                float density = getResources().getDisplayMetrics().density;
+                int perCardMargin = (int) (16 * density);
+                int cardSize = (availableWidth - (perCardMargin * 4)) / 4;
+                // Ensure a reasonable minimum
+                int minSize = (int) (48 * density);
+                if (cardSize < minSize) cardSize = minSize;
+
+                for (int i = 0; i < availableModels.size(); i++) {
+                    InsectModel model = availableModels.get(i);
+                    View cardView = getLayoutInflater().inflate(R.layout.item_model_selector, modelSelectorContainer, false);
+                    com.google.android.material.card.MaterialCardView card = cardView.findViewById(R.id.modelCard);
+                    ImageView icon = cardView.findViewById(R.id.modelIcon);
+                    ImageView typeIcon = cardView.findViewById(R.id.typeIcon);
+
+                    // Set dynamic card size
+                    android.view.ViewGroup.LayoutParams lp = card.getLayoutParams();
+                    lp.width = cardSize;
+                    lp.height = cardSize;
+                    card.setLayoutParams(lp);
+
+                    if (model.getIcon() != null && !model.getIcon().isEmpty()) {
+                        int resId = getResources().getIdentifier(model.getIcon(), "drawable", getPackageName());
+                        if (resId != 0) {
+                            icon.setImageResource(resId);
+                        }
+                    }
+
+                    if (model.getIconColor() != null && !model.getIconColor().isEmpty()) {
+                        try {
+                            icon.setColorFilter(android.graphics.Color.parseColor(model.getIconColor()));
+                        } catch (Exception ignored) {}
+                    }
+
+                    if (model.isLegacy()) {
+                        typeIcon.setImageResource(R.drawable.ic_legacy);
+                        typeIcon.setColorFilter(android.graphics.Color.parseColor("#FF9800"));
+                        typeIcon.setVisibility(View.VISIBLE);
+                    } else if (model.isExperimental()) {
+                        typeIcon.setImageResource(R.drawable.ic_experimental);
+                        typeIcon.setColorFilter(android.graphics.Color.parseColor("#9C27B0"));
+                        typeIcon.setVisibility(View.VISIBLE);
+                    } else {
+                        typeIcon.setVisibility(View.GONE);
+                    }
+
+                    ImageView downloadStatusIcon = cardView.findViewById(R.id.downloadStatusIcon);
+                    if (!modelDownloader.isModelAlreadyDownloaded(model)) {
+                        downloadStatusIcon.setVisibility(View.VISIBLE);
+                        downloadStatusIcon.setColorFilter(android.graphics.Color.parseColor("#9E9E9E"));
+                    } else {
+                        downloadStatusIcon.setVisibility(View.GONE);
+                    }
+
+                    card.setOnClickListener(v -> onModelChipSelected(model));
+                    card.setTag(model);
+                    modelSelectorContainer.addView(card);
+
+                    if (i == 0 && selectedModel == null) {
+                        onModelChipSelected(model);
+                    }
                 }
-            }
             
-            // Add normal model chips
-            for (int i = 0; i < normalModels.size(); i++) {
-                InsectModel model = normalModels.get(i);
-                com.google.android.material.chip.Chip chip = new com.google.android.material.chip.Chip(this);
-                chip.setText(model.getDisplayName());
-                chip.setCheckable(true);
-                chip.setTag(model);
-                chip.setOnClickListener(v -> onModelChipSelected(model));
-                chipGroupNormal.addView(chip);
-                if (i == 0 && selectedModel == null) {
-                    chip.setChecked(true);
-                    onModelChipSelected(model);
+                // Re-select current model if still available
+                if (selectedModel != null) {
+                    selectChipForModel(selectedModel);
                 }
-            }
-            
-            // Show/hide legacy section
-            legacySectionContainer.setVisibility(legacyModels.isEmpty() ? View.GONE : View.VISIBLE);
-            for (InsectModel model : legacyModels) {
-                com.google.android.material.chip.Chip chip = new com.google.android.material.chip.Chip(this);
-                chip.setText(model.getDisplayName());
-                chip.setCheckable(true);
-                chip.setChipIconResource(R.drawable.ic_legacy);
-                chip.setChipIconVisible(true);
-                chip.setTag(model);
-                chip.setOnClickListener(v -> onModelChipSelected(model));
-                chipGroupLegacy.addView(chip);
-            }
-            
-            // Show/hide prototype section
-            prototypeSectionContainer.setVisibility(prototypeModels.isEmpty() ? View.GONE : View.VISIBLE);
-            for (InsectModel model : prototypeModels) {
-                com.google.android.material.chip.Chip chip = new com.google.android.material.chip.Chip(this);
-                chip.setText(model.getDisplayName());
-                chip.setCheckable(true);
-                chip.setChipIconResource(R.drawable.ic_prototype);
-                chip.setChipIconVisible(true);
-                chip.setTag(model);
-                chip.setOnClickListener(v -> onModelChipSelected(model));
-                chipGroupPrototype.addView(chip);
-            }
-            
-            // Re-select current model if still available
-            if (selectedModel != null) {
-                selectChipForModel(selectedModel);
-            }
+            });
         });
     }
     
@@ -399,17 +478,27 @@ public class MainActivity extends AppCompatActivity implements UIController {
             }
             return;
         }
+        if (modelDownloader != null && modelDownloader.isDownloading()) {
+            showMessage("Please wait for downloads to complete.");
+            if (selectedModel != null) {
+                selectChipForModel(selectedModel); // Keep previous selection
+            }
+            return;
+        }
         try {
             // Deselect chips in other groups
             deselectAllChipsExcept(model);
             selectedModel = model;
             
             runOnUiThread(() -> {
+                if (selectedModelName != null) {
+                    selectedModelName.setText("Identify a " + selectedModel.getDisplayName());
+                }
                 if (selectedModel.isLegacy()) {
-                    identifyModelWarning.setText("This is a legacy model, may not contain up to the mark.");
+                    identifyModelWarning.setText("This is a legacy model, may not perform up to the mark.");
                     identifyModelWarning.setVisibility(View.VISIBLE);
-                } else if (selectedModel.isPrototype()) {
-                    identifyModelWarning.setText("This is an experimental model, may not contain up to the mark.");
+                } else if (selectedModel.isExperimental()) {
+                    identifyModelWarning.setText("This is an experimental model, may not perform up to the mark.");
                     identifyModelWarning.setVisibility(View.VISIBLE);
                 } else {
                     identifyModelWarning.setVisibility(View.GONE);
@@ -423,7 +512,11 @@ public class MainActivity extends AppCompatActivity implements UIController {
                     }
                     outputText.setText("");
                 });
-                downloadModelAndRunPredictionAsync();
+                if (predictionCache.containsKey(selectedModel.getModelName())) {
+                    showPredictionResponse(predictionCache.get(selectedModel.getModelName()));
+                } else {
+                    downloadModelAndRunPredictionAsync();
+                }
             }
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception during model chip selection", ex);
@@ -431,14 +524,17 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
     
     private void deselectAllChipsExcept(InsectModel selected) {
-        com.google.android.material.chip.ChipGroup[] groups = {chipGroupNormal, chipGroupLegacy, chipGroupPrototype};
-        for (com.google.android.material.chip.ChipGroup group : groups) {
-            for (int i = 0; i < group.getChildCount(); i++) {
-                View child = group.getChildAt(i);
-                if (child instanceof com.google.android.material.chip.Chip) {
-                    com.google.android.material.chip.Chip chip = (com.google.android.material.chip.Chip) child;
-                    InsectModel chipModel = (InsectModel) chip.getTag();
-                    chip.setChecked(chipModel != null && chipModel.getModelName().equals(selected.getModelName()));
+        // Handle Cards
+        for (int i = 0; i < modelSelectorContainer.getChildCount(); i++) {
+            View child = modelSelectorContainer.getChildAt(i);
+            if (child instanceof com.google.android.material.card.MaterialCardView) {
+                com.google.android.material.card.MaterialCardView card = (com.google.android.material.card.MaterialCardView) child;
+                InsectModel cardModel = (InsectModel) card.getTag();
+                if (cardModel != null) {
+                    boolean isSelected = cardModel.getModelName().equals(selected.getModelName());
+                    int defaultColor = com.google.android.material.color.MaterialColors.getColor(card, com.google.android.material.R.attr.colorOutlineVariant);
+                    card.setStrokeColor(isSelected ? ContextCompat.getColor(this, R.color.primaryGreen) : defaultColor);
+                    card.setStrokeWidth(isSelected ? 4 : 1);
                 }
             }
         }
@@ -449,11 +545,8 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
     
     private void setChipGroupsEnabled(boolean enabled) {
-        com.google.android.material.chip.ChipGroup[] groups = {chipGroupNormal, chipGroupLegacy, chipGroupPrototype};
-        for (com.google.android.material.chip.ChipGroup group : groups) {
-            for (int i = 0; i < group.getChildCount(); i++) {
-                group.getChildAt(i).setEnabled(enabled);
-            }
+        for (int i = 0; i < modelSelectorContainer.getChildCount(); i++) {
+            modelSelectorContainer.getChildAt(i).setEnabled(enabled);
         }
     }
 
@@ -510,6 +603,10 @@ public class MainActivity extends AppCompatActivity implements UIController {
     // Show dialog to choose Gallery or Camera
     private void showImagePickerDialog() {
         if(uiLocked) {
+            return;
+        }
+        if (modelDownloader != null && modelDownloader.isDownloading()) {
+            showMessage("Please wait for downloads to complete.");
             return;
         }
         try {
@@ -619,6 +716,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
             if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
                 photoUri = UCrop.getOutput(data);
                 if (photoUri != null) {
+                    predictionCache.clear();
                     imageView.setImageURI(photoUri);
                     downloadModelAndRunPredictionAsync();
                 }
@@ -636,7 +734,8 @@ public class MainActivity extends AppCompatActivity implements UIController {
             setChipGroupsEnabled(false);
             buttonPickImage.setEnabled(false);
             btnDownloadAll.setEnabled(false);
-            btnDownloadNonLegacy.setEnabled(false);
+            if (btnCancelDownload != null) btnCancelDownload.setEnabled(true);
+            startIdentifyIconAnimation();
         });
     }
 
@@ -646,11 +745,15 @@ public class MainActivity extends AppCompatActivity implements UIController {
             setChipGroupsEnabled(true);
             buttonPickImage.setEnabled(true);
             btnDownloadAll.setEnabled(true);
-            btnDownloadNonLegacy.setEnabled(true);
+            stopIdentifyIconAnimation();
         });
     }
 
     private void downloadModelAndRunPredictionAsync() {
+        if (modelDownloader.isDownloading()) {
+            showMessage("Identify is disabled while downloads are in progress.");
+            return;
+        }
         if(!runningTasks.isEmpty()) {
             Log.d(LOG_TAG, "Previous tasks still running. Going to try killing them.");
             showMessage(getString(R.string.please_wait));
@@ -676,59 +779,94 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
 
     private void downloadOrUpdateModel(InsectModel model) {
-        lockUI();
-        imageView.setImageURI(null);
-        photoUri = null;
-        
-        downloadProgressContainer.setVisibility(View.VISIBLE);
-        
-        List<DownloadItem> plan = modelDownloader.generateDownloadPlan(Collections.singletonList(model), true);
-        initDownloadList(plan);
+        showDownloadProgressContainer();
         
         Runnable onSuccess = () -> {
             runOnUiThread(() -> {
-                hideDownloadProgress();
                 refreshManageModelsList();
-                showMessage(model.getDisplayName() + " model downloaded successfully");
+                if (!modelDownloader.isDownloading()) {
+                    hideDownloadProgress();
+                    showMessage("Downloads completed");
+                } else {
+                    refreshActiveDownloadsPlan();
+                }
             });
-            unlockUI();
         };
-        executorService.submit(() -> modelDownloader.downloadModel(model, onSuccess, this::unlockUI, true, 1, 1));
+        
+        Runnable onFailure = () -> {
+            runOnUiThread(() -> {
+                refreshManageModelsList();
+                if (!modelDownloader.isDownloading()) {
+                    hideDownloadProgress();
+                } else {
+                    refreshActiveDownloadsPlan();
+                }
+            });
+        };
+        
+        modelDownloader.downloadModel(model, onSuccess, onFailure, true, 1, 1);
+        runOnUiThread(() -> {
+            refreshActiveDownloadsPlan();
+            refreshManageModelsList();
+        });
     }
 
-    private void downloadOrUpdateAllModels(boolean onlyCoreModels) {
-        lockUI();
-        imageView.setImageURI(null);
-        photoUri = null;
-        
-        downloadProgressContainer.setVisibility(View.VISIBLE);
+    private void refreshActiveDownloadsPlan() {
+        List<InsectModel> activeModels = modelDownloader.getQueuedAndDownloadingModels();
+        List<DownloadItem> plan = modelDownloader.generateDownloadPlan(activeModels, true);
+        initDownloadList(plan);
+        if (activeModels.isEmpty()) {
+            hideDownloadProgress();
+        } else {
+            showDownloadProgressContainer();
+        }
+    }
+
+    private void downloadOrUpdateAllModels() {
+        showDownloadProgressContainer();
         
         List<InsectModel> modelsToDownload = getVisibleModels().stream()
-                .filter(m -> (!onlyCoreModels || (!m.isLegacy() && !m.isPrototype())) && modelDownloader.isModelDownloadOrUpdateRequired(m))
-                .sorted()
+                .filter(m -> modelDownloader.isModelDownloadOrUpdateRequired(m) && !modelDownloader.isModelQueuedOrDownloading(m))
                 .collect(Collectors.toList());
         
-        List<DownloadItem> plan = modelDownloader.generateDownloadPlan(modelsToDownload, true);
-        initDownloadList(plan);
-
-        int modelDownloadSeq = modelsToDownload.size();
-        Runnable runnable = () -> {
-            int availableCount = getVisibleModels().size();
-            runOnUiThread(() -> {
-                hideDownloadProgress();
-                refreshManageModelsList();
-                showMessage("All " + availableCount + " models are now up to date");
-            });
-            unlockUI();
-        };
-        for(int i = modelsToDownload.size() - 1; i >= 0; i--) {
-            InsectModel model = modelsToDownload.get(i);
-            Runnable onSuccess = runnable;
-            final int modelDownloadSeqFinal = modelDownloadSeq;
-            runnable = () -> modelDownloader.downloadModel(model, onSuccess, this::unlockUI, true, modelDownloadSeqFinal, modelsToDownload.size());
-            modelDownloadSeq--;
+        if (modelsToDownload.isEmpty()) {
+            hideDownloadProgress();
+            showMessage("All models are already up to date or queued");
+            return;
         }
-        executorService.submit(runnable);
+
+        Runnable onSuccess = () -> {
+            runOnUiThread(() -> {
+                refreshManageModelsList();
+                if (!modelDownloader.isDownloading()) {
+                    hideDownloadProgress();
+                    showMessage("All downloads completed");
+                } else {
+                    refreshActiveDownloadsPlan();
+                }
+            });
+        };
+        
+        Runnable onFailure = () -> {
+            runOnUiThread(() -> {
+                refreshManageModelsList();
+                if (!modelDownloader.isDownloading()) {
+                    hideDownloadProgress();
+                } else {
+                    refreshActiveDownloadsPlan();
+                }
+            });
+        };
+
+        for(int i = 0; i < modelsToDownload.size(); i++) {
+            InsectModel model = modelsToDownload.get(i);
+            modelDownloader.downloadModel(model, onSuccess, onFailure, true, i + 1, modelsToDownload.size());
+        }
+        
+        runOnUiThread(() -> {
+            refreshActiveDownloadsPlan();
+            refreshManageModelsList();
+        });
     }
 
     @Override
@@ -759,17 +897,33 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
 
     @Override
-    public void showPredictions(List<PredictionResult> predictions) {
+    public void showPredictionResponse(com.rakeshmalik.insectid.prediction.PredictionResponse response) {
         runOnUiThread(() -> {
+            if (selectedModel != null && response != null) {
+                predictionCache.put(selectedModel.getModelName(), response);
+            }
+            if (response.errorMessage != null) {
+                if (welcomeIcon != null) {
+                    welcomeIcon.setVisibility(View.GONE);
+                }
+                outputText.setText(Html.fromHtml(response.errorMessage, Html.FROM_HTML_MODE_COMPACT, null, null));
+                outputTextContainer.setVisibility(View.VISIBLE);
+                if (predictionsRecyclerView != null) {
+                    predictionsRecyclerView.setVisibility(View.GONE);
+                }
+                return;
+            }
+
             outputTextContainer.setVisibility(View.GONE);
             predictionsRecyclerView.setVisibility(View.VISIBLE);
             
             if (predictionAdapter == null) {
-                predictionAdapter = new PredictionAdapter(this, predictions);
+                predictionAdapter = new PredictionAdapter(this, response.predictions);
                 predictionsRecyclerView.setAdapter(predictionAdapter);
             } else {
-                predictionAdapter.updateData(predictions);
+                predictionAdapter.updateData(response.predictions);
             }
+            predictionsRecyclerView.scrollToPosition(0);
         });
     }
 
@@ -823,7 +977,26 @@ public class MainActivity extends AppCompatActivity implements UIController {
             downloadEta.setText("");
             downloadSize.setText("");
             downloadCount.setText("Up to date");
+            stopDownloadIconAnimation();
         });
     }
 
+    @Override
+    public void showDownloadFailedPopup(String title, String message, Runnable onResume, Runnable onCancel) {
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Retry", (dialog, which) -> {
+                    if (onResume != null) onResume.run();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    if (onCancel != null) onCancel.run();
+                })
+                .setCancelable(false)
+                .show();
+    }
+    
+    public com.rakeshmalik.insectid.filemanager.MetadataManager getMetadataManager() {
+        return metadataManager;
+    }
 }

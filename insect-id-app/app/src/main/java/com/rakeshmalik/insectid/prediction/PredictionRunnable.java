@@ -63,23 +63,18 @@ public class PredictionRunnable implements Runnable {
             mainActivity.showMessage(mainActivity.getString(R.string.predicting));
             PredictionResponse response = predictionManager.predict(mainActivity.getSelectedModel(), mainActivity.getPhotoUri());
 
-            if (response.errorMessage != null) {
-                Spanned htmlError = Html.fromHtml(response.errorMessage, Html.FROM_HTML_MODE_COMPACT, null, null);
-                mainActivity.showMessage(htmlError);
-                return;
-            }
-
-            Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction(): Going to fetch images and render");
             if (response.predictions != null) {
                 for (PredictionResult result : response.predictions) {
                     try {
-                        result.images = modelLoader.getImagesFromZip(mainActivity, result.modelName, result.className);
+                        org.json.JSONObject meta = mainActivity.getMetadataManager().getMetadata(result.modelName);
+                        String imagesUrl = com.rakeshmalik.insectid.pojo.InsectModel.fromJson(result.modelName, meta).getImagesUrl();
+                        result.images = modelLoader.getImagesFromZip(mainActivity, result.modelName, imagesUrl, result.className);
                     } catch (Exception ex) {
                         Log.e(LOG_TAG, "Failed to load images for " + result.className, ex);
                     }
                 }
-                mainActivity.showPredictions(response.predictions);
             }
+            mainActivity.showPredictionResponse(response);
         } catch(Exception ex) {
             Log.e(LOG_TAG, "Exception during prediction", ex);
             mainActivity.showMessage("Failed to predict!!!");

@@ -1,4 +1,4 @@
-package com.rakeshmalik.insectid;
+package com.rakeshmalik.insectid.adapters;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rakeshmalik.insectid.R;
 import com.rakeshmalik.insectid.filemanager.DownloadItem;
 
 import android.graphics.Color;

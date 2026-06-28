@@ -1,0 +1,6 @@
+- [x] while one download is already in progress, if i click download buttons for another it should schedule the new one and show both in downloading list
+  - [x] do same for download all models button (schedule only the ones that are not downloading/downloaded)
+  - [x] remove "Download only core models" button
+- [x] support cancel download
+- [x] when a image is selected and switching between models, cache the results to use if switched back to same models again
+- [ ] allow running identify without failing background downloads

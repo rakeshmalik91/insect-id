@@ -83,8 +83,8 @@ public class ModelLoader {
         }
     }
 
-    public List<Bitmap> getImagesFromZip(Context context, String modelName, String className) {
-        final String zipFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelName);
+    public List<Bitmap> getImagesFromZip(Context context, String modelName, String imagesUrl, String className) {
+        final String zipFileName = Constants.getImagesArchiveFileName(context, modelName, imagesUrl);
         File file = new File(context.getFilesDir(), zipFileName);
         try (ZipFile zipFile = new ZipFile(file.getAbsolutePath())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

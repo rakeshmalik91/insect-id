@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class InsectModel implements Comparable<InsectModel> {
+public class InsectModel {
 
     private final String modelName;
     private final String displayName;
     private final String description;
     private final boolean legacy;
-    private final boolean prototype;
+    private final boolean experimental;
     private final boolean enabled;
     private final String classesUrl;
     private final String classDetailsUrl;
@@ -30,19 +30,21 @@ public class InsectModel implements Comparable<InsectModel> {
     private final double minAcceptedSoftmaxToOverrideRootClassifier;
     private final List<String> classes;
     private final List<String> acceptedClasses;
+    private final String icon;
+    private final String iconColor;
     private final ModelStats stats;
     private final boolean isRoot;
 
-    public InsectModel(String modelName, String displayName, String description, boolean legacy, boolean prototype, boolean enabled,
+    public InsectModel(String modelName, String displayName, String description, boolean legacy, boolean experimental, boolean enabled,
                        String classesUrl, String classDetailsUrl, String modelUrl, String imagesUrl,
                        int version, long size, double minAcceptedLogit, double minAcceptedSoftmax,
                        double minAcceptedSoftmaxToOverrideRootClassifier, List<String> classes,
-                       List<String> acceptedClasses, ModelStats stats, boolean isRoot) {
+                       List<String> acceptedClasses, String icon, String iconColor, ModelStats stats, boolean isRoot) {
         this.modelName = modelName;
         this.displayName = displayName;
         this.description = description;
         this.legacy = legacy;
-        this.prototype = prototype;
+        this.experimental = experimental;
         this.enabled = enabled;
         this.classesUrl = classesUrl;
         this.classDetailsUrl = classDetailsUrl;
@@ -55,6 +57,8 @@ public class InsectModel implements Comparable<InsectModel> {
         this.minAcceptedSoftmaxToOverrideRootClassifier = minAcceptedSoftmaxToOverrideRootClassifier;
         this.classes = classes;
         this.acceptedClasses = acceptedClasses;
+        this.icon = icon;
+        this.iconColor = iconColor;
         this.stats = stats;
         this.isRoot = isRoot;
     }
@@ -63,7 +67,7 @@ public class InsectModel implements Comparable<InsectModel> {
         String displayName = json.optString("name", modelName);
         String description = json.optString("description", null);
         boolean legacy = json.optBoolean("legacy", false);
-        boolean prototype = json.optBoolean("prototype", false);
+        boolean experimental = json.optBoolean("experimental", false);
         boolean enabled = json.optBoolean("enabled", true);
         String classesUrl = json.optString("classes_url", null);
         String classDetailsUrl = json.optString("class_details_url", null);
@@ -77,12 +81,14 @@ public class InsectModel implements Comparable<InsectModel> {
         
         List<String> classes = toList(json.optJSONArray("classes"));
         List<String> acceptedClasses = toList(json.optJSONArray("accepted_classes"));
+        String icon = json.optString("icon", null);
+        String iconColor = json.optString("icon_color", null);
         ModelStats stats = ModelStats.fromJson(json.optJSONObject("stats"));
         boolean isRoot = json.optBoolean("is_root", false);
 
-        return new InsectModel(modelName, displayName, description, legacy, prototype, enabled, classesUrl, classDetailsUrl,
+        return new InsectModel(modelName, displayName, description, legacy, experimental, enabled, classesUrl, classDetailsUrl,
                 modelUrl, imagesUrl, version, size, minAcceptedLogit, minAcceptedSoftmax,
-                minAcceptedSoftmaxToOverrideRootClassifier, classes, acceptedClasses, stats, isRoot);
+                minAcceptedSoftmaxToOverrideRootClassifier, classes, acceptedClasses, icon, iconColor, stats, isRoot);
     }
     
     private static List<String> toList(JSONArray array) {
@@ -103,6 +109,14 @@ public class InsectModel implements Comparable<InsectModel> {
         return displayName;
     }
     
+    public String getIcon() {
+        return icon;
+    }
+    
+    public String getIconColor() {
+        return iconColor;
+    }
+    
     public String getRawDisplayName() {
         return displayName;
     }
@@ -115,8 +129,8 @@ public class InsectModel implements Comparable<InsectModel> {
         return legacy;
     }
 
-    public boolean isPrototype() {
-        return prototype;
+    public boolean isExperimental() {
+        return experimental;
     }
 
     public boolean isEnabled() {
@@ -194,21 +208,7 @@ public class InsectModel implements Comparable<InsectModel> {
         return getDisplayName();
     }
 
-    private int getSortPriority() {
-        if (prototype) return 3;
-        if (legacy) return 2;
-        return 1;
-    }
 
-    @Override
-    public int compareTo(InsectModel o) {
-        int p1 = this.getSortPriority();
-        int p2 = o.getSortPriority();
-        if (p1 != p2) {
-            return Integer.compare(p1, p2);
-        }
-        return this.displayName.compareToIgnoreCase(o.displayName);
-    }
 
     public static class ModelStats {
         private final long classCount;

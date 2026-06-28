@@ -79,8 +79,9 @@ class DownloadFileHttpCallback implements Callback {
     @Override
     public void onFailure(@NonNull Call call, IOException e) {
         Log.e(LOG_TAG, "Download " + downloadName + " failed: " + e.getMessage());
-        mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
-        if(onFailure != null) {
+        if (call.isCanceled()) {
+            Log.d(LOG_TAG, "Download was canceled by user.");
+        } else if (onFailure != null) {
             onFailure.run();
         }
         if (wakeLock != null && wakeLock.isHeld()) {
@@ -92,7 +93,7 @@ class DownloadFileHttpCallback implements Callback {
     public void onResponse(@NonNull Call call, Response response) throws IOException {
         if (!response.isSuccessful()) {
             Log.e(LOG_TAG, "Server error: " + response.code());
-            mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
+            if(onFailure != null) onFailure.run();
             return;
         }
         File filesDir = context.getFilesDir();
@@ -120,12 +121,9 @@ class DownloadFileHttpCallback implements Callback {
             }
         } catch (Exception e) {
             Log.e(LOG_TAG, "Download " + downloadName + " failed: ", e);
-            if(Objects.equals(e.getMessage(), "Software caused connection abort")) {
-                mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_connection_aborted, downloadName)));
-            } else {
-                mainHandler.post(() -> uiController.showMessage(context.getString(R.string.download_failed, downloadName)));
-            }
-            if(onFailure != null) {
+            if (call.isCanceled()) {
+                Log.d(LOG_TAG, "Download was canceled by user during reading.");
+            } else if (onFailure != null) {
                 onFailure.run();
             }
         } finally {

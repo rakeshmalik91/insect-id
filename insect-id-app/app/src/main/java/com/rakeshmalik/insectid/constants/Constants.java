@@ -1,5 +1,8 @@
 package com.rakeshmalik.insectid.constants;
 
+import android.content.Context;
+import java.io.File;
+
 public class Constants {
 
     public static final int MAX_PREDICTIONS = 10;
@@ -34,4 +37,25 @@ public class Constants {
     public static final String WAKE_LOCK_NAME = "insect-id::DownloadLock";
     public static final long WAKE_LOCK_TIME = 10 * 60 * 1000L; /*10 minutes*/
 
+    public static String getImagesArchiveFileName(Context context, String modelName, String imagesUrl) {
+        String oldFileName = String.format(IMAGES_ARCHIVE_FILE_NAME_FMT, modelName);
+        File oldFile = new File(context.getFilesDir(), oldFileName);
+        if (oldFile.exists()) {
+            return oldFileName;
+        }
+        
+        if (imagesUrl == null || imagesUrl.isEmpty()) {
+            return oldFileName;
+        }
+        
+        try {
+            android.net.Uri uri = android.net.Uri.parse(imagesUrl);
+            String id = uri.getQueryParameter("id");
+            if (id != null && !id.isEmpty()) {
+                return "images." + id + ".zip";
+            }
+        } catch (Exception ignored) {
+        }
+        return "images." + Math.abs(imagesUrl.hashCode()) + ".zip";
+    }
 }

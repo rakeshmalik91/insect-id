@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface UIController {
     void showMessage(CharSequence msg);
-    void showPredictions(List<PredictionResult> predictions);
+    void showPredictionResponse(com.rakeshmalik.insectid.prediction.PredictionResponse response);
     void initDownloadList(List<DownloadItem> items);
     void showDownloadProgress(String title, int progress, String eta, String sizeInfo, String countInfo, String modelName, String downloadName);
     void hideDownloadProgress();
+    void showDownloadFailedPopup(String title, String message, Runnable onResume, Runnable onCancel);
 }

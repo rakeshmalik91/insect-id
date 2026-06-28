@@ -10,7 +10,7 @@
 
 **InsectID** is an open-source project combining deep learning and mobile technology to identify insect species from images. With a focus on **Indian** biodiversity, the system is currently trained to recognize thousands of species including **butterflies, moths, dragonflies, and cicadas**.
 
-> ⚠️ **Note**: This project is currently in an **early prototype stage**. Mechanics, visuals, and features are subject to change and improvement.
+> ⚠️ **Note**: This project is currently in an **early experimental stage**. Mechanics, visuals, and features are subject to change and improvement.
 >
 > 🛑 **Disclaimer**: This project is developed for **educational purposes and personal use only**.
 
@@ -27,6 +27,7 @@ Identify insects on the go with the Android application.
 	<img src="insect-id-app/screenshots/2.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
 	<img src="insect-id-app/screenshots/4.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
 	<img src="insect-id-app/screenshots/5.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
+	<img src="insect-id-app/screenshots/7.jpg" alt="Screenshot" width="130" style="margin: 5px;"/>
 </p>
 
 ## 🚀 How to Use

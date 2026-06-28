@@ -57,7 +57,6 @@ public class MetadataManager {
 
     public JSONObject getMetadata(boolean forceRefresh) {
         if(metadata == null || forceRefresh) {
-            mainHandler.post(() -> uiController.showMessage(context.getString(R.string.fetching_metadata)));
             Log.d(Constants.LOG_TAG, "Fetching metadata");
             try {
                 // Try to fetch from network
@@ -114,7 +113,6 @@ public class MetadataManager {
                 }
             }
         }
-        Collections.sort(models);
         return models;
     }
 }
