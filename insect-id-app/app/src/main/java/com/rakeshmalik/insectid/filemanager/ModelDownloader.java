@@ -175,7 +175,10 @@ public class ModelDownloader {
         }
         isDownloading = false;
         currentDownloadRequest = null;
-        mainHandler.post(() -> uiController.hideDownloadProgress());
+        mainHandler.post(() -> {
+            uiController.hideDownloadProgress();
+            uiController.showToast("Download cancelled");
+        });
     }
 
     private void executeDownload(DownloadRequest request) {
@@ -187,12 +190,20 @@ public class ModelDownloader {
             int modelDownloadSeq = request.modelDownloadSeq;
             int totalModelDownloads = request.totalModelDownloads;
 
+            final boolean[] downloadStarted = {false};
+
             Runnable wrappedOnSuccess = () -> {
+                if (downloadStarted[0]) {
+                    mainHandler.post(() -> uiController.showToast("Download complete: " + model.getDisplayName()));
+                }
                 mainHandler.post(this::processNextDownload);
                 if (originalOnSuccess != null) originalOnSuccess.run();
             };
             
             Runnable wrappedOnFailure = () -> {
+                if (downloadStarted[0]) {
+                    mainHandler.post(() -> uiController.showToast("Download failed: " + model.getDisplayName()));
+                }
                 mainHandler.post(this::processNextDownload);
                 if (originalOnFailure != null) originalOnFailure.run();
             };
@@ -218,6 +229,8 @@ public class ModelDownloader {
                     if (isModelAlreadyDownloaded(model)) {
                         updateRequired = forceUpdate && isModelToBeUpdated(model);
                         if(updateRequired) {
+                            downloadStarted[0] = true;
+                            mainHandler.post(() -> uiController.showToast("Update started: " + model.getDisplayName()));
                             Log.d(LOG_TAG, "Going to update " + model.getModelName() + " model");
                         } else {
                             if(forceUpdate) {
@@ -230,6 +243,8 @@ public class ModelDownloader {
                         }
                     } else {
                         updateRequired = false;
+                        downloadStarted[0] = true;
+                        mainHandler.post(() -> uiController.showToast("Download started: " + model.getDisplayName()));
                         Log.d(LOG_TAG, "Going to download " + model.getModelName() + " model");
                     }
 

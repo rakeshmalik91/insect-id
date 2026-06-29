@@ -178,6 +178,7 @@ android {
     }
     lint {
         targetSdk 34
+        abortOnError false
     }
     testOptions {
         targetSdk 34

@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginStart="8dp"
-                        android:text="Note: This model may not perform up to the mark"
+                        android:text="Note: performance may not be optimal"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorError"
                         android:textStyle="italic"
@@ -143,7 +143,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_image_placeholder"
                     android:scaleType="centerInside"
-                    android:tint="?attr/colorOnSurfaceVariant"
+                    app:tint="?attr/colorOnSurfaceVariant"
                     android:padding="32dp" />
 
                 <ImageView
@@ -209,7 +209,7 @@
                                 android:layout_height="64dp"
                                 android:layout_marginTop="32dp"
                                 android:src="@drawable/ic_search_placeholder"
-                                android:tint="?attr/colorOnSurfaceVariant"
+                                app:tint="?attr/colorOnSurfaceVariant"
                                 android:alpha="0.5"
                                 android:contentDescription="Welcome" />
 
@@ -298,6 +298,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.core.widget.NestedScrollView
+                    android:id="@+id/modelsScrollView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fillViewport="true">

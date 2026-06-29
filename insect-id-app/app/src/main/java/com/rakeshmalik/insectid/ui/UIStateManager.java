@@ -147,9 +147,7 @@ public class UIStateManager {
                 chipGroupEnabler.setChipGroupsEnabled(false);
             }
             if (buttonPickImage != null) buttonPickImage.setEnabled(false);
-            if (btnDownloadAll != null) btnDownloadAll.setEnabled(false);
             if (btnCancelDownload != null) btnCancelDownload.setEnabled(true);
-            startIdentifyIconAnimation();
         });
     }
 
@@ -161,7 +159,6 @@ public class UIStateManager {
             }
             if (buttonPickImage != null) buttonPickImage.setEnabled(true);
             if (btnDownloadAll != null) btnDownloadAll.setEnabled(true);
-            stopIdentifyIconAnimation();
         });
     }
 }

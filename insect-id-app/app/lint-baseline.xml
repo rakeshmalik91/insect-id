@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 9.2.1" type="baseline" client="gradle" dependencies="false" name="AGP (9.2.1)" variant="all" version="9.2.1">
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="            return String.format(&quot;File %d of %d&quot;, current, total);"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/DownloadListAdapter.java"
+            line="57"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toUpperCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="                speciesName = (sciName.substring(0, 1).toUpperCase() + sciName.substring(1))"
+        errorLine2="                                                       ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/prediction/PredictionManager.java"
+            line="261"
+            column="56"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of Gradle than 9.4.1 is available: 9.6.1"
+        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-9.4.1-bin.zip"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="../gradle/wrapper/gradle-wrapper.properties"
+            line="4"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios."
+        errorLine1="            android:screenOrientation=&quot;fullSensor&quot;>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios."
+        errorLine1="            android:screenOrientation=&quot;fullSensor&quot; />"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. `R.foo.bar`) than by name (e.g. `getIdentifier(&quot;bar&quot;, &quot;foo&quot;, null)`)."
+        errorLine1="                        int resId = activity.getResources().getIdentifier(model.getIcon(), &quot;drawable&quot;, activity.getPackageName());"
+        errorLine2="                                                            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ModelSelectorHelper.java"
+            line="122"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="        notifyDataSetChanged();"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/DownloadListAdapter.java"
+            line="42"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="        notifyDataSetChanged();"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="48"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="30"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="200"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="253"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `?android:attr/windowBackground` with a theme that also paints a background (inferred theme is `@style/Theme.InsectID`)"
+        errorLine1="    android:background=&quot;?android:attr/windowBackground&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/Theme.InsectID`)"
+        errorLine1="    android:background=&quot;?attr/selectableItemBackground&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_download_model.xml"
+            line="10"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.border` appears to be unused"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:shape=&quot;rectangle&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/border.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black` appears to be unused"
+        errorLine1="    &lt;color name=&quot;black&quot;>#FF000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.white` appears to be unused"
+        errorLine1="    &lt;color name=&quot;white&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_butterfly_moth` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:width=&quot;24dp&quot; android:height=&quot;24dp&quot; android:viewportWidth=&quot;24&quot; android:viewportHeight=&quot;24&quot; android:tint=&quot;?attr/colorControlNormal&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_butterfly_moth.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_cicada` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:width=&quot;24dp&quot; android:height=&quot;24dp&quot; android:viewportWidth=&quot;24&quot; android:viewportHeight=&quot;24&quot; android:tint=&quot;?attr/colorControlNormal&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_cicada.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_download_animated` appears to be unused"
+        errorLine1="&lt;animated-vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; xmlns:aapt=&quot;http://schemas.android.com/aapt&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_download_animated.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_download_colorful` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_download_colorful.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_dragonfly` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:width=&quot;24dp&quot; android:height=&quot;24dp&quot; android:viewportWidth=&quot;24&quot; android:viewportHeight=&quot;24&quot; android:tint=&quot;?attr/colorControlNormal&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_dragonfly.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_insect` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:width=&quot;24dp&quot; android:height=&quot;24dp&quot; android:viewportWidth=&quot;24&quot; android:viewportHeight=&quot;24&quot; android:tint=&quot;?attr/colorControlNormal&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_insect.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_background` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_launcher_background.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_foreground` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_launcher_foreground.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_moth` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:width=&quot;24dp&quot; android:height=&quot;24dp&quot; android:viewportWidth=&quot;24&quot; android:viewportHeight=&quot;24&quot; android:tint=&quot;?attr/colorControlNormal&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_moth.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.item_legacy_selector` appears to be unused"
+        errorLine1="&lt;com.google.android.material.card.MaterialCardView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/item_legacy_selector.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.use_model` appears to be unused"
+        errorLine1="    &lt;string name=&quot;use_model&quot;>Identify a&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.no_match_found` appears to be unused"
+        errorLine1="    &lt;string name=&quot;no_match_found&quot;>No match found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.fetching_metadata` appears to be unused"
+        errorLine1="    &lt;string name=&quot;fetching_metadata&quot;>Fetching metadata…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.update_model` appears to be unused"
+        errorLine1="    &lt;string name=&quot;update_model&quot;>Update/Download model&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.download_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;download_failed&quot;>Download %1$s failed!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.download_connection_aborted` appears to be unused"
+        errorLine1="    &lt;string name=&quot;download_connection_aborted&quot;>Download %1$s failed! \nPlease restart the download and do not minimize or close the app or lock the screen&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive icon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive roundIcon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        message="Use version catalog instead"
+        errorLine1="    implementation(&quot;com.facebook.fbjni:fbjni-java-only:0.7.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle.kts"
+            line="70"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        message="Use version catalog instead"
+        errorLine1="    implementation(&quot;com.facebook.soloader:nativeloader:0.12.1&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle.kts"
+            line="71"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="140"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_manage_model.xml"
+            line="60"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_model_selector.xml"
+            line="22"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_model_selector.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_model_selector.xml"
+            line="38"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="            downloadTitle.setText(&quot;No active downloads&quot;);"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/MainActivity.java"
+            line="644"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="            downloadCount.setText(&quot;Up to date&quot;);"
+        errorLine2="                                  ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/MainActivity.java"
+            line="649"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                modelWarning.setText(&quot;This is a legacy model, may not perform up to the mark.&quot;);"
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="115"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                modelWarning.setText(&quot;This is an experimental model, may not perform up to the mark.&quot;);"
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="118"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="            modelLatestVersion.setText(&quot;Latest version: v&quot; + latestVersion);"
+        errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="129"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="            modelLatestVersion.setText(&quot;Latest version: v&quot; + latestVersion);"
+        errorLine2="                                       ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="129"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                modelStatus.setText(&quot;Downloading / Queued&quot;);"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="134"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                btnDownload.setText(&quot;Downloading&quot;);"
+        errorLine2="                                    ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="135"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                    modelStatus.setText(&quot;Downloaded (v&quot; + currentVersion + &quot;) - Update available&quot;);"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="143"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    modelStatus.setText(&quot;Downloaded (v&quot; + currentVersion + &quot;) - Update available&quot;);"
+        errorLine2="                                        ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="143"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    modelStatus.setText(&quot;Downloaded (v&quot; + currentVersion + &quot;) - Update available&quot;);"
+        errorLine2="                                                                           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="143"
+            column="76"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    btnDownload.setText(&quot;Update&quot;);"
+        errorLine2="                                        ~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="144"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                    modelStatus.setText(&quot;Downloaded (v&quot; + currentVersion + &quot;)&quot;);"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="151"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    modelStatus.setText(&quot;Downloaded (v&quot; + currentVersion + &quot;)&quot;);"
+        errorLine2="                                        ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="151"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                modelStatus.setText(&quot;Not downloaded&quot;);"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="158"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                btnDownload.setText(&quot;Download&quot;);"
+        errorLine2="                                    ~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="159"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                        infoAccuracy.setText(&quot;Accuracy: &quot; + stats.getAccuracy() + "
+        errorLine2="                                             ^">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="191"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        infoAccuracy.setText(&quot;Accuracy: &quot; + stats.getAccuracy() + "
+        errorLine2="                                             ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="191"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                        infoCounts.setText(&quot;Classes: &quot; + stats.getClassCount() + "
+        errorLine2="                                           ^">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="199"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        infoCounts.setText(&quot;Classes: &quot; + stats.getClassCount() + "
+        errorLine2="                                           ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="199"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                &quot; | Species: &quot; + stats.getSpeciesCount() + "
+        errorLine2="                                ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="200"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                &quot; | Data: &quot; + stats.getDataCount());"
+        errorLine2="                                ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="201"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                        infoArchitecture.setText(&quot;Architecture: &quot; + stats.getModelArch());"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="208"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        infoArchitecture.setText(&quot;Architecture: &quot; + stats.getModelArch());"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="208"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                        infoDataSources.setText(&quot;Sources: &quot; + String.join(&quot;, &quot;, stats.getDataSources()));"
+        errorLine2="                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="215"
+            column="49"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        infoDataSources.setText(&quot;Sources: &quot; + String.join(&quot;, &quot;, stats.getDataSources()));"
+        errorLine2="                                                ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ManageModelsAdapter.java"
+            line="215"
+            column="49"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                    selectedModelName.setText(&quot;Identify a &quot; + selectedModel.getDisplayName());"
+        errorLine2="                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ModelSelectorHelper.java"
+            line="192"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    selectedModelName.setText(&quot;Identify a &quot; + selectedModel.getDisplayName());"
+        errorLine2="                                              ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ModelSelectorHelper.java"
+            line="192"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    identifyModelWarning.setText(&quot;This is a legacy model, may not perform up to the mark.&quot;);"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ModelSelectorHelper.java"
+            line="195"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    identifyModelWarning.setText(&quot;This is an experimental model, may not perform up to the mark.&quot;);"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/rakeshmalik/insectid/ui/ModelSelectorHelper.java"
+            line="198"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;App Logo&quot;, should use `@string` resource"
+        errorLine1="                    android:contentDescription=&quot;App Logo&quot; />"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="44"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Identify Insects&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Identify Insects&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="50"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Selected Model&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Selected Model&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="104"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note: This model may not perform up to the mark&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Note: This model may not perform up to the mark&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="115"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Welcome&quot;, should use `@string` resource"
+        errorLine1="                                android:contentDescription=&quot;Welcome&quot; />"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="214"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Ready to identify!\nSelect an image to begin.&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;Ready to identify!\nSelect an image to begin.&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="222"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;App Logo&quot;, should use `@string` resource"
+        errorLine1="                    android:contentDescription=&quot;App Logo&quot; />"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="266"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Manage Models&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Manage Models&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="273"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Download/Update All Models&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Download/Update All Models&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="285"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;No active downloads&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;No active downloads&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="325"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Cancel Download&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;Cancel Download&quot; />"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="370"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Up to date&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;Up to date&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="381"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;App Logo&quot;, should use `@string` resource"
+        errorLine1="                android:contentDescription=&quot;App Logo&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="434"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Show Legacy Models&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Show Legacy Models&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="458"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Show Experimental Models&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Show Experimental Models&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="467"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Apply blur to screen captures&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Apply blur to screen captures&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="476"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Identify&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Identify&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/bottom_nav_menu.xml"
+            line="6"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Models&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Models&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/bottom_nav_menu.xml"
+            line="10"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Settings&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Settings&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/bottom_nav_menu.xml"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;File Title&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;File Title&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_download_file.xml"
+            line="17"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Completed&quot;, should use `@string` resource"
+        errorLine1="        android:contentDescription=&quot;Completed&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_download_file.xml"
+            line="28"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Model Title&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Model Title&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_download_model.xml"
+            line="17"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Expand&quot;, should use `@string` resource"
+        errorLine1="        android:contentDescription=&quot;Expand&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_download_model.xml"
+            line="26"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Legacy &amp;\nExperimental\nModels&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Legacy &amp;amp;\nExperimental\nModels&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_legacy_selector.xml"
+            line="25"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Legacy&quot;, should use `@string` resource"
+        errorLine1="                android:contentDescription=&quot;Legacy&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_manage_model.xml"
+            line="46"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Experimental&quot;, should use `@string` resource"
+        errorLine1="                android:contentDescription=&quot;Experimental&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_manage_model.xml"
+            line="56"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note: This model may not perform up to the mark&quot;, should use `@string` resource"
+        errorLine1="            android:text=&quot;Note: This model may not perform up to the mark&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_manage_model.xml"
+            line="102"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Legacy&quot;, should use `@string` resource"
+        errorLine1="        android:contentDescription=&quot;Legacy&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_model_spinner.xml"
+            line="26"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Experimental&quot;, should use `@string` resource"
+        errorLine1="        android:contentDescription=&quot;Experimental&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_model_spinner.xml"
+            line="36"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RelativeOverlap"
+        message="`@id/downloadSize` can overlap `@id/downloadEta` if @id/downloadEta, @id/downloadSize grow due to localized text expansion"
+        errorLine1="                                &lt;TextView"
+        errorLine2="                                 ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="353"
+            column="34"/>
+    </issue>
+
+</issues>

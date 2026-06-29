@@ -60,6 +60,7 @@ public class PredictionRunnable implements Runnable {
     private void runPrediction() {
         Log.d(LOG_TAG, "Inside PredictionRunnable.runPrediction()");
         try {
+            mainActivity.runOnUiThread(mainActivity::startIdentifyIconAnimation);
             mainActivity.showMessage(mainActivity.getString(R.string.predicting));
             PredictionResponse response = predictionManager.predict(mainActivity.getSelectedModel(), mainActivity.getPhotoUri());
 
@@ -79,6 +80,7 @@ public class PredictionRunnable implements Runnable {
             Log.e(LOG_TAG, "Exception during prediction", ex);
             mainActivity.showMessage("Failed to predict!!!");
         } finally {
+            mainActivity.runOnUiThread(mainActivity::stopIdentifyIconAnimation);
             mainActivity.unlockUI();
         }
     }

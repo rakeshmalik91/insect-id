@@ -26,7 +26,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -44,10 +43,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
-<!--        <service-->
-<!--            android:name=".DownloadService"-->
-<!--            android:foregroundServiceType="dataSync"-->
-<!--            android:exported="false"/>-->
     </application>
 
     <queries>

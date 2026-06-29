@@ -192,10 +192,10 @@ public class ModelSelectorHelper {
                     selectedModelName.setText("Identify a " + selectedModel.getDisplayName());
                 }
                 if (selectedModel.isLegacy()) {
-                    identifyModelWarning.setText("This is a legacy model, may not perform up to the mark.");
+                    identifyModelWarning.setText("Legacy model: performance may not be optimal.");
                     identifyModelWarning.setVisibility(View.VISIBLE);
                 } else if (selectedModel.isExperimental()) {
-                    identifyModelWarning.setText("This is an experimental model, may not perform up to the mark.");
+                    identifyModelWarning.setText("Experimental model: performance may not be optimal.");
                     identifyModelWarning.setVisibility(View.VISIBLE);
                 } else {
                     identifyModelWarning.setVisibility(View.GONE);

@@ -112,10 +112,10 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             iconExperimental.setVisibility(model.isExperimental() ? View.VISIBLE : View.GONE);
             
             if (model.isLegacy()) {
-                modelWarning.setText("This is a legacy model, may not perform up to the mark.");
+                modelWarning.setText("Legacy model: performance may not be optimal.");
                 modelWarning.setVisibility(View.VISIBLE);
             } else if (model.isExperimental()) {
-                modelWarning.setText("This is an experimental model, may not perform up to the mark.");
+                modelWarning.setText("Experimental model: performance may not be optimal.");
                 modelWarning.setVisibility(View.VISIBLE);
             } else {
                 modelWarning.setVisibility(View.GONE);

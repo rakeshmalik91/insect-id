@@ -29,7 +29,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.widget.NestedScrollView;
 import com.getkeepsafe.relinker.ReLinker;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.snackbar.Snackbar;
 
 import com.rakeshmalik.insectid.filemanager.MetadataManager;
 import com.rakeshmalik.insectid.filemanager.ModelDownloader;
@@ -38,6 +42,7 @@ import com.rakeshmalik.insectid.filemanager.ModelLoader;
 import com.rakeshmalik.insectid.pojo.InsectModel;
 import com.rakeshmalik.insectid.prediction.PredictionRunnable;
 import com.rakeshmalik.insectid.prediction.PredictionManager;
+import com.rakeshmalik.insectid.prediction.PredictionResponse;
 import com.rakeshmalik.insectid.ui.PredictionAdapter;
 
 import java.util.ArrayList;
@@ -59,9 +64,10 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private ImageView welcomeIcon;
     private TextView outputText;
     private View outputTextContainer;
+    private NestedScrollView modelsScrollView;
     private View downloadProgressContainer;
     private TextView downloadTitle;
-    private com.google.android.material.progressindicator.LinearProgressIndicator downloadProgressBar;
+    private LinearProgressIndicator downloadProgressBar;
     private TextView downloadEta;
     private TextView downloadSize;
     private TextView downloadCount;
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private RecyclerView predictionsRecyclerView;
     private PredictionAdapter predictionAdapter;
     
-    private final Map<String, com.rakeshmalik.insectid.prediction.PredictionResponse> predictionCache = new HashMap<>();
+    private final Map<String, PredictionResponse> predictionCache = new HashMap<>();
     private RecyclerView manageModelsRecyclerView;
     private ManageModelsAdapter manageModelsAdapter;
     private ModelLoader modelLoader;
@@ -82,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private MaterialButton btnDownloadAll;
     private MaterialButton btnCancelDownload;
     
-    private com.google.android.material.switchmaterial.SwitchMaterial switchShowLegacy;
-    private com.google.android.material.switchmaterial.SwitchMaterial switchShowExperimental;
-    private com.google.android.material.switchmaterial.SwitchMaterial switchApplyBlur;
+    private SwitchMaterial switchShowLegacy;
+    private SwitchMaterial switchShowExperimental;
+    private SwitchMaterial switchApplyBlur;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final ArrayBlockingQueue<Future<?>> runningTasks = new ArrayBlockingQueue<>(10);
@@ -107,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
             this.outputText = findViewById(R.id.outputText);
             this.outputText.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
             this.outputTextContainer = findViewById(R.id.outputTextContainer);
+            this.modelsScrollView = findViewById(R.id.modelsScrollView);
             this.downloadProgressContainer = findViewById(R.id.downloadProgressContainer);
             this.downloadTitle = findViewById(R.id.downloadTitle);
             this.downloadProgressBar = findViewById(R.id.downloadProgressBar);
@@ -141,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
                     tabModels.setVisibility(View.GONE);
                     tabSettings.setVisibility(View.GONE);
                     if (modelDownloader != null && modelDownloader.isDownloading()) {
-                        showMessage("Identify is temporarily disabled during downloads.");
+                        showMessage("Identify is temporarily disabled during downloads.", R.drawable.ic_download);
                     }
                     return true;
                 } else if (itemId == R.id.navigation_models) {
@@ -192,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
 
             this.buttonPickImage.setOnClickListener(v -> {
                 if (modelDownloader != null && modelDownloader.isDownloading()) {
-                    showMessage("Please wait for downloads to complete.");
+                    showMessage("Please wait for downloads to complete.", R.drawable.ic_download);
                     return;
                 }
                 photoPickerHelper.showImagePickerDialog();
@@ -227,7 +234,11 @@ public class MainActivity extends AppCompatActivity implements UIController {
 
                 @Override
                 public void showMessage(String message) {
-                    MainActivity.this.showMessage(message);
+                    if ("Please wait for downloads to complete.".equals(message)) {
+                        MainActivity.this.showMessage(message, R.drawable.ic_download);
+                    } else {
+                        MainActivity.this.showMessage(message);
+                    }
                 }
             });
 
@@ -313,6 +324,9 @@ public class MainActivity extends AppCompatActivity implements UIController {
     public void showDownloadProgressContainer() {
         runOnUiThread(() -> {
             downloadProgressContainer.setVisibility(View.VISIBLE);
+            if (modelsScrollView != null) {
+                modelsScrollView.smoothScrollTo(0, 0);
+            }
             uiStateManager.startDownloadIconAnimation();
         });
     }
@@ -355,6 +369,14 @@ public class MainActivity extends AppCompatActivity implements UIController {
         uiStateManager.unlockUI();
     }
     
+    public void startIdentifyIconAnimation() {
+        uiStateManager.startIdentifyIconAnimation();
+    }
+    
+    public void stopIdentifyIconAnimation() {
+        uiStateManager.stopIdentifyIconAnimation();
+    }
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -391,11 +413,6 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
 
     private void downloadOrUpdateModel(InsectModel model) {
-        if (modelDownloader.isDownloading()) {
-            showMessage("Please wait for the current download to finish.");
-            return;
-        }
-
         uiStateManager.lockUI();
         
         if(!runningTasks.isEmpty()) {
@@ -413,8 +430,8 @@ public class MainActivity extends AppCompatActivity implements UIController {
         
         Runnable onSuccess = () -> {
             runOnUiThread(() -> {
-                uiStateManager.unlockUI();
                 if (!modelDownloader.isDownloading()) {
+                    uiStateManager.unlockUI();
                     hideDownloadProgress();
                     showMessage("Downloads completed");
                 } else {
@@ -427,8 +444,8 @@ public class MainActivity extends AppCompatActivity implements UIController {
         
         Runnable onFailure = () -> {
             runOnUiThread(() -> {
-                uiStateManager.unlockUI();
                 if (!modelDownloader.isDownloading()) {
+                    uiStateManager.unlockUI();
                     hideDownloadProgress();
                 } else {
                     refreshActiveDownloadsPlan();
@@ -487,10 +504,13 @@ public class MainActivity extends AppCompatActivity implements UIController {
             return;
         }
 
+        uiStateManager.lockUI();
+
         Runnable onSuccess = () -> {
             runOnUiThread(() -> {
                 refreshManageModelsList();
                 if (!modelDownloader.isDownloading()) {
+                    uiStateManager.unlockUI();
                     hideDownloadProgress();
                     showMessage("All downloads completed");
                 } else {
@@ -503,6 +523,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
             runOnUiThread(() -> {
                 refreshManageModelsList();
                 if (!modelDownloader.isDownloading()) {
+                    uiStateManager.unlockUI();
                     hideDownloadProgress();
                 } else {
                     refreshActiveDownloadsPlan();
@@ -523,9 +544,18 @@ public class MainActivity extends AppCompatActivity implements UIController {
 
     @Override
     public void showMessage(CharSequence msg) {
+        showMessage(msg, 0);
+    }
+
+    public void showMessage(CharSequence msg, int iconResId) {
         runOnUiThread(() -> {
             if (welcomeIcon != null) {
-                welcomeIcon.setVisibility(View.GONE);
+                if (iconResId != 0) {
+                    welcomeIcon.setImageResource(iconResId);
+                    welcomeIcon.setVisibility(View.VISIBLE);
+                } else {
+                    welcomeIcon.setVisibility(View.GONE);
+                }
             }
             outputText.setText(msg);
             outputTextContainer.setVisibility(View.VISIBLE);
@@ -538,6 +568,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
     private void showWelcome() {
         runOnUiThread(() -> {
             if (welcomeIcon != null) {
+                welcomeIcon.setImageResource(R.drawable.ic_search_placeholder);
                 welcomeIcon.setVisibility(View.VISIBLE);
             }
             outputText.setText("Ready to identify!\nSelect an image to begin.");
@@ -549,7 +580,7 @@ public class MainActivity extends AppCompatActivity implements UIController {
     }
 
     @Override
-    public void showPredictionResponse(com.rakeshmalik.insectid.prediction.PredictionResponse response) {
+    public void showPredictionResponse(PredictionResponse response) {
         runOnUiThread(() -> {
             if (modelSelectorHelper.getSelectedModel() != null && response != null) {
                 predictionCache.put(modelSelectorHelper.getSelectedModel().getModelName(), response);
@@ -630,6 +661,21 @@ public class MainActivity extends AppCompatActivity implements UIController {
             downloadSize.setText("");
             downloadCount.setText("Up to date");
             uiStateManager.stopDownloadIconAnimation();
+
+            String currentMsg = outputText.getText().toString();
+            if ("Identify is temporarily disabled during downloads.".equals(currentMsg) ||
+                "Please wait for downloads to complete.".equals(currentMsg)) {
+                if (photoPickerHelper.getPhotoUri() == null) {
+                    showWelcome();
+                } else {
+                    com.rakeshmalik.insectid.pojo.InsectModel selectedModel = modelSelectorHelper.getSelectedModel();
+                    if (selectedModel != null && predictionCache.containsKey(selectedModel.getModelName())) {
+                        showPredictionResponse(predictionCache.get(selectedModel.getModelName()));
+                    } else {
+                        outputTextContainer.setVisibility(View.GONE);
+                    }
+                }
+            }
         });
     }
 
@@ -646,6 +692,21 @@ public class MainActivity extends AppCompatActivity implements UIController {
                 })
                 .setCancelable(false)
                 .show();
+    }
+
+    @Override
+    public void showToast(String message) {
+        runOnUiThread(() -> {
+            Snackbar snackbar = Snackbar.make(
+                    findViewById(android.R.id.content),
+                    message,
+                    Snackbar.LENGTH_SHORT
+            );
+            if (bottomNavigation != null) {
+                snackbar.setAnchorView(bottomNavigation);
+            }
+            snackbar.show();
+        });
     }
     
     public com.rakeshmalik.insectid.filemanager.MetadataManager getMetadataManager() {

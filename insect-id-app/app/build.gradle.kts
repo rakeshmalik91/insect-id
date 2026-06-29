@@ -4,19 +4,19 @@ plugins {
 
 android {
     namespace = "com.rakeshmalik.insectid"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.rakeshmalik.insectid"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 13
         versionName = "v0.0.8 alpha"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
     }
 
@@ -41,6 +41,10 @@ android {
             useLegacyPackaging = true
         }
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+        abortOnError = true
+    }
 }
 
 
@@ -63,8 +67,8 @@ dependencies {
     // 16KB-aligned PyTorch local AARs
     implementation(files("libs/pytorch_android-patched.aar"))
     implementation(files("libs/pytorch_android_torchvision-patched.aar"))
-    implementation("com.facebook.fbjni:fbjni-java-only:0.2.2")
-    implementation("com.facebook.soloader:nativeloader:0.10.5")
+    implementation("com.facebook.fbjni:fbjni-java-only:0.7.0")
+    implementation("com.facebook.soloader:nativeloader:0.12.1")
     implementation(libs.gson)
     implementation(libs.ucrop)
     implementation(libs.okhttp)

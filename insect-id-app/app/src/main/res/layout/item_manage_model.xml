@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
-            android:text="Note: This model may not perform up to the mark"
+            android:text="Note: performance may not be optimal"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorError"
             android:textStyle="italic"

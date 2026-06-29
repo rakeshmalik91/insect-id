@@ -11,4 +11,5 @@ public interface UIController {
     void showDownloadProgress(String title, int progress, String eta, String sizeInfo, String countInfo, String modelName, String downloadName);
     void hideDownloadProgress();
     void showDownloadFailedPopup(String title, String message, Runnable onResume, Runnable onCancel);
+    void showToast(String message);
 }
