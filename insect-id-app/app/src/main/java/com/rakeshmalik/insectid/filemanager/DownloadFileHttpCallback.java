@@ -45,6 +45,7 @@ class DownloadFileHttpCallback implements Callback {
     private int totalFileDownloads;
     private int modelDownloadSeq;
     private int totalModelDownloads;
+    private ModelDownloader modelDownloader;
 
     PowerManager.WakeLock wakeLock;
 
@@ -53,7 +54,7 @@ class DownloadFileHttpCallback implements Callback {
     public DownloadFileHttpCallback(Context context, UIController uiController, MetadataManager metadataManager, Handler mainHandler, SharedPreferences prefs,
                                     String fileName, Runnable onSuccess, Runnable onFailure,
                                     String downloadName, String modelName, boolean updateRequired,
-                                    int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads) {
+                                    int fileDownloadSeq, int totalFileDownloads, int modelDownloadSeq, int totalModelDownloads, ModelDownloader modelDownloader) {
         this.fileName = fileName;
         this.onSuccess = onSuccess;
         this.onFailure = onFailure;
@@ -64,6 +65,7 @@ class DownloadFileHttpCallback implements Callback {
         this.totalFileDownloads = totalFileDownloads;
         this.modelDownloadSeq = modelDownloadSeq;
         this.totalModelDownloads = totalModelDownloads;
+        this.modelDownloader = modelDownloader;
         this.context = context;
         this.uiController = uiController;
         this.metadataManager = metadataManager;
@@ -108,14 +110,29 @@ class DownloadFileHttpCallback implements Callback {
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
                 downloadedBytes += bytesRead;
-                int progress = Math.max(0, (int) ((downloadedBytes * 100) / totalBytes));
+                long overallTotalBytes = modelDownloader != null ? modelDownloader.getSessionTotalBytes() : totalBytes;
+                long overallDownloadedBytes = modelDownloader != null ? modelDownloader.getSessionDownloadedBytes() + downloadedBytes : downloadedBytes;
+                if (overallTotalBytes <= 0) {
+                    overallTotalBytes = totalBytes;
+                    overallDownloadedBytes = downloadedBytes;
+                } else if (overallDownloadedBytes > overallTotalBytes) {
+                    overallTotalBytes = overallDownloadedBytes;
+                }
+
+                int progress = Math.max(0, (int) ((overallDownloadedBytes * 100) / overallTotalBytes));
                 long elapsedTime = System.currentTimeMillis() - startTime;
-                long eta = Math.max(0, (totalBytes - downloadedBytes) * elapsedTime / downloadedBytes);
+                long eta = Math.max(0, (overallTotalBytes - overallDownloadedBytes) * elapsedTime / downloadedBytes);
+                
+                final long finalEta = eta;
+                final int finalProgress = progress;
                 final long finalDownloadedBytes = downloadedBytes;
-                mainHandler.post(() -> reportDownloadProgress(eta, progress, finalDownloadedBytes, totalBytes));
+                mainHandler.post(() -> reportDownloadProgress(finalEta, finalProgress, finalDownloadedBytes, totalBytes));
             }
             Log.d(LOG_TAG, "File downloaded successfully: " + file.getAbsolutePath());
             updatePrefs();
+            if (modelDownloader != null) {
+                modelDownloader.addSessionDownloadedBytes(totalBytes);
+            }
             if(onSuccess != null) {
                 onSuccess.run();
             }
@@ -138,7 +155,21 @@ class DownloadFileHttpCallback implements Callback {
     @SuppressLint("DefaultLocale")
     private void reportDownloadProgress(long eta, int progress, long downloadedBytes, long totalBytes) {
         String title;
-        String sizeInfo = String.format("%d/%d MB", downloadedBytes / 1024 / 1024, totalBytes / 1024 / 1024);
+        long overallTotalBytes = modelDownloader != null ? modelDownloader.getSessionTotalBytes() : totalBytes;
+        long overallDownloadedBytes = modelDownloader != null ? modelDownloader.getSessionDownloadedBytes() + downloadedBytes : downloadedBytes;
+        
+        if (overallTotalBytes <= 0) {
+            overallTotalBytes = totalBytes;
+            overallDownloadedBytes = downloadedBytes;
+        } else if (overallDownloadedBytes > overallTotalBytes) {
+            overallTotalBytes = overallDownloadedBytes;
+        }
+
+        if (overallTotalBytes > 0) {
+            progress = Math.max(0, (int) ((overallDownloadedBytes * 100) / overallTotalBytes));
+        }
+        
+        String sizeInfo = String.format("%d MB remaining / %d MB total", (overallTotalBytes - overallDownloadedBytes) / 1024 / 1024, overallTotalBytes / 1024 / 1024);
         String etaInfo = String.format("%d min %d sec remaining", eta / 60000, (eta % 60000) / 1000);
         String countInfo = String.format("File %d of %d", 
                 totalFileDownloads * (modelDownloadSeq - 1) + fileDownloadSeq, totalFileDownloads * totalModelDownloads);

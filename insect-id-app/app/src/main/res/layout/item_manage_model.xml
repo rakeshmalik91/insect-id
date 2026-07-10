@@ -131,10 +131,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownload"
-            style="@style/Widget.Material3.Button.TonalButton"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Download"
             app:icon="@drawable/ic_download" />
             
         </LinearLayout>

@@ -141,6 +141,17 @@ public class MainActivity extends AppCompatActivity implements UIController {
             
             this.uiStateManager = new UIStateManager(this, bottomNavigation, tabIdentify, tabModels, tabSettings);
             
+            try {
+                android.content.pm.PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                String version = pInfo.versionName;
+                TextView versionText = findViewById(R.id.version_text);
+                if (versionText != null) {
+                    versionText.setText(getString(R.string.version, version));
+                }
+            } catch (android.content.pm.PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            
             this.bottomNavigation.setOnItemSelectedListener(item -> {
                 int itemId = item.getItemId();
                 if (itemId == R.id.navigation_identify) {

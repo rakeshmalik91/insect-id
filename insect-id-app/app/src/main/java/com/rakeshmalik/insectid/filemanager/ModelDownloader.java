@@ -23,13 +23,27 @@ import com.rakeshmalik.insectid.constants.Constants;
 
 import okhttp3.*;
 
-//TODO have auto-update, pre-download & verify-integrity/re-download model settings
 public class ModelDownloader {
 
     private final List<DownloadRequest> downloadQueue = new ArrayList<>();
     private Call currentCall;
     private boolean isDownloading = false;
     private DownloadRequest currentDownloadRequest = null;
+
+    private long sessionTotalBytes = 0;
+    private long sessionDownloadedBytes = 0;
+
+    public void addSessionDownloadedBytes(long bytes) {
+        this.sessionDownloadedBytes += bytes;
+    }
+
+    public long getSessionTotalBytes() {
+        return sessionTotalBytes;
+    }
+
+    public long getSessionDownloadedBytes() {
+        return sessionDownloadedBytes;
+    }
 
     private static class DownloadRequest {
         InsectModel model;
@@ -39,7 +53,8 @@ public class ModelDownloader {
         int modelDownloadSeq;
         int totalModelDownloads;
 
-        DownloadRequest(InsectModel model, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+        DownloadRequest(InsectModel model, Runnable onSuccess, Runnable onFailure, boolean forceUpdate,
+                int modelDownloadSeq, int totalModelDownloads) {
             this.model = model;
             this.onSuccess = onSuccess;
             this.onFailure = onFailure;
@@ -81,7 +96,8 @@ public class ModelDownloader {
     public boolean isModelAlreadyDownloaded(InsectModel model) {
         String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
         String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
-        String imagesArchiveFileName = Constants.getImagesArchiveFileName(context, model.getModelName(), model.getImagesUrl());
+        String imagesArchiveFileName = Constants.getImagesArchiveFileName(context, model.getModelName(),
+                model.getImagesUrl());
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
         return isFileAlreadyDownloaded(classesFileName)
                 && isFileAlreadyDownloaded(classDetailsFileName)
@@ -92,29 +108,36 @@ public class ModelDownloader {
     public boolean isModelToBeUpdated(InsectModel model) {
         int currentVersion = prefs.getInt(modelVersionPrefName(model.getModelName()), 0);
         int latestVersion = model.getVersion();
-        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", model.getModelName(), currentVersion, latestVersion));
+        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", model.getModelName(),
+                currentVersion, latestVersion));
         return currentVersion < latestVersion;
     }
 
-    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, int modelDownloadSeq, int totalModelDownloads) {
+    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, int modelDownloadSeq,
+            int totalModelDownloads) {
         downloadModel(model, onSuccess, onFailure, false, modelDownloadSeq, totalModelDownloads);
     }
 
     private boolean isRootClassifierDownloadRequired() {
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
         int currentVersion = prefs.getInt(modelVersionPrefName(ROOT_CLASSIFIER), 0);
-        int latestVersion = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER)).getVersion();
-        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", ROOT_CLASSIFIER, currentVersion, latestVersion));
+        int latestVersion = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER))
+                .getVersion();
+        Log.d(LOG_TAG, String.format("Model type: %s, current version: %d, latest version: %d", ROOT_CLASSIFIER,
+                currentVersion, latestVersion));
         return !isFileAlreadyDownloaded(modelFileName) || currentVersion < latestVersion;
     }
 
-    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
+    private void downloadRootClassifier(Runnable onSuccess, Runnable onFailure, boolean forceUpdate,
+            int modelDownloadSeq, int totalModelDownloads) {
         Log.d(LOG_TAG, "Inside ModelDownloader.downloadRootClassifier()");
         String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
-        if(isRootClassifierDownloadRequired()) {
-            String fileUrl = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER)).getModelUrl();
+        if (isRootClassifierDownloadRequired()) {
+            String fileUrl = InsectModel.fromJson(ROOT_CLASSIFIER, metadataManager.getMetadata(ROOT_CLASSIFIER))
+                    .getModelUrl();
             boolean updateRequired = isFileAlreadyDownloaded(modelFileName);
-            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER, updateRequired,
+            downloadFile(modelFileName, fileUrl, onSuccess, onFailure, "Root Classifier model", ROOT_CLASSIFIER,
+                    updateRequired,
                     1, 5, modelDownloadSeq, totalModelDownloads);
         } else {
             Log.d(LOG_TAG, "Model " + ROOT_CLASSIFIER + " already downloaded.");
@@ -122,15 +145,37 @@ public class ModelDownloader {
         }
     }
 
-    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, boolean forceUpdate, int modelDownloadSeq, int totalModelDownloads) {
-        downloadQueue.add(new DownloadRequest(model, onSuccess, onFailure, forceUpdate, modelDownloadSeq, totalModelDownloads));
+    public void downloadModel(InsectModel model, Runnable onSuccess, Runnable onFailure, boolean forceUpdate,
+            int modelDownloadSeq, int totalModelDownloads) {
+        downloadQueue.add(
+                new DownloadRequest(model, onSuccess, onFailure, forceUpdate, modelDownloadSeq, totalModelDownloads));
         if (!isDownloading) {
+            sessionTotalBytes = 0;
+            sessionDownloadedBytes = 0;
+
+            mainHandler.post(() -> {
+                long total = 0;
+                if (isRootClassifierDownloadRequired()) {
+                    total += metadataManager.getModelSize(ROOT_CLASSIFIER);
+                }
+                for (DownloadRequest req : downloadQueue) {
+                    total += metadataManager.getModelSize(req.model.getModelName());
+                }
+                if (currentDownloadRequest != null) {
+                    total += metadataManager.getModelSize(currentDownloadRequest.model.getModelName());
+                }
+                sessionTotalBytes = total;
+            });
+
             processNextDownload();
+        } else {
+            sessionTotalBytes += metadataManager.getModelSize(model.getModelName());
         }
     }
-    
+
     public boolean isModelQueuedOrDownloading(InsectModel model) {
-        if (currentDownloadRequest != null && currentDownloadRequest.model.getModelName().equals(model.getModelName())) {
+        if (currentDownloadRequest != null
+                && currentDownloadRequest.model.getModelName().equals(model.getModelName())) {
             return true;
         }
         for (DownloadRequest req : downloadQueue) {
@@ -140,7 +185,7 @@ public class ModelDownloader {
         }
         return false;
     }
-    
+
     private void processNextDownload() {
         if (downloadQueue.isEmpty()) {
             isDownloading = false;
@@ -151,11 +196,11 @@ public class ModelDownloader {
         currentDownloadRequest = downloadQueue.remove(0);
         executeDownload(currentDownloadRequest);
     }
-    
+
     public boolean isDownloading() {
         return isDownloading;
     }
-    
+
     public List<InsectModel> getQueuedAndDownloadingModels() {
         List<InsectModel> list = new ArrayList<>();
         if (currentDownloadRequest != null) {
@@ -166,7 +211,7 @@ public class ModelDownloader {
         }
         return list;
     }
-    
+
     public void cancelDownload() {
         downloadQueue.clear();
         if (currentCall != null) {
@@ -190,34 +235,37 @@ public class ModelDownloader {
             int modelDownloadSeq = request.modelDownloadSeq;
             int totalModelDownloads = request.totalModelDownloads;
 
-            final boolean[] downloadStarted = {false};
+            final boolean[] downloadStarted = { false };
 
             Runnable wrappedOnSuccess = () -> {
                 if (downloadStarted[0]) {
                     mainHandler.post(() -> uiController.showToast("Download complete: " + model.getDisplayName()));
                 }
                 mainHandler.post(this::processNextDownload);
-                if (originalOnSuccess != null) originalOnSuccess.run();
+                if (originalOnSuccess != null)
+                    originalOnSuccess.run();
             };
-            
+
             Runnable wrappedOnFailure = () -> {
                 if (downloadStarted[0]) {
                     mainHandler.post(() -> uiController.showToast("Download failed: " + model.getDisplayName()));
                 }
                 mainHandler.post(this::processNextDownload);
-                if (originalOnFailure != null) originalOnFailure.run();
+                if (originalOnFailure != null)
+                    originalOnFailure.run();
             };
 
             Log.d(LOG_TAG, "Inside ModelDownloader.executeDownload()");
             try {
-                if(forceUpdate) {
+                if (forceUpdate) {
                     metadataManager.getMetadata(true);
                 }
 
                 final String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
                 final String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
                 final String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
-                final String imagesFileName = Constants.getImagesArchiveFileName(context, model.getModelName(), model.getImagesUrl());
+                final String imagesFileName = Constants.getImagesArchiveFileName(context, model.getModelName(),
+                        model.getImagesUrl());
 
                 final String classesFileUrl = model.getClassesUrl();
                 final String classDetailsFileUrl = model.getClassDetailsUrl();
@@ -228,12 +276,12 @@ public class ModelDownloader {
                     final boolean updateRequired;
                     if (isModelAlreadyDownloaded(model)) {
                         updateRequired = forceUpdate && isModelToBeUpdated(model);
-                        if(updateRequired) {
+                        if (updateRequired) {
                             downloadStarted[0] = true;
                             mainHandler.post(() -> uiController.showToast("Update started: " + model.getDisplayName()));
                             Log.d(LOG_TAG, "Going to update " + model.getModelName() + " model");
                         } else {
-                            if(forceUpdate) {
+                            if (forceUpdate) {
                                 int currentVersion = prefs.getInt(modelVersionPrefName(model.getModelName()), 0);
                                 Log.d(LOG_TAG, "Model already up to date. Version: " + currentVersion);
                             }
@@ -248,15 +296,18 @@ public class ModelDownloader {
                         Log.d(LOG_TAG, "Going to download " + model.getModelName() + " model");
                     }
 
-                    Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, wrappedOnSuccess, wrappedOnFailure,
+                    Runnable downloadModelFile = () -> downloadFile(modelFileName, modelFileUrl, wrappedOnSuccess,
+                            wrappedOnFailure,
                             model.getDisplayName() + " model", model.getModelName(), updateRequired,
                             5, 5, modelDownloadSeq, totalModelDownloads);
 
-                    Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile, wrappedOnFailure,
+                    Runnable downloadImageArchive = () -> downloadFile(imagesFileName, imagesFileUrl, downloadModelFile,
+                            wrappedOnFailure,
                             model.getDisplayName() + " images", model.getModelName(), updateRequired,
                             4, 5, modelDownloadSeq, totalModelDownloads);
 
-                    Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl, downloadImageArchive, wrappedOnFailure,
+                    Runnable downloadClassDetails = () -> downloadFile(classDetailsFileName, classDetailsFileUrl,
+                            downloadImageArchive, wrappedOnFailure,
                             model.getDisplayName() + " metadata", model.getModelName(), updateRequired,
                             3, 5, modelDownloadSeq, totalModelDownloads);
 
@@ -265,8 +316,9 @@ public class ModelDownloader {
                             2, 5, modelDownloadSeq, totalModelDownloads);
                 };
 
-                downloadRootClassifier(downloadModelData, wrappedOnFailure, forceUpdate, modelDownloadSeq, totalModelDownloads);
-            } catch(Exception ex) {
+                downloadRootClassifier(downloadModelData, wrappedOnFailure, forceUpdate, modelDownloadSeq,
+                        totalModelDownloads);
+            } catch (Exception ex) {
                 Log.e(LOG_TAG, "Exception downloading model", ex);
                 wrappedOnFailure.run();
             }
@@ -287,22 +339,25 @@ public class ModelDownloader {
         // 2. Delete images archive only if no other downloaded model uses it
         boolean isImagesUsed = false;
         for (InsectModel otherModel : metadataManager.getAvailableModels()) {
-            if (otherModel.getModelName().equals(model.getModelName())) continue;
-            
+            if (otherModel.getModelName().equals(model.getModelName()))
+                continue;
+
             if (isModelAlreadyDownloaded(otherModel)) {
-                String otherImagesFileName = Constants.getImagesArchiveFileName(context, otherModel.getModelName(), otherModel.getImagesUrl());
+                String otherImagesFileName = Constants.getImagesArchiveFileName(context, otherModel.getModelName(),
+                        otherModel.getImagesUrl());
                 if (imagesFileName.equals(otherImagesFileName)) {
                     isImagesUsed = true;
-                    Log.d(LOG_TAG, "Images archive " + imagesFileName + " is shared with " + otherModel.getModelName() + " and will not be deleted.");
+                    Log.d(LOG_TAG, "Images archive " + imagesFileName + " is shared with " + otherModel.getModelName()
+                            + " and will not be deleted.");
                     break;
                 }
             }
         }
-        
+
         if (!isImagesUsed) {
             deleteFileAndPref(imagesFileName);
         }
-        
+
         // 3. Remove version info
         prefs.edit().remove(modelVersionPrefName(model.getModelName())).apply();
     }
@@ -317,12 +372,13 @@ public class ModelDownloader {
     }
 
     private void downloadFile(String fileName, String fileUrl, Runnable onSuccess, Runnable onFailure,
-                              String downloadName, String modelName, boolean updateRequired,
-                              int fileDownloadSeq, int totalFileDownloads,
-                              int modelDownloadSeq, int totalModelDownloads) {
+            String downloadName, String modelName, boolean updateRequired,
+            int fileDownloadSeq, int totalFileDownloads,
+            int modelDownloadSeq, int totalModelDownloads) {
         if (!updateRequired && isFileAlreadyDownloaded(fileName)) {
             Log.d(LOG_TAG, "File " + fileName + " is already downloaded, skipping...");
-            if (onSuccess != null) onSuccess.run();
+            if (onSuccess != null)
+                onSuccess.run();
             return;
         }
 
@@ -331,22 +387,24 @@ public class ModelDownloader {
                 uiController.showDownloadFailedPopup(
                         "Download Failed",
                         "Failed to download " + downloadName + ". Do you want to retry?",
-                        () -> downloadFile(fileName, fileUrl, onSuccess, onFailure, downloadName, modelName, updateRequired, fileDownloadSeq, totalFileDownloads, modelDownloadSeq, totalModelDownloads),
-                        onFailure
-                );
+                        () -> downloadFile(fileName, fileUrl, onSuccess, onFailure, downloadName, modelName,
+                                updateRequired, fileDownloadSeq, totalFileDownloads, modelDownloadSeq,
+                                totalModelDownloads),
+                        onFailure);
             });
         };
 
         try {
             Log.d(LOG_TAG, "Downloading " + downloadName + " " + fileName + " from " + fileUrl + "...");
-            DownloadFileHttpCallback callback = new DownloadFileHttpCallback(context, uiController, metadataManager, mainHandler, prefs,
+            DownloadFileHttpCallback callback = new DownloadFileHttpCallback(context, uiController, metadataManager,
+                    mainHandler, prefs,
                     fileName, onSuccess, popupOnFailure, downloadName, modelName, updateRequired,
-                    fileDownloadSeq, totalFileDownloads, modelDownloadSeq, totalModelDownloads);
+                    fileDownloadSeq, totalFileDownloads, modelDownloadSeq, totalModelDownloads, this);
             currentCall = client.newCall(new Request.Builder().url(fileUrl).build());
             currentCall.enqueue(callback);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             Log.e(LOG_TAG, "Exception downloading " + fileUrl, ex);
-            if(popupOnFailure != null) {
+            if (popupOnFailure != null) {
                 popupOnFailure.run();
             }
         }
@@ -356,7 +414,6 @@ public class ModelDownloader {
         File file = new File(context.getFilesDir(), fileName);
         return file.exists() && prefs.getBoolean(fileDownloadedPrefName(fileName), false);
     }
-
 
     public static String fileDownloadedPrefName(String fileName) {
         return PREF_FILE_DOWNLOADED + "::" + fileName;
@@ -368,10 +425,10 @@ public class ModelDownloader {
 
     public long getModelDownloadSizeInMB(InsectModel model) {
         long size = 0;
-        if(isRootClassifierDownloadRequired()) {
+        if (isRootClassifierDownloadRequired()) {
             size += metadataManager.getModelSize(ROOT_CLASSIFIER);
         }
-        if(isModelDownloadOrUpdateRequired(model)) {
+        if (isModelDownloadOrUpdateRequired(model)) {
             size += metadataManager.getModelSize(model.getModelName());
         }
         return size / 1000 / 1000;
@@ -379,16 +436,18 @@ public class ModelDownloader {
 
     public long getTotalModelDownloadSizeInMB(boolean onlyNonLegacy) {
         long totalSize = 0;
-        if(isRootClassifierDownloadRequired()) {
+        if (isRootClassifierDownloadRequired()) {
             long size = metadataManager.getModelSize(ROOT_CLASSIFIER);
-            if(size <= 0) return 0;
+            if (size <= 0)
+                return 0;
             totalSize += size;
         }
         List<InsectModel> availableModels = metadataManager.getAvailableModels();
-        for(InsectModel model: availableModels) {
+        for (InsectModel model : availableModels) {
             if ((!onlyNonLegacy || !model.isLegacy()) && isModelDownloadOrUpdateRequired(model)) {
                 long size = metadataManager.getModelSize(model.getModelName());
-                if(size <= 0) return 0;
+                if (size <= 0)
+                    return 0;
                 totalSize += size;
             }
         }
@@ -397,16 +456,17 @@ public class ModelDownloader {
 
     public List<DownloadItem> generateDownloadPlan(List<InsectModel> models, boolean forceUpdate) {
         List<DownloadItem> plan = new ArrayList<>();
-        
+
         if (isRootClassifierDownloadRequired()) {
             DownloadItem rootModel = new DownloadItem(DownloadItem.TYPE_MODEL, "Root Classifier", ROOT_CLASSIFIER);
             String modelFileName = String.format(MODEL_FILE_NAME_FMT, ROOT_CLASSIFIER);
-            DownloadItem fileItem = new DownloadItem(DownloadItem.TYPE_FILE, "Root Classifier model", ROOT_CLASSIFIER + "_" + modelFileName);
+            DownloadItem fileItem = new DownloadItem(DownloadItem.TYPE_FILE, "Root Classifier model",
+                    ROOT_CLASSIFIER + "_" + modelFileName);
             fileItem.parent = rootModel;
             rootModel.children.add(fileItem);
             plan.add(rootModel);
         }
-        
+
         for (InsectModel model : models) {
             boolean updateRequired = false;
             if (isModelAlreadyDownloaded(model)) {
@@ -417,30 +477,36 @@ public class ModelDownloader {
             } else {
                 updateRequired = true;
             }
-            
+
             if (updateRequired) {
-                DownloadItem modelItem = new DownloadItem(DownloadItem.TYPE_MODEL, model.getDisplayName(), model.getModelName());
-                
+                DownloadItem modelItem = new DownloadItem(DownloadItem.TYPE_MODEL, model.getDisplayName(),
+                        model.getModelName());
+
                 String classesFileName = String.format(CLASSES_FILE_NAME_FMT, model.getModelName());
-                DownloadItem classesFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " classes", model.getModelName() + "_" + classesFileName);
+                DownloadItem classesFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " classes",
+                        model.getModelName() + "_" + classesFileName);
                 classesFile.parent = modelItem;
                 modelItem.children.add(classesFile);
-                
+
                 String classDetailsFileName = String.format(CLASS_DETAILS_FILE_NAME_FMT, model.getModelName());
-                DownloadItem detailsFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " metadata", model.getModelName() + "_" + classDetailsFileName);
+                DownloadItem detailsFile = new DownloadItem(DownloadItem.TYPE_FILE,
+                        model.getDisplayName() + " metadata", model.getModelName() + "_" + classDetailsFileName);
                 detailsFile.parent = modelItem;
                 modelItem.children.add(detailsFile);
-                
-                String imagesFileName = Constants.getImagesArchiveFileName(context, model.getModelName(), model.getImagesUrl());
-                DownloadItem imagesFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " images", model.getModelName() + "_" + imagesFileName);
+
+                String imagesFileName = Constants.getImagesArchiveFileName(context, model.getModelName(),
+                        model.getImagesUrl());
+                DownloadItem imagesFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " images",
+                        model.getModelName() + "_" + imagesFileName);
                 imagesFile.parent = modelItem;
                 modelItem.children.add(imagesFile);
-                
+
                 String modelFileName = String.format(MODEL_FILE_NAME_FMT, model.getModelName());
-                DownloadItem modelFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " model", model.getModelName() + "_" + modelFileName);
+                DownloadItem modelFile = new DownloadItem(DownloadItem.TYPE_FILE, model.getDisplayName() + " model",
+                        model.getModelName() + "_" + modelFileName);
                 modelFile.parent = modelItem;
                 modelItem.children.add(modelFile);
-                
+
                 plan.add(modelItem);
             }
         }

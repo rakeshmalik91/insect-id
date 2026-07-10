@@ -131,8 +131,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             if (isQueuedOrDownloading) {
                 statusIcon.setImageResource(R.drawable.ic_download);
                 statusIcon.clearColorFilter();
-                modelStatus.setText("Downloading / Queued");
-                btnDownload.setText("Downloading");
+                modelStatus.setText(String.format("Downloading / Queued (%d MB)", model.getSize() / 1024 / 1024));
                 btnDownload.setEnabled(false);
                 btnDownload.setVisibility(View.VISIBLE);
                 btnOffload.setVisibility(View.GONE);
@@ -141,7 +140,6 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
                     statusIcon.setImageResource(R.drawable.ic_download);
                     statusIcon.clearColorFilter();
                     modelStatus.setText("Downloaded (v" + currentVersion + ") - Update available");
-                    btnDownload.setText("Update");
                     btnDownload.setEnabled(true);
                     btnDownload.setVisibility(View.VISIBLE);
                     btnOffload.setVisibility(View.VISIBLE);
@@ -155,8 +153,7 @@ public class ManageModelsAdapter extends RecyclerView.Adapter<ManageModelsAdapte
             } else {
                 statusIcon.setImageResource(R.drawable.ic_download);
                 statusIcon.clearColorFilter();
-                modelStatus.setText("Not downloaded");
-                btnDownload.setText("Download");
+                modelStatus.setText(String.format("Not downloaded (%d MB)", model.getSize() / 1024 / 1024));
                 btnDownload.setEnabled(true);
                 btnDownload.setVisibility(View.VISIBLE);
                 btnOffload.setVisibility(View.GONE);
