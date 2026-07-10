@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_butterfly,@drawable/ic_butterfly_moth,@drawable/ic_cicada,@drawable/ic_dragonfly,@drawable/ic_insect,@drawable/ic_moth" />
